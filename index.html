@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>好感度不是攻略，是回忆</title>
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+    background: #171a20;
+    overflow: hidden;
+    color: #f2ece6;
+    user-select: none;
+  }
+
+  #stage {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  #bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg, #2b3340, #3a2f3a 60%, #46392f);
+    background-size: cover;
+    background-position: center;
+    transition: background-image .5s ease;
+  }
+  #bgShade {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(10,12,16,.25), rgba(10,12,16,.05) 35%, rgba(10,12,16,.65));
+    pointer-events: none;
+  }
+
+  #chapterTitle {
+    position: absolute;
+    top: 22px; left: 0; right: 0;
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,.72);
+    text-shadow: 0 2px 8px rgba(0,0,0,.5);
+    z-index: 5;
+    opacity: 0;
+    transition: opacity .4s ease;
+  }
+  #chapterTitle.show { opacity: 1; }
+
+  #dialog {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 20px clamp(18px, 5vw, 64px) 24px;
+    background: linear-gradient(to top, rgba(16,18,24,.94), rgba(16,18,24,.82));
+    border-top: 1px solid rgba(255,255,255,.08);
+    cursor: pointer;
+    min-height: 190px;
+    z-index: 10;
+  }
+  #nameTag {
+    padding: 4px 16px;
+    border-radius: 999px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    color: #fff;
+    display: none;
+  }
+  #nameTag.boy { display: inline-block; background: #5b7f9e; box-shadow: 0 3px 10px rgba(91,127,158,.4); }
+  #nameTag.girl { display: inline-block; background: #b3708c; box-shadow: 0 3px 10px rgba(179,112,140,.4); }
+
+  #dialogText {
+    font-size: clamp(16px, 2.4vw, 18px);
+    line-height: 1.95;
+    color: #f2ece6;
+    min-height: 66px;
+    white-space: pre-wrap;
+  }
+  #dialogText.narration { color: #d8d2cc; }
+  #dialogText.prompt { color: #c9bfb2; font-style: italic; }
+
+  #hint {
+    position: absolute;
+    right: clamp(18px, 5vw, 64px);
+    bottom: 12px;
+    font-size: 12px;
+    color: rgba(255,255,255,.45);
+    letter-spacing: 1px;
+    animation: blink 1.8s infinite;
+  }
+  @keyframes blink { 0%,100% { opacity: .25; } 50% { opacity: .85; } }
+
+  #choices {
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 230px;
+    padding: 0 clamp(24px, 9vw, 110px);
+    display: none;
+    z-index: 40;
+  }
+  #choices.show { display: block; }
+  #choices button {
+    display: block;
+    width: 100%;
+    margin: 0 0 12px;
+    padding: 16px 22px;
+    text-align: center;
+    font-size: clamp(15px, 2.3vw, 16.5px);
+    line-height: 1.6;
+    color: #f2ece6;
+    background: rgba(24,28,36,.92);
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 14px;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    transition: background .18s, transform .18s, border-color .18s;
+    animation: choiceIn .28s ease both;
+  }
+  #choices button:hover {
+    background: rgba(56,62,76,.96);
+    border-color: rgba(255,255,255,.42);
+    transform: translateY(-2px);
+  }
+  #choices button:nth-child(1) { animation-delay: 0s; }
+  #choices button:nth-child(2) { animation-delay: .06s; }
+  #choices button:nth-child(3) { animation-delay: .12s; }
+  @keyframes choiceIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade { animation: fade .35s ease; }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+  #cover {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(160deg, rgba(20,24,32,.55), rgba(40,26,34,.72));
+    z-index: 50;
+    background-size: cover;
+    background-position: center;
+  }
+  #cover h1 {
+    font-size: clamp(24px, 5.2vw, 34px);
+    letter-spacing: 3px;
+    margin: 0 0 18px;
+    text-shadow: 0 4px 20px rgba(0,0,0,.5);
+    line-height: 1.5;
+  }
+  #cover .sub {
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,.7);
+    margin-bottom: 14px;
+    line-height: 2;
+  }
+  #cover .guess {
+    font-size: 12.5px;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,.48);
+    margin-bottom: 36px;
+    line-height: 1.9;
+  }
+  #cover button {
+    border: 1px solid rgba(255,255,255,.35);
+    background: rgba(255,255,255,.1);
+    color: #fff;
+    padding: 13px 46px;
+    border-radius: 999px;
+    font-size: 16px;
+    letter-spacing: 4px;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  #cover button:hover { background: rgba(255,255,255,.22); }
+
+  #chapterCard {
+    position: absolute; inset: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: rgba(8,10,14,.88);
+    z-index: 45;
+    cursor: pointer;
+    padding: 30px;
+    backdrop-filter: blur(3px);
+  }
+  #chapterCard.show { display: flex; }
+  #chapterCard .num {
+    font-size: 13px;
+    letter-spacing: 6px;
+    color: rgba(255,255,255,.42);
+    margin-bottom: 18px;
+  }
+  #chapterCard .name {
+    font-size: clamp(20px, 4.4vw, 26px);
+    letter-spacing: 4px;
+    color: #f2ece6;
+    line-height: 1.7;
+    text-shadow: 0 4px 24px rgba(0,0,0,.5);
+    max-width: 80%;
+  }
+  #chapterCard .line {
+    width: 46px;
+    height: 1px;
+    background: rgba(255,255,255,.28);
+    margin: 26px auto 0;
+  }
+  #chapterCard .tip {
+    position: absolute;
+    bottom: 40px; left: 0; right: 0;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255,255,255,.38);
+    letter-spacing: 2px;
+    animation: blink 2s infinite;
+  }
+
+  #final {
+    position: absolute; inset: 0;
+    overflow-y: auto;
+    padding: 60px 22px 50px;
+    background: linear-gradient(160deg, rgba(16,20,28,.94), rgba(34,24,32,.96));
+    display: none;
+    z-index: 50;
+  }
+  #meteorCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  #final .inner {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  #endingImg {
+    display: none;
+    width: 100%;
+    max-height: 340px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-bottom: 22px;
+    box-shadow: 0 18px 50px rgba(0,0,0,.4);
+  }
+  #endingTitle {
+    font-size: clamp(20px, 4vw, 24px);
+    letter-spacing: 4px;
+    color: #f0e6ea;
+    margin: 0 0 28px;
+    text-shadow: 0 2px 14px rgba(0,0,0,.5);
+  }
+  #endingText {
+    font-size: clamp(15.5px, 2.3vw, 17px);
+    line-height: 2.2;
+    color: #e6dde2;
+    white-space: pre-wrap;
+    text-align: left;
+    padding: 24px 22px;
+    border-radius: 18px;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.1);
+    margin-bottom: 28px;
+  }
+  #endingNote {
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,.42);
+    line-height: 2;
+    margin-bottom: 34px;
+  }
+  #restartBtn {
+    border: 1px solid rgba(255,255,255,.25);
+    background: rgba(255,255,255,.07);
+    color: #f2ece6;
+    padding: 11px 30px;
+    border-radius: 999px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  #restartBtn:hover { background: rgba(255,255,255,.16); }
+
+  #photoOverlay {
+    position: absolute; inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(8,10,14,.84);
+    z-index: 60;
+    cursor: pointer;
+    padding: 24px;
+  }
+  #photoOverlay.show { display: flex; }
+  #photoOverlay img {
+    max-width: 100%;
+    max-height: 76vh;
+    border-radius: 14px;
+    box-shadow: 0 24px 70px rgba(0,0,0,.6);
+    opacity: 0;
+    transform: scale(.94);
+    transition: opacity .55s ease, transform .55s ease;
+  }
+  #photoOverlay.show img {
+    opacity: 1;
+    transform: scale(1);
+  }
+  #photoFlash {
+    position: absolute; inset: 0;
+    background: #fff;
+    opacity: 0;
+    pointer-events: none;
+  }
+  #photoOverlay.flash #photoFlash {
+    animation: flashAnim .7s ease-out;
+  }
+  @keyframes flashAnim {
+    0% { opacity: 0; }
+    12% { opacity: .92; }
+    100% { opacity: 0; }
+  }
+  #photoHint {
+    position: absolute;
+    bottom: 18px; left: 0; right: 0;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255,255,255,.42);
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <div id="bg"></div>
+  <div id="bgShade"></div>
+
+  <div id="chapterTitle"></div>
+
+  <div id="choices"></div>
+
+  <div id="dialog" onclick="advance()">
+    <div id="nameTag"></div>
+    <div id="dialogText"></div>
+    <div id="hint">点击继续</div>
+  </div>
+
+  <div id="chapterCard" onclick="enterChapter()">
+    <div class="num" id="cardNum"></div>
+    <div class="name" id="cardName"></div>
+    <div class="line"></div>
+    <div class="tip">点击进入</div>
+  </div>
+
+  <div id="photoOverlay" onclick="closePhoto(event)">
+    <div id="photoFlash"></div>
+    <img id="photoImg" src="" alt="">
+    <div id="photoHint">点击继续</div>
+  </div>
+
+  <div id="cover">
+    <h1>好感度不是攻略<br>是回忆</h1>
+    <div class="sub">Easlyn 出品<br>to 优秀的人</div>
+    <div class="guess">优秀的人会是谁呢？<br>你知道是谁？</div>
+    <button onclick="startGame()">开 始</button>
+  </div>
+
+  <div id="final">
+    <canvas id="meteorCanvas"></canvas>
+    <div class="inner">
+      <img id="endingImg" src="" alt="">
+      <h2 id="endingTitle"></h2>
+      <div id="endingText"></div>
+      <div id="endingNote"></div>
+      <button id="restartBtn" onclick="location.reload()">再玩一次</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =====================================================
+   图片配置：只改这里
+   格式示例：https://i.postimg.cc/xxxxxxx/xxx.jpg
+   某一张不想用，把引号里清空即可（""）
+===================================================== */
+const IMG = {
+  cover:  "https://i.postimg.cc/Qdd7YQHq/f8ec01acf9d31de64495bb823a7605b5.png",   // 封面背景
+  ch1:    "https://i.postimg.cc/图片1",    // 第一章背景 · 教堂到中央大街
+  ch2:    "https://i.postimg.cc/图片2",    // 第二章背景 · 六泰居
+  ch3:    "https://i.postimg.cc/图片3",    // 第三章背景 · 江边、大桥、烤肉
+  ch4:    "https://i.postimg.cc/图片4",    // 第四章背景 · 巴洛克
+  ch5:    "https://i.postimg.cc/图片5",    // 第五章背景 · 小龙虾
+  ch6:    "https://i.postimg.cc/图片6",    // 第六章背景 · 秋林和手工
+  ch7:    "https://i.postimg.cc/图片7",    // 第七章背景 · 酒店
+  photo1: "https://i.postimg.cc/照片1",    // 大桥拍照定格那张
+  ending: "https://i.postimg.cc/结局图"    // 结局页照片，可留空
+};
+/* ===================================================== */
+
+const CHAPTERS = [
+  {
+    title: "第一章 · 第一天上午 · 教堂到中央大街",
+    img: IMG.ch1,
+    lines: [
+      { who: "narr", text: "索菲亚教堂的鸽子比想象中多。Easlyn 站在广场上抬头看。" },
+      { who: "boy", text: "哟，冬天还真有鸽子。" },
+      { who: "boy", text: "我一直以为就夏天有。" },
+      { who: "girl", text: "给我拍照📷" },
+      { who: "boy", text: "行，但我技术一般啊。" },
+      { who: "girl", text: "拍就行了，又不要求你拍多好。" },
+      { who: "narr", text: "快门按了两下。两人往中央大街走。人挺多，Bonan 走得时快时慢，又停下来等她。" },
+      { who: "girl", text: "你腿长了不起啊，走那么快。" },
+      { who: "boy", text: "我走得快吗？" },
+      { who: "boy", text: "没注意。" },
+      { who: "boy", text: "主要你太小只了。" },
+      { who: "narr", text: "石板路很长。Easlyn 看着两边不算拥挤的人群。" },
+      { who: "boy", text: "这儿其实没啥好玩的。" },
+      { who: "boy", text: "主要晚上有氛围感。" },
+      { who: "boy", text: "晚上有空可以再来。" },
+      { who: "girl", text: "原来如此。" },
+      { who: "narr", text: "走到中央大街尽头，快到中午了。Bonan 看了眼时间。" },
+      { who: "boy", text: "饿了吧。" },
+      { who: "boy", text: "带你去吃个东北菜。" }
+    ],
+    choice: {
+      q: "Easlyn？",
+      options: [
+        { label: "“行，你带路”", tone: "fun",
+          reply: [
+            { who: "boy", text: "走，六泰居。" },
+            { who: "girl", text: "听名字还挺高大上的。" },
+            { who: "narr", text: "两人拐进街边，往饭馆走。" }
+          ]},
+        { label: "“是有点饿了，走”", tone: "straight",
+          reply: [
+            { who: "boy", text: "那快点，中午人多。" },
+            { who: "girl", text: "okokokokk。" },
+            { who: "narr", text: "Bonan 笑了一下，放慢了脚步。" }
+          ]},
+        { label: "“东北菜分量大，我们点两三个菜就行了吧”", tone: "soft",
+          reply: [
+            { who: "boy", text: "想吃什么就点什么，总得先尝尝都。" },
+            { who: "girl", text: "行，那我到时候看看。" },
+            { who: "narr", text: "两人往饭馆走，路上还在讨论点什么。" }
+          ]}
+      ]
+    }
+  },
+  {
+    title: "第二章 · 第一天中午 · 六泰居",
+    img: IMG.ch2,
+    lines: [
+      { who: "narr", text: "已经悄然到达啊两个人。" },
+      { who: "boy", text: "你先看看想吃什么吧。" },
+      { who: "girl", text: "来，我来看看。" },
+      { who: "narr", text: "Bonan 点点头，递过去菜单，然后推荐了几个菜。" },
+      { who: "girl", text: "我要炒一本。" },
+      { who: "boy", text: "ok啊直接破产。" },
+      { who: "boy", text: "孩子们，看我的吧。" }
+    ],
+    choice: {
+      q: "Easlyn 把菜单往他那边推了推——",
+      options: [
+        { label: "“那你点，我尝尝你的眼光”", tone: "fun",
+          reply: [
+            { who: "boy", text: "行，我来看看。" },
+            { who: "girl", text: "ok。" },
+            { who: "narr", text: "来个锅包肉吧，品鉴一下东北正宗锅包肉。" },
+            { who: "boy", text: "没吃过正宗的吧。" },
+            { who: "narr", text: "Easlyn 点头。" },
+            { who: "girl", text: "可以啊，来东北就得吃锅包肉。" }
+          ]},
+        { label: "“剩下的你看着来吧，我不知道还有什么东北菜”", tone: "straight",
+          reply: [
+            { who: "boy", text: "点。" },
+            { who: "narr", text: "锅包肉上来，Easlyn 赶紧品尝。" },
+            { who: "girl", text: "emmm yummy~。" },
+            { who: "boy", text: "怎么样。" }
+          ]},
+        { label: "“御座~”", tone: "soft",
+          reply: [
+            { who: "narr", text: "不错儿~。" },
+            { who: "girl", text: "笑死我。" }
+          ]}
+      ]
+    }
+  },
+  {
+    title: "第三章 · 第一天下午 · 江边、大桥和烤肉",
+    img: IMG.ch3,
+    lines: [
+      { who: "narr", text: "吃完饭，两人往江边走。防洪纪念塔就在中央大街尽头。" },
+      { who: "narr", text: "这里的风比想象中凉。Easlyn 缩了缩肩膀。Bonan 看了一眼，往风口那边站了半步。" }
+    ],
+    choice: {
+      q: "Easlyn 看着他挡在风口的背影——",
+      options: [
+        { label: "“你这挡风挡得挺专业啊”", tone: "fun",
+          reply: [
+            { who: "boy", text: "要不要回去穿厚衣服。" },
+            { who: "girl", text: "那倒不用，还能抗。" },
+            { who: "narr", text: "不得不说哈尔滨的冬天，真冷。" },
+            { who: "boy", text: "老东西。" },
+            { who: "girl", text: "老东西。" }
+          ]},
+        { label: "“你站过来点，风口那边冷”", tone: "straight",
+          reply: [
+            { who: "narr", text: "Bonan 愣了一下，往她那边挪了一步。" },
+            { who: "boy", text: "这样？" },
+            { who: "girl", text: "嗯，好多了。" },
+            { who: "boy", text: "那你怎么不早说。" },
+            { who: "girl", text: "现在说也不晚。" }
+          ]},
+        { label: "“你穿这么少还替我挡风，够意思”", tone: "soft",
+          reply: [
+            { who: "boy", text: "没事，我不冷。" },
+            { who: "girl", text: "嗯呢，你穿的像狗熊。" },
+            { who: "boy", text: "噗嗤笑了一下，什么狗熊？" },
+            { who: "girl", text: "穿得厚的像狗熊。" }
+          ]}
+      ]
+    },
+    next: [
+      { who: "narr", text: "下午去了中东铁路大桥。桥很长，江面很宽，好像结冰了。" },
+      { who: "boy", text: "这儿拍照好看。" },
+      { who: "girl", text: "拍好看点啊，我要拍黑吉辽蒙在东北。" },
+      { who: "boy", text: "内心os：老东西在立单身人设？" },
+      { who: "boy", text: "行，你站那儿别动。" },
+      { who: "narr", text: "Bonan 举起手机，退后两步，蹲下来找角度。" },
+      { who: "boy", text: "往左一点。" },
+      { who: "boy", text: "再往左一点。" },
+      { who: "girl", text: "到底哪边啊。" },
+      { who: "boy", text: "就这儿，别动。" },
+      { who: "narr", text: "他抬手，快门按下去。" },
+      { who: "photo", text: IMG.photo1 },
+      { who: "narr", text: "晚上，西城红场，西塔老太太，炭火很旺。" },
+      { who: "narr", text: "Bonan 一直在烤，非常绅士。" },
+      { who: "girl", text: "不错儿。" },
+      { who: "boy", text: "不错儿。" },
+      { who: "narr", text: "他还在忙碌......" }
+    ]
+  },
+  {
+    title: "第四章 · 第二天上午 · 巴洛克",
+    img: IMG.ch4,
+    lines: [
+      { who: "narr", text: "第二天上午，巴洛克。老建筑一排排。" },
+      { who: "narr", text: "Easlyn 走得很慢，Bonan 也走得很慢。" },
+      { who: "girl", text: "这楼看着挺老的，有啥讲究吗？" },
+      { who: "boy", text: "不知道。" },
+      { who: "boy", text: "我也不太懂这个。" },
+      { who: "girl", text: "你不是本地人吗？" },
+      { who: "boy", text: "本地啥啊。" },
+      { who: "boy", text: "我也是外地来的。" },
+      { who: "boy", text: "就在这儿买了个房而已。" },
+      { who: "narr", text: "Easlyn 笑出声。" },
+      { who: "girl", text: "合着你也算游客。" },
+      { who: "boy", text: "半拉游客。" },
+      { who: "boy", text: "定居是定居了，人文是一点不了解。" }
+    ],
+    choice: {
+      q: "Easlyn 看着两边的老建筑——",
+      options: [
+        { label: "“那咱俩都是外地人，瞎逛吧”", tone: "fun",
+          reply: [
+            { who: "boy", text: "瞎逛就瞎逛。" },
+            { who: "boy", text: "反正也没什么事儿。" },
+            { who: "girl", text: "ok，lets 瞎逛。" }
+          ]},
+        { label: "“你站过去，我给你拍一张”", tone: "straight",
+          reply: [
+            { who: "narr", text: "Bonan 靠在一面老墙前，有点不自然。" },
+            { who: "girl", text: "别绷着，笑一个。" },
+            { who: "narr", text: "他笑了一下，快门按下去。" },
+            { who: "boy", text: "我不好意思让别人给我拍照。" },
+            { who: "girl", text: "hhhhhhhhhhh。" }
+          ]},
+        { label: "“不懂就瞎看，反正也不收门票”", tone: "soft",
+          reply: [
+            { who: "boy", text: "有道理。" },
+            { who: "boy", text: "不花钱的地方，随便看。" },
+            { who: "girl", text: "你这觉悟挺高。" },
+            { who: "boy", text: "那必须的。" }
+          ]}
+      ]
+    }
+  },
+  {
+    title: "第五章 · 第二天中午 · 小龙虾",
+    img: IMG.ch5,
+    lines: [
+      { who: "narr", text: "中午去吃小龙虾。Bonan 戴上手套，开始剥虾。" },
+      { who: "boy", text: "这个餐厅如何呢。" },
+      { who: "girl", text: "御座。" },
+      { who: "boy", text: "不错儿。" },
+      { who: "narr", text: "吃一半的时候，Easlyn 开口。" },
+      { who: "girl", text: "很开心啊，玩的很御座。" },
+      { who: "boy", text: "御座~。" }
+    ],
+    choice: {
+      q: "Easlyn 一直耍手机中——",
+      options: [
+        { label: "装疯卖傻中：“礼尚往来”", tone: "straight",
+          reply: [
+            { who: "narr", text: "Bonan 愣了一下，接过那只虾。" },
+            { who: "boy", text: "哟，还有这待遇。" },
+            { who: "girl", text: "嗯哼。" },
+            { who: "boy", text: "哦吼。" },
+            { who: "girl", text: "诶嘿。" }
+          ]},
+        { label: "“你自己吃吧快”", tone: "soft",
+          reply: [
+            { who: "narr", text: "Bonan 点头，胡吃海塞中。" },
+            { who: "girl", text: "我说真的啊。" },
+            { who: "boy", text: "知道了知道了。" },
+            { who: "narr", text: "然后他开始胡吃海塞中。" }
+          ]},
+        { label: "“行，那我胡吃海塞了”", tone: "fun",
+          reply: [
+            { who: "boy", text: "胡吃海塞，够不够？" },
+            { who: "girl", text: "差不多。" },
+            { who: "narr", text: "Bonan 胡吃海塞中。" },
+            { who: "girl", text: "服务不错，五星好评。" },
+            { who: "narr", text: "Bonan 笑出声。" }
+          ]}
+      ]
+    }
+  },
+  {
+    title: "第六章 · 第二天下午 · 秋林和手工",
+    img: IMG.ch6,
+    lines: [
+      { who: "narr", text: "下午逛秋林。Bonan 随意的扫了扫货架。" },
+      { who: "boy", text: "感觉也没什么特产，在外面都能买到。" },
+      { who: "girl", text: "确实，随便看看吧。" },
+      { who: "boy", text: "小转一下吧。" },
+      { who: "girl", text: "嗯哼。" }
+    ],
+    choice: {
+      q: "Easlyn 看着货架——",
+      options: [
+        { label: "“那就不买了，省得拎”", tone: "fun",
+          reply: [
+            { who: "boy", text: "行，省事。" },
+            { who: "girl", text: "反正网上都能买。" },
+            { who: "boy", text: "对，还包邮。" }
+          ]},
+        { label: "“来都来了，随便拿两样”", tone: "straight",
+          reply: [
+            { who: "boy", text: "行，你挑。" },
+            { who: "narr", text: "Easlyn 随手拿了两样，Bonan 接过去拎着。" },
+            { who: "girl", text: "就这两样吧。" },
+            { who: "boy", text: "够了？" },
+            { who: "girl", text: "够了。" }
+          ]},
+        { label: "“你平时买东西也这么随缘吗”", tone: "soft",
+          reply: [
+            { who: "boy", text: "差不多。" },
+            { who: "boy", text: "能用就行，不讲究。" },
+            { who: "girl", text: "挺好，省心。" }
+          ]}
+      ]
+    },
+    next: [
+      { who: "narr", text: "中间找时间做了手工。Bonan 坐在 Easlyn 对面，低头弄手里的东西。" },
+      { who: "boy", text: "我做得好不好？" },
+      { who: "girl", text: "好看，你手挺巧的。" },
+      { who: "boy", text: "真的？" },
+      { who: "girl", text: "骗你干嘛。" }
+    ]
+  },
+  {
+    title: "第七章 · 第二天晚上 · 酒店和最后",
+    img: IMG.ch7,
+    lines: [
+      { who: "narr", text: "晚上，Bonan 问她吃什么。" },
+      { who: "girl", text: "都行。" },
+      { who: "boy", text: "那就肥姨妈？还是自己煮？" },
+      { who: "girl", text: "自己煮吧，肥姨妈不好吃，我还是喜欢好欢螺。" },
+      { who: "boy", text: "行，那我点外送。" },
+      { who: "narr", text: "两个人回酒店，等外卖。" },
+      { who: "girl", text: "在酒店造作吧，煮臭臭螺蛳粉。" },
+      { who: "boy", text: "yea~造作。" },
+      { who: "narr", text: "外卖到了。水一开，螺蛳粉下锅，房间里很快全是味。" },
+      { who: "girl", text: "完了，这味儿得开到明天。" },
+      { who: "boy", text: "开窗。" },
+      { who: "narr", text: "两个人把窗开了条缝，等待螺蛳粉煮熟。" },
+      { who: "girl", text: "期待中，好欢螺比肥姨妈好吃太多了。" },
+      { who: "boy", text: "yea~" },
+      { who: "girl", text: "吃吃吃吃吃" },
+      { who: "narr", text: "煮好了，一个人一个锅，造作中。房间里安静了一会儿。" },
+      { who: "boy", text: "Easlyn。" },
+      { who: "girl", text: "哎，我做了个游戏你要玩吗。" },
+      { who: "narr", text: "Bonan 接过手机，低头看了起来。" },
+      { who: "narr", text: "屏幕的光映在他脸上。他看得很认真，偶尔笑一下。" },
+      { who: "narr", text: "玩到最后一页，他停住了。" },
+      { who: "narr", text: "房间里很安静。他盯着屏幕，看了很久。" },
+      { who: "narr", text: "Easlyn 看着他，心跳得很快。" },
+      { who: "boy", text: "最后一页，到底是什么？" },
+      { who: "boy", text: "这不是结局吧。" },
+      { who: "narr", text: "Easlyn 深吸一口气。" },
+      { who: "girl", text: "这就要问现实中的你了。" },
+      { who: "narr", text: "她把手机往他那边推了推。" },
+      { who: "narr", text: "屏幕还亮着，停在最后一页之前。" },
+      { who: "narr", text: "现在，轮到你了。" }
+    ],
+    choice: {
+      q: "现实中的你，会怎么回答？",
+      options: [
+        { label: "“我也喜欢你”", tone: "yes", ending: "yes" },
+        { label: "“你认真的？”", tone: "tease", ending: "tease" },
+        { label: "“让我想想”", tone: "wait", ending: "wait" }
+      ]
+    }
+  }
+];
+
+const ENDINGS = {
+  yes: {
+    title: "结局 · 我也喜欢你",
+    meteor: true,
+    text:
+      "“我也喜欢你。”\n" +
+      "这次是 Bonan 说的。\n" +
+      "不是游戏里的，不是她写好的。\n" +
+      "是他自己说的。\n\n" +
+      "Easlyn 愣住了。\n" +
+      "“你说什么？”\n" +
+      "“我说，我也喜欢你。”\n" +
+      "“不是这两天。”\n" +
+      "“是很久了。”\n\n" +
+      "手机屏幕还亮着。\n" +
+      "游戏里的最后一页，和现实里的最后一页，\n" +
+      "在这一刻重叠了。\n\n" +
+      "房间里还飘着螺蛳粉的味。\n" +
+      "窗外是哈尔滨的夜。\n" +
+      "这一次，不是游戏替她说。\n" +
+      "是他自己走到她面前。"
+  },
+  tease: {
+    title: "结局 · 你认真的？",
+    meteor: true,
+    text:
+      "“你认真的？”Bonan 问。\n\n" +
+      "“你说呢。”Easlyn 没抬头。\n\n" +
+      "Bonan 看了她两秒，笑了。\n" +
+      "“那我认真了。”\n\n" +
+      "Easlyn 抬起头。\n" +
+      "“认真什么？”\n" +
+      "“你说呢。”\n\n" +
+      "手机屏幕暗了下去。\n" +
+      "但现实里的故事，好像才刚开始。\n\n" +
+      "那天晚上，Easlyn 回去之后，把这两天的照片翻了一遍。\n" +
+      "每张照片里，Bonan 都在看她。"
+  },
+  wait: {
+    title: "结局 · 让我想想",
+    meteor: false,
+    text:
+      "“让我想想。”Bonan 说。\n\n" +
+      "Easlyn 点点头：“行。”\n\n" +
+      "“你不问要想多久？”\n" +
+      "“不用问，反正我等。”\n\n" +
+      "Bonan 笑了一下。\n" +
+      "“你学我说话。”\n" +
+      "“不行吗？”\n\n" +
+      "手机屏幕暗着，游戏停在了最后一页之前。\n" +
+      "但有些答案，不用急着说出口。\n\n" +
+      "那天晚上回去，她把这两天的照片翻了一遍。\n" +
+      "索菲亚教堂、中央大街、东铁路大桥、巴洛克、秋林、小龙虾、手工、酒店。\n" +
+      "她发现，每一张照片里，Bonan 都在看她。"
+  }
+};
+
+let state = null;
+
+/* 封面背景图 */
+(function setCoverBg() {
+  const cover = document.getElementById("cover");
+  if (IMG.cover) {
+    cover.style.background =
+      `linear-gradient(160deg, rgba(20,24,32,.55), rgba(40,26,34,.72)), url('${IMG.cover}') center/cover`;
+  }
+})();
+
+function startGame() {
+  document.getElementById("cover").style.display = "none";
+  state = {
+    chapter: 0,
+    lines: [],
+    idx: 0,
+    phase: "intro",
+    current: null,
+    pendingNext: false
+  };
+  loadChapter(0);
+}
+
+function setBg(img) {
+  const bg = document.getElementById("bg");
+  if (img) {
+    bg.style.backgroundImage = `url('${img}')`;
+  } else {
+    bg.style.backgroundImage = "";
+    bg.style.background = "linear-gradient(160deg, #2b3340, #3a2f3a 60%, #46392f)";
+  }
+}
+
+function loadChapter(i) {
+  state.chapter = i;
+  state.current = CHAPTERS[i];
+  state.lines = state.current.lines;
+  state.idx = 0;
+  state.phase = "card";
+  state.pendingNext = false;
+
+  setBg(state.current.img);
+
+  const titleEl = document.getElementById("chapterTitle");
+  titleEl.classList.remove("show");
+  titleEl.textContent = state.current.title;
+
+  document.getElementById("dialog").style.display = "none";
+  document.getElementById("choices").classList.remove("show");
+  document.getElementById("choices").innerHTML = "";
+
+  const card = document.getElementById("chapterCard");
+  const parts = state.current.title.split(" · ");
+  document.getElementById("cardNum").textContent = parts[0] || "";
+  document.getElementById("cardName").textContent = parts.slice(1).join(" · ");
+  card.classList.add("show");
+  card.style.animation = "none";
+  void card.offsetWidth;
+  card.style.animation = "fade .5s ease";
+}
+
+function enterChapter() {
+  const card = document.getElementById("chapterCard");
+  card.classList.remove("show");
+
+  document.getElementById("dialog").style.display = "block";
+
+  const titleEl = document.getElementById("chapterTitle");
+  titleEl.textContent = state.current.title;
+  titleEl.classList.add("show");
+
+  state.phase = "intro";
+  render();
+}
+
+function render() {
+  const line = state.lines[state.idx];
+
+  if (line.who === "photo") {
+    showPhoto(line.text);
+    return;
+  }
+
+  const nameTag = document.getElementById("nameTag");
+  const text = document.getElementById("dialogText");
+
+  if (line.who === "boy") {
+    nameTag.className = "boy";
+    nameTag.textContent = "Bonan";
+    text.className = "";
+  } else if (line.who === "girl") {
+    nameTag.className = "girl";
+    nameTag.textContent = "Easlyn";
+    text.className = "";
+  } else {
+    nameTag.className = "";
+    nameTag.textContent = "";
+    text.className = "narration";
+  }
+  text.textContent = line.text;
+
+  const dialog = document.getElementById("dialog");
+  dialog.classList.remove("fade");
+  void dialog.offsetWidth;
+  dialog.classList.add("fade");
+
+  document.getElementById("choices").classList.remove("show");
+  document.getElementById("choices").innerHTML = "";
+
+  document.getElementById("hint").textContent =
+    state.phase === "choice" ? "" : "点击继续";
+}
+
+function advance() {
+  if (state.phase === "choice") return;
+  if (state.phase === "card") return;
+  if (document.getElementById("photoOverlay").classList.contains("show")) return;
+
+  if (state.phase === "prompt") {
+    showChoices();
+    return;
+  }
+
+  if (state.idx < state.lines.length - 1) {
+    state.idx++;
+    render();
+    return;
+  }
+
+  if (state.phase === "intro") {
+    showChoicePrompt();
+    return;
+  }
+
+  if (state.phase === "reply") {
+    if (state.pendingNext) {
+      state.lines = state.current.next;
+      state.idx = 0;
+      state.phase = "next";
+      state.pendingNext = false;
+      render();
+      return;
+    }
+    nextChapter();
+    return;
+  }
+
+  if (state.phase === "next") {
+    nextChapter();
+    return;
+  }
+}
+
+function nextChapter() {
+  if (state.chapter < CHAPTERS.length - 1) {
+    loadChapter(state.chapter + 1);
+  }
+}
+
+function showChoicePrompt() {
+  state.phase = "prompt";
+
+  const nameTag = document.getElementById("nameTag");
+  const text = document.getElementById("dialogText");
+  nameTag.className = "";
+  nameTag.textContent = "";
+  text.className = "prompt";
+  text.textContent = state.current.choice.q;
+
+  document.getElementById("hint").textContent = "点击继续";
+}
+
+function showChoices() {
+  state.phase = "choice";
+  const choice = state.current.choice;
+  const box = document.getElementById("choices");
+  box.innerHTML = "";
+
+  choice.options.forEach((opt, i) => {
+    const btn = document.createElement("button");
+    btn.textContent = opt.label;
+    btn.onclick = (e) => {
+      e.stopPropagation();
+      choose(i);
+    };
+    box.appendChild(btn);
+  });
+
+  box.classList.add("show");
+
+  const nameTag = document.getElementById("nameTag");
+  const text = document.getElementById("dialogText");
+  nameTag.className = "";
+  nameTag.textContent = "";
+  text.className = "prompt";
+  text.textContent = choice.q;
+
+  document.getElementById("hint").textContent = "";
+}
+
+function choose(i) {
+  const opt = state.current.choice.options[i];
+
+  if (opt.ending) {
+    showEnding(opt.ending);
+    return;
+  }
+
+  state.lines = opt.reply;
+  state.idx = 0;
+  state.phase = "reply";
+  state.pendingNext = !!state.current.next;
+
+  document.getElementById("choices").classList.remove("show");
+  document.getElementById("choices").innerHTML = "";
+  render();
+}
+
+function showPhoto(src) {
+  const overlay = document.getElementById("photoOverlay");
+  const img = document.getElementById("photoImg");
+
+  img.src = src;
+  overlay.classList.add("show");
+  overlay.classList.remove("flash");
+  void overlay.offsetWidth;
+  overlay.classList.add("flash");
+
+  document.getElementById("hint").textContent = "";
+}
+
+function closePhoto(e) {
+  if (e) e.stopPropagation();
+  const overlay = document.getElementById("photoOverlay");
+  overlay.classList.remove("show");
+  overlay.classList.remove("flash");
+
+  if (state.idx < state.lines.length - 1) {
+    state.idx++;
+    render();
+  } else if (state.phase === "next") {
+    nextChapter();
+  }
+}
+
+function showEnding(key) {
+  const ending = ENDINGS[key];
+
+  document.getElementById("dialog").style.display = "none";
+  document.getElementById("choices").style.display = "none";
+  document.getElementById("chapterTitle").classList.remove("show");
+  document.getElementById("chapterCard").classList.remove("show");
+
+  const final = document.getElementById("final");
+  final.style.display = "block";
+  final.scrollTop = 0;
+
+  const endingImg = document.getElementById("endingImg");
+  if (IMG.ending) {
+    endingImg.src = IMG.ending;
+    endingImg.style.display = "block";
+  } else {
+    endingImg.style.display = "none";
+  }
+
+  document.getElementById("endingTitle").textContent = ending.title;
+  document.getElementById("endingText").textContent = ending.text;
+  document.getElementById("endingNote").textContent =
+    "这个游戏是 Easlyn 做的。\n你的选择，她想知道。";
+
+  if (ending.meteor) {
+    startMeteors();
+  } else {
+    document.getElementById("meteorCanvas").style.display = "none";
+  }
+}
+
+/* ===== 流星特效 ===== */
+let meteors = [];
+let meteorTimer = null;
+let meteorRaf = null;
+
+function startMeteors() {
+  const canvas = document.getElementById("meteorCanvas");
+  const ctx = canvas.getContext("2d");
+
+  function resize() {
+    canvas.width = canvas.clientWidth * window.devicePixelRatio;
+    canvas.height = canvas.clientHeight * window.devicePixelRatio;
+    ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
+  }
+  resize();
+  window.addEventListener("resize", resize);
+
+  function spawn() {
+    const w = canvas.clientWidth;
+    meteors.push({
+      x: Math.random() * w * 0.9 + w * 0.1,
+      y: -40,
+      vx: -(2.5 + Math.random() * 2),
+      vy: 4 + Math.random() * 3,
+      len: 80 + Math.random() * 80,
+      life: 1,
+      fade: 0.004 + Math.random() * 0.004
+    });
+  }
+
+  spawn();
+  meteorTimer = setInterval(spawn, 850);
+
+  function draw() {
+    const w = canvas.clientWidth;
+    const h = canvas.clientHeight;
+    ctx.clearRect(0, 0, w, h);
+
+    for (let i = meteors.length - 1; i >= 0; i--) {
+      const m = meteors[i];
+      m.x += m.vx;
+      m.y += m.vy;
+      m.life -= m.fade;
+
+      if (m.life <= 0 || m.y > h + 100 || m.x < -100) {
+        meteors.splice(i, 1);
+        continue;
+      }
+
+      const tailX = m.x - m.vx * (m.len / Math.max(m.vy, 1)) * 0.15;
+      const tailY = m.y - m.vy * (m.len / Math.max(m.vy, 1)) * 0.15;
+
+      const grad = ctx.createLinearGradient(m.x, m.y, tailX, tailY);
+      grad.addColorStop(0, `rgba(255,255,255,${0.9 * m.life})`);
+      grad.addColorStop(0.4, `rgba(200,220,255,${0.5 * m.life})`);
+      grad.addColorStop(1, "rgba(200,220,255,0)");
+
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 2;
+      ctx.lineCap = "round";
+      ctx.beginPath();
+      ctx.moveTo(m.x, m.y);
+      ctx.lineTo(tailX, tailY);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(m.x, m.y, 1.6, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${0.95 * m.life})`;
+      ctx.fill();
+    }
+
+    meteorRaf = requestAnimationFrame(draw);
+  }
+  draw();
+}
+</script>
+</body>
+</html>
