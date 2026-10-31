@@ -53,45 +53,100 @@
   #dialog {
     position: absolute;
     left: 0; right: 0; bottom: 0;
-    padding: 20px clamp(18px, 5vw, 64px) 24px;
-    background: linear-gradient(to top, rgba(16,18,24,.94), rgba(16,18,24,.82));
-    border-top: 1px solid rgba(255,255,255,.08);
+    padding: 22px clamp(18px, 5vw, 64px) 26px;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, .82),
+      rgba(255, 255, 255, .58) 40%,
+      rgba(255, 255, 255, .18) 100%
+    );
+    border-top: 1px solid rgba(255, 255, 255, .75);
+    box-shadow: 0 -8px 30px rgba(90, 50, 70, .10);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
     cursor: pointer;
     min-height: 190px;
     z-index: 10;
   }
-  #nameTag {
-    padding: 4px 16px;
-    border-radius: 999px;
-    font-size: 14px;
-    letter-spacing: 1px;
-    margin-bottom: 12px;
-    color: #fff;
-    display: none;
+
+  #nameTagWrap {
+    position: absolute;
+    left: clamp(18px, 5vw, 64px);
+    bottom: 100%;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    z-index: 11;
+    pointer-events: none;
   }
-  #nameTag.boy { display: inline-block; background: #5b7f9e; box-shadow: 0 3px 10px rgba(91,127,158,.4); }
-  #nameTag.girl { display: inline-block; background: #b3708c; box-shadow: 0 3px 10px rgba(179,112,140,.4); }
+
+  #avatarImg {
+    width: 76px;
+    height: 76px;
+    object-fit: contain;
+    display: none;
+    filter: drop-shadow(0 4px 10px rgba(120, 80, 100, .35));
+  }
+
+  #nameText {
+    padding: 6px 22px;
+    border-radius: 12px;
+    font-size: 15px;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    display: none;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  #nameText.boy {
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, .92),
+      rgba(200, 224, 242, .55) 55%,
+      rgba(200, 224, 242, .15) 100%
+    );
+    color: #2a5a7a;
+    box-shadow: 0 3px 12px rgba(91, 127, 158, .22);
+    border: 1px solid rgba(255, 255, 255, .80);
+    border-bottom-color: rgba(255, 255, 255, .35);
+  }
+  #nameText.girl {
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, .92),
+      rgba(250, 218, 232, .55) 55%,
+      rgba(250, 218, 232, .15) 100%
+    );
+    color: #7a3a52;
+    box-shadow: 0 3px 12px rgba(179, 112, 140, .22);
+    border: 1px solid rgba(255, 255, 255, .80);
+    border-bottom-color: rgba(255, 255, 255, .35);
+  }
 
   #dialogText {
     font-size: clamp(16px, 2.4vw, 18px);
     line-height: 1.95;
-    color: #f2ece6;
+    color: #3f3038;
+    text-shadow: 0 1px 3px rgba(255, 255, 255, .95), 0 0 2px rgba(255, 255, 255, .95);
     min-height: 66px;
     white-space: pre-wrap;
   }
-  #dialogText.narration { color: #d8d2cc; }
-  #dialogText.prompt { color: #c9bfb2; font-style: italic; }
+  #dialogText.narration { color: #6a5a64; }
+  #dialogText.prompt { color: #8a7a84; font-style: italic; }
 
   #hint {
     position: absolute;
     right: clamp(18px, 5vw, 64px);
     bottom: 12px;
     font-size: 12px;
-    color: rgba(255,255,255,.45);
+    color: rgba(90, 60, 78, .70);
     letter-spacing: 1px;
+    text-shadow: 0 1px 3px rgba(255, 255, 255, .95);
     animation: blink 1.8s infinite;
   }
-  @keyframes blink { 0%,100% { opacity: .25; } 50% { opacity: .85; } }
+  @keyframes blink { 0%,100% { opacity: .3; } 50% { opacity: .9; } }
 
   #choices {
     position: absolute;
@@ -110,19 +165,35 @@
     text-align: center;
     font-size: clamp(15px, 2.3vw, 16.5px);
     line-height: 1.6;
-    color: #f2ece6;
-    background: rgba(24,28,36,.92);
-    border: 1px solid rgba(255,255,255,.18);
+    color: #3f3038;
+    font-weight: 500;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, .90),
+      rgba(255, 255, 255, .55) 45%,
+      rgba(255, 255, 255, .12) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, .85);
+    border-bottom-color: rgba(255, 255, 255, .30);
     border-radius: 14px;
     cursor: pointer;
-    backdrop-filter: blur(6px);
-    transition: background .18s, transform .18s, border-color .18s;
+    backdrop-filter: blur(12px) saturate(140%);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+    box-shadow: 0 6px 18px rgba(90, 50, 70, .12);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, .95);
+    transition: background .18s, transform .18s, border-color .18s, box-shadow .18s;
     animation: choiceIn .28s ease both;
   }
   #choices button:hover {
-    background: rgba(56,62,76,.96);
-    border-color: rgba(255,255,255,.42);
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, .70) 45%,
+      rgba(255, 255, 255, .25) 100%
+    );
+    border-color: rgba(255, 255, 255, 1);
     transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(90, 50, 70, .18);
   }
   #choices button:nth-child(1) { animation-delay: 0s; }
   #choices button:nth-child(2) { animation-delay: .06s; }
@@ -354,7 +425,10 @@
   <div id="choices"></div>
 
   <div id="dialog" onclick="advance()">
-    <div id="nameTag"></div>
+    <div id="nameTagWrap">
+      <img id="avatarImg" src="" alt="">
+      <span id="nameText"></span>
+    </div>
     <div id="dialogText"></div>
     <div id="hint">点击继续</div>
   </div>
@@ -394,20 +468,27 @@
 <script>
 /* =====================================================
    图片配置：只改这里
-   格式示例：https://i.postimg.cc/xxxxxxx/xxx.jpg
-   某一张不想用，把引号里清空即可（""）
+   格式：https://i.postimg.cc/xxxxxxx/xxx.png
 ===================================================== */
 const IMG = {
-  cover:  "https://i.postimg.cc/Qdd7YQHq/f8ec01acf9d31de64495bb823a7605b5.png",   // 封面背景
-  ch1:    "https://i.postimg.cc/图片1",    // 第一章背景 · 教堂到中央大街
-  ch2:    "https://i.postimg.cc/图片2",    // 第二章背景 · 六泰居
-  ch3:    "https://i.postimg.cc/图片3",    // 第三章背景 · 江边、大桥、烤肉
-  ch4:    "https://i.postimg.cc/图片4",    // 第四章背景 · 巴洛克
-  ch5:    "https://i.postimg.cc/图片5",    // 第五章背景 · 小龙虾
-  ch6:    "https://i.postimg.cc/图片6",    // 第六章背景 · 秋林和手工
-  ch7:    "https://i.postimg.cc/图片7",    // 第七章背景 · 酒店
-  photo1: "https://i.postimg.cc/照片1",    // 大桥拍照定格那张
-  ending: "https://i.postimg.cc/结局图"    // 结局页照片，可留空
+  cover:  "https://i.postimg.cc/02xwBjfX/8e0dc3e1d797614328c8ac104efed4c9.png",
+  ch1:    "https://i.postimg.cc/G3PRqm9w/ace926c35a5a8f7b8b67db1ec4e2d292.png",
+  ch2:    "https://i.postimg.cc/Tw6bvP64/cdc8f30c4c884a95248b911f819e67f8.jpg",
+  ch3:    "https://i.postimg.cc/yxwB2DqD/1a66f933aadd7e1b3d8e30c46dc56e93.jpg",
+  ch4:    "https://i.postimg.cc/cHzN8vJZ/163aeab28ab45c0ba3ababb1b8703065.png",
+  ch5:    "https://i.postimg.cc/Vkw5NVTq/9979fe4ac3bcab1205fdac1856078ec5.png",
+  ch6:    "https://i.postimg.cc/634Bcrgx/4048557318405253fbe3c5fbb7413750.png",
+  ch7:    "https://i.postimg.cc/zDnrfGrr/ead9ed5c2fde3e50aa21d6a0f41b8d79.png",
+
+  // 第三章 大桥拍照定格那张
+  photo1: "https://i.postimg.cc/43k2DJHS/pai-zhao.jpg",
+
+  // 第七章 自拍那张（Bonan 的脸）—— 上传新图后把直链填这里
+  selfie: "https://i.postimg.cc/自拍图",
+
+  ending: "https://i.postimg.cc/结局图",
+  avatarBoy:  "https://i.postimg.cc/g0L44rz5/IMG-8940.png",
+  avatarGirl: "https://i.postimg.cc/fTMXky18/IMG-8945.png"
 };
 /* ===================================================== */
 
@@ -709,92 +790,101 @@ const CHAPTERS = [
       { who: "narr", text: "屏幕的光映在他脸上。他看得很认真，偶尔笑一下。" },
       { who: "narr", text: "玩到最后一页，他停住了。" },
       { who: "narr", text: "房间里很安静。他盯着屏幕，看了很久。" },
-      { who: "narr", text: "Easlyn 看着他，心跳得很快。" },
-      { who: "boy", text: "最后一页，到底是什么？" },
-      { who: "boy", text: "这不是结局吧。" },
-      { who: "narr", text: "Easlyn 深吸一口气。" },
-      { who: "girl", text: "这就要问现实中的你了。" },
-      { who: "narr", text: "她把手机往他那边推了推。" },
-      { who: "narr", text: "屏幕还亮着，停在最后一页之前。" },
-      { who: "narr", text: "现在，轮到你了。" }
+      { who: "boy", text: "这男主是谁啊？" },
+      { who: "narr", text: "他问得很自然。" },
+      { who: "narr", text: "但 Easlyn 看得出来，他是故意的。" },
+      { who: "narr", text: "他早就猜到了。" }
     ],
     choice: {
-      q: "现实中的你，会怎么回答？",
+      q: "Easlyn？",
       options: [
-        { label: "“我也喜欢你”", tone: "yes", ending: "yes" },
-        { label: "“你认真的？”", tone: "tease", ending: "tease" },
-        { label: "“让我想想”", tone: "wait", ending: "wait" }
+        { label: "“你猜”", tone: "guess",
+          reply: [
+            { who: "boy", text: "我猜……" },
+            { who: "narr", text: "他故意拉长了声音。" },
+            { who: "boy", text: "算了，不猜了。" },
+            { who: "narr", text: "他笑了一下，看着 Easlyn。" },
+            { who: "boy", text: "反正我心里有数。" }
+          ],
+          replyEnding: "guess" },
+
+        { label: "掏出手机，拍一下 Bonan", tone: "selfie",
+          reply: [
+            { who: "narr", text: "Easlyn 举起手机，咔嚓，对着 Bonan 拍了一张。" },
+            { who: "narr", text: "然后她把屏幕转过来，怼到 Bonan 面前。" },
+            { who: "narr", text: "屏幕里，是 Bonan 自己的脸。" },
+            { who: "narr", text: "他愣了一下。" },
+            { who: "photo", text: IMG.selfie }
+          ],
+          replyEnding: "selfie" },
+
+        { label: "“不知道”", tone: "dontknow",
+          reply: [
+            { who: "girl", text: "不知道。" },
+            { who: "boy", text: "真的不知道？" },
+            { who: "girl", text: "真的不知道。" },
+            { who: "narr", text: "Bonan 盯着她看了几秒。" },
+            { who: "boy", text: "那我知道了。" }
+          ],
+          replyEnding: "dontknow" }
       ]
     }
   }
 ];
 
 const ENDINGS = {
-  yes: {
-    title: "结局 · 我也喜欢你",
-    meteor: true,
+  guess: {
+    title: "结局 · 他明白了",
     text:
-      "“我也喜欢你。”\n" +
-      "这次是 Bonan 说的。\n" +
-      "不是游戏里的，不是她写好的。\n" +
-      "是他自己说的。\n\n" +
-      "Easlyn 愣住了。\n" +
-      "“你说什么？”\n" +
-      "“我说，我也喜欢你。”\n" +
-      "“不是这两天。”\n" +
-      "“是很久了。”\n\n" +
-      "手机屏幕还亮着。\n" +
-      "游戏里的最后一页，和现实里的最后一页，\n" +
-      "在这一刻重叠了。\n\n" +
-      "房间里还飘着螺蛳粉的味。\n" +
-      "窗外是哈尔滨的夜。\n" +
-      "这一次，不是游戏替她说。\n" +
-      "是他自己走到她面前。"
+      "Bonan 没有再问。\n" +
+      "他低头吃了一口粉，嘴角还在笑。\n\n" +
+      "Easlyn 也没说话。\n" +
+      "房间里只有吸粉的声音。\n\n" +
+      "有些答案，两个人都知道。\n" +
+      "只是谁都没有说破。"
   },
-  tease: {
-    title: "结局 · 你认真的？",
-    meteor: true,
+  selfie: {
+    title: "结局 · 拍到了",
     text:
-      "“你认真的？”Bonan 问。\n\n" +
-      "“你说呢。”Easlyn 没抬头。\n\n" +
-      "Bonan 看了她两秒，笑了。\n" +
-      "“那我认真了。”\n\n" +
-      "Easlyn 抬起头。\n" +
-      "“认真什么？”\n" +
-      "“你说呢。”\n\n" +
-      "手机屏幕暗了下去。\n" +
-      "但现实里的故事，好像才刚开始。\n\n" +
-      "那天晚上，Easlyn 回去之后，把这两天的照片翻了一遍。\n" +
-      "每张照片里，Bonan 都在看她。"
+      "“……这是我自己？”\n" +
+      "Bonan 看着屏幕，耳朵有点红。\n\n" +
+      "“不然呢。”Easlyn 收起手机。\n" +
+      "“你什么时候拍的？”\n" +
+      "“刚刚。”\n\n" +
+      "他没说话，低头吃了一口粉。\n" +
+      "“你脸红什么。”\n" +
+      "“没有。”\n" +
+      "“有。”\n" +
+      "“……螺蛳粉太辣了。”"
   },
-  wait: {
-    title: "结局 · 让我想想",
-    meteor: false,
+  dontknow: {
+    title: "结局 · 那我知道了",
     text:
-      "“让我想想。”Bonan 说。\n\n" +
-      "Easlyn 点点头：“行。”\n\n" +
-      "“你不问要想多久？”\n" +
-      "“不用问，反正我等。”\n\n" +
-      "Bonan 笑了一下。\n" +
-      "“你学我说话。”\n" +
-      "“不行吗？”\n\n" +
-      "手机屏幕暗着，游戏停在了最后一页之前。\n" +
-      "但有些答案，不用急着说出口。\n\n" +
-      "那天晚上回去，她把这两天的照片翻了一遍。\n" +
-      "索菲亚教堂、中央大街、东铁路大桥、巴洛克、秋林、小龙虾、手工、酒店。\n" +
-      "她发现，每一张照片里，Bonan 都在看她。"
+      "Bonan 没再追问。\n" +
+      "他低头继续吃粉，表情很平常。\n\n" +
+      "Easlyn 也没再解释。\n" +
+      "两个人就这么安静地吃完了这一锅。\n\n" +
+      "他说的“我知道了”，\n" +
+      "到底知道了什么，她没问。\n" +
+      "他也没说。"
   }
 };
 
 let state = null;
 
-/* 封面背景图 */
 (function setCoverBg() {
   const cover = document.getElementById("cover");
   if (IMG.cover) {
     cover.style.background =
       `linear-gradient(160deg, rgba(20,24,32,.55), rgba(40,26,34,.72)), url('${IMG.cover}') center/cover`;
   }
+})();
+
+(function setupAvatarError() {
+  const avatarImg = document.getElementById("avatarImg");
+  avatarImg.onerror = function() {
+    this.style.display = "none";
+  };
 })();
 
 function startGame() {
@@ -805,7 +895,8 @@ function startGame() {
     idx: 0,
     phase: "intro",
     current: null,
-    pendingNext: false
+    pendingNext: false,
+    pendingEnding: null
   };
   loadChapter(0);
 }
@@ -827,8 +918,11 @@ function loadChapter(i) {
   state.idx = 0;
   state.phase = "card";
   state.pendingNext = false;
+  state.pendingEnding = null;
 
   setBg(state.current.img);
+
+  hideNameTag();
 
   const titleEl = document.getElementById("chapterTitle");
   titleEl.classList.remove("show");
@@ -862,6 +956,44 @@ function enterChapter() {
   render();
 }
 
+function hideNameTag() {
+  document.getElementById("avatarImg").style.display = "none";
+  const nameText = document.getElementById("nameText");
+  nameText.style.display = "none";
+  nameText.textContent = "";
+}
+
+function showNameTag(who) {
+  const avatarImg = document.getElementById("avatarImg");
+  const nameText = document.getElementById("nameText");
+
+  if (who === "boy") {
+    nameText.textContent = "Bonan";
+    nameText.className = "boy";
+    nameText.style.display = "inline-block";
+
+    if (IMG.avatarBoy) {
+      avatarImg.src = IMG.avatarBoy;
+      avatarImg.style.display = "block";
+    } else {
+      avatarImg.style.display = "none";
+    }
+  } else if (who === "girl") {
+    nameText.textContent = "Easlyn";
+    nameText.className = "girl";
+    nameText.style.display = "inline-block";
+
+    if (IMG.avatarGirl) {
+      avatarImg.src = IMG.avatarGirl;
+      avatarImg.style.display = "block";
+    } else {
+      avatarImg.style.display = "none";
+    }
+  } else {
+    hideNameTag();
+  }
+}
+
 function render() {
   const line = state.lines[state.idx];
 
@@ -870,20 +1002,13 @@ function render() {
     return;
   }
 
-  const nameTag = document.getElementById("nameTag");
   const text = document.getElementById("dialogText");
 
-  if (line.who === "boy") {
-    nameTag.className = "boy";
-    nameTag.textContent = "Bonan";
-    text.className = "";
-  } else if (line.who === "girl") {
-    nameTag.className = "girl";
-    nameTag.textContent = "Easlyn";
+  if (line.who === "boy" || line.who === "girl") {
+    showNameTag(line.who);
     text.className = "";
   } else {
-    nameTag.className = "";
-    nameTag.textContent = "";
+    hideNameTag();
     text.className = "narration";
   }
   text.textContent = line.text;
@@ -922,15 +1047,7 @@ function advance() {
   }
 
   if (state.phase === "reply") {
-    if (state.pendingNext) {
-      state.lines = state.current.next;
-      state.idx = 0;
-      state.phase = "next";
-      state.pendingNext = false;
-      render();
-      return;
-    }
-    nextChapter();
+    afterReply();
     return;
   }
 
@@ -938,6 +1055,24 @@ function advance() {
     nextChapter();
     return;
   }
+}
+
+function afterReply() {
+  if (state.pendingNext) {
+    state.lines = state.current.next;
+    state.idx = 0;
+    state.phase = "next";
+    state.pendingNext = false;
+    render();
+    return;
+  }
+  if (state.pendingEnding) {
+    const key = state.pendingEnding;
+    state.pendingEnding = null;
+    showEnding(key);
+    return;
+  }
+  nextChapter();
 }
 
 function nextChapter() {
@@ -948,11 +1083,9 @@ function nextChapter() {
 
 function showChoicePrompt() {
   state.phase = "prompt";
+  hideNameTag();
 
-  const nameTag = document.getElementById("nameTag");
   const text = document.getElementById("dialogText");
-  nameTag.className = "";
-  nameTag.textContent = "";
   text.className = "prompt";
   text.textContent = state.current.choice.q;
 
@@ -977,10 +1110,8 @@ function showChoices() {
 
   box.classList.add("show");
 
-  const nameTag = document.getElementById("nameTag");
+  hideNameTag();
   const text = document.getElementById("dialogText");
-  nameTag.className = "";
-  nameTag.textContent = "";
   text.className = "prompt";
   text.textContent = choice.q;
 
@@ -999,17 +1130,22 @@ function choose(i) {
   state.idx = 0;
   state.phase = "reply";
   state.pendingNext = !!state.current.next;
+  state.pendingEnding = opt.replyEnding || null;
 
   document.getElementById("choices").classList.remove("show");
   document.getElementById("choices").innerHTML = "";
   render();
 }
 
+/* ===== 拍照定格：先清空旧图，避免加载失败时显示上一次的图 ===== */
 function showPhoto(src) {
   const overlay = document.getElementById("photoOverlay");
   const img = document.getElementById("photoImg");
 
+  // 先清空，避免旧的 src 缓存
+  img.removeAttribute("src");
   img.src = src;
+
   overlay.classList.add("show");
   overlay.classList.remove("flash");
   void overlay.offsetWidth;
@@ -1029,11 +1165,15 @@ function closePhoto(e) {
     render();
   } else if (state.phase === "next") {
     nextChapter();
+  } else if (state.phase === "reply") {
+    afterReply();
   }
 }
 
 function showEnding(key) {
   const ending = ENDINGS[key];
+
+  hideNameTag();
 
   document.getElementById("dialog").style.display = "none";
   document.getElementById("choices").style.display = "none";
@@ -1055,16 +1195,12 @@ function showEnding(key) {
   document.getElementById("endingTitle").textContent = ending.title;
   document.getElementById("endingText").textContent = ending.text;
   document.getElementById("endingNote").textContent =
-    "这个游戏是 Easlyn 做的。\n你的选择，她想知道。";
+    "这个游戏是 Easlyn 做的。";
 
-  if (ending.meteor) {
-    startMeteors();
-  } else {
-    document.getElementById("meteorCanvas").style.display = "none";
-  }
+  document.getElementById("meteorCanvas").style.display = "none";
 }
 
-/* ===== 流星特效 ===== */
+/* ===== 流星特效（保留函数，当前结局不触发） ===== */
 let meteors = [];
 let meteorTimer = null;
 let meteorRaf = null;
