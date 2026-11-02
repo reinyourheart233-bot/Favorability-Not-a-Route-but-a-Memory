@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>好感度不是攻略，是回忆</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   html, body { height: 100%; margin: 0; }
@@ -13,6 +16,10 @@
     overflow: hidden;
     color: #f2ece6;
     user-select: none;
+  }
+
+  :root {
+    --calligraphy: "Ma Shan Zheng", "STXingkai", "华文行楷", "STKaiti", "华文楷体", "KaiTi", "楷体", cursive;
   }
 
   #stage {
@@ -76,17 +83,17 @@
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 12px;
     z-index: 11;
     pointer-events: none;
   }
 
   #avatarImg {
-    width: 76px;
-    height: 76px;
+    width: clamp(200px, 38vw, 300px);
+    height: clamp(200px, 38vw, 300px);
     object-fit: contain;
     display: none;
-    filter: drop-shadow(0 4px 10px rgba(120, 80, 100, .35));
+    filter: drop-shadow(0 10px 26px rgba(120, 80, 100, .50));
   }
 
   #nameText {
@@ -209,47 +216,62 @@
   #cover {
     position: absolute; inset: 0;
     display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
+    align-items: center;
+    justify-content: flex-end;
     text-align: center;
-    padding: 30px;
+    padding: 30px 30px 10vh;
     background: linear-gradient(160deg, rgba(20,24,32,.55), rgba(40,26,34,.72));
     z-index: 50;
     background-size: cover;
     background-position: center;
   }
   #cover h1 {
-    font-size: clamp(24px, 5.2vw, 34px);
-    letter-spacing: 3px;
-    margin: 0 0 18px;
-    text-shadow: 0 4px 20px rgba(0,0,0,.5);
-    line-height: 1.5;
+    font-family: var(--calligraphy);
+    font-weight: 400;
+    font-size: clamp(48px, 11vw, 82px);
+    letter-spacing: 4px;
+    margin: 0 0 16px;
+    color: #fff;
+    text-shadow: 0 6px 30px rgba(0,0,0,.7), 0 2px 6px rgba(0,0,0,.6);
+    line-height: 1.3;
   }
   #cover .sub {
-    font-size: 14px;
-    letter-spacing: 2px;
-    color: rgba(255,255,255,.7);
-    margin-bottom: 14px;
-    line-height: 2;
+    font-family: var(--calligraphy);
+    font-size: clamp(18px, 3.6vw, 26px);
+    letter-spacing: 4px;
+    color: rgba(255,255,255,.90);
+    margin-bottom: 12px;
+    line-height: 1.9;
+    text-shadow: 0 3px 16px rgba(0,0,0,.65);
   }
   #cover .guess {
-    font-size: 12.5px;
-    letter-spacing: 1px;
-    color: rgba(255,255,255,.48);
-    margin-bottom: 36px;
+    font-family: var(--calligraphy);
+    font-size: clamp(16px, 3vw, 22px);
+    letter-spacing: 2px;
+    color: rgba(255,255,255,.75);
+    margin-bottom: 26px;
     line-height: 1.9;
+    text-shadow: 0 2px 12px rgba(0,0,0,.6);
   }
   #cover button {
-    border: 1px solid rgba(255,255,255,.35);
-    background: rgba(255,255,255,.1);
+    font-family: var(--calligraphy);
+    border: 1px solid rgba(255,255,255,.55);
+    background: rgba(255,255,255,.14);
     color: #fff;
-    padding: 13px 46px;
+    padding: 14px 58px;
     border-radius: 999px;
-    font-size: 16px;
-    letter-spacing: 4px;
+    font-size: clamp(20px, 3.4vw, 26px);
+    letter-spacing: 10px;
     cursor: pointer;
-    transition: background .2s;
+    transition: background .2s, transform .2s;
+    text-shadow: 0 2px 10px rgba(0,0,0,.5);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
   }
-  #cover button:hover { background: rgba(255,255,255,.22); }
+  #cover button:hover {
+    background: rgba(255,255,255,.28);
+    transform: translateY(-2px);
+  }
 
   #chapterCard {
     position: absolute; inset: 0;
@@ -272,12 +294,13 @@
     margin-bottom: 18px;
   }
   #chapterCard .name {
-    font-size: clamp(20px, 4.4vw, 26px);
+    font-family: var(--calligraphy);
+    font-size: clamp(26px, 5.4vw, 36px);
     letter-spacing: 4px;
     color: #f2ece6;
-    line-height: 1.7;
+    line-height: 1.6;
     text-shadow: 0 4px 24px rgba(0,0,0,.5);
-    max-width: 80%;
+    max-width: 85%;
   }
   #chapterCard .line {
     width: 46px;
@@ -328,7 +351,8 @@
     box-shadow: 0 18px 50px rgba(0,0,0,.4);
   }
   #endingTitle {
-    font-size: clamp(20px, 4vw, 24px);
+    font-family: var(--calligraphy);
+    font-size: clamp(26px, 4.8vw, 32px);
     letter-spacing: 4px;
     color: #f0e6ea;
     margin: 0 0 28px;
@@ -472,20 +496,15 @@
 ===================================================== */
 const IMG = {
   cover:  "https://i.postimg.cc/02xwBjfX/8e0dc3e1d797614328c8ac104efed4c9.png",
-  ch1:    "https://i.postimg.cc/G3PRqm9w/ace926c35a5a8f7b8b67db1ec4e2d292.png",
-  ch2:    "https://i.postimg.cc/Tw6bvP64/cdc8f30c4c884a95248b911f819e67f8.jpg",
-  ch3:    "https://i.postimg.cc/yxwB2DqD/1a66f933aadd7e1b3d8e30c46dc56e93.jpg",
-  ch4:    "https://i.postimg.cc/cHzN8vJZ/163aeab28ab45c0ba3ababb1b8703065.png",
-  ch5:    "https://i.postimg.cc/Vkw5NVTq/9979fe4ac3bcab1205fdac1856078ec5.png",
-  ch6:    "https://i.postimg.cc/634Bcrgx/4048557318405253fbe3c5fbb7413750.png",
-  ch7:    "https://i.postimg.cc/zDnrfGrr/ead9ed5c2fde3e50aa21d6a0f41b8d79.png",
-
-  // 第三章 大桥拍照定格那张
+  ch1:    "https://i.postimg.cc/SKW7wgKT/0ebfd1f74d43896fdb716af69ce7ae3a.png",
+  ch2:    "https://i.postimg.cc/rpQz04ZT/f9ef969c8db60596fa9ccdbaa6791212.png",
+  ch3:    "https://i.postimg.cc/3W5w5FN2/39e53821ee14e9767160c5794d2cf264.png",
+  ch4:    "https://i.postimg.cc/Zq7pkXSr/2d7d56eae5da7032354c427e4e113a73.png",
+  ch5:    "https://i.postimg.cc/13yq8yRG/ac22425f86c83c84ee9f7cd5235f9314.png",
+  ch6:    "https://i.postimg.cc/YSsGDg66/386162a3c1446f30e97e67cf480acc50.png",
+  ch7:    "https://i.postimg.cc/J0bsh2fR/d438d62c0e5c702f92e79c8d5f9d7669.png",
   photo1: "https://i.postimg.cc/43k2DJHS/pai-zhao.jpg",
-
-  // 第七章 自拍那张（Bonan 的脸）—— 上传新图后把直链填这里
-  selfie: "https://i.postimg.cc/自拍图",
-
+  selfie: "https://i.postimg.cc/xT60PQy3/531752fa6ae0306742f95d33cf277f41.png",
   ending: "https://i.postimg.cc/结局图",
   avatarBoy:  "https://i.postimg.cc/g0L44rz5/IMG-8940.png",
   avatarGirl: "https://i.postimg.cc/fTMXky18/IMG-8945.png"
@@ -798,26 +817,6 @@ const CHAPTERS = [
     choice: {
       q: "Easlyn？",
       options: [
-        { label: "“你猜”", tone: "guess",
-          reply: [
-            { who: "boy", text: "我猜……" },
-            { who: "narr", text: "他故意拉长了声音。" },
-            { who: "boy", text: "算了，不猜了。" },
-            { who: "narr", text: "他笑了一下，看着 Easlyn。" },
-            { who: "boy", text: "反正我心里有数。" }
-          ],
-          replyEnding: "guess" },
-
-        { label: "掏出手机，拍一下 Bonan", tone: "selfie",
-          reply: [
-            { who: "narr", text: "Easlyn 举起手机，咔嚓，对着 Bonan 拍了一张。" },
-            { who: "narr", text: "然后她把屏幕转过来，怼到 Bonan 面前。" },
-            { who: "narr", text: "屏幕里，是 Bonan 自己的脸。" },
-            { who: "narr", text: "他愣了一下。" },
-            { who: "photo", text: IMG.selfie }
-          ],
-          replyEnding: "selfie" },
-
         { label: "“不知道”", tone: "dontknow",
           reply: [
             { who: "girl", text: "不知道。" },
@@ -826,7 +825,30 @@ const CHAPTERS = [
             { who: "narr", text: "Bonan 盯着她看了几秒。" },
             { who: "boy", text: "那我知道了。" }
           ],
-          replyEnding: "dontknow" }
+          replyEnding: "dontknow" },
+
+        { label: "“我给你找照片”", tone: "selfie",
+          reply: [
+            { who: "girl", text: "我给你找照片。" },
+            { who: "narr", text: "Easlyn 拿起手机，装模作样地翻了两下。" },
+            { who: "narr", text: "然后她假装不经意地，把镜头对准了 Bonan。" },
+            { who: "narr", text: "咔嚓。" },
+            { who: "boy", text: "你拍什么呢？" },
+            { who: "narr", text: "Easlyn 把屏幕转过去，怼到 Bonan 面前。" },
+            { who: "narr", text: "屏幕上，是 Bonan 自己的脸。" },
+            { who: "photo", text: IMG.selfie }
+          ],
+          replyEnding: "selfie" },
+
+        { label: "“你猜”", tone: "guess",
+          reply: [
+            { who: "boy", text: "我猜……" },
+            { who: "narr", text: "他故意拉长了声音。" },
+            { who: "boy", text: "算了，不猜了。" },
+            { who: "narr", text: "他笑了一下，看着 Easlyn。" },
+            { who: "boy", text: "反正我心里有数。" }
+          ],
+          replyEnding: "guess" }
       ]
     }
   }
@@ -846,16 +868,20 @@ const ENDINGS = {
   selfie: {
     title: "结局 · 拍到了",
     text:
-      "“……这是我自己？”\n" +
-      "Bonan 看着屏幕，耳朵有点红。\n\n" +
-      "“不然呢。”Easlyn 收起手机。\n" +
+      "Bonan 看着屏幕，愣了两秒。\n" +
+      "“……这是我？”\n\n" +
+      "“不然呢。”Easlyn 伸手把手机拿回来。\n" +
       "“你什么时候拍的？”\n" +
-      "“刚刚。”\n\n" +
-      "他没说话，低头吃了一口粉。\n" +
+      "“就刚刚。”\n" +
+      "“我不是让你找照片吗？”\n" +
+      "“找了。”Easlyn 说，“这不是给你找出来了。”\n\n" +
+      "Bonan 反应过来，没再说话。\n" +
+      "他低头吃了一口粉，耳朵有点红。\n" +
       "“你脸红什么。”\n" +
       "“没有。”\n" +
       "“有。”\n" +
-      "“……螺蛳粉太辣了。”"
+      "“……螺蛳粉太辣了。”\n\n" +
+      "然后，就没有然后了。"
   },
   dontknow: {
     title: "结局 · 那我知道了",
@@ -1137,19 +1163,36 @@ function choose(i) {
   render();
 }
 
-/* ===== 拍照定格：先清空旧图，避免加载失败时显示上一次的图 ===== */
+/* ===== 拍照定格：预加载新图，加载完才显示，避免先跳旧图 ===== */
 function showPhoto(src) {
   const overlay = document.getElementById("photoOverlay");
   const img = document.getElementById("photoImg");
 
-  // 先清空，避免旧的 src 缓存
+  // 1. 先清空旧图，避免旧图残留在屏幕上
   img.removeAttribute("src");
-  img.src = src;
-
-  overlay.classList.add("show");
+  overlay.classList.remove("show");
   overlay.classList.remove("flash");
-  void overlay.offsetWidth;
-  overlay.classList.add("flash");
+
+  // 2. 预加载新图
+  const preload = new Image();
+
+  preload.onload = function() {
+    img.src = src;
+    overlay.classList.add("show");
+    // 触发白闪
+    void overlay.offsetWidth;
+    overlay.classList.add("flash");
+  };
+
+  preload.onerror = function() {
+    // 即使加载失败也不卡住，至少能继续点下去
+    img.src = src;
+    overlay.classList.add("show");
+    void overlay.offsetWidth;
+    overlay.classList.add("flash");
+  };
+
+  preload.src = src;
 
   document.getElementById("hint").textContent = "";
 }
