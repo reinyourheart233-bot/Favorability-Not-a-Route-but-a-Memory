@@ -17,19 +17,10 @@
     color: #f2ece6;
     user-select: none;
   }
-
   :root {
     --calligraphy: "Ma Shan Zheng", "STXingkai", "华文行楷", "STKaiti", "华文楷体", "KaiTi", "楷体", cursive;
   }
-
-  #stage {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    height: 100dvh;
-    overflow: hidden;
-  }
-
+  #stage { position: relative; width: 100%; height: 100vh; height: 100dvh; overflow: hidden; }
   #bg {
     position: absolute; inset: 0;
     background: linear-gradient(160deg, #2b3340, #3a2f3a 60%, #46392f);
@@ -41,143 +32,76 @@
     background: linear-gradient(to bottom, rgba(10,12,16,.25), rgba(10,12,16,.05) 35%, rgba(10,12,16,.65));
     pointer-events: none;
   }
-
   #chapterTitle {
-    position: absolute;
-    top: 22px; left: 0; right: 0;
-    text-align: center;
-    font-size: 14px;
-    letter-spacing: 3px;
-    color: rgba(255,255,255,.72);
-    text-shadow: 0 2px 8px rgba(0,0,0,.5);
-    z-index: 5;
-    opacity: 0;
-    transition: opacity .4s ease;
+    position: absolute; top: 22px; left: 0; right: 0;
+    text-align: center; font-size: 14px; letter-spacing: 3px;
+    color: rgba(255,255,255,.72); text-shadow: 0 2px 8px rgba(0,0,0,.5);
+    z-index: 5; opacity: 0; transition: opacity .4s ease;
   }
   #chapterTitle.show { opacity: 1; }
-
   #dialog {
-    position: absolute;
-    left: 0; right: 0; bottom: 0;
+    position: absolute; left: 0; right: 0; bottom: 0;
     padding: 22px clamp(18px, 5vw, 64px) 26px;
-    background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, .82),
-      rgba(255, 255, 255, .58) 40%,
-      rgba(255, 255, 255, .18) 100%
-    );
-    border-top: 1px solid rgba(255, 255, 255, .75);
-    box-shadow: 0 -8px 30px rgba(90, 50, 70, .10);
+    background: linear-gradient(to bottom, rgba(255,255,255,.82), rgba(255,255,255,.58) 40%, rgba(255,255,255,.18) 100%);
+    border-top: 1px solid rgba(255,255,255,.75);
+    box-shadow: 0 -8px 30px rgba(90,50,70,.10);
     backdrop-filter: blur(14px) saturate(140%);
     -webkit-backdrop-filter: blur(14px) saturate(140%);
-    cursor: pointer;
-    min-height: 190px;
-    z-index: 10;
+    cursor: pointer; min-height: 210px; z-index: 10;
   }
-
-  @media (max-width: 600px) {
-    #dialog {
-      backdrop-filter: blur(8px) saturate(120%);
-      -webkit-backdrop-filter: blur(8px) saturate(120%);
-    }
-  }
-
   #nameTagWrap {
-    position: absolute;
-    left: clamp(18px, 5vw, 64px);
-    bottom: 100%;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    z-index: 11;
-    pointer-events: none;
+    position: absolute; left: clamp(18px, 5vw, 64px); bottom: 100%;
+    display: inline-flex; flex-direction: column; align-items: center; gap: 12px;
+    z-index: 11; pointer-events: none;
   }
-
   #avatarImg {
-    width: clamp(200px, 38vw, 300px);
-    height: clamp(200px, 38vw, 300px);
-    object-fit: contain;
-    display: none;
-    filter: drop-shadow(0 10px 26px rgba(120, 80, 100, .50));
+    width: clamp(200px, 38vw, 300px); height: clamp(200px, 38vw, 300px);
+    object-fit: contain; display: none;
+    filter: drop-shadow(0 10px 26px rgba(120,80,100,.50));
   }
-
   #nameText {
-    padding: 6px 22px;
-    border-radius: 12px;
-    font-size: 15px;
-    letter-spacing: 2px;
-    white-space: nowrap;
-    display: none;
-    font-weight: 600;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    padding: 6px 22px; border-radius: 12px; font-size: clamp(15px, 1.8vw, 19px); letter-spacing: 2px;
+    white-space: nowrap; display: none; font-weight: 600;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   }
   #nameText.boy {
     background: linear-gradient(to bottom, rgba(255,255,255,.92), rgba(200,224,242,.55) 55%, rgba(200,224,242,.15) 100%);
-    color: #2a5a7a;
-    box-shadow: 0 3px 12px rgba(91,127,158,.22);
-    border: 1px solid rgba(255,255,255,.80);
-    border-bottom-color: rgba(255,255,255,.35);
+    color: #2a5a7a; box-shadow: 0 3px 12px rgba(91,127,158,.22);
+    border: 1px solid rgba(255,255,255,.80); border-bottom-color: rgba(255,255,255,.35);
   }
   #nameText.girl {
     background: linear-gradient(to bottom, rgba(255,255,255,.92), rgba(250,218,232,.55) 55%, rgba(250,218,232,.15) 100%);
-    color: #7a3a52;
-    box-shadow: 0 3px 12px rgba(179,112,140,.22);
-    border: 1px solid rgba(255,255,255,.80);
-    border-bottom-color: rgba(255,255,255,.35);
+    color: #7a3a52; box-shadow: 0 3px 12px rgba(179,112,140,.22);
+    border: 1px solid rgba(255,255,255,.80); border-bottom-color: rgba(255,255,255,.35);
   }
-
   #dialogText {
-    font-size: clamp(16px, 2.4vw, 18px);
-    line-height: 1.95;
-    color: #3f3038;
+    font-size: clamp(18px, 2.9vw, 26px); line-height: 1.9; color: #3f3038;
     text-shadow: 0 1px 3px rgba(255,255,255,.95), 0 0 2px rgba(255,255,255,.95);
-    min-height: 66px;
-    white-space: pre-wrap;
+    min-height: 76px; white-space: pre-wrap;
   }
   #dialogText.narration { color: #6a5a64; }
   #dialogText.os { color: #8a7a94; font-style: italic; }
   #dialogText.prompt { color: #8a7a84; font-style: italic; }
-
   #hint {
-    position: absolute;
-    right: clamp(18px, 5vw, 64px);
-    bottom: 12px;
-    font-size: 12px;
-    color: rgba(90, 60, 78, .70);
-    letter-spacing: 1px;
+    position: absolute; right: clamp(18px, 5vw, 64px); bottom: 12px;
+    font-size: clamp(12px, 1.4vw, 15px); color: rgba(90,60,78,.70); letter-spacing: 1px;
     text-shadow: 0 1px 3px rgba(255,255,255,.95);
     animation: blink 1.8s infinite;
   }
   @keyframes blink { 0%,100% { opacity: .3; } 50% { opacity: .9; } }
-
   #choices {
-    position: absolute;
-    left: 0; right: 0;
-    bottom: 230px;
-    padding: 0 clamp(24px, 9vw, 110px);
-    display: none;
-    z-index: 40;
+    position: absolute; left: 0; right: 0; bottom: 250px;
+    padding: 0 clamp(24px, 9vw, 110px); display: none; z-index: 40;
   }
   #choices.show { display: block; }
   #choices button {
-    display: block;
-    width: 100%;
-    margin: 0 0 12px;
-    padding: 16px 22px;
-    text-align: center;
-    font-size: clamp(15px, 2.3vw, 16.5px);
-    line-height: 1.6;
-    color: #3f3038;
-    font-weight: 500;
+    display: block; width: 100%; margin: 0 0 12px; padding: 16px 22px;
+    text-align: center; font-size: clamp(16px, 2.6vw, 20px); line-height: 1.7;
+    color: #3f3038; font-weight: 500;
     background: linear-gradient(to bottom, rgba(255,255,255,.90), rgba(255,255,255,.55) 45%, rgba(255,255,255,.12) 100%);
-    border: 1px solid rgba(255,255,255,.85);
-    border-bottom-color: rgba(255,255,255,.30);
-    border-radius: 14px;
-    cursor: pointer;
-    backdrop-filter: blur(12px) saturate(140%);
-    -webkit-backdrop-filter: blur(12px) saturate(140%);
+    border: 1px solid rgba(255,255,255,.85); border-bottom-color: rgba(255,255,255,.30);
+    border-radius: 14px; cursor: pointer;
+    backdrop-filter: blur(12px) saturate(140%); -webkit-backdrop-filter: blur(12px) saturate(140%);
     box-shadow: 0 6px 18px rgba(90,50,70,.12);
     text-shadow: 0 1px 2px rgba(255,255,255,.95);
     transition: background .18s, transform .18s, border-color .18s, box-shadow .18s;
@@ -185,376 +109,207 @@
   }
   #choices button:hover {
     background: linear-gradient(to bottom, rgba(255,255,255,1), rgba(255,255,255,.70) 45%, rgba(255,255,255,.25) 100%);
-    border-color: rgba(255,255,255,1);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(90,50,70,.18);
+    border-color: #fff; transform: translateY(-2px); box-shadow: 0 10px 24px rgba(90,50,70,.18);
   }
-  #choices button:nth-child(1) { animation-delay: 0s; }
-  #choices button:nth-child(2) { animation-delay: .06s; }
-  #choices button:nth-child(3) { animation-delay: .12s; }
   @keyframes choiceIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
   .fade { animation: fade .35s ease; }
   @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 
   #cover {
     position: absolute; inset: 0;
-    display: flex; flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    text-align: center;
-    padding: 30px 30px 10vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+    text-align: center; padding: 30px 30px 10vh;
     background: linear-gradient(160deg, rgba(20,24,32,.55), rgba(40,26,34,.72));
-    z-index: 50;
-    background-size: cover;
-    background-position: center;
+    z-index: 50; background-size: cover; background-position: center;
   }
   #cover h1 {
-    font-family: var(--calligraphy);
-    font-weight: 400;
-    font-size: clamp(48px, 11vw, 82px);
-    letter-spacing: 4px;
-    margin: 0 0 16px;
-    color: #fff;
+    font-family: var(--calligraphy); font-weight: 400;
+    font-size: clamp(48px, 11vw, 82px); letter-spacing: 4px;
+    margin: 0 0 16px; color: #fff;
     text-shadow: 0 6px 30px rgba(0,0,0,.7), 0 2px 6px rgba(0,0,0,.6);
     line-height: 1.3;
   }
   #cover .sub {
-    font-family: var(--calligraphy);
-    font-size: clamp(18px, 3.6vw, 26px);
-    letter-spacing: 4px;
-    color: rgba(255,255,255,.90);
-    margin-bottom: 12px;
-    line-height: 1.9;
+    font-family: var(--calligraphy); font-size: clamp(18px, 3.6vw, 26px);
+    letter-spacing: 4px; color: rgba(255,255,255,.90);
+    margin-bottom: 12px; line-height: 1.9;
     text-shadow: 0 3px 16px rgba(0,0,0,.65);
   }
   #cover .guess {
-    font-family: var(--calligraphy);
-    font-size: clamp(16px, 3vw, 22px);
-    letter-spacing: 2px;
-    color: rgba(255,255,255,.75);
-    margin-bottom: 26px;
-    line-height: 1.9;
+    font-family: var(--calligraphy); font-size: clamp(16px, 3vw, 22px);
+    letter-spacing: 2px; color: rgba(255,255,255,.75);
+    margin-bottom: 26px; line-height: 1.9;
     text-shadow: 0 2px 12px rgba(0,0,0,.6);
   }
   #cover button {
     font-family: var(--calligraphy);
     border: 1px solid rgba(255,255,255,.55);
-    background: rgba(255,255,255,.14);
-    color: #fff;
-    padding: 14px 58px;
-    border-radius: 999px;
-    font-size: clamp(20px, 3.4vw, 26px);
-    letter-spacing: 10px;
-    cursor: pointer;
-    transition: background .2s, transform .2s;
+    background: rgba(255,255,255,.14); color: #fff;
+    padding: 14px 58px; border-radius: 999px;
+    font-size: clamp(20px, 3.4vw, 26px); letter-spacing: 10px;
+    cursor: pointer; transition: background .2s, transform .2s;
     text-shadow: 0 2px 10px rgba(0,0,0,.5);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
   }
   #cover button:hover { background: rgba(255,255,255,.28); transform: translateY(-2px); }
 
   #chapterCard {
     position: absolute; inset: 0;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: rgba(8,10,14,.88);
-    z-index: 45;
-    cursor: pointer;
-    padding: 30px;
-    backdrop-filter: blur(3px);
+    display: none; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; background: rgba(8,10,14,.88);
+    z-index: 45; cursor: pointer; padding: 30px; backdrop-filter: blur(3px);
   }
   #chapterCard.show { display: flex; }
   #chapterCard .num { font-size: 13px; letter-spacing: 6px; color: rgba(255,255,255,.42); margin-bottom: 18px; }
   #chapterCard .name {
-    font-family: var(--calligraphy);
-    font-size: clamp(26px, 5.4vw, 36px);
-    letter-spacing: 4px;
-    color: #f2ece6;
-    line-height: 1.6;
-    text-shadow: 0 4px 24px rgba(0,0,0,.5);
-    max-width: 85%;
+    font-family: var(--calligraphy); font-size: clamp(26px, 5.4vw, 36px);
+    letter-spacing: 4px; color: #f2ece6; line-height: 1.6;
+    text-shadow: 0 4px 24px rgba(0,0,0,.5); max-width: 85%;
   }
   #chapterCard .line { width: 46px; height: 1px; background: rgba(255,255,255,.28); margin: 26px auto 0; }
   #chapterCard .tip {
-    position: absolute;
-    bottom: 40px; left: 0; right: 0;
-    text-align: center;
-    font-size: 12px;
-    color: rgba(255,255,255,.38);
-    letter-spacing: 2px;
-    animation: blink 2s infinite;
+    position: absolute; bottom: 40px; left: 0; right: 0;
+    text-align: center; font-size: 12px; color: rgba(255,255,255,.38);
+    letter-spacing: 2px; animation: blink 2s infinite;
   }
 
   #final {
-    position: absolute; inset: 0;
-    overflow-y: auto;
+    position: absolute; inset: 0; overflow-y: auto;
     padding: 60px 22px 50px;
     background: linear-gradient(160deg, rgba(16,20,28,.94), rgba(34,24,32,.96));
-    display: none;
-    z-index: 50;
+    display: none; z-index: 50;
   }
-  #effectCanvas {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-  }
+  #effectCanvas { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
   #final .inner {
-    position: relative;
-    z-index: 1;
-    max-width: 640px;
-    margin: 0 auto;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: calc(100vh - 110px);
-    padding-top: 6vh;
+    position: relative; z-index: 1; max-width: 640px; margin: 0 auto;
+    text-align: center; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    min-height: calc(100vh - 110px); padding-top: 6vh;
   }
   #endingImg {
-    display: none;
-    width: auto;
-    max-width: 100%;
-    max-height: 340px;
-    border-radius: 16px;
-    margin-bottom: 22px;
-    box-shadow: 0 18px 50px rgba(0,0,0,.4);
-    position: relative;
-    z-index: 2;
+    display: none; width: auto; max-width: 100%; max-height: 340px;
+    border-radius: 16px; margin-bottom: 22px;
+    box-shadow: 0 18px 50px rgba(0,0,0,.4); position: relative; z-index: 2;
   }
   #endingTitle {
-    font-family: var(--calligraphy);
-    font-size: clamp(34px, 6.2vw, 44px);
-    letter-spacing: 6px;
-    color: #f0e6ea;
-    margin: 0 0 22px;
-    text-shadow: 0 2px 18px rgba(0,0,0,.6);
-    position: relative;
-    z-index: 2;
+    font-family: var(--calligraphy); font-size: clamp(34px, 6.2vw, 44px);
+    letter-spacing: 6px; color: #f0e6ea; margin: 0 0 22px;
+    text-shadow: 0 2px 18px rgba(0,0,0,.6); position: relative; z-index: 2;
   }
   #endingNote {
-    font-size: 13px;
-    letter-spacing: 2px;
-    color: rgba(255,255,255,.45);
-    line-height: 2;
-    margin-bottom: 46px;
-    position: relative;
-    z-index: 2;
+    font-size: 13px; letter-spacing: 2px; color: rgba(255,255,255,.45);
+    line-height: 2; margin-bottom: 46px; position: relative; z-index: 2;
   }
-  .ending-btns {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 14px;
-    position: relative;
-    z-index: 2;
-  }
+  .ending-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; position: relative; z-index: 2; }
   #affectionBtn {
     border: 1px solid rgba(255,200,222,.55);
     background: linear-gradient(to bottom, rgba(255,200,222,.22), rgba(255,200,222,.08));
-    color: #ffd6e3;
-    padding: 14px 30px;
-    border-radius: 999px;
-    font-size: 15px;
-    letter-spacing: 3px;
-    cursor: pointer;
+    color: #ffd6e3; padding: 14px 30px; border-radius: 999px;
+    font-size: 15px; letter-spacing: 3px; cursor: pointer;
     transition: background .2s, transform .2s;
     text-shadow: 0 1px 8px rgba(255,150,190,.40);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
   }
   #affectionBtn:hover { background: linear-gradient(to bottom, rgba(255,200,222,.38), rgba(255,200,222,.18)); transform: translateY(-2px); }
   #restartBtn {
     border: 1px solid rgba(255,255,255,.25);
-    background: rgba(255,255,255,.07);
-    color: #f2ece6;
-    padding: 14px 30px;
-    border-radius: 999px;
-    font-size: 15px;
-    letter-spacing: 3px;
-    cursor: pointer;
+    background: rgba(255,255,255,.07); color: #f2ece6;
+    padding: 14px 30px; border-radius: 999px;
+    font-size: 15px; letter-spacing: 3px; cursor: pointer;
     transition: background .2s;
   }
   #restartBtn:hover { background: rgba(255,255,255,.16); }
 
   #affectionPanel {
-    position: fixed;
-    inset: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
+    position: fixed; inset: 0; display: none;
+    align-items: center; justify-content: center;
     background: rgba(6,8,12,.82);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    z-index: 80;
-    padding: 20px;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    z-index: 80; padding: 20px;
   }
   #affectionPanel.show { display: flex; }
   .aff-inner {
-    width: min(520px, 100%);
-    max-height: 86vh;
-    overflow-y: auto;
+    width: min(520px, 100%); max-height: 86vh; overflow-y: auto;
     background: linear-gradient(160deg, rgba(30,22,32,.96), rgba(20,22,30,.96));
-    border: 1px solid rgba(255,190,215,.20);
-    border-radius: 22px;
+    border: 1px solid rgba(255,190,215,.20); border-radius: 22px;
     padding: 26px 22px 24px;
     box-shadow: 0 24px 80px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.06);
-    color: #f2ece6;
-    text-align: left;
+    color: #f2ece6; text-align: left;
   }
-  .aff-label {
-    font-family: "Consolas", "Courier New", monospace;
-    font-size: 11.5px;
-    letter-spacing: 2px;
-    color: rgba(255,190,215,.55);
-    margin-bottom: 16px;
-  }
-  .aff-loading {
-    font-family: "Consolas", "Courier New", monospace;
-    font-size: 13px;
-    color: rgba(255,220,235,.80);
-    margin-bottom: 18px;
-    letter-spacing: 1px;
-  }
+  .aff-label { font-family: "Consolas", "Courier New", monospace; font-size: 11.5px; letter-spacing: 2px; color: rgba(255,190,215,.55); margin-bottom: 16px; }
+  .aff-loading { font-family: "Consolas", "Courier New", monospace; font-size: 13px; color: rgba(255,220,235,.80); margin-bottom: 18px; letter-spacing: 1px; }
   .aff-loading span { animation: dotBlink 1.2s infinite; display: inline-block; }
   .aff-loading span:nth-child(2) { animation-delay: .2s; }
   .aff-loading span:nth-child(3) { animation-delay: .4s; }
   @keyframes dotBlink { 0%,100% { opacity: .25; } 50% { opacity: 1; } }
   .aff-list { list-style: none; padding: 0; margin: 0 0 20px; }
   .aff-list li {
-    font-size: 14.5px;
-    line-height: 1.9;
-    color: rgba(240,230,234,.90);
-    padding: 8px 0;
-    border-bottom: 1px dashed rgba(255,190,215,.10);
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 12px;
-    opacity: 0;
-    transform: translateY(6px);
-    animation: affIn .35s ease forwards;
+    font-size: 14.5px; line-height: 1.9; color: rgba(240,230,234,.90);
+    padding: 8px 0; border-bottom: 1px dashed rgba(255,190,215,.10);
+    display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+    opacity: 0; transform: translateY(6px); animation: affIn .35s ease forwards;
   }
   .aff-list li:last-child { border-bottom: 0; }
   .aff-list li .aff-plus {
-    font-family: "Consolas", "Courier New", monospace;
-    color: #ff9fc4;
-    font-weight: 600;
-    letter-spacing: 1px;
-    flex-shrink: 0;
-    font-size: 13.5px;
+    font-family: "Consolas", "Courier New", monospace; color: #ff9fc4;
+    font-weight: 600; letter-spacing: 1px; flex-shrink: 0; font-size: 13.5px;
   }
   @keyframes affIn { to { opacity: 1; transform: translateY(0); } }
   .aff-total {
-    margin-top: 8px;
-    padding: 16px 18px;
-    border-radius: 14px;
+    margin-top: 8px; padding: 16px 18px; border-radius: 14px;
     background: linear-gradient(to bottom, rgba(255,178,208,.14), rgba(255,178,208,.04));
     border: 1px solid rgba(255,178,208,.28);
-    font-size: 15px;
-    letter-spacing: 1px;
-    color: #ffd6e3;
-    text-align: center;
-    line-height: 1.9;
-    opacity: 0;
+    font-size: 15px; letter-spacing: 1px; color: #ffd6e3;
+    text-align: center; line-height: 1.9; opacity: 0;
     animation: affIn .5s ease forwards;
   }
   .aff-total strong { display: block; font-size: 20px; letter-spacing: 3px; margin-top: 6px; color: #ffb2c8; }
-  .aff-note {
-    margin-top: 16px;
-    font-size: 13px;
-    line-height: 2;
-    color: rgba(230,210,220,.65);
-    font-style: italic;
-    opacity: 0;
-    animation: affIn .6s ease forwards;
-  }
+  .aff-note { margin-top: 16px; font-size: 13px; line-height: 2; color: rgba(230,210,220,.65); font-style: italic; opacity: 0; animation: affIn .6s ease forwards; }
   .aff-close {
-    margin-top: 22px;
-    display: block;
-    width: 100%;
+    margin-top: 22px; display: block; width: 100%;
     border: 1px solid rgba(255,190,215,.35);
-    background: rgba(255,190,215,.08);
-    color: #ffd6e3;
-    padding: 12px;
-    border-radius: 12px;
-    font-size: 14px;
-    letter-spacing: 3px;
-    cursor: pointer;
+    background: rgba(255,190,215,.08); color: #ffd6e3;
+    padding: 12px; border-radius: 12px;
+    font-size: 14px; letter-spacing: 3px; cursor: pointer;
     transition: background .2s;
   }
   .aff-close:hover { background: rgba(255,190,215,.18); }
 
   #photoOverlay {
-    position: absolute; inset: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    background: rgba(8,10,14,.98);
-    z-index: 60;
-    cursor: pointer;
-    padding: 24px;
+    position: absolute; inset: 0; display: none;
+    align-items: center; justify-content: center;
+    background: rgba(8,10,14,.98); z-index: 60;
+    cursor: pointer; padding: 24px;
   }
   #photoOverlay.show { display: flex; }
   #photoOverlay img {
-    max-width: 100%;
-    max-height: 76vh;
-    border-radius: 14px;
+    max-width: 100%; max-height: 76vh; border-radius: 14px;
     box-shadow: 0 24px 70px rgba(0,0,0,.6);
-    opacity: 0;
-    transform: scale(.94);
+    opacity: 0; transform: scale(.94);
     transition: opacity .55s ease, transform .55s ease;
   }
   #photoOverlay.show img { opacity: 1; transform: scale(1); }
   #photoFlash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; }
   #photoOverlay.flash #photoFlash { animation: flashAnim .7s ease-out; }
   @keyframes flashAnim { 0% { opacity: 0; } 12% { opacity: .92; } 100% { opacity: 0; } }
-  #photoHint {
-    position: absolute;
-    bottom: 18px; left: 0; right: 0;
-    text-align: center;
-    font-size: 12px;
-    color: rgba(255,255,255,.42);
-    letter-spacing: 1px;
-  }
+  #photoHint { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; font-size: 12px; color: rgba(255,255,255,.42); letter-spacing: 1px; }
 
-  /* ===== 快穿式系统提示 ===== */
   #sysToast {
-    position: fixed;
-    inset: 0;
-    display: none;
-    align-items: flex-start;
-    justify-content: center;
-    padding-top: 20vh;
-    z-index: 66;
-    cursor: pointer;
+    position: fixed; inset: 0; display: none;
+    align-items: flex-start; justify-content: center;
+    padding-top: 20vh; z-index: 66; cursor: pointer;
   }
   #sysToast.show { display: flex; }
-
   .sys-toast-box {
-    position: relative;
-    min-width: min(420px, 84vw);
-    max-width: 86vw;
+    position: relative; min-width: min(420px, 84vw); max-width: 86vw;
     padding: 24px 32px 22px;
-    background: linear-gradient(160deg, rgba(14, 9, 20, .94), rgba(30, 14, 28, .94));
-    border: 1px solid rgba(255, 140, 190, .55);
-    box-shadow:
-      0 0 0 1px rgba(255, 140, 190, .08),
-      0 0 44px rgba(255, 90, 160, .30),
-      inset 0 0 34px rgba(255, 90, 160, .12);
+    background: linear-gradient(160deg, rgba(14,9,20,.94), rgba(30,14,28,.94));
+    border: 1px solid rgba(255,140,190,.55);
+    box-shadow: 0 0 0 1px rgba(255,140,190,.08), 0 0 44px rgba(255,90,160,.30), inset 0 0 34px rgba(255,90,160,.12);
     font-family: "Consolas", "Courier New", monospace;
-    text-align: center;
-    overflow: hidden;
+    text-align: center; overflow: hidden;
     animation: sysToastIn .5s cubic-bezier(.2,.9,.3,1.2);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
   }
   @keyframes sysToastIn {
     0%   { opacity: 0; transform: translateY(-16px) scale(.9); filter: blur(8px); }
@@ -562,80 +317,40 @@
     100% { opacity: 1; transform: translateY(0) scale(1); }
   }
   .sys-toast-box::before {
-    content: "";
-    position: absolute;
-    left: 0; right: 0; top: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 210, 236, .95), transparent);
-    animation: sysScan 2s linear infinite;
-    pointer-events: none;
+    content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,210,236,.95), transparent);
+    animation: sysScan 2s linear infinite; pointer-events: none;
   }
-  @keyframes sysScan {
-    0%   { top: 0; opacity: 0; }
-    12%  { opacity: 1; }
-    88%  { opacity: 1; }
-    100% { top: 100%; opacity: 0; }
-  }
-  .sys-toast-tag {
-    font-size: 10px;
-    letter-spacing: 8px;
-    color: rgba(255, 160, 200, .65);
-    margin-bottom: 14px;
-  }
+  @keyframes sysScan { 0% { top: 0; opacity: 0; } 12% { opacity: 1; } 88% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+  .sys-toast-tag { font-size: 10px; letter-spacing: 8px; color: rgba(255,160,200,.65); margin-bottom: 14px; }
   .sys-toast-text {
-    font-size: clamp(15px, 2.5vw, 18px);
-    letter-spacing: 2px;
-    line-height: 1.9;
-    color: #ffd6e3;
-    text-shadow: 0 0 20px rgba(255, 110, 175, .75);
-    min-height: 1.9em;
-    word-break: break-word;
+    font-size: clamp(15px, 2.5vw, 18px); letter-spacing: 2px; line-height: 1.9;
+    color: #ffd6e3; text-shadow: 0 0 20px rgba(255,110,175,.75);
+    min-height: 1.9em; word-break: break-word;
   }
   .sys-toast-text::after {
-    content: "";
-    display: inline-block;
-    width: 8px;
-    height: 1.05em;
-    margin-left: 5px;
-    vertical-align: text-bottom;
-    background: #ff9fc4;
-    box-shadow: 0 0 10px rgba(255, 140, 190, .9);
+    content: ""; display: inline-block; width: 8px; height: 1.05em;
+    margin-left: 5px; vertical-align: text-bottom;
+    background: #ff9fc4; box-shadow: 0 0 10px rgba(255,140,190,.9);
     animation: cursorBlink .8s steps(1) infinite;
   }
-  @keyframes cursorBlink {
-    0%, 49%   { opacity: 1; }
-    50%, 100% { opacity: 0; }
-  }
+  @keyframes cursorBlink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
 
-  /* ===== 好感度结算动效 ===== */
   #affGain {
-    position: fixed;
-    inset: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
+    position: fixed; inset: 0; display: none;
+    align-items: center; justify-content: center;
     background: rgba(6,8,12,.86);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    z-index: 67;
-    cursor: pointer;
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    z-index: 67; cursor: pointer;
   }
   #affGain.show { display: flex; }
-
   .aff-gain-inner {
-    width: min(420px, 86vw);
-    padding: 36px 30px 30px;
-    background: linear-gradient(160deg, rgba(14, 9, 20, .96), rgba(30, 14, 28, .96));
-    border: 1px solid rgba(255, 140, 190, .55);
-    border-radius: 18px;
-    box-shadow:
-      0 0 0 1px rgba(255, 140, 190, .08),
-      0 0 50px rgba(255, 90, 160, .32),
-      inset 0 0 34px rgba(255, 90, 160, .10);
+    width: min(420px, 86vw); padding: 36px 30px 30px;
+    background: linear-gradient(160deg, rgba(14,9,20,.96), rgba(30,14,28,.96));
+    border: 1px solid rgba(255,140,190,.55); border-radius: 18px;
+    box-shadow: 0 0 0 1px rgba(255,140,190,.08), 0 0 50px rgba(255,90,160,.32), inset 0 0 34px rgba(255,90,160,.10);
     font-family: "Consolas", "Courier New", monospace;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+    text-align: center; position: relative; overflow: hidden;
     animation: affGainIn .55s cubic-bezier(.2,.9,.3,1.2);
   }
   @keyframes affGainIn {
@@ -644,832 +359,408 @@
     100% { opacity: 1; transform: translateY(0) scale(1); }
   }
   .aff-gain-inner::before {
-    content: "";
-    position: absolute;
-    left: 0; right: 0; top: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 210, 236, .95), transparent);
-    animation: sysScan 2.4s linear infinite;
-    pointer-events: none;
+    content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,210,236,.95), transparent);
+    animation: sysScan 2.4s linear infinite; pointer-events: none;
   }
-  .aff-gain-label {
-    font-size: 10px;
-    letter-spacing: 6px;
-    color: rgba(255, 160, 200, .65);
-    margin-bottom: 18px;
-  }
+  .aff-gain-label { font-size: 10px; letter-spacing: 6px; color: rgba(255,160,200,.65); margin-bottom: 18px; }
   .aff-gain-num {
-    font-size: clamp(52px, 12vw, 72px);
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: #ffd6e3;
-    text-shadow: 0 0 28px rgba(255, 110, 175, .85), 0 0 60px rgba(255, 90, 160, .5);
-    line-height: 1.1;
-    margin-bottom: 4px;
-    font-variant-numeric: tabular-nums;
+    font-size: clamp(52px, 12vw, 72px); font-weight: 700; letter-spacing: 2px;
+    color: #ffd6e3; text-shadow: 0 0 28px rgba(255,110,175,.85), 0 0 60px rgba(255,90,160,.5);
+    line-height: 1.1; margin-bottom: 4px; font-variant-numeric: tabular-nums;
   }
-  .aff-gain-num small {
-    font-size: .42em;
-    letter-spacing: 2px;
-    color: #ff9fc4;
-    margin-left: 4px;
-  }
+  .aff-gain-num small { font-size: .42em; letter-spacing: 2px; color: #ff9fc4; margin-left: 4px; }
   .aff-gain-bar {
-    height: 8px;
-    margin: 18px 0 16px;
-    background: rgba(255, 180, 220, .12);
-    border: 1px solid rgba(255, 180, 220, .28);
-    border-radius: 4px;
-    overflow: hidden;
+    height: 8px; margin: 18px 0 16px;
+    background: rgba(255,180,220,.12);
+    border: 1px solid rgba(255,180,220,.28); border-radius: 4px; overflow: hidden;
   }
   .aff-gain-fill {
-    height: 100%;
-    width: 0%;
+    height: 100%; width: 0%;
     background: linear-gradient(90deg, #ffb2c8, #ff6b9d);
-    box-shadow: 0 0 14px rgba(255, 107, 157, 0.85);
+    box-shadow: 0 0 14px rgba(255,107,157,.85);
     transition: width .08s linear;
   }
   .aff-gain-text {
-    font-size: 14px;
-    letter-spacing: 1px;
-    line-height: 1.9;
-    color: rgba(255, 220, 235, .9);
-    min-height: 1.9em;
-    margin-bottom: 4px;
+    font-size: 14px; letter-spacing: 1px; line-height: 1.9;
+    color: rgba(255,220,235,.9); min-height: 1.9em; margin-bottom: 4px;
   }
-  .aff-gain-hint {
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: rgba(255, 180, 220, .55);
-    margin-top: 14px;
-    animation: blink 1.8s infinite;
-  }
+  .aff-gain-hint { font-size: 11px; letter-spacing: 2px; color: rgba(255,180,220,.55); margin-top: 14px; animation: blink 1.8s infinite; }
 
-  /* ===== 睁眼特效 ===== */
   #eyeOpen {
-    position: fixed;
-    inset: 0;
-    z-index: 98;
-    display: none;
-    background: #000;
-    overflow: hidden;
-    pointer-events: none;
+    position: fixed; inset: 0; z-index: 98; display: none;
+    background: #000; overflow: hidden; pointer-events: none;
   }
   #eyeOpen.show { display: block; }
-
   .eyelid {
-    position: absolute;
-    left: -4px;
-    right: -4px;
-    height: 50.15%;
-    background: #000;
-    transition: transform 1.25s cubic-bezier(.6, 0, .2, 1);
-    will-change: transform;
-    z-index: 1;
+    position: absolute; left: -4px; right: -4px; height: 50.15%;
+    background: #000; transition: transform 1.25s cubic-bezier(.6,0,.2,1);
+    will-change: transform; z-index: 1;
   }
   .eyelid.top { top: 0; }
   .eyelid.bottom { bottom: 0; }
   #eyeOpen.open .eyelid.top { transform: translateY(-103%); }
   #eyeOpen.open .eyelid.bottom { transform: translateY(103%); }
-
   .eye-seam {
-    position: absolute;
-    left: 0; right: 0;
-    top: 50%;
-    height: 2px;
-    margin-top: -1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 214, 236, .95), transparent);
-    filter: blur(1.5px);
-    opacity: 0;
-    z-index: 2;
-    pointer-events: none;
+    position: absolute; left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px;
+    background: linear-gradient(90deg, transparent, rgba(255,214,236,.95), transparent);
+    filter: blur(1.5px); opacity: 0; z-index: 2; pointer-events: none;
   }
-  #eyeOpen.open .eye-seam {
-    animation: seamOpen 1.15s ease forwards;
-  }
+  #eyeOpen.open .eye-seam { animation: seamOpen 1.15s ease forwards; }
   @keyframes seamOpen {
-    0%   { opacity: 0; transform: scaleX(.1); }
-    18%  { opacity: 1; transform: scaleX(1); }
-    55%  { opacity: .85; }
+    0% { opacity: 0; transform: scaleX(.1); }
+    18% { opacity: 1; transform: scaleX(1); }
+    55% { opacity: .85; }
     100% { opacity: 0; transform: scaleX(1); }
   }
+  .eye-flash { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 3; pointer-events: none; }
+  #eyeOpen.open .eye-flash { animation: eyeFlash 1.25s ease-out forwards; }
+  @keyframes eyeFlash { 0% { opacity: 0; } 18% { opacity: .28; } 100% { opacity: 0; } }
 
-  .eye-flash {
-    position: absolute;
-    inset: 0;
-    background: #fff;
-    opacity: 0;
-    z-index: 3;
-    pointer-events: none;
-  }
-  #eyeOpen.open .eye-flash {
-    animation: eyeFlash 1.25s ease-out forwards;
-  }
-  @keyframes eyeFlash {
-    0%   { opacity: 0; }
-    18%  { opacity: .28; }
-    100% { opacity: 0; }
-  }
-
-  /* ===== 小游戏：救公主 ===== */
   #miniGame {
-    position: fixed;
-    inset: 0;
-    display: none;
-    background: #0f1218;
-    z-index: 70;
-    flex-direction: column;
+    position: fixed; inset: 0; display: none;
+    background: #0f1218; z-index: 70; flex-direction: column;
   }
   #miniGame.show { display: flex; }
-
   .game-hud {
-    position: absolute;
-    top: 20px; left: 20px;
-    color: #fff;
-    font-size: 16px;
-    letter-spacing: 1px;
-    text-shadow: 0 2px 6px rgba(120, 60, 100, .5);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    z-index: 2;
+    position: absolute; top: 20px; left: 20px; color: #fff; font-size: 16px;
+    letter-spacing: 1px; text-shadow: 0 2px 6px rgba(120,60,100,.5);
+    display: flex; align-items: center; gap: 8px; z-index: 2;
   }
-  .heart-icon {
-    display: inline-block;
-    color: #ff6b9d;
-    font-size: 18px;
-    text-shadow: 0 0 10px rgba(255, 107, 157, 0.8);
-    line-height: 1;
-  }
-  .game-canvas-wrap {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    min-height: 0;
-  }
+  .heart-icon { display: inline-block; color: #ff6b9d; font-size: 18px; text-shadow: 0 0 10px rgba(255,107,157,.8); line-height: 1; }
+  .game-canvas-wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px; min-height: 0; }
   #gameCanvas {
-    display: block;
-    max-width: 100%;
-    max-height: 100%;
-    background: #ffe6f2;
-    border-radius: 14px;
-    box-shadow: 0 10px 40px rgba(255, 150, 200, .35);
-    touch-action: none;
+    display: block; max-width: 100%; max-height: 100%;
+    background: #ffe6f2; border-radius: 14px;
+    box-shadow: 0 10px 40px rgba(255,150,200,.35); touch-action: none;
   }
   .game-controls {
-    position: absolute;
-    left: 0; right: 0; bottom: 20px;
-    padding: 0 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    z-index: 2;
-    pointer-events: none;
+    position: absolute; left: 0; right: 0; bottom: 20px;
+    padding: 0 24px; display: flex; justify-content: space-between;
+    align-items: flex-end; z-index: 2; pointer-events: none;
   }
   .game-controls > * { pointer-events: auto; }
   .dpad { display: flex; gap: 10px; }
   .ctrl-btn {
-    width: 64px; height: 64px;
-    border-radius: 50%;
+    width: 64px; height: 64px; border-radius: 50%;
     border: 2px solid rgba(255,255,255,.35);
-    background: rgba(255,255,255,.12);
-    color: #fff;
-    font-size: 22px;
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: none;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    transition: background .1s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: inherit;
+    background: rgba(255,255,255,.12); color: #fff;
+    font-size: 22px; cursor: pointer;
+    user-select: none; -webkit-user-select: none; touch-action: none;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    transition: background .1s; display: flex;
+    align-items: center; justify-content: center; font-family: inherit;
   }
   .ctrl-btn:active { background: rgba(255,255,255,.32); }
   .jump-btn {
-    width: 84px; height: 84px;
-    font-size: 17px;
-    letter-spacing: 2px;
+    width: 84px; height: 84px; font-size: 17px; letter-spacing: 2px;
     background: rgba(255,180,210,.18);
-    border-color: rgba(255,180,210,.50);
-    color: #ffe4ed;
+    border-color: rgba(255,180,210,.50); color: #ffe4ed;
   }
   .jump-btn:active { background: rgba(255,180,210,.45); }
 
   .game-victory {
-    position: absolute;
-    inset: 0;
-    background: rgba(8,10,14,.88);
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    position: absolute; inset: 0; background: rgba(8,10,14,.88);
+    display: none; flex-direction: column; align-items: center; justify-content: center;
+    z-index: 10; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
   }
   .game-victory.show { display: flex; }
   .victory-text {
-    font-family: var(--calligraphy);
-    font-size: 46px;
-    color: #ffd6e3;
-    letter-spacing: 8px;
-    text-shadow: 0 4px 20px rgba(255,150,190,.4);
-    margin-bottom: 14px;
+    font-family: var(--calligraphy); font-size: 46px; color: #ffd6e3;
+    letter-spacing: 8px; text-shadow: 0 4px 20px rgba(255,150,190,.4); margin-bottom: 14px;
   }
   .victory-sub { font-size: 14px; color: rgba(255,255,255,.55); letter-spacing: 3px; margin-bottom: 34px; }
   .victory-btn {
-    padding: 14px 48px;
-    border-radius: 999px;
+    padding: 14px 48px; border-radius: 999px;
     border: 1px solid rgba(255,200,222,.5);
     background: linear-gradient(to bottom, rgba(255,200,222,.22), rgba(255,200,222,.08));
-    color: #ffd6e3;
-    font-size: 16px;
-    letter-spacing: 4px;
-    cursor: pointer;
-    font-family: inherit;
-    transition: background .2s;
+    color: #ffd6e3; font-size: 16px; letter-spacing: 4px; cursor: pointer;
+    font-family: inherit; transition: background .2s;
   }
   .victory-btn:hover { background: linear-gradient(to bottom, rgba(255,200,222,.38), rgba(255,200,222,.18)); }
 
-  /* ===== 系统提示（打字机） ===== */
   #systemPrompt {
-    position: fixed;
-    inset: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    background: #05070c;
-    z-index: 75;
-    cursor: pointer;
-    padding: 20px;
-    overflow: hidden;
+    position: fixed; inset: 0; display: none;
+    align-items: center; justify-content: center;
+    background: #05070c; z-index: 75; cursor: pointer;
+    padding: 20px; overflow: hidden;
   }
   #systemPrompt.show { display: flex; }
   #systemPrompt::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      rgba(255, 180, 220, 0.05) 0px,
-      rgba(255, 180, 220, 0.05) 1px,
-      transparent 1px,
-      transparent 3px
-    );
+    content: ""; position: absolute; inset: 0;
+    background: repeating-linear-gradient(0deg, rgba(255,180,220,.05) 0px, rgba(255,180,220,.05) 1px, transparent 1px, transparent 3px);
     pointer-events: none;
   }
   #systemPrompt::after {
-    content: "";
-    position: absolute;
-    inset: 0;
+    content: ""; position: absolute; inset: 0;
     background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,.7) 100%);
     pointer-events: none;
   }
   .sys-box {
-    position: relative;
-    z-index: 2;
-    max-width: 560px;
-    width: 100%;
-    padding: 44px 32px;
-    border: 1px solid rgba(255, 180, 220, 0.4);
-    background: rgba(10, 8, 16, 0.85);
-    box-shadow: 0 0 50px rgba(255, 150, 200, 0.18), inset 0 0 30px rgba(255, 150, 200, 0.06);
-    text-align: center;
-    font-family: "Consolas", "Courier New", monospace;
-    animation: sysIn 0.5s ease;
+    position: relative; z-index: 2; max-width: 560px; width: 100%;
+    padding: 44px 32px; border: 1px solid rgba(255,180,220,.4);
+    background: rgba(10,8,16,.85);
+    box-shadow: 0 0 50px rgba(255,150,200,.18), inset 0 0 30px rgba(255,150,200,.06);
+    text-align: center; font-family: "Consolas", "Courier New", monospace;
+    animation: sysIn .5s ease;
   }
-  @keyframes sysIn {
-    from { opacity: 0; transform: scale(0.96); }
-    to { opacity: 1; transform: scale(1); }
-  }
-  .sys-tag {
-    font-size: 11px;
-    letter-spacing: 4px;
-    color: rgba(255, 180, 220, 0.6);
-    margin-bottom: 28px;
-  }
+  @keyframes sysIn { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: scale(1); } }
+  .sys-tag { font-size: 11px; letter-spacing: 4px; color: rgba(255,180,220,.6); margin-bottom: 28px; }
   .sys-title {
-    font-family: var(--calligraphy);
-    font-size: clamp(28px, 5vw, 38px);
-    color: #ffd6e3;
-    letter-spacing: 4px;
-    margin-bottom: 18px;
-    text-shadow: 0 0 24px rgba(255, 150, 200, 0.5);
+    font-family: var(--calligraphy); font-size: clamp(28px, 5vw, 38px);
+    color: #ffd6e3; letter-spacing: 4px; margin-bottom: 18px;
+    text-shadow: 0 0 24px rgba(255,150,200,.5);
   }
-  .sys-text {
-    font-size: 15px;
-    color: rgba(255, 220, 235, 0.9);
-    letter-spacing: 2px;
-    line-height: 2;
-    margin-bottom: 8px;
-    min-height: 1.9em;
-  }
-  .sys-sub {
-    font-size: 14px;
-    color: #ffb2c8;
-    letter-spacing: 2px;
-    line-height: 2;
-    margin-bottom: 34px;
-    min-height: 1.9em;
-  }
-  .sys-text.sys-typing::after,
-  .sys-sub.sys-typing::after {
-    content: "▊";
-    display: inline-block;
-    margin-left: 3px;
-    color: #ffb2c8;
-    animation: blink 0.7s steps(1) infinite;
-    font-size: .85em;
-    vertical-align: text-bottom;
+  .sys-text { font-size: 15px; color: rgba(255,220,235,.9); letter-spacing: 2px; line-height: 2; margin-bottom: 8px; min-height: 1.9em; }
+  .sys-sub { font-size: 14px; color: #ffb2c8; letter-spacing: 2px; line-height: 2; margin-bottom: 34px; min-height: 1.9em; }
+  .sys-text.sys-typing::after, .sys-sub.sys-typing::after {
+    content: "▊"; display: inline-block; margin-left: 3px; color: #ffb2c8;
+    animation: blink .7s steps(1) infinite; font-size: .85em; vertical-align: text-bottom;
   }
   .sys-hint {
-    font-size: 12px;
-    letter-spacing: 3px;
-    color: rgba(255, 180, 220, 0.6);
-    animation: blink 1.6s infinite;
-    min-height: 1.4em;
+    font-size: 12px; letter-spacing: 3px; color: rgba(255,180,220,.6);
+    animation: blink 1.6s infinite; min-height: 1.4em;
   }
 
-  /* ===== 规则说明界面 ===== */
   #dbdRules {
-    position: fixed;
-    inset: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    background: #05070c;
-    z-index: 76;
-    cursor: pointer;
-    padding: 20px;
-    overflow-y: auto;
+    position: fixed; inset: 0; display: none;
+    align-items: center; justify-content: center;
+    background: #05070c; z-index: 76; cursor: pointer;
+    padding: 20px; overflow-y: auto;
   }
   #dbdRules.show { display: flex; }
   #dbdRules::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      rgba(255, 180, 220, 0.05) 0px,
-      rgba(255, 180, 220, 0.05) 1px,
-      transparent 1px,
-      transparent 3px
-    );
+    content: ""; position: absolute; inset: 0;
+    background: repeating-linear-gradient(0deg, rgba(255,180,220,.05) 0px, rgba(255,180,220,.05) 1px, transparent 1px, transparent 3px);
     pointer-events: none;
   }
   .rules-box {
-    position: relative;
-    z-index: 2;
-    max-width: 540px;
-    width: 100%;
-    padding: 36px 28px;
-    border: 1px solid rgba(255, 180, 220, 0.4);
-    background: rgba(10, 8, 16, 0.9);
-    box-shadow: 0 0 50px rgba(255, 150, 200, 0.18), inset 0 0 30px rgba(255, 150, 200, 0.06);
-    text-align: center;
-    font-family: "Consolas", "Courier New", monospace;
-    animation: sysIn 0.5s ease;
-    max-height: 90vh;
-    overflow-y: auto;
+    position: relative; z-index: 2; max-width: 540px; width: 100%;
+    padding: 36px 28px; border: 1px solid rgba(255,180,220,.4);
+    background: rgba(10,8,16,.9);
+    box-shadow: 0 0 50px rgba(255,150,200,.18), inset 0 0 30px rgba(255,150,200,.06);
+    text-align: center; font-family: "Consolas", "Courier New", monospace;
+    animation: sysIn .5s ease; max-height: 90vh; overflow-y: auto;
   }
   .rules-title {
-    font-family: var(--calligraphy);
-    font-size: clamp(24px, 4.4vw, 32px);
-    color: #ffd6e3;
-    letter-spacing: 4px;
-    margin-bottom: 24px;
-    text-shadow: 0 0 24px rgba(255, 150, 200, 0.5);
+    font-family: var(--calligraphy); font-size: clamp(24px, 4.4vw, 32px);
+    color: #ffd6e3; letter-spacing: 4px; margin-bottom: 24px;
+    text-shadow: 0 0 24px rgba(255,150,200,.5);
   }
-  .rules-content {
-    text-align: left;
-    margin-bottom: 20px;
-  }
+  .rules-content { text-align: left; margin-bottom: 20px; }
   .rule-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 8px 0;
-    border-bottom: 1px dashed rgba(255, 180, 220, 0.1);
-    font-size: 13.5px;
-    color: rgba(255, 220, 235, 0.9);
-    letter-spacing: 1px;
+    display: flex; align-items: center; gap: 12px; padding: 8px 0;
+    border-bottom: 1px dashed rgba(255,180,220,.1);
+    font-size: 13.5px; color: rgba(255,220,235,.9); letter-spacing: 1px;
   }
   .rule-key {
-    display: inline-block;
-    min-width: 100px;
-    padding: 5px 10px;
-    background: rgba(255, 180, 220, 0.12);
-    border: 1px solid rgba(255, 180, 220, 0.3);
-    border-radius: 6px;
-    color: #ffd6e3;
-    font-size: 12px;
-    letter-spacing: 1px;
-    text-align: center;
-    flex-shrink: 0;
+    display: inline-block; min-width: 100px; padding: 5px 10px;
+    background: rgba(255,180,220,.12);
+    border: 1px solid rgba(255,180,220,.3);
+    border-radius: 6px; color: #ffd6e3;
+    font-size: 12px; letter-spacing: 1px; text-align: center; flex-shrink: 0;
   }
   .rule-goal {
-    font-size: 12.5px;
-    line-height: 2;
-    color: rgba(255, 220, 235, 0.78);
-    margin-top: 14px;
-    padding: 14px 16px;
-    background: rgba(255, 180, 220, 0.06);
-    border-radius: 10px;
-    letter-spacing: 1px;
+    font-size: 12.5px; line-height: 2; color: rgba(255,220,235,.78);
+    margin-top: 14px; padding: 14px 16px;
+    background: rgba(255,180,220,.06); border-radius: 10px; letter-spacing: 1px;
   }
   .rule-warn {
-    font-size: 12.5px;
-    line-height: 1.9;
-    color: rgba(255, 140, 160, 0.9);
-    margin-top: 12px;
-    padding: 10px 14px;
-    background: rgba(255, 80, 120, 0.08);
-    border: 1px solid rgba(255, 80, 120, 0.2);
-    border-radius: 10px;
-    letter-spacing: 1px;
+    font-size: 12.5px; line-height: 1.9; color: rgba(255,140,160,.9);
+    margin-top: 12px; padding: 10px 14px;
+    background: rgba(255,80,120,.08);
+    border: 1px solid rgba(255,80,120,.2);
+    border-radius: 10px; letter-spacing: 1px;
   }
 
-  /* ===== 小游戏 2：像素黎明杀机 ===== */
   #repairGame {
-    position: fixed;
-    inset: 0;
-    display: none;
-    background: #05060a;
-    z-index: 72;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    overflow: hidden;
+    position: fixed; inset: 0; display: none;
+    background: #05060a; z-index: 72;
+    flex-direction: column; align-items: center; justify-content: center;
+    padding: 20px; overflow: hidden;
   }
   #repairGame.show { display: flex; }
-
   .dbd-top {
-    position: absolute;
-    top: 16px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(600px, 90%);
-    z-index: 3;
-    text-align: center;
-    pointer-events: none;
+    position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+    width: min(600px, 90%); z-index: 3; text-align: center; pointer-events: none;
   }
   .dbd-status {
-    font-family: "Consolas", monospace;
-    font-size: 12px;
-    letter-spacing: 3px;
-    color: #ffb2c8;
-    margin-bottom: 8px;
-    text-shadow: 0 0 10px rgba(255, 150, 200, 0.5);
+    font-family: "Consolas", monospace; font-size: 12px; letter-spacing: 3px;
+    color: #ffb2c8; margin-bottom: 8px;
+    text-shadow: 0 0 10px rgba(255,150,200,.5);
   }
   .repair-progress-wrap {
-    height: 8px;
-    background: rgba(255, 180, 220, 0.1);
-    border: 1px solid rgba(255, 180, 220, 0.3);
-    border-radius: 4px;
-    overflow: hidden;
+    height: 8px; background: rgba(255,180,220,.1);
+    border: 1px solid rgba(255,180,220,.3); border-radius: 4px; overflow: hidden;
   }
   .repair-progress {
-    height: 100%;
-    width: 0%;
+    height: 100%; width: 0%;
     background: linear-gradient(90deg, #ffb2c8, #ff6b9d);
-    box-shadow: 0 0 12px rgba(255, 107, 157, 0.7);
-    transition: width 0.1s linear;
+    box-shadow: 0 0 12px rgba(255,107,157,.7);
+    transition: width .1s linear;
   }
   .repair-percent {
-    margin-top: 6px;
-    font-family: "Consolas", monospace;
-    font-size: 11px;
-    color: #ffd6e3;
-    letter-spacing: 2px;
+    margin-top: 6px; font-family: "Consolas", monospace;
+    font-size: 11px; color: #ffd6e3; letter-spacing: 2px;
   }
-
   .dbd-canvas-wrap {
-    width: 100%;
-    max-width: 800px;
-    aspect-ratio: 16 / 9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 40px;
-    margin-bottom: 130px;
+    width: 100%; max-width: 800px; aspect-ratio: 16 / 9;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 40px; margin-bottom: 130px;
   }
   #repairCanvas {
-    display: block;
-    width: 100%;
-    height: 100%;
-    image-rendering: pixelated;
-    image-rendering: crisp-edges;
-    background: #241a12;
-    border: 2px solid #3a2a1e;
-    border-radius: 6px;
-    touch-action: none;
+    display: block; width: 100%; height: 100%;
+    image-rendering: pixelated; image-rendering: crisp-edges;
+    background: #241a12; border: 2px solid #3a2a1e;
+    border-radius: 6px; touch-action: none;
   }
-
   .dbd-controls {
-    position: absolute;
-    left: 0; right: 0; bottom: 16px;
-    padding: 0 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    z-index: 3;
-    pointer-events: none;
-    gap: 10px;
+    position: absolute; left: 0; right: 0; bottom: 16px;
+    padding: 0 16px; display: flex; justify-content: space-between;
+    align-items: flex-end; z-index: 3; pointer-events: none; gap: 10px;
   }
   .dbd-controls > * { pointer-events: auto; }
-
-  .dbd-pad-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-  }
+  .dbd-pad-group { display: flex; flex-direction: column; align-items: center; gap: 4px; }
   .dbd-pad-label {
-    font-size: 9px;
-    letter-spacing: 2px;
-    color: rgba(255, 180, 220, 0.55);
+    font-size: 9px; letter-spacing: 2px; color: rgba(255,180,220,.55);
     font-family: "Consolas", monospace;
   }
-  .dbd-pad-label.boy { color: rgba(140, 200, 255, 0.7); }
-  .dbd-pad-label.girl { color: rgba(255, 160, 200, 0.7); }
-
-  .dbd-dpad {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3px;
-  }
-  .dbd-dpad-mid {
-    display: flex;
-    gap: 3px;
-  }
-
+  .dbd-pad-label.boy { color: rgba(140,200,255,.7); }
+  .dbd-pad-label.girl { color: rgba(255,160,200,.7); }
+  .dbd-dpad { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .dbd-dpad-mid { display: flex; gap: 3px; }
   .ctrl-btn.dbd-btn {
-    width: 42px;
-    height: 42px;
-    border-radius: 8px;
-    border: 2px solid rgba(255, 180, 220, 0.4);
-    background: rgba(40, 20, 35, 0.75);
-    color: #ffd6e3;
-    font-size: 14px;
-    font-family: inherit;
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: none;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    transition: background 0.1s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
+    width: 42px; height: 42px; border-radius: 8px;
+    border: 2px solid rgba(255,180,220,.4);
+    background: rgba(40,20,35,.75); color: #ffd6e3;
+    font-size: 14px; font-family: inherit; cursor: pointer;
+    user-select: none; -webkit-user-select: none; touch-action: none;
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    transition: background .1s; display: flex;
+    align-items: center; justify-content: center; font-weight: 600;
   }
-  .ctrl-btn.dbd-btn:active { background: rgba(255, 107, 157, 0.4); }
-
-  .ctrl-btn.dbd-btn.boy-btn {
-    border-color: rgba(140, 200, 255, 0.45);
-    color: #b8dfff;
-  }
-  .ctrl-btn.dbd-btn.boy-btn:active { background: rgba(100, 170, 255, 0.4); }
-
+  .ctrl-btn.dbd-btn:active { background: rgba(255,107,157,.4); }
+  .ctrl-btn.dbd-btn.boy-btn { border-color: rgba(140,200,255,.45); color: #b8dfff; }
+  .ctrl-btn.dbd-btn.boy-btn:active { background: rgba(100,170,255,.4); }
   .ctrl-btn.dbd-interact {
-    width: 68px;
-    height: 68px;
-    border-radius: 50%;
-    border: 2px solid rgba(255, 180, 220, 0.55);
-    background: rgba(255, 180, 220, 0.16);
-    color: #ffd6e3;
-    font-size: 14px;
-    letter-spacing: 2px;
-    font-family: inherit;
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: none;
-    transition: background 0.1s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 10px;
-    font-weight: 600;
+    width: 68px; height: 68px; border-radius: 50%;
+    border: 2px solid rgba(255,180,220,.55);
+    background: rgba(255,180,220,.16); color: #ffd6e3;
+    font-size: 14px; letter-spacing: 2px; font-family: inherit;
+    cursor: pointer; user-select: none; -webkit-user-select: none;
+    touch-action: none; transition: background .1s;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 10px; font-weight: 600;
   }
-  .ctrl-btn.dbd-interact:active { background: rgba(255, 107, 157, 0.5); }
+  .ctrl-btn.dbd-interact:active { background: rgba(255,107,157,.5); }
 
-  /* ===== GTA 赛车小游戏 ===== */
   #gtaGame {
-    position: fixed;
-    inset: 0;
-    display: none;
-    background: #0a0a12;
-    z-index: 73;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+    position: fixed; inset: 0; display: none;
+    background: #0a0a12; z-index: 73;
+    flex-direction: column; align-items: center; justify-content: center; padding: 20px;
   }
   #gtaGame.show { display: flex; }
-
   .gta-top {
-    position: absolute;
-    top: 16px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 3;
-    text-align: center;
-    pointer-events: none;
+    position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+    z-index: 3; text-align: center; pointer-events: none;
   }
   .gta-status {
-    font-family: "Consolas", monospace;
-    font-size: 13px;
-    letter-spacing: 3px;
-    color: #ffb2c8;
-    text-shadow: 0 0 10px rgba(255, 150, 200, 0.5);
+    font-family: "Consolas", monospace; font-size: 13px; letter-spacing: 3px;
+    color: #ffb2c8; text-shadow: 0 0 10px rgba(255,150,200,.5);
   }
-
   .gta-canvas-wrap {
-    width: 100%;
-    max-width: 500px;
-    aspect-ratio: 4 / 3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 100px;
+    width: 100%; max-width: 500px; aspect-ratio: 4 / 3;
+    display: flex; align-items: center; justify-content: center; margin-bottom: 100px;
   }
   #gtaCanvas {
-    display: block;
-    width: 100%;
-    height: 100%;
-    image-rendering: pixelated;
-    image-rendering: crisp-edges;
-    border: 2px solid #3a2a1e;
-    border-radius: 6px;
-    touch-action: none;
+    display: block; width: 100%; height: 100%;
+    image-rendering: pixelated; image-rendering: crisp-edges;
+    border: 2px solid #3a2a1e; border-radius: 6px; touch-action: none;
   }
-
   .gta-controls {
-    position: absolute;
-    left: 0; right: 0; bottom: 24px;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 40px;
-    z-index: 3;
-    pointer-events: none;
+    position: absolute; left: 0; right: 0; bottom: 24px;
+    display: flex; justify-content: space-between; padding: 0 40px;
+    z-index: 3; pointer-events: none;
   }
   .gta-controls > * { pointer-events: auto; }
   .gta-btn {
-    width: 72px; height: 72px;
-    border-radius: 50%;
+    width: 72px; height: 72px; border-radius: 50%;
     border: 2px solid rgba(255,180,220,.5);
-    background: rgba(40,20,35,.75);
-    color: #ffd6e3;
-    font-size: 24px;
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: none;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.1s;
+    background: rgba(40,20,35,.75); color: #ffd6e3;
+    font-size: 24px; cursor: pointer;
+    user-select: none; -webkit-user-select: none; touch-action: none;
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    display: flex; align-items: center; justify-content: center;
+    transition: background .1s;
   }
   .gta-btn:active { background: rgba(255,107,157,.4); }
 
   /* ===== 拣爱式小游戏：今天吃什么 ===== */
   #pickFood {
-    position: fixed;
-    inset: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
+    position: fixed; inset: 0; display: none;
+    align-items: center; justify-content: center;
     background: radial-gradient(circle at 50% 30%, #2a2f38 0%, #101318 75%);
-    z-index: 55;
-    padding: 20px;
+    z-index: 55; padding: 20px;
   }
   #pickFood.show { display: flex; }
-
   #pickFood .pf-scene {
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background: linear-gradient(160deg, rgba(20,24,32,.45), rgba(40,26,34,.70));
     pointer-events: none;
   }
-
   .pf-wrap {
-    position: relative;
-    z-index: 2;
-    width: min(480px, 100%);
-    height: min(680px, 88vh);
-    display: flex;
-    flex-direction: column;
-    background: #1a1e26;
-    border: 1px solid rgba(255,255,255,.10);
-    border-radius: 20px;
-    overflow: hidden;
+    position: relative; z-index: 2;
+    width: min(480px, 100%); height: min(680px, 88vh);
+    display: flex; flex-direction: column;
+    background: #1a1e26; border: 1px solid rgba(255,255,255,.10);
+    border-radius: 20px; overflow: hidden;
     box-shadow: 0 30px 80px rgba(0,0,0,.65);
     animation: pfIn .4s ease;
   }
   @keyframes pfIn { from { opacity: 0; transform: translateY(16px) scale(.98); } to { opacity: 1; transform: none; } }
-
   .pf-head {
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: rgba(0,0,0,.28);
-    border-bottom: 1px solid rgba(255,255,255,.06);
-    font-size: 13px;
-    letter-spacing: 2px;
-    color: rgba(255,255,255,.60);
-    flex-shrink: 0;
+    height: 48px; display: flex; align-items: center; justify-content: center; gap: 8px;
+    background: rgba(0,0,0,.28); border-bottom: 1px solid rgba(255,255,255,.06);
+    font-size: 13px; letter-spacing: 2px; color: rgba(255,255,255,.60); flex-shrink: 0;
   }
   .pf-head-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: #6bff9d;
-    box-shadow: 0 0 8px #6bff9d;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #6bff9d; box-shadow: 0 0 8px #6bff9d;
   }
-
   .pf-chat {
-    flex: 1;
-    overflow-y: auto;
-    padding: 18px 14px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+    flex: 1; overflow-y: auto; padding: 18px 14px;
+    display: flex; flex-direction: column; gap: 14px;
     background: linear-gradient(180deg, #14171d, #0f1216);
     scroll-behavior: smooth;
   }
   .pf-chat::-webkit-scrollbar { width: 4px; }
   .pf-chat::-webkit-scrollbar-thumb { background: rgba(255,255,255,.12); border-radius: 2px; }
-
   .pf-msg {
-    display: flex;
-    align-items: flex-end;
-    gap: 8px;
-    max-width: 88%;
+    display: flex; align-items: flex-end; gap: 8px; max-width: 88%;
     animation: pfMsgIn .35s cubic-bezier(.2,.9,.3,1.2);
   }
   .pf-msg.right { align-self: flex-end; flex-direction: row-reverse; }
   .pf-msg.left { align-self: flex-start; }
-  @keyframes pfMsgIn {
-    from { opacity: 0; transform: translateY(10px) scale(.96); }
-    to { opacity: 1; transform: none; }
-  }
-
+  @keyframes pfMsgIn { from { opacity: 0; transform: translateY(10px) scale(.96); } to { opacity: 1; transform: none; } }
   .pf-ava {
-    width: 34px; height: 34px;
-    border-radius: 9px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--calligraphy);
-    font-size: 19px;
-    font-weight: 600;
+    width: 34px; height: 34px; border-radius: 9px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--calligraphy); font-size: 19px; font-weight: 600;
   }
-  .pf-ava.boy {
-    background: linear-gradient(145deg, #cfe4f5, #7fa8c9);
-    color: #1c3348;
-    box-shadow: 0 4px 12px rgba(120,170,210,.30);
-  }
-  .pf-ava.girl {
-    background: linear-gradient(145deg, #ffd6e3, #e8a0c0);
-    color: #5a2a3e;
-    box-shadow: 0 4px 12px rgba(230,150,180,.30);
-  }
-
+  .pf-ava.boy { background: linear-gradient(145deg, #cfe4f5, #7fa8c9); color: #1c3348; box-shadow: 0 4px 12px rgba(120,170,210,.30); }
+  .pf-ava.girl { background: linear-gradient(145deg, #ffd6e3, #e8a0c0); color: #5a2a3e; box-shadow: 0 4px 12px rgba(230,150,180,.30); }
   .pf-bubble {
-    padding: 10px 14px;
-    font-size: 14.5px;
-    line-height: 1.65;
-    border-radius: 14px;
-    max-width: 250px;
-    word-break: break-word;
-    letter-spacing: 1px;
+    padding: 10px 14px; font-size: 14.5px; line-height: 1.65;
+    border-radius: 14px; max-width: 250px; word-break: break-word; letter-spacing: 1px;
   }
   .pf-msg.right .pf-bubble {
-    background: linear-gradient(145deg, #3a5a7a, #2c4560);
-    color: #e6f2ff;
-    border-bottom-right-radius: 4px;
-    border: 1px solid rgba(140, 200, 255, .22);
+    background: linear-gradient(145deg, #3a5a7a, #2c4560); color: #e6f2ff;
+    border-bottom-right-radius: 4px; border: 1px solid rgba(140,200,255,.22);
   }
   .pf-msg.left .pf-bubble {
-    background: linear-gradient(145deg, #4a3a44, #3a2c34);
-    color: #ffe6ee;
-    border-bottom-left-radius: 4px;
-    border: 1px solid rgba(255, 160, 200, .20);
+    background: linear-gradient(145deg, #4a3a44, #3a2c34); color: #ffe6ee;
+    border-bottom-left-radius: 4px; border: 1px solid rgba(255,160,200,.20);
   }
-
   .pf-bubble.shake { animation: pfShake .45s ease; }
   @keyframes pfShake {
     0%,100% { transform: translateX(0); }
@@ -1478,79 +769,42 @@
     60% { transform: translateX(-3px); }
     80% { transform: translateX(2px); }
   }
-
-  .pf-ball-zone {
-    position: relative;
-    flex-shrink: 0;
-    height: 168px;
-    overflow: hidden;
+  .pf-options {
+    position: relative; flex-shrink: 0; height: 168px; overflow: hidden;
     border-top: 1px solid rgba(255,255,255,.07);
-    background:
-      radial-gradient(circle at 50% 130%, rgba(255,170,205,.13), rgba(0,0,0,0) 65%),
-      rgba(0,0,0,.38);
+    background: radial-gradient(circle at 50% 130%, rgba(255,170,205,.13), rgba(0,0,0,0) 65%), rgba(0,0,0,.38);
     touch-action: manipulation;
   }
-
-  .pf-zone-hint {
-    position: absolute;
-    left: 0; right: 0; top: 50%;
-    transform: translateY(-50%);
-    text-align: center;
-    font-size: 11px;
-    letter-spacing: 4px;
-    color: rgba(255,255,255,.09);
-    pointer-events: none;
-    user-select: none;
+  .pf-options::before {
+    content: "戳一个球 · 今晚吃什么";
+    position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%);
+    text-align: center; font-size: 11px; letter-spacing: 4px;
+    color: rgba(255,255,255,.09); pointer-events: none; user-select: none;
     font-family: "Consolas", "Courier New", monospace;
   }
-
   .pf-ball-wrap {
-    position: absolute;
-    left: 0; top: 0;
-    width: 56px;
-    height: 56px;
+    position: absolute; left: 0; top: 0; width: 56px; height: 56px;
     will-change: transform;
   }
-
   .pf-ball {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12.5px;
-    letter-spacing: 1px;
-    color: #ffe9f1;
+    width: 100%; height: 100%; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12.5px; letter-spacing: 1px; color: #ffe9f1;
     text-shadow: 0 1px 4px rgba(0,0,0,.5);
     background:
       radial-gradient(circle at 34% 28%, rgba(255,255,255,.55), rgba(255,255,255,.06) 42%, rgba(255,255,255,0) 62%),
       radial-gradient(circle at 50% 50%, rgba(255,178,208,.34), rgba(255,140,190,.12) 70%, rgba(255,120,180,.04));
     border: 1px solid rgba(255,196,222,.45);
-    box-shadow:
-      0 6px 18px rgba(255,110,175,.22),
-      inset 0 1px 0 rgba(255,255,255,.45),
-      inset 0 -6px 14px rgba(255,110,175,.14);
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    box-shadow: 0 6px 18px rgba(255,110,175,.22), inset 0 1px 0 rgba(255,255,255,.45), inset 0 -6px 14px rgba(255,110,175,.14);
+    cursor: pointer; user-select: none; -webkit-user-select: none;
+    backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
     transition: border-color .18s, box-shadow .18s;
   }
-
   .pf-ball:hover {
     border-color: rgba(255,224,238,.85);
-    box-shadow:
-      0 8px 24px rgba(255,110,175,.35),
-      inset 0 1px 0 rgba(255,255,255,.6),
-      inset 0 -6px 14px rgba(255,110,175,.2);
+    box-shadow: 0 8px 24px rgba(255,110,175,.35), inset 0 1px 0 rgba(255,255,255,.6), inset 0 -6px 14px rgba(255,110,175,.2);
   }
-
-  .pf-ball.pop {
-    animation: pfPop .4s cubic-bezier(.3,.8,.4,1) forwards;
-  }
-
+  .pf-ball.pop { animation: pfPop .4s cubic-bezier(.3,.8,.4,1) forwards; }
   @keyframes pfPop {
     0%   { transform: scale(1);    opacity: 1; }
     45%  { transform: scale(1.25); opacity: .9; }
@@ -1566,23 +820,19 @@
     .pf-wrap { height: min(640px, 90vh); }
     .pf-ava { width: 30px; height: 30px; font-size: 17px; }
     .pf-bubble { font-size: 13.5px; max-width: 210px; }
-    .pf-ball-zone { height: 150px; }
+    .pf-options { height: 150px; }
     .gta-canvas-wrap { margin-bottom: 80px; }
     .gta-btn { width: 60px; height: 60px; font-size: 20px; }
   }
 </style>
-<base target="_blank">
 </head>
 <body>
 
 <div id="stage">
   <div id="bg"></div>
   <div id="bgShade"></div>
-
   <div id="chapterTitle"></div>
-
   <div id="choices"></div>
-
   <div id="dialog" onclick="advance()">
     <div id="nameTagWrap">
       <img id="avatarImg" src="" alt="">
@@ -1591,27 +841,23 @@
     <div id="dialogText"></div>
     <div id="hint">点击继续</div>
   </div>
-
   <div id="chapterCard" onclick="enterChapter()">
     <div class="num" id="cardNum"></div>
     <div class="name" id="cardName"></div>
     <div class="line"></div>
     <div class="tip">点击进入</div>
   </div>
-
   <div id="photoOverlay" onclick="closePhoto(event)">
     <div id="photoFlash"></div>
     <img id="photoImg" src="" alt="">
     <div id="photoHint">点击继续</div>
   </div>
-
   <div id="cover">
     <h1>好感度不是攻略<br>是回忆</h1>
     <div class="sub">Easlyn 出品<br>to 优秀的人</div>
     <div class="guess">优秀的人会是谁呢？<br>你知道是谁？</div>
     <button onclick="startGame()">开 始</button>
   </div>
-
   <div id="final">
     <canvas id="effectCanvas"></canvas>
     <div class="inner">
@@ -1623,7 +869,6 @@
         <button id="restartBtn" onclick="location.reload()">再玩一次</button>
       </div>
     </div>
-
     <div id="affectionPanel">
       <div class="aff-inner">
         <div class="aff-label">// EASLYN.EXE · 正在读取存档 //</div>
@@ -1637,7 +882,6 @@
   </div>
 </div>
 
-<!-- ===== 快穿式系统提示 ===== -->
 <div id="sysToast" onclick="skipSysToast(event)">
   <div class="sys-toast-box">
     <div class="sys-toast-tag">// SYSTEM //</div>
@@ -1645,7 +889,6 @@
   </div>
 </div>
 
-<!-- ===== 好感度结算动效 ===== -->
 <div id="affGain" onclick="skipAffGain(event)">
   <div class="aff-gain-inner">
     <div class="aff-gain-label">// AFFECTION //</div>
@@ -1656,7 +899,6 @@
   </div>
 </div>
 
-<!-- ===== 睁眼特效 ===== -->
 <div id="eyeOpen" aria-hidden="true">
   <div class="eyelid top"></div>
   <div class="eyelid bottom"></div>
@@ -1664,14 +906,9 @@
   <div class="eye-flash"></div>
 </div>
 
-<!-- ===== GTA 赛车小游戏 ===== -->
 <div id="gtaGame">
-  <div class="gta-top">
-    <div class="gta-status" id="gtaStatus">GTA · 赛车</div>
-  </div>
-  <div class="gta-canvas-wrap">
-    <canvas id="gtaCanvas"></canvas>
-  </div>
+  <div class="gta-top"><div class="gta-status" id="gtaStatus">GTA · 赛车</div></div>
+  <div class="gta-canvas-wrap"><canvas id="gtaCanvas"></canvas></div>
   <div class="gta-controls">
     <button class="gta-btn" id="gtaLeft">◀</button>
     <button class="gta-btn" id="gtaRight">▶</button>
@@ -1683,7 +920,7 @@
   </div>
 </div>
 
-<!-- ===== 拣爱式小游戏：今天吃什么 ===== -->
+<!-- ===== 拣爱式小游戏：今天吃什么（微信对话框） ===== -->
 <div id="pickFood">
   <div class="pf-scene"></div>
   <div class="pf-wrap">
@@ -1692,9 +929,7 @@
       <span id="pfHeadName">？</span>
     </div>
     <div class="pf-chat" id="pfChat"></div>
-    <div class="pf-ball-zone" id="pfBallZone">
-      <div class="pf-zone-hint">戳一个球 · 今晚吃什么</div>
-    </div>
+    <div class="pf-options" id="pfOptions"></div>
   </div>
 </div>
 
@@ -1708,24 +943,14 @@
   </div>
 </div>
 
-<!-- 规则说明界面 -->
 <div id="dbdRules">
   <div class="rules-box">
     <div class="sys-tag">// SYSTEM.EXE · 第二关 //</div>
     <div class="rules-title">黎明杀机 · 像素版</div>
     <div class="rules-content">
-      <div class="rule-row">
-        <span class="rule-key">W A S D</span>
-        <span>Bonan 移动</span>
-      </div>
-      <div class="rule-row">
-        <span class="rule-key">↑ ↓ ← →</span>
-        <span>Easlyn 移动</span>
-      </div>
-      <div class="rule-row">
-        <span class="rule-key">空格 / Enter</span>
-        <span>互动 / QTE 判定</span>
-      </div>
+      <div class="rule-row"><span class="rule-key">W A S D</span><span>Bonan 移动</span></div>
+      <div class="rule-row"><span class="rule-key">↑ ↓ ← →</span><span>Easlyn 移动</span></div>
+      <div class="rule-row"><span class="rule-key">空格 / Enter</span><span>互动 / QTE 判定</span></div>
     </div>
     <div class="rule-goal">
       目标：<br>
@@ -1736,9 +961,7 @@
       5. 两人一起按住空格拉门<br>
       6. 门开后，两人一起走到门口逃生
     </div>
-    <div class="rule-warn">
-      ⚠ 苞米地能挡住杀手的视线。躲进去，别出声。
-    </div>
+    <div class="rule-warn">⚠ 苞米地能挡住杀手的视线。躲进去，别出声。</div>
     <div class="sys-hint" style="margin-top:24px;">点击开始</div>
   </div>
 </div>
@@ -1748,9 +971,7 @@
     <span class="heart-icon">♥</span>
     <span id="coinCount">0</span> / <span id="coinTotal">8</span>
   </div>
-  <div class="game-canvas-wrap">
-    <canvas id="gameCanvas"></canvas>
-  </div>
+  <div class="game-canvas-wrap"><canvas id="gameCanvas"></canvas></div>
   <div class="game-controls">
     <div class="dpad">
       <button class="ctrl-btn" id="btnLeft">◀</button>
@@ -1768,14 +989,10 @@
 <div id="repairGame">
   <div class="dbd-top">
     <div class="dbd-status" id="dbdPhase">修理发电机</div>
-    <div class="repair-progress-wrap">
-      <div class="repair-progress" id="repairProgress"></div>
-    </div>
+    <div class="repair-progress-wrap"><div class="repair-progress" id="repairProgress"></div></div>
     <div class="repair-percent" id="repairPercent">0%</div>
   </div>
-  <div class="dbd-canvas-wrap">
-    <canvas id="repairCanvas"></canvas>
-  </div>
+  <div class="dbd-canvas-wrap"><canvas id="repairCanvas"></canvas></div>
   <div class="dbd-controls">
     <div class="dbd-pad-group">
       <div class="dbd-pad-label boy">BONAN · WASD</div>
@@ -1809,9 +1026,6 @@
 </div>
 
 <script>
-/* ============================================================
-   图片配置
-   ============================================================ */
 const IMG = {
   cover: "https://i.postimg.cc/02xwBjfX/8e0dc3e1d797614328c8ac104efed4c9.png",
   prologue: "https://i.postimg.cc/zXKzqmK4/b3f854a11347c768b10e85859cb6cfea.jpg",
@@ -1848,33 +1062,30 @@ const IMG = {
 
 let playerName = "？";
 
-/* =====================================================
-   章节数据
-===================================================== */
 const CHAPTERS = [
   {
     title: "序章 · 混沌",
     img: IMG.prologue,
     lines: [
       { who: "os", text: "……我这是，在哪儿？" },
-      { who: "narr", text: "四周一片混沌。没有天，也没有地。" },
+      { who: "narr", text: "四周一片陌生。这个房间，是我的家吗？" },
       { who: "os", text: "头好疼……什么都想不起来。" },
-      { who: "os", text: "只记得一件事——" },
-      { who: "os", text: "要攻略，第一个见到的人。" },
-      { who: "os", text: "……攻略谁？为什么？" },
-      { who: "os", text: "想不起来了。" },
+      { who: "os", text: "算了，先翻翻有什么能证明我身份的证件吧。" },
+      { who: "os", text: "别说，房间挺整齐，像我的风格。" },
+      { who: "os", text: "（迅速翻阅电脑，奇怪，输自己的密码竟然能打开。）" },
+      { who: "os", text: "难道这真是我家？可我怎么一点都想不起来。" },
       { who: "bg", img: "prologue2" },
-      { who: "narr", text: "混沌深处，孤零零立着一张桌子。" },
-      { who: "os", text: "桌子上……好像放着什么。" },
-      { who: "narr", text: "一张游戏碟。封面上印着一行字——" },
+      { who: "narr", text: "电脑旁边，一个游戏卡带在阳光的照射下闪来闪去。" },
+      { who: "os", text: "这......这是什么？" },
+      { who: "narr", text: "一张游戏碟？这不是小女生玩的吗？" },
       { who: "narr", text: "《好感度不是攻略，是回忆》" },
-      { who: "os", text: "这是……我做的那个游戏？" },
-      { who: "os", text: "不对。我做过游戏吗？" },
+      { who: "os", text: "终于找到bug了，这不是我的游戏风格" },
+      { who: "os", text: "不对。我到底是谁？" },
       { who: "narr", text: "他伸出手，指尖刚碰到碟面——" },
       { who: "flash", text: "咔嚓。" },
       { who: "narr", text: "白光炸开。世界碎成无数片，从四面八方涌过来。" },
       { who: "os", text: "等等——！" },
-      { who: "os", text: "要攻略……第一个见到的人……" },
+      { who: "os", text: "这又是去哪儿了啊😵——" },
       { who: "systemPrompt", text: "welcome" }
     ]
   },
@@ -1885,81 +1096,65 @@ const CHAPTERS = [
       { who: "narr", text: "黑暗。" },
       { who: "narr", text: "很沉，很重，像被什么压着。" },
       { who: "narr", text: "然后是一阵电流般的嗡鸣——" },
-      { who: "narr", text: "再睁开眼，四周是像素的风。" },
+      { who: "narr", text: "再睁开眼，四周充满着乙女游戏的style。" },
       { who: "unknown", text: "……这是哪儿？" },
-      { who: "narr", text: "他低头看自己。像素的胳膊，像素的手。" },
-      { who: "narr", text: "脑子里乱七八糟的，像有人把一整个房间的东西全打翻了。" },
+      { who: "narr", text: "他低头看自己。2d的画风，2d的手。" },
+      { who: "narr", text: "这时候，脑子里不受控制的涌入一些似乎不属于自己的记忆。" },
       { who: "unknown", text: "我记得……" },
       { who: "unknown", text: "我结过婚。" },
-      { who: "unknown", text: "后来……她出轨了。" },
+      { who: "unknown", text: "后来……婚姻不幸。" },
       { who: "narr", text: "他说出这句话的时候，嗓子像被什么堵住了。" },
-      { who: "unknown", text: "然后离婚了。" },
-      { who: "unknown", text: "离婚十个月后，孩子出生了。" },
-      { who: "narr", text: "是谁的孩子，他不愿意想。" },
+      { who: "unknown", text: "然后我就离婚了 。" },
+      { who: "unknown", text: "离婚十个月后，发生了大事，我如遭雷击。" },
+      { who: "narr", text: "之后的事情，脑子似乎不愿意想，开启了保护措施。" },
       { who: "unknown", text: "……然后就抑郁了。" },
       { who: "unknown", text: "每天醒过来，都觉得没意思。" },
-      { who: "unknown", text: "吃饭没意思。出门没意思。活着没意思。" },
-      { who: "narr", text: "他坐在像素的地上，不想动。" },
-      { who: "unknown", text: "就这样吧。" },
-      { who: "unknown", text: "反正也没人在乎。" },
-      { who: "narr", text: "然后他听见脚步声。" },
-      { who: "girl", text: "喂。" },
-      { who: "narr", text: "一个女孩站在他面前，手里端着两杯东西。" },
-      { who: "narr", text: "他抬头看她。" },
-      { who: "narr", text: "不认识。" },
-      { who: "narr", text: "但不知道为什么，心里有个很轻的声音在说——" },
-      { who: "unknown", text: "（第一个见到的人。）" },
-      { who: "unknown", text: "（要攻略她。）" },
+      { who: "unknown", text: "吃饭没意思。出门没意思。除了玩ps5，或许也没意思。" },
+      { who: "narr", text: "他坐在像素的地上，脑子里消化着这些不属于他的记忆。" },
+      { who: "unknown", text: "先这样吧，让我来替原主闯闯这个游戏世界吧。" },
+      { who: "unknown", text: "看看他到底受了什么伤。" },
+      { who: "narr", text: "叮叮叮，手机页面来消息了——" },
+      { who: "girl", text: "人生分为三层境界，看懂才算活通透。" },
+      { who: "narr", text: "一个昵称easlyn女孩给他弹了一条抖音消息。" },
+      { who: "narr", text: "他点进去看。" },
+      { who: "narr", text: "鬼使神差的回了一条消息“好的大师，我悟了”。" },
+      { who: "narr", text: "但不知道为什么，似乎看完这条消息，原主的心情应该通畅不少" },
+      { who: "unknown", text: "（等等，游戏系统刚才显示，第一个见到的人。）" },
+      { who: "unknown", text: "（要攻略她？！）" },
       { who: "narr", text: "他愣了一下。" },
-      { who: "unknown", text: "（……攻略？我为什么会有这个念头？）" },
-      { who: "girl", text: "西瓜汁，喝吗？" },
-      { who: "unknown", text: "……不用。" },
-      { who: "girl", text: "我觉得你说的西瓜汁有客气的成分。" },
-      { who: "girl", text: "所以我直接自作主张。" },
-      { who: "narr", text: "她把杯子塞到他手里。" },
-      { who: "unknown", text: "……为什么是西瓜汁？" },
-      { who: "girl", text: "是因为我爱吃西瓜。" },
+      { who: "unknown", text: "（……攻略？这个时期原主不是刚离婚10个月吗？这能行吗？）" },
+      { who: "girl", text: "哈哈，什么大师，我只是不想你太痛苦，我也受过恋爱的伤，但是我比较洒脱。" },
+      { who: "unknown", text: "……洒，洒脱姐？" },
+      { who: "girl", text: "什么洒脱姐，笑死，我说认真的，不过我承认，你这情伤，比我严重太多。" },
+      { who: "girl", text: "不过呢，还是要向前看。" },
+      { who: "narr", text: "随后，她又分享了几条关于因果轮回的抖音。" },
+      { who: "unknown", text: "我来看看吧。" },
+      { who: "girl", text: "我觉得挺有道理的。" },
       { who: "narr", text: "她说得很理所当然，好像这世界就是该这么运转。" },
-      { who: "narr", text: "他喝了一口。凉丝丝的，有点甜。" },
-      { who: "unknown", text: "……你谁啊。" },
-      { who: "girl", text: "Easlyn。你呢？" },
-      { who: "unknown", text: "……我不记得了。" },
+      { who: "narr", text: "他随手点开几个。" },
+      { who: "unknown", text: "晚上接着玩gta啊，牢意。" },
+{ who: "narr", text: "他按照原主的记忆习惯，给easlyn发着消息。" },
+      { who: "girl", text: "Easlyn。行" },
+      { who: "unknown", text: "我们每天都玩游戏吗？" },
       { who: "narr", text: "他说完，自己先愣了一下。" },
-      { who: "narr", text: "他以为她会追问'那你记得什么'，或者'你怎么会不记得'。" },
-      { who: "narr", text: "但她没有。" },
-      { who: "girl", text: "不记得就不记得吧。" },
-      { who: "girl", text: "反正我记得你就行。" },
+      { who: "girl", text: "你每天都催我玩gta。" },
+      { who: "girl", text: "不过，我买都买了，正好一起玩吧。" },
       { who: "narr", text: "她说得很自然。" },
       { who: "narr", text: "像在说一件早就知道的事。" },
       { who: "unknown", text: "……你认识我？" },
-      { who: "girl", text: "你猜。" },
-      { who: "narr", text: "她笑了一下。" },
-      { who: "narr", text: "没往下说。" },
+      { who: "girl", text: "废话。" },
+      { who: "narr", text: "她无语了一下。" },
       { who: "unknown", text: "（这个人……）" },
-      { who: "unknown", text: "（怎么好像早就认识我。）" },
-      { who: "narr", text: "他低头看着手里的西瓜汁。" },
-      { who: "narr", text: "刚才那种“算了吧”的感觉，好像被什么很轻很轻的东西，托了一下。" },
-      { who: "girl", text: "走吧。" },
-      { who: "unknown", text: "去哪儿？" },
-      { who: "girl", text: "不知道。" },
-      { who: "girl", text: "但总不能一直坐在这儿吧。" },
-      { who: "narr", text: "他犹豫了一下。" },
-      { who: "narr", text: "然后站起来。" },
-      { who: "unknown", text: "……行。" },
-      { who: "girl", text: "对了。" },
-      { who: "girl", text: "你还没告诉我你叫什么。" },
-      { who: "unknown", text: "……我真不记得。" },
-      { who: "narr", text: "空气安静了一秒。" },
+      { who: "unknown", text: "（怎么好像跟原主很熟？而且还是原主单方面“纠缠”。）" },
+      { who: "narr", text: "他抱着手机挠了挠头。" },
+      { who: "narr", text: "真希望自己假扮原主跟他的好友们聊天不会露馅，拜托让我闯关成功吧。" },
       { who: "narr", text: "视野角落，忽然浮起一行小字。" },
-      { who: "narr", text: "【系统提示：玩家代号已生成——“？”】" },
-      { who: "unknown", text: "（……代号？）" },
-      { who: "unknown", text: "（算了。反正也想不起来。）" },
-      { who: "girl", text: "想不起来，就先不想。" },
-      { who: "girl", text: "走吧。" },
-      { who: "narr", text: "她笑了一下。" },
-      { who: "narr", text: "听到那个笑声的时候，胸口某个地方，轻轻动了一下。" },
+      { who: "narr", text: "【系统提示：玩家已成功——暂时没人发现】" },
+      { who: "unknown", text: "（……被发现会怎么样？）" },
+      { who: "unknown", text: "（算了。反正也出不去，要死就死吧。）" },
+      { who: "narr", text: "他看着手里的手机，easlyn还在偶尔分享。" },
       { who: "unknown", text: "（奇怪。）" },
-      { who: "unknown", text: "（好像，在哪儿听过。）" },
+      { who: "unknown", text: "（怎么她的安慰，我看了也那么温暖？）" },
       { who: "affGain", text: "15", text2: "今天，好像有点不一样。" }
     ]
   },
@@ -1967,22 +1162,16 @@ const CHAPTERS = [
     title: "第二章 · 游戏",
     img: IMG.ch2,
     lines: [
-      { who: "narr", text: "第二天。或者第二天。" },
-      { who: "narr", text: "这世界没有白天黑夜，只有加载中。" },
-      { who: "girl", text: "来，教你玩个东西。" },
-      { who: "unknown", text: "什么？" },
-      { who: "girl", text: "GTA。" },
-      { who: "unknown", text: "……那是什么？" },
-      { who: "girl", text: "你连GTA都不记得了？" },
-      { who: "unknown", text: "我连自己都不记得。" },
-      { who: "girl", text: "也是。" },
-      { who: "girl", text: "没事，我带你。" },
+      { who: "narr", text: "他凭借记忆，找到了原主在游戏世界里的家。" },
+      { who: "narr", text: "打开ps5。" },
+      { who: "girl", text: "来，你拉我。" },
+      { who: "unknown", text: "ok，这个世界竟然也有gta5，直接爽玩" },
+      { who: "girl", text: "拉了吗？" },
+      { who: "unknown", text: "已拉，来吧，看你应该还是新手时期，今天继续带你抢两把。" },
+      { who: "girl", text: "可以啊，一键跟随。" },
+      { who: "unknown", text: "我先开个房间，飙飙车。" }, 
       { who: "narr", text: "屏幕上出现一辆车。" },
       { who: "narr", text: "城市的像素在两边后退。" },
-      { who: "girl", text: "左右键，别撞车。" },
-      { who: "girl", text: "撞了也没事，再来。" },
-      { who: "unknown", text: "……就这么简单？" },
-      { who: "girl", text: "简单吗？" },
       { who: "game", text: "gta" },
       { who: "narr", text: "过关的瞬间，整个屏幕闪了一下。" },
       { who: "narr", text: "一行小字浮了出来——" },
@@ -1992,11 +1181,11 @@ const CHAPTERS = [
       { who: "unknown", text: "（这不是我攻略她的游戏吗？）" },
       { who: "unknown", text: "（怎么涨的是我的好感度？）" },
       { who: "narr", text: "他盯着那行字，看了好几秒。" },
-      { who: "narr", text: "她好像一点也不意外，也没问。" },
-      { who: "unknown", text: "（……算了，先不问了。）" },
-      { who: "narr", text: "他又偷偷看了一眼 Easlyn。" },
-      { who: "narr", text: "她正盯着屏幕，侧脸被像素的光映得有点好看。" },
+      { who: "unknown", text: "（……算了。）" },
+      { who: "narr", text: "他又偷偷看了一眼 Easlyn的抖音主页。" },
+      { who: "narr", text: "抖音视频里，她的侧脸被光映得有点好看。" },
       { who: "girl", text: "还玩吗？" },
+{ who: "narr", text: "Easlyn的声音从耳麦传出来。" },
       { who: "unknown", text: "……玩。" },
       { who: "narr", text: "他没想明白。" },
       { who: "narr", text: "但那一刻，他不想停下来。" },
@@ -2004,15 +1193,10 @@ const CHAPTERS = [
       { who: "narr", text: "每一次过关，那行字都会跳出来。" },
       { who: "sys", text: "你的好感度 +15%" },
       { who: "unknown", text: "（不对劲。）" },
-      { who: "unknown", text: "（这到底是什么游戏。）" },
-      { who: "girl", text: "你盯着什么呢？" },
-      { who: "unknown", text: "没……没什么。" },
-      { who: "girl", text: "你脸红了。" },
-      { who: "unknown", text: "没有。" },
-      { who: "girl", text: "有。" },
-      { who: "narr", text: "他别过头去。" },
+      { who: "unknown", text: "（怎么我的好感度一直上升？）" },
+      { who: "narr", text: "他放下手柄，闭上眼睛，复盘中。" },
       { who: "narr", text: "但嘴角好像，有点压不住。" },
-      { who: "affGain", text: "30", text2: "她笑的时候，心跳漏了一拍。" }
+      { who: "affGain", text: "30", text2: "听她说话的声音，心跳漏了一拍。" }
     ]
   },
   {
@@ -2020,27 +1204,25 @@ const CHAPTERS = [
     img: IMG.ch3,
     afterChoiceGame: "pickFood",
     lines: [
-      { who: "girl", text: "我想到一个地方。" },
-      { who: "unknown", text: "哪儿？" },
-      { who: "girl", text: "你的城市。" },
-      { who: "unknown", text: "……我不记得我的城市。" },
-      { who: "girl", text: "你刚才说梦话了。" },
-      { who: "unknown", text: "我说什么了？" },
-      { who: "girl", text: "你说“中央大街”。" },
-      { who: "unknown", text: "……那是哪儿？" },
-      { who: "girl", text: "不知道。" },
-      { who: "girl", text: "但听起来，像是个很热闹的地方。" },
-      { who: "girl", text: "走吧，去看看。" },
+      { who: "girl", text: "照你的意思，东北这么好玩，可惜我从没踏足过东北。" },
+      { who: "unknown", text: "东北，的确不赖。" },
+      { who: "girl", text: "正好，那我9月刚去过徐州，10月去江西，11月就去东北吧，哈尔滨。" },
+      { who: "unknown", text: "可以啊，你来吧，我现在就在。" },
+      { who: "girl", text: "行，到时候我就白嫖你的旅游攻略。" },
+      { who: "unknown", text: "到了吗？" },
+      { who: "girl", text: "我到了，中央大街。" },
+      { who: "unknown", text: "看到了你了。" },
+      { who: "girl", text: "哈哈，走吧" },
+      { who: "girl", text: "去看看。" },
       { who: "narr", text: "他愣了几秒。" },
-      { who: "narr", text: "然后站起来。" },
-      { who: "unknown", text: "……行。" },
+      { who: "narr", text: "然后和easlyn并肩而行。" },
       { who: "narr", text: "索菲亚教堂的鸽子比想象中多。" },
       { who: "narr", text: "Easlyn 站在广场上抬头看。" },
       { who: "girl", text: "哟，冬天还真有鸽子。" },
-      { who: "unknown", text: "……我好像，来过这儿。" },
-      { who: "girl", text: "来过？" },
-      { who: "unknown", text: "不记得了。" },
-      { who: "unknown", text: "但就是……很熟悉。" },
+      { who: "unknown", text: "对，不过我也是第一次见，我只知道夏天有。" },
+      { who: "girl", text: "原来如此" },
+      { who: "unknown", text: "哈尔滨，其实挺好的。" },
+      { who: "unknown", text: "我记得我从大学毕业后，就一直没离开。" },
       { who: "narr", text: "快门按了两下。两人往中央大街走。" },
       { who: "narr", text: "人挺多。他走得时快时慢，又停下来等她。" },
       { who: "girl", text: "你腿长了不起啊，走那么快。" },
@@ -2061,7 +1243,7 @@ const CHAPTERS = [
       { who: "unknown", text: "（不是游戏里那种见过。）" },
       { who: "unknown", text: "（是……现实里。）" },
       { who: "unknown", text: "（我穿进游戏之前……）" },
-      { who: "unknown", text: "（好像就是哈尔滨人。）" },
+      { who: "unknown", text: "（好像就是哈尔滨人，游戏里，也是哈尔滨，地名竟然是真实的。）" },
       { who: "narr", text: "他转头看向 Easlyn。" },
       { who: "narr", text: "她站在不远处，等他。" },
       { who: "unknown", text: "（她到底是一串代码……）" },
@@ -2072,8 +1254,7 @@ const CHAPTERS = [
       { who: "narr", text: "他把那个念头压了下去。" },
       { who: "narr", text: "走到中央大街尽头，快到中午了。" },
       { who: "unknown", text: "饿了吧。" },
-      { who: "unknown", text: "带你去吃饭。" },
-      { who: "affGain", text: "45", text2: "这些地方，好像梦到过。" }
+      { who: "unknown", text: "带你去吃饭。" }
     ],
     choice: {
       q: "Easlyn？",
@@ -2103,6 +1284,7 @@ const CHAPTERS = [
     title: "第四章 · 六泰居",
     img: IMG.ch4,
     lines: [
+      { who: "narr", text: "两人拐进街边，往饭馆走。" },
       { who: "narr", text: "已经悄然到达啊两个人。" },
       { who: "unknown", text: "你先看看想吃什么吧。" },
       { who: "girl", text: "来，我来看看。" },
@@ -2139,7 +1321,7 @@ const CHAPTERS = [
     }
   },
   {
-    title: "第五章 · 江边、大桥和烤肉",
+    title: "第五章 · 江边",
     img: IMG.ch5,
     lines: [
       { who: "narr", text: "吃完饭，两人往江边走。防洪纪念塔就在中央大街尽头。" },
@@ -2177,7 +1359,7 @@ const CHAPTERS = [
       { who: "narr", text: "下午去了中东铁路大桥。桥很长，江面很宽，好像结冰了。" },
       { who: "unknown", text: "这儿拍照好看。" },
       { who: "girl", text: "拍好看点啊，我要拍黑吉辽蒙在东北。" },
-      { who: "unknown", text: "内心os：老东西在立单身人设？" },
+      { who: "unknown", text: "内心小小不爽：老东西，一串代码还在立单身人设？" },
       { who: "unknown", text: "行，你站那儿别动。" },
       { who: "narr", text: "他举起手机，退后两步，蹲下来找角度。" },
       { who: "unknown", text: "往左一点。" },
@@ -2254,10 +1436,10 @@ const CHAPTERS = [
     choice: {
       q: "Easlyn 一直耍手机中——",
       options: [
-        { label: "装疯卖傻中：“礼尚往来”", tone: "straight",
+        { label: "装疯卖傻中", tone: "straight",
           reply: [
-            { who: "narr", text: "他愣了一下，接过那只虾。" },
-            { who: "unknown", text: "哟，还有这待遇。" },
+            { who: "narr", text: "他愣了一下，继续吃。" },
+            { who: "unknown", text: "傻笑什么呢？" },
             { who: "girl", text: "嗯哼。" },
             { who: "unknown", text: "哦吼。" },
             { who: "girl", text: "诶嘿。" }
@@ -2274,14 +1456,14 @@ const CHAPTERS = [
             { who: "unknown", text: "胡吃海塞，够不够？" },
             { who: "girl", text: "差不多。" },
             { who: "narr", text: "他开始胡吃海塞中。" },
-            { who: "girl", text: "服务不错，五星好评。" },
+            { who: "girl", text: "傻蛋。" },
             { who: "narr", text: "他笑出声。" }
           ]}
       ]
     }
   },
   {
-    title: "第八章 · 秋林和手工",
+    title: "第八章 · 秋林",
     img: IMG.ch8,
     lines: [
       { who: "narr", text: "下午逛秋林。他随意的扫了扫货架。" },
@@ -2332,7 +1514,7 @@ const CHAPTERS = [
     ]
   },
   {
-    title: "第九章 · 酒店和最后",
+    title: "第九章 · 酒店",
     img: IMG.ch9,
     lines: [
       { who: "narr", text: "晚上，他问她吃什么。" },
@@ -2372,7 +1554,7 @@ const CHAPTERS = [
       { who: "narr", text: "到底哪层是真的，他有点分不清了。" },
       { who: "girl", text: "你猜。" },
       { who: "unknown", text: "……我猜不出来。" },
-      { who: "girl", text: "那我给你看样东西。" },
+      { who: "girl", text: "那我给你看男主照片。" },
       { who: "narr", text: "Easlyn 拿起手机，对着他按下了快门。" },
       { who: "photo", text: IMG.selfie, revealName: true },
       { who: "narr", text: "屏幕上，是他自己的脸。" },
@@ -2412,23 +1594,23 @@ const CHAPTERS = [
       { who: "boy", text: "我不想猜了。" },
       { who: "narr", text: "他盯着她，忽然想到什么。" },
       { who: "boy", text: "等等。" },
-      { who: "boy", text: "这个游戏，是我做的。" },
-      { who: "boy", text: "我让一个人玩过。" },
-      { who: "boy", text: "一个……现实中还没见过面的人。" },
+      { who: "boy", text: "这个游戏中，我喜欢你。" },
+      { who: "boy", text: "但是我知道我不是游戏的纸片人，可是我，真实的我，也是喜欢你吗？" },
+      { who: "boy", text: "我不知道，我分不清，现实、游戏，和此时此刻，或许此时此刻，我抬头看向旁边，easlyn也在。" },
       { who: "narr", text: "他的声音停住了。" },
       { who: "boy", text: "Easlyn……" },
-      { who: "boy", text: "是你吗？" },
+      { who: "boy", text: "三重感觉交织，太奇妙了。" },
       { who: "narr", text: "Easlyn 笑了一下。" },
-      { who: "girl", text: "拿出你的勇气，我看看。" },
-      { who: "boy", text: "什么勇气？" },
-      { who: "girl", text: "让我看看你有多喜欢我。" },
-      { who: "girl", text: "我看到了，就告诉你。" },
+      { who: "girl", text: "所以，你不会是在攻略我的路上，把自己攻略了吧？" },
+      { who: "boy", text: "对，那你呢，我把你攻略了吗？" },
+      { who: "girl", text: "你知道马里奥救公主的游戏吗？。" },
+      { who: "girl", text: "等你拿了第一，我就告诉你。" },
       { who: "narr", text: "话没说完，房间里的灯闪了一下。" },
       { who: "narr", text: "不是灯闪——是整个房间被吸进了屏幕里。" },
       { who: "narr", text: "再睁开眼，Bonan 站在一片粉色的世界里。" },
       { who: "narr", text: "像素的天，像素的地，像素的城堡。" },
       { who: "boy", text: "……这是。" },
-      { who: "narr", text: "是他们一起玩过的那个游戏。" },
+      { who: "narr", text: "救公主大冒险。" },
       { who: "narr", text: "救公主。" },
       { who: "systemPrompt", text: "rescue" }
     ]
@@ -2448,30 +1630,20 @@ const AFTER_RESCUE = [
   { who: "narr", text: "是 Easlyn 的样子。" },
   { who: "narr", text: "他站在那儿，看了很久。" },
   { who: "boy", text: "……原来。" },
-  { who: "boy", text: "我早就喜欢你了。" },
-  { who: "narr", text: "不是游戏里的那种喜欢。" },
-  { who: "narr", text: "是真的。" },
+  { who: "boy", text: "你也在终点等我。" },
+  { who: "narr", text: "Bonan鼻子酸涩，原来，他不是一个人了。" },
   { who: "narr", text: "然后画面碎成光点。Bonan 又坐回了酒店房间。" },
   { who: "narr", text: "屏幕上还留着那句话。" },
-  { who: "narr", text: "他盯着屏幕，忽然停住了。" },
-  { who: "boy", text: "等等……" },
-  { who: "boy", text: "这游戏里，男主去过的每一个地方。" },
-  { who: "boy", text: "索菲亚教堂、中央大街、江边、大桥、巴洛克、秋林。" },
-  { who: "narr", text: "他抬起头。" },
-  { who: "boy", text: "全都是我这几天带你去的地方。" },
-  { who: "narr", text: "房间里很安静。Easlyn 抱着膝盖，看着他，没说话。" },
-  { who: "narr", text: "然后他忽然笑了。" },
-  { who: "boy", text: "这男主……是我。" },
   { who: "narr", text: "他往后靠了一下，长出一口气。" },
   { who: "boy", text: "我们……" },
-  { who: "boy", text: "好像就是因为打游戏，感情才升温的吧。" },
+  { who: "boy", text: "现实生活中，我说的是此时此刻的现实生活中，我们也是打游戏认识的吧，GTA5哈哈哈。" },
   { who: "narr", text: "Easlyn 笑了一下。没有说话。" },
   { who: "narr", text: "他看着她。" },
   { who: "boy", text: "Easlyn。" },
   { who: "girl", text: "嗯？" },
   { who: "boy", text: "游戏里的我，喜欢游戏里的你。" },
-  { who: "boy", text: "那现实生活中的那个我呢？" },
-  { who: "boy", text: "还是喜欢你的吗？" },
+  { who: "boy", text: "那现实生活中的那个我也喜欢你。" },
+  { who: "boy", text: "你知道吗？" },
   { who: "narr", text: "Easlyn 没有说话。" },
   { who: "narr", text: "只是看着他，安安静静地笑。" },
   { who: "boy", text: "……你说话啊。" },
@@ -2486,7 +1658,7 @@ const AFTER_RESCUE = [
   { who: "narr", text: "然后，视野角落浮起一行小字——" },
   { who: "sys", text: "权限不足。想查看 Easlyn 的好感度，你们两个必须一起通关。" },
   { who: "boy", text: "……一起通关？" },
-  { who: "sys", text: "检测到你们共同玩过的游戏：《黎明杀机》。" },
+  { who: "sys", text: "检测到你们现实生活中共同玩过的游戏：《黎明杀机》。" },
   { who: "sys", text: "通关后即可查看。" },
   { who: "narr", text: "Easlyn 笑了一下，没有说话。" },
   { who: "narr", text: "然后，房间里的灯闪了一下。" },
@@ -2494,8 +1666,8 @@ const AFTER_RESCUE = [
   { who: "narr", text: "再睁开眼，Bonan 站在一片雾蒙蒙的空地上。" },
   { who: "narr", text: "Easlyn 就站在他旁边。" },
   { who: "boy", text: "……这地方。" },
-  { who: "boy", text: "这不是我们玩过的那个游戏吗。" },
-  { who: "girl", text: "黎明杀机。" },
+  { who: "boy", text: "这不是杀鸡里吗。" },
+  { who: "girl", text: "黎明杀鸡。" },
   { who: "narr", text: "远处传来一阵低低的嗡鸣。是发电机。" },
   { who: "systemPrompt", text: "dbdRules" }
 ];
@@ -2509,17 +1681,16 @@ const AFTER_REPAIR = [
   { who: "narr", text: "像素的光暗下去。房间里只剩下螺蛳粉的味道。" },
   { who: "boy", text: "……你这个人。" },
   { who: "narr", text: "他笑着，没再说话。" },
-  { who: "affGain", text: "100", text2: "原来，我早就喜欢你了。" }
+  { who: "affGain", text: "100", text2: "原来，你的心里也有我。" }
 ];
 
 const SYSTEM_PROMPTS = {
   welcome: {
     title: "SYSTEM",
     text: "检测到新玩家。你已进入《好感度不是攻略，是回忆》。",
-    sub: "任务：攻略你在这个世界遇到的第一个人。提示：你的每一次心动，都会被记录。",
+    sub: "任务：攻略你在这个世界遇到的第一个人。\n提示：你的每一次心动，都会被记录。",
     hint: "点击进入"
-  },
-  rescue: {
+  },  rescue: {
     title: "SYSTEM",
     text: "想查看 Easlyn 的好感度",
     sub: "请先通过小游戏。",
@@ -2529,29 +1700,29 @@ const SYSTEM_PROMPTS = {
 
 const ENDINGS = {
   guess: {
-    title: "他明白了",
-    affTotal: "好感度：已溢出",
+    title: "此时此刻，他明白了",
+    affTotal: "好感度：未知",
     affNote:
-      "这不是攻略。\n" +
-      "没有可攻略的选项，也没有好感度下降的路线。\n" +
-      "她只是在记。\n" +
-      "剩下的事，就看现实中的你们了。"
+      "好感度不是攻略。\n" +
+      "而是回忆，独一无二属于你我的回忆。\n" +
+      "好感度无法量化。\n" +
+      "但永远不熄灭好感度，就要看现实中的你们如何发展了。"
   }
 };
 
 const AFFECTION_ITEMS = [
-  "醒来时那杯自作主张的西瓜汁",
-  "她说‘不记得就不记得吧’的时候，没再问下去",
-  "中央大街被挤到，往他那边靠了半步",
-  "江风大的时候，他挡在风口站了半步",
-  "大桥上他拍照时喊的那句“往左一点”",
-  "烤肉时他夹过来的第一块肉",
-  "巴洛克他说“我也是外地的”那一下",
-  "小龙虾他剥好的虾，放进碗里",
-  "秋林他接过袋子，一直没松手",
-  "手工桌上，他低头认真的样子",
-  "螺蛳粉开锅后那句“最后一晚了”",
-  "最后一页，他问“这男主到底是谁啊”"
+  "上班时那杯自作主张的西瓜汁",
+  "第一次她没有拒绝你的过夜电话时",
+  "你叫她小名她没有回绝",
+  "在你说出“我也担心你去东南亚”",
+  "还有生病时的那碗鸡汤",
+  "下雨天的雨伞",
+  "在调皮捣蛋的骂你从不还嘴的时候",
+  "还有下飞机第一次见你的脸",
+  "小心翼翼试探牵手的动作",
+  "不管问多么隐私的问题，你认真回答的样子",
+  "一遍遍的询问“你心里有我吗”的时刻",
+  "还有，最心动的此时此刻❤️"
 ];
 
 let state = null;
@@ -2604,19 +1775,13 @@ let gtaCarEnemyImg = null;
 
 function startGame() {
   document.getElementById("cover").style.display = "none";
-
   const eye = document.getElementById("eyeOpen");
   eye.classList.add("show");
   void eye.offsetWidth;
-
-  setTimeout(function() {
-    eye.classList.add("open");
-  }, 420);
-
+  setTimeout(function() { eye.classList.add("open"); }, 420);
   setTimeout(function() {
     eye.classList.remove("show");
     eye.classList.remove("open");
-
     state = {
       chapter: 0, lines: [], idx: 0, phase: "intro",
       current: null, pendingNext: false, pendingEnding: null,
@@ -2628,11 +1793,8 @@ function startGame() {
 
 function setBg(img) {
   const bg = document.getElementById("bg");
-  if (img) {
-    bg.style.backgroundImage = `url('${img}')`;
-  } else {
-    bg.style.backgroundImage = "";
-  }
+  if (img) { bg.style.backgroundImage = `url('${img}')`; }
+  else { bg.style.backgroundImage = ""; }
 }
 
 function loadChapter(i) {
@@ -2670,11 +1832,9 @@ function enterChapter() {
   document.getElementById("chapterCard").classList.remove("show");
   document.getElementById("dialog").style.display = "block";
   document.getElementById("dialog").style.visibility = "visible";
-
   const titleEl = document.getElementById("chapterTitle");
   titleEl.textContent = state.current.title;
   titleEl.classList.add("show");
-
   state.phase = "intro";
   render();
 }
@@ -2706,10 +1866,7 @@ function showNameTag(who) {
     name = "Easlyn";
     cls  = "girl";
     src  = IMG.avatarGirl;
-  } else {
-    hideNameTag();
-    return;
-  }
+  } else { hideNameTag(); return; }
 
   nameText.textContent = name;
   nameText.className = cls;
@@ -2717,18 +1874,10 @@ function showNameTag(who) {
 
   if (src !== lastAvatarSrc) {
     lastAvatarSrc = src;
-    if (src) {
-      avatarImg.src = src;
-      avatarImg.style.display = "block";
-    } else {
-      avatarImg.removeAttribute("src");
-      avatarImg.style.display = "none";
-    }
-  } else if (src) {
-    avatarImg.style.display = "block";
-  } else {
-    avatarImg.style.display = "none";
-  }
+    if (src) { avatarImg.src = src; avatarImg.style.display = "block"; }
+    else { avatarImg.removeAttribute("src"); avatarImg.style.display = "none"; }
+  } else if (src) { avatarImg.style.display = "block"; }
+  else { avatarImg.style.display = "none"; }
 }
 
 function render() {
@@ -2766,12 +1915,8 @@ function render() {
     const target = parseInt(line.text, 10);
     hideNameTag();
     showAffectionGain(target, line.text2 || "", function() {
-      if (state.idx < state.lines.length - 1) {
-        state.idx++;
-        render();
-      } else {
-        nextChapter();
-      }
+      if (state.idx < state.lines.length - 1) { state.idx++; render(); }
+      else { nextChapter(); }
     });
     return;
   }
@@ -2803,18 +1948,13 @@ function render() {
   if (line.who === "sys") {
     hideNameTag();
     showSysToast(line.text, function() {
-      if (state.idx < state.lines.length - 1) {
-        state.idx++;
-        render();
-      } else {
-        nextChapter();
-      }
+      if (state.idx < state.lines.length - 1) { state.idx++; render(); }
+      else { nextChapter(); }
     });
     return;
   }
 
   const text = document.getElementById("dialogText");
-
   if (line.who === "boy" || line.who === "girl" || line.who === "unknown") {
     showNameTag(line.who);
     text.className = "";
@@ -2836,14 +1976,10 @@ function render() {
 
   document.getElementById("choices").classList.remove("show");
   document.getElementById("choices").innerHTML = "";
-
   document.getElementById("hint").textContent =
     state.phase === "choice" ? "" : "点击继续";
 }
 
-/* =====================================================
-   好感度结算动效
-===================================================== */
 let lastAffPercent = 0;
 let affGainLock = false;
 let affGainDone = false;
@@ -2881,9 +2017,8 @@ function showAffectionGain(to, text, onDone) {
     const cur = from + (to - from) * ease;
     numEl.textContent = Math.round(cur);
     fillEl.style.width = cur + "%";
-    if (t < 1) {
-      requestAnimationFrame(step);
-    } else {
+    if (t < 1) { requestAnimationFrame(step); }
+    else {
       numEl.textContent = to;
       fillEl.style.width = to + "%";
       setTimeout(function() {
@@ -2901,16 +2036,11 @@ function closeAffGain() {
   const el = document.getElementById("affGain");
   if (!el.classList.contains("show")) return;
   if (affGainTimer) { clearTimeout(affGainTimer); affGainTimer = null; }
-
   el.classList.remove("show");
   affGainLock = false;
-
   const cb = el._onDone;
   el._onDone = null;
-
-  setTimeout(function() {
-    if (cb) cb();
-  }, 120);
+  setTimeout(function() { if (cb) cb(); }, 120);
 }
 
 function skipAffGain(e) {
@@ -2919,9 +2049,6 @@ function skipAffGain(e) {
   closeAffGain();
 }
 
-/* =====================================================
-   快穿式系统提示
-===================================================== */
 let sysToastLock = false;
 let sysToastInterval = null;
 let sysToastTimeout = null;
@@ -2960,16 +2087,13 @@ function closeSysToast() {
   const el = document.getElementById("sysToast");
   if (sysToastDone) return;
   sysToastDone = true;
-
   if (sysToastInterval) { clearInterval(sysToastInterval); sysToastInterval = null; }
   if (sysToastTimeout) { clearTimeout(sysToastTimeout); sysToastTimeout = null; }
 
   document.getElementById("sysToastText").textContent = el._fullText || "";
   el.classList.remove("show");
-
   const cb = el._onDone;
   el._onDone = null;
-
   setTimeout(function() {
     sysToastLock = false;
     if (cb) cb();
@@ -2982,9 +2106,6 @@ function skipSysToast(e) {
   closeSysToast();
 }
 
-/* =====================================================
-   系统提示（打字机效果）
-===================================================== */
 let sysPromptTimer = null;
 let sysPromptDone = false;
 
@@ -3002,7 +2123,6 @@ function showSystemPrompt(config, onStart) {
   subEl.textContent = "";
   hintEl.textContent = "";
   hintEl.style.opacity = "0";
-
   textEl.classList.add("sys-typing");
   subEl.classList.remove("sys-typing");
 
@@ -3039,9 +2159,7 @@ function showSystemPrompt(config, onStart) {
       if (fullSub.length > 0) {
         subEl.classList.add("sys-typing");
         typeSub();
-      } else {
-        finishTyping();
-      }
+      } else { finishTyping(); }
     }
   }
 
@@ -3063,11 +2181,8 @@ function showSystemPrompt(config, onStart) {
     finishTyping();
   }
 
-  // 打字过程中点击跳过，打字完成后点击进入
   el.onclick = function() {
-    if (!sysPromptDone) {
-      skipAll();
-    }
+    if (!sysPromptDone) skipAll();
   };
 
   sysPromptTimer = setTimeout(typeText, 400);
@@ -3093,13 +2208,18 @@ function advance() {
   if (state.idx < state.lines.length - 1) { state.idx++; render(); return; }
 
   if (state.phase === "intro") {
-    if (state.current.choice) { showChoicePrompt(); }
-    else { nextChapter(); }
+    if (state.current.choice) {
+      showChoicePrompt();
+    } else if (state.current.afterChoiceGame === "pickFood" && !state.pickFoodDone) {
+      state.pickFoodDone = true;
+      startPickFood();
+    } else {
+      nextChapter();
+    }
     return;
   }
 
   if (state.phase === "reply") { afterReply(); return; }
-
   if (state.phase === "next") { nextChapter(); return; }
 }
 
@@ -3109,13 +2229,11 @@ function afterReply() {
     nextChapter();
     return;
   }
-
   if (state.sequencePhase === "afterRepair") {
     state.sequencePhase = "ending";
     showEnding("guess");
     return;
   }
-
   if (state.pendingNext) {
     state.lines = state.current.next;
     state.idx = 0;
@@ -3124,7 +2242,6 @@ function afterReply() {
     render();
     return;
   }
-
   if (state.pendingEnding) {
     const key = state.pendingEnding;
     state.pendingEnding = null;
@@ -3136,13 +2253,11 @@ function afterReply() {
     });
     return;
   }
-
   if (state.current.afterChoiceGame === "pickFood" && !state.pickFoodDone) {
     state.pickFoodDone = true;
     startPickFood();
     return;
   }
-
   nextChapter();
 }
 
@@ -3164,14 +2279,12 @@ function showChoices() {
   const choice = state.current.choice;
   const box = document.getElementById("choices");
   box.innerHTML = "";
-
   choice.options.forEach((opt, i) => {
     const btn = document.createElement("button");
     btn.textContent = opt.label;
     btn.onclick = (e) => { e.stopPropagation(); choose(i); };
     box.appendChild(btn);
   });
-
   box.classList.add("show");
 
   hideNameTag();
@@ -3184,13 +2297,11 @@ function showChoices() {
 function choose(i) {
   const opt = state.current.choice.options[i];
   if (opt.ending) { showEnding(opt.ending); return; }
-
   state.lines = opt.reply;
   state.idx = 0;
   state.phase = "reply";
   state.pendingNext = !!state.current.next;
   state.pendingEnding = opt.replyEnding || null;
-
   document.getElementById("choices").classList.remove("show");
   document.getElementById("choices").innerHTML = "";
   render();
@@ -3200,9 +2311,7 @@ function showPhoto(src) {
   const overlay = document.getElementById("photoOverlay");
   const img = document.getElementById("photoImg");
   const dialog = document.getElementById("dialog");
-
   dialog.style.visibility = "hidden";
-
   img.removeAttribute("src");
   overlay.classList.remove("show");
   overlay.classList.remove("flash");
@@ -3221,7 +2330,6 @@ function showPhoto(src) {
     overlay.classList.add("flash");
   };
   preload.src = src;
-
   document.getElementById("hint").textContent = "";
 }
 
@@ -3232,20 +2340,13 @@ function closePhoto(e) {
   overlay.classList.remove("flash");
 
   const line = state.lines[state.idx];
-  if (line && line.revealName) {
-    playerName = "Bonan";
-  }
+  if (line && line.revealName) playerName = "Bonan";
 
   document.getElementById("dialog").style.visibility = "visible";
 
-  if (state.idx < state.lines.length - 1) {
-    state.idx++;
-    render();
-  } else if (state.phase === "next") {
-    nextChapter();
-  } else if (state.phase === "reply") {
-    afterReply();
-  }
+  if (state.idx < state.lines.length - 1) { state.idx++; render(); }
+  else if (state.phase === "next") { nextChapter(); }
+  else if (state.phase === "reply") { afterReply(); }
 }
 
 function screenFlash() {
@@ -3272,7 +2373,6 @@ function showDBDRules(onStart) {
 function showEnding(key) {
   const ending = ENDINGS[key];
   state.endingKey = key;
-
   hideNameTag();
   document.getElementById("dialog").style.display = "none";
   document.getElementById("choices").style.display = "none";
@@ -3284,16 +2384,11 @@ function showEnding(key) {
   final.scrollTop = 0;
 
   const endingImg = document.getElementById("endingImg");
-  if (ending.img) {
-    endingImg.src = ending.img;
-    endingImg.style.display = "block";
-  } else {
-    endingImg.style.display = "none";
-  }
+  if (ending.img) { endingImg.src = ending.img; endingImg.style.display = "block"; }
+  else { endingImg.style.display = "none"; }
 
   document.getElementById("endingTitle").textContent = ending.title;
-  document.getElementById("endingNote").textContent = "这个游戏是 Easlyn 做的。";
-
+  document.getElementById("endingNote").textContent = "原来，我们两个在虚拟世界经历了这么多。";
   startEndingEffect();
 }
 
@@ -3305,7 +2400,6 @@ function openAffection() {
   const loadingEl = document.getElementById("affLoading");
 
   panel.classList.add("show");
-
   list.innerHTML = "";
   totalEl.style.opacity = 0;
   totalEl.style.animation = "none";
@@ -3313,12 +2407,13 @@ function openAffection() {
   noteEl.style.animation = "none";
   loadingEl.style.display = "block";
 
+  const STEP = 0.45; // 每一条之间的间隔（秒）—— 想更慢就调大，想更快就调小
+
   setTimeout(function() {
     loadingEl.style.display = "none";
-
     AFFECTION_ITEMS.forEach(function(text, i) {
       const li = document.createElement("li");
-      li.style.animationDelay = (i * 0.12) + "s";
+      li.style.animationDelay = (i * STEP) + "s";
       const span = document.createElement("span");
       span.textContent = text;
       const plus = document.createElement("span");
@@ -3330,15 +2425,14 @@ function openAffection() {
     });
 
     const ending = ENDINGS[state.endingKey] || ENDINGS.guess;
-
     setTimeout(function() {
-      totalEl.innerHTML = "好感度" + ending.affTotal.replace("好感度：", "：") + "<strong>100 / 100</strong>";
+      totalEl.innerHTML = "好感度" + ending.affTotal.replace("好感度：", "：") + "<strong>+∞ / 100</strong>";
       void totalEl.offsetWidth;
       totalEl.style.animation = "affIn .5s ease forwards";
       noteEl.textContent = ending.affNote;
       void noteEl.offsetWidth;
       noteEl.style.animation = "affIn .6s ease forwards";
-    }, AFFECTION_ITEMS.length * 120);
+    }, AFFECTION_ITEMS.length * STEP * 1000 + 300);
   }, 900);
 }
 
@@ -3369,7 +2463,7 @@ function drawImageContain(ctx, img, x, y, w, h, flip) {
 }
 
 /* ===================================================
-   GTA 赛车小游戏
+   GTA 赛车
 =================================================== */
 const GTA_W = 400;
 const GTA_H = 300;
@@ -3378,16 +2472,9 @@ const GTA = {
   canvas: null, ctx: null, running: false, raf: null, bound: false,
   keys: { left: false, right: false },
   playerX: GTA_W / 2,
-  playerW: 26,
-  playerH: 46,
-  cars: [],
-  spawnTimer: 0,
-  roadOffset: 0,
-  distance: 0,
-  targetDistance: 1200,
-  speed: 4,
-  shake: 0,
-  invincible: 0
+  playerW: 26, playerH: 46,
+  cars: [], spawnTimer: 0, roadOffset: 0, distance: 0,
+  targetDistance: 1200, speed: 4, shake: 0, invincible: 0
 };
 
 function startGTAGame() {
@@ -3404,7 +2491,6 @@ function initGTA() {
   GTA.ctx = GTA.canvas.getContext("2d");
   GTA.canvas.width = GTA_W;
   GTA.canvas.height = GTA_H;
-
   GTA.running = true;
   GTA.keys = { left: false, right: false };
   GTA.playerX = GTA_W / 2;
@@ -3414,10 +2500,8 @@ function initGTA() {
   GTA.distance = 0;
   GTA.shake = 0;
   GTA.invincible = 0;
-
   document.getElementById("gtaGame").classList.add("show");
   document.getElementById("gtaVictory").classList.remove("show");
-
   bindGTAControls();
   GTA.raf = requestAnimationFrame(gtaLoop);
 }
@@ -3425,7 +2509,6 @@ function initGTA() {
 function bindGTAControls() {
   if (GTA.bound) return;
   GTA.bound = true;
-
   const bind = (id, key) => {
     const el = document.getElementById(id);
     el.addEventListener("pointerdown", (e) => { e.preventDefault(); GTA.keys[key] = true; });
@@ -3433,7 +2516,6 @@ function bindGTAControls() {
     el.addEventListener("pointerleave", () => { GTA.keys[key] = false; });
     el.addEventListener("pointercancel", () => { GTA.keys[key] = false; });
   };
-
   bind("gtaLeft", "left");
   bind("gtaRight", "right");
 
@@ -3442,7 +2524,6 @@ function bindGTAControls() {
     if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") { GTA.keys.left = true; e.preventDefault(); }
     if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") { GTA.keys.right = true; e.preventDefault(); }
   });
-
   window.addEventListener("keyup", (e) => {
     if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") GTA.keys.left = false;
     if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") GTA.keys.right = false;
@@ -3459,20 +2540,16 @@ function gtaLoop() {
 function updateGTA() {
   if (GTA.shake > 0.5) GTA.shake *= 0.9; else GTA.shake = 0;
   if (GTA.invincible > 0) GTA.invincible--;
-
   const moveSpeed = 5;
   if (GTA.keys.left) GTA.playerX -= moveSpeed;
   if (GTA.keys.right) GTA.playerX += moveSpeed;
-
   const minX = 30 + GTA.playerW / 2;
   const maxX = GTA_W - 30 - GTA.playerW / 2;
   if (GTA.playerX < minX) GTA.playerX = minX;
   if (GTA.playerX > maxX) GTA.playerX = maxX;
-
   GTA.roadOffset += GTA.speed;
   if (GTA.roadOffset > 40) GTA.roadOffset -= 40;
   GTA.distance += GTA.speed * 0.5;
-
   GTA.spawnTimer--;
   if (GTA.spawnTimer <= 0) {
     GTA.spawnTimer = 40 + Math.random() * 40;
@@ -3480,27 +2557,17 @@ function updateGTA() {
     const laneW = (GTA_W - 60) / laneCount;
     const lane = Math.floor(Math.random() * laneCount);
     const carX = 30 + laneW * lane + laneW / 2;
-
     GTA.cars.push({
-      x: carX - 13,
-      y: -50,
-      w: 26,
-      h: 46,
+      x: carX - 13, y: -50, w: 26, h: 46,
       color: Math.random() < 0.5 ? "#d64545" : "#e8a020",
       speed: 1.5 + Math.random() * 1.5
     });
   }
-
   const playerY = GTA_H - 70;
   for (let i = GTA.cars.length - 1; i >= 0; i--) {
     const car = GTA.cars[i];
     car.y += GTA.speed + car.speed;
-
-    if (car.y > GTA_H + 50) {
-      GTA.cars.splice(i, 1);
-      continue;
-    }
-
+    if (car.y > GTA_H + 50) { GTA.cars.splice(i, 1); continue; }
     if (GTA.invincible <= 0) {
       if (GTA.playerX - GTA.playerW/2 < car.x + car.w &&
           GTA.playerX + GTA.playerW/2 > car.x &&
@@ -3513,10 +2580,7 @@ function updateGTA() {
       }
     }
   }
-
-  if (GTA.distance >= GTA.targetDistance) {
-    winGTA();
-  }
+  if (GTA.distance >= GTA.targetDistance) winGTA();
 }
 
 function drawCar(ctx, x, y, w, h, color, isPlayer) {
@@ -3525,13 +2589,11 @@ function drawCar(ctx, x, y, w, h, color, isPlayer) {
     drawImageContain(ctx, img, x, y, w, h, false);
     return;
   }
-
   ctx.fillStyle = color;
   ctx.fillRect(x, y, w, h);
   ctx.fillStyle = isPlayer ? "#a0d0ff" : "#2a2a2a";
   ctx.fillRect(x + 4, y + 8, w - 8, h * 0.25);
   ctx.fillRect(x + 4, y + h * 0.55, w - 8, h * 0.2);
-
   if (isPlayer) {
     ctx.fillStyle = "#ffd93b";
     ctx.fillRect(x + 3, y, 5, 3);
@@ -3549,7 +2611,6 @@ function drawGTA() {
   if (GTA.shake > 0.5) {
     ctx.translate((Math.random()-0.5)*GTA.shake, (Math.random()-0.5)*GTA.shake);
   }
-
   ctx.fillStyle = "#3a3a3a";
   ctx.fillRect(0, 0, GTA_W, GTA_H);
   ctx.fillStyle = "#5a5a5a";
@@ -3573,30 +2634,22 @@ function drawGTA() {
   ctx.fillRect(0, 0, GTA_W, 22);
   ctx.fillStyle = "rgba(255,178,200,0.8)";
   ctx.fillRect(0, 0, GTA_W * Math.min(1, GTA.distance / GTA.targetDistance), 22);
-
   ctx.fillStyle = "#fff";
   ctx.font = "bold 10px 'Consolas', monospace";
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   ctx.fillText(`距离 ${Math.floor(GTA.distance)} / ${GTA.targetDistance}`, GTA_W / 2, 11);
 
-  for (const car of GTA.cars) {
-    drawCar(ctx, car.x, car.y, car.w, car.h, car.color, false);
-  }
-
+  for (const car of GTA.cars) drawCar(ctx, car.x, car.y, car.w, car.h, car.color, false);
   const py = GTA_H - 70;
-  if (GTA.invincible > 0 && Math.floor(GTA.invincible / 4) % 2 === 0) {
-    // 闪烁
-  } else {
-    drawCar(ctx, GTA.playerX - GTA.playerW/2, py, GTA.playerW, GTA.playerH, "#4a9eff", true);
-  }
+  if (GTA.invincible > 0 && Math.floor(GTA.invincible / 4) % 2 === 0) {}
+  else drawCar(ctx, GTA.playerX - GTA.playerW/2, py, GTA.playerW, GTA.playerH, "#4a9eff", true);
 
   const vg = ctx.createRadialGradient(GTA_W/2, GTA_H/2, GTA_W*0.3, GTA_W/2, GTA_H/2, GTA_W*0.75);
   vg.addColorStop(0, "rgba(0,0,0,0)");
   vg.addColorStop(1, "rgba(0,0,0,0.5)");
   ctx.fillStyle = vg;
   ctx.fillRect(0, 0, GTA_W, GTA_H);
-
   ctx.restore();
 }
 
@@ -3610,26 +2663,19 @@ function winGTA() {
 function continueAfterGTA() {
   document.getElementById("gtaGame").classList.remove("show");
   document.getElementById("gtaVictory").classList.remove("show");
-
   document.getElementById("dialog").style.display = "block";
   document.getElementById("dialog").style.visibility = "visible";
   document.getElementById("chapterTitle").classList.add("show");
-
   state.idx++;
   render();
 }
 
 /* ===================================================
-   拣爱式小游戏：今天吃什么
+   今天吃什么（拣爱式）
 =================================================== */
 const PF = {
-  busy: false,
-  done: false,
-  timer: null,
-  balls: [],
-  raf: null,
-  zoneW: 0,
-  zoneH: 0
+  busy: false, done: false, timer: null,
+  balls: [], raf: null, zoneW: 0, zoneH: 0
 };
 
 function pfScrollToBottom() {
@@ -3641,16 +2687,13 @@ function pfAppendMessage(who, text, opts) {
   const chat = document.getElementById("pfChat");
   const msg = document.createElement("div");
   msg.className = "pf-msg " + (who === "boy" ? "right" : "left");
-
   const ava = document.createElement("div");
   ava.className = "pf-ava " + (who === "boy" ? "boy" : "girl");
   ava.textContent = who === "boy" ? "B" : "E";
-
   const bubble = document.createElement("div");
   bubble.className = "pf-bubble";
   bubble.textContent = text;
   if (opts && opts.shake) bubble.classList.add("shake");
-
   msg.appendChild(ava);
   msg.appendChild(bubble);
   chat.appendChild(msg);
@@ -3659,20 +2702,17 @@ function pfAppendMessage(who, text, opts) {
 }
 
 function pfResetBalls() {
-  const zone = document.getElementById("pfBallZone");
+  const zone = document.getElementById("pfOptions");
   zone.querySelectorAll(".pf-ball-wrap").forEach(el => el.remove());
-
   PF.balls = [];
   PF.busy = false;
   PF.done = false;
-
   if (PF.raf) { cancelAnimationFrame(PF.raf); PF.raf = null; }
 
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       PF.zoneW = zone.clientWidth;
       PF.zoneH = zone.clientHeight;
-
       FOOD_OPTIONS.forEach(f => pfSpawnBall(f));
       pfStartBallLoop();
     });
@@ -3680,14 +2720,12 @@ function pfResetBalls() {
 }
 
 function pfSpawnBall(food) {
-  const zone = document.getElementById("pfBallZone");
+  const zone = document.getElementById("pfOptions");
   const size = Math.round(Math.max(44, Math.min(58, PF.zoneH * 0.34)));
-
   const wrap = document.createElement("div");
   wrap.className = "pf-ball-wrap";
   wrap.style.width = size + "px";
   wrap.style.height = size + "px";
-
   const ball = document.createElement("div");
   ball.className = "pf-ball";
   ball.textContent = food;
@@ -3695,58 +2733,46 @@ function pfSpawnBall(food) {
   zone.appendChild(wrap);
 
   const b = {
-    food, el: wrap, ball,
-    w: size, h: size,
+    food, el: wrap, ball, w: size, h: size,
     x: Math.random() * Math.max(1, PF.zoneW - size),
     y: Math.random() * Math.max(1, PF.zoneH - size),
     vx: (Math.random() < 0.5 ? -1 : 1) * (0.55 + Math.random() * 0.75),
     vy: (Math.random() < 0.5 ? -1 : 1) * (0.40 + Math.random() * 0.60),
     alive: true
   };
-
   wrap.style.transform = `translate(${b.x.toFixed(1)}px, ${b.y.toFixed(1)}px)`;
-
   wrap.addEventListener("pointerdown", (e) => {
     e.preventDefault();
     pfChooseFood(food, b);
   });
-
   PF.balls.push(b);
   return b;
 }
 
 function pfStartBallLoop() {
   if (PF.raf) { cancelAnimationFrame(PF.raf); PF.raf = null; }
-
   let last = performance.now();
-
   function step(now) {
     if (!PF.balls.some(b => b.alive)) { PF.raf = null; return; }
-
     const dt = Math.min(2.5, Math.max(0.25, (now - last) / 16.667));
     last = now;
-
     pfUpdateBalls(dt);
     PF.raf = requestAnimationFrame(step);
   }
-
   PF.raf = requestAnimationFrame(step);
 }
 
 function pfUpdateBalls(dt) {
   const W = PF.zoneW, H = PF.zoneH;
   const arr = PF.balls.filter(b => b.alive);
-
   for (const b of arr) {
     b.x += b.vx * dt;
     b.y += b.vy * dt;
-
-    if (b.x < 0)         { b.x = 0;       b.vx = Math.abs(b.vx); }
-    if (b.x + b.w > W)   { b.x = W - b.w; b.vx = -Math.abs(b.vx); }
-    if (b.y < 0)         { b.y = 0;       b.vy = Math.abs(b.vy); }
-    if (b.y + b.h > H)   { b.y = H - b.h; b.vy = -Math.abs(b.vy); }
+    if (b.x < 0) { b.x = 0; b.vx = Math.abs(b.vx); }
+    if (b.x + b.w > W) { b.x = W - b.w; b.vx = -Math.abs(b.vx); }
+    if (b.y < 0) { b.y = 0; b.vy = Math.abs(b.vy); }
+    if (b.y + b.h > H) { b.y = H - b.h; b.vy = -Math.abs(b.vy); }
   }
-
   for (let i = 0; i < arr.length; i++) {
     for (let j = i + 1; j < arr.length; j++) {
       const a = arr[i], b = arr[j];
@@ -3755,14 +2781,11 @@ function pfUpdateBalls(dt) {
       const dx = bx - ax, dy = by - ay;
       const d = Math.hypot(dx, dy) || 0.001;
       const minD = (a.w + b.w) / 2;
-
       if (d < minD) {
         const nx = dx / d, ny = dy / d;
         const overlap = (minD - d) / 2;
-
         a.x -= nx * overlap; a.y -= ny * overlap;
         b.x += nx * overlap; b.y += ny * overlap;
-
         const av = a.vx * nx + a.vy * ny;
         const bv = b.vx * nx + b.vy * ny;
         if (av - bv > 0) {
@@ -3772,7 +2795,6 @@ function pfUpdateBalls(dt) {
       }
     }
   }
-
   for (const b of arr) {
     b.el.style.transform = `translate(${b.x.toFixed(1)}px, ${b.y.toFixed(1)}px)`;
   }
@@ -3782,12 +2804,10 @@ function pfReviveBall(b) {
   b.el.style.display = "";
   b.ball.classList.remove("pop");
   void b.ball.offsetWidth;
-
   b.x = Math.random() * Math.max(1, PF.zoneW - b.w);
   b.y = Math.random() * Math.max(1, PF.zoneH - b.h);
   b.vx = (Math.random() < 0.5 ? -1 : 1) * (0.55 + Math.random() * 0.75);
   b.vy = (Math.random() < 0.5 ? -1 : 1) * (0.40 + Math.random() * 0.60);
-
   b.el.style.transform = `translate(${b.x.toFixed(1)}px, ${b.y.toFixed(1)}px)`;
   b.alive = true;
 }
@@ -3795,7 +2815,6 @@ function pfReviveBall(b) {
 function pfPopAllBalls() {
   const all = PF.balls.slice();
   PF.balls = [];
-
   all.forEach((b, i) => {
     b.alive = false;
     setTimeout(() => {
@@ -3808,7 +2827,6 @@ function pfPopAllBalls() {
 function pfChooseFood(food, ball) {
   if (PF.busy || PF.done) return;
   PF.busy = true;
-
   if (ball && ball.alive) {
     ball.alive = false;
     ball.ball.classList.add("pop");
@@ -3819,27 +2837,21 @@ function pfChooseFood(food, ball) {
 
   if (food === "东北菜") {
     PF.done = true;
-
     PF.timer = setTimeout(() => {
       pfAppendMessage("girl", "东北菜！");
       pfPopAllBalls();
-
       PF.timer = setTimeout(() => {
         pfAppendMessage("boy", "行！我知道一家，六泰居。");
         PF.timer = setTimeout(finishPickFood, 1400);
       }, 700);
-
     }, 500);
-
   } else {
     PF.timer = setTimeout(() => {
       pfAppendMessage("girl", "（摇头）", { shake: true });
-
       PF.timer = setTimeout(() => {
         if (ball) pfReviveBall(ball);
         PF.busy = false;
       }, 750);
-
     }, 600);
   }
 }
@@ -3852,12 +2864,10 @@ function startPickFood() {
   document.getElementById("chapterTitle").classList.remove("show");
 
   document.getElementById("pickFood").classList.add("show");
-  document.getElementById("pfHeadName").textContent = playerName;
+  document.getElementById("pfHeadName").textContent = "Bonan";
 
   if (PF.timer) { clearTimeout(PF.timer); PF.timer = null; }
-
   document.getElementById("pfChat").innerHTML = "";
-
   pfResetBalls();
 }
 
@@ -3876,7 +2886,7 @@ function finishPickFood() {
 
 window.addEventListener("resize", () => {
   if (!PF.balls.length) return;
-  const zone = document.getElementById("pfBallZone");
+  const zone = document.getElementById("pfOptions");
   PF.zoneW = zone.clientWidth;
   PF.zoneH = zone.clientHeight;
   PF.balls.forEach(b => {
@@ -3886,7 +2896,7 @@ window.addEventListener("resize", () => {
 });
 
 /* ===================================================
-   小游戏 1：救公主
+   救公主
 =================================================== */
 const VIEW_W = 800;
 const VIEW_H = 450;
@@ -3901,8 +2911,8 @@ const MG = {
   canvas: null, ctx: null, running: false,
   keys: { left: false, right: false, jump: false },
   player: null, platforms: [], coins: [], enemies: [], goal: null,
-  bubbles: [], hearts: [],
-  cameraX: 0, score: 0, totalCoins: 0, raf: null, bound: false
+  bubbles: [], hearts: [], cameraX: 0, score: 0, totalCoins: 0,
+  raf: null, bound: false
 };
 
 function startRescueGame() {
@@ -3963,10 +2973,8 @@ function initMiniGame() {
   MG.hearts = [];
   for (let i = 0; i < 20; i++) {
     MG.bubbles.push({
-      x: Math.random() * WORLD_W,
-      y: 40 + Math.random() * 340,
-      r: 8 + Math.random() * 22,
-      speed: 0.15 + Math.random() * 0.35,
+      x: Math.random() * WORLD_W, y: 40 + Math.random() * 340,
+      r: 8 + Math.random() * 22, speed: 0.15 + Math.random() * 0.35,
       sway: Math.random() * Math.PI * 2,
       swaySpeed: 0.008 + Math.random() * 0.018,
       parallax: 0.3 + Math.random() * 0.3
@@ -3974,10 +2982,8 @@ function initMiniGame() {
   }
   for (let i = 0; i < 24; i++) {
     MG.hearts.push({
-      x: Math.random() * WORLD_W,
-      y: 40 + Math.random() * 340,
-      size: 9 + Math.random() * 14,
-      speed: 0.12 + Math.random() * 0.28,
+      x: Math.random() * WORLD_W, y: 40 + Math.random() * 340,
+      size: 9 + Math.random() * 14, speed: 0.12 + Math.random() * 0.28,
       sway: Math.random() * Math.PI * 2,
       swaySpeed: 0.012 + Math.random() * 0.022,
       opacity: 0.15 + Math.random() * 0.35,
@@ -3997,7 +3003,6 @@ function initMiniGame() {
 
   updateCoinHud();
   bindGameControls();
-
   MG.raf = requestAnimationFrame(gameLoop);
 }
 
@@ -4009,7 +3014,6 @@ function updateCoinHud() {
 function bindGameControls() {
   if (MG.bound) return;
   MG.bound = true;
-
   const btnLeft = document.getElementById("btnLeft");
   const btnRight = document.getElementById("btnRight");
   const btnJump = document.getElementById("btnJump");
@@ -4020,7 +3024,6 @@ function bindGameControls() {
     el.addEventListener("pointerleave", () => { MG.keys[key] = false; });
     el.addEventListener("pointercancel", () => { MG.keys[key] = false; });
   };
-
   bind(btnLeft, "left");
   bind(btnRight, "right");
   bind(btnJump, "jump");
@@ -4031,7 +3034,6 @@ function bindGameControls() {
     if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") { MG.keys.right = true; e.preventDefault(); }
     if (e.key === "ArrowUp" || e.key === " " || e.key === "w" || e.key === "W") { MG.keys.jump = true; e.preventDefault(); }
   });
-
   window.addEventListener("keyup", (e) => {
     if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") MG.keys.left = false;
     if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") MG.keys.right = false;
@@ -4052,14 +3054,12 @@ function rectsOverlap(a, b) {
 
 function updateDecor() {
   for (const b of MG.bubbles) {
-    b.y -= b.speed;
-    b.sway += b.swaySpeed;
+    b.y -= b.speed; b.sway += b.swaySpeed;
     b.x += Math.sin(b.sway) * 0.3;
     if (b.y < -b.r * 2) { b.y = VIEW_H + b.r * 2; b.x = Math.random() * WORLD_W; }
   }
   for (const h of MG.hearts) {
-    h.y -= h.speed;
-    h.sway += h.swaySpeed;
+    h.y -= h.speed; h.sway += h.swaySpeed;
     h.x += Math.sin(h.sway) * 0.25;
     if (h.y < -h.size * 2) { h.y = VIEW_H + h.size * 2; h.x = Math.random() * WORLD_W; }
   }
@@ -4067,72 +3067,45 @@ function updateDecor() {
 
 function updateGame() {
   const p = MG.player;
-
   p.vx = 0;
   if (MG.keys.left) { p.vx = -MOVE_SPEED; p.facing = -1; }
   if (MG.keys.right) { p.vx = MOVE_SPEED; p.facing = 1; }
   p.x += p.vx;
-
   if (p.x < 0) p.x = 0;
   if (p.x + p.w > WORLD_W) p.x = WORLD_W - p.w;
-
   if (MG.keys.jump && p.onGround) { p.vy = JUMP_V; p.onGround = false; }
-
   p.vy += GRAVITY;
   if (p.vy > 18) p.vy = 18;
-
   const oldY = p.y;
   p.y += p.vy;
   p.onGround = false;
-
   for (const plat of MG.platforms) {
     if (p.x + p.w > plat.x && p.x < plat.x + plat.w) {
       if (p.vy >= 0 && oldY + p.h <= plat.y + 8 && p.y + p.h >= plat.y) {
-        p.y = plat.y - p.h;
-        p.vy = 0;
-        p.onGround = true;
+        p.y = plat.y - p.h; p.vy = 0; p.onGround = true;
       }
     }
   }
-
   for (const c of MG.coins) {
     if (!c.alive) continue;
     const dx = p.x + p.w / 2 - c.x;
     const dy = p.y + p.h / 2 - c.y;
     if (Math.abs(dx) < p.w / 2 + c.r && Math.abs(dy) < p.h / 2 + c.r) {
-      c.alive = false;
-      MG.score++;
-      updateCoinHud();
+      c.alive = false; MG.score++; updateCoinHud();
     }
   }
-
   for (const e of MG.enemies) {
     e.x += e.vx;
     if (e.x <= e.minX) { e.x = e.minX; e.vx = Math.abs(e.vx); }
     if (e.x + e.w >= e.maxX) { e.x = e.maxX - e.w; e.vx = -Math.abs(e.vx); }
-
-    if (rectsOverlap(p, e)) {
-      p.x = 50;
-      p.y = GROUND_Y - p.h;
-      p.vx = 0; p.vy = 0;
-    }
+    if (rectsOverlap(p, e)) { p.x = 50; p.y = GROUND_Y - p.h; p.vx = 0; p.vy = 0; }
   }
-
-  if (p.y > WORLD_H + 100) {
-    p.x = 50;
-    p.y = GROUND_Y - p.h;
-    p.vy = 0;
-  }
-
+  if (p.y > WORLD_H + 100) { p.x = 50; p.y = GROUND_Y - p.h; p.vy = 0; }
   MG.cameraX = p.x + p.w / 2 - VIEW_W / 2;
   if (MG.cameraX < 0) MG.cameraX = 0;
   if (MG.cameraX > WORLD_W - VIEW_W) MG.cameraX = WORLD_W - VIEW_W;
-
   updateDecor();
-
-  if (p.x + p.w >= MG.goal.x && p.y + p.h >= MG.goal.y) {
-    winMiniGame();
-  }
+  if (p.x + p.w >= MG.goal.x && p.y + p.h >= MG.goal.y) winMiniGame();
 }
 
 function drawHeartShape(ctx, x, y, size) {
@@ -4153,23 +3126,14 @@ function drawDecor(ctx, cam) {
   for (const b of MG.bubbles) {
     const sx = ((b.x - cam * b.parallax) % VIEW_W + VIEW_W) % VIEW_W;
     if (sx < -b.r * 2 || sx > VIEW_W + b.r * 2) continue;
-    const grad = ctx.createRadialGradient(
-      sx - b.r * 0.32, b.y - b.r * 0.32, b.r * 0.12,
-      sx, b.y, b.r
-    );
-    grad.addColorStop(0, "rgba(255, 245, 252, 0.75)");
-    grad.addColorStop(0.55, "rgba(255, 200, 230, 0.35)");
-    grad.addColorStop(1, "rgba(255, 180, 220, 0.08)");
-    ctx.beginPath();
-    ctx.arc(sx, b.y, b.r, 0, Math.PI * 2);
-    ctx.fillStyle = grad;
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(sx - b.r * 0.32, b.y - b.r * 0.32, b.r * 0.2, 0, Math.PI * 2);
-    ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
-    ctx.fill();
+    const grad = ctx.createRadialGradient(sx - b.r * 0.32, b.y - b.r * 0.32, b.r * 0.12, sx, b.y, b.r);
+    grad.addColorStop(0, "rgba(255,245,252,0.75)");
+    grad.addColorStop(0.55, "rgba(255,200,230,0.35)");
+    grad.addColorStop(1, "rgba(255,180,220,0.08)");
+    ctx.beginPath(); ctx.arc(sx, b.y, b.r, 0, Math.PI * 2); ctx.fillStyle = grad; ctx.fill();
+    ctx.beginPath(); ctx.arc(sx - b.r * 0.32, b.y - b.r * 0.32, b.r * 0.2, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(255,255,255,0.85)"; ctx.fill();
   }
-
   for (const h of MG.hearts) {
     const sx = ((h.x - cam * h.parallax) % VIEW_W + VIEW_W) % VIEW_W;
     if (sx < -h.size * 2 || sx > VIEW_W + h.size * 2) continue;
@@ -4191,12 +3155,9 @@ function drawGame() {
   ctx.fillStyle = sky;
   ctx.fillRect(0, 0, VIEW_W, VIEW_H);
 
-  const glow = ctx.createRadialGradient(
-    VIEW_W * 0.5, VIEW_H * 0.75, 40,
-    VIEW_W * 0.5, VIEW_H * 0.75, VIEW_W * 0.7
-  );
-  glow.addColorStop(0, "rgba(255, 240, 250, 0.55)");
-  glow.addColorStop(1, "rgba(255, 240, 250, 0)");
+  const glow = ctx.createRadialGradient(VIEW_W * 0.5, VIEW_H * 0.75, 40, VIEW_W * 0.5, VIEW_H * 0.75, VIEW_W * 0.7);
+  glow.addColorStop(0, "rgba(255,240,250,0.55)");
+  glow.addColorStop(1, "rgba(255,240,250,0)");
   ctx.fillStyle = glow;
   ctx.fillRect(0, 0, VIEW_W, VIEW_H);
 
@@ -4206,25 +3167,16 @@ function drawGame() {
     const sx = plat.x - cam;
     if (sx > VIEW_W || sx + plat.w < 0) continue;
     const isGround = plat.h > 50;
-
     ctx.save();
-    ctx.shadowColor = "rgba(255, 160, 210, 0.7)";
+    ctx.shadowColor = "rgba(255,160,210,0.7)";
     ctx.shadowBlur = 12;
-
     const g = ctx.createLinearGradient(0, plat.y, 0, plat.y + plat.h);
-    if (isGround) {
-      g.addColorStop(0, "#f2a8cc");
-      g.addColorStop(1, "#b87aa0");
-    } else {
-      g.addColorStop(0, "#fbc8de");
-      g.addColorStop(1, "#e8a0c0");
-    }
+    if (isGround) { g.addColorStop(0, "#f2a8cc"); g.addColorStop(1, "#b87aa0"); }
+    else { g.addColorStop(0, "#fbc8de"); g.addColorStop(1, "#e8a0c0"); }
     ctx.fillStyle = g;
     ctx.fillRect(sx, plat.y, plat.w, plat.h);
-
-    ctx.fillStyle = "rgba(255, 245, 252, 0.85)";
+    ctx.fillStyle = "rgba(255,245,252,0.85)";
     ctx.fillRect(sx, plat.y, plat.w, isGround ? 6 : 4);
-
     ctx.restore();
   }
 
@@ -4232,17 +3184,16 @@ function drawGame() {
     if (!c.alive) continue;
     const sx = c.x - cam;
     if (sx > VIEW_W + 30 || sx < -30) continue;
-
     if (coinImg && coinImg.complete && coinImg.naturalWidth > 0) {
       drawImageContain(ctx, coinImg, sx - c.r, c.y - c.r, c.r * 2, c.r * 2, false);
     } else {
       ctx.save();
-      ctx.shadowColor = "rgba(255, 200, 120, 0.9)";
+      ctx.shadowColor = "rgba(255,200,120,0.9)";
       ctx.shadowBlur = 12;
       ctx.fillStyle = "#ffd93b";
       drawHeartShape(ctx, sx, c.y - c.r * 0.6, c.r * 1.7);
       ctx.restore();
-      ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+      ctx.fillStyle = "rgba(255,255,255,0.7)";
       drawHeartShape(ctx, sx - 2, c.y - c.r * 0.85, c.r * 0.55);
     }
   }
@@ -4250,7 +3201,6 @@ function drawGame() {
   for (const e of MG.enemies) {
     const sx = e.x - cam;
     if (sx > VIEW_W || sx + e.w < 0) continue;
-
     if (enemyImg && enemyImg.complete && enemyImg.naturalWidth > 0) {
       drawImageContain(ctx, enemyImg, sx, e.y, e.w, e.h, e.vx > 0);
     } else {
@@ -4281,7 +3231,6 @@ function drawGame() {
 
   const p = MG.player;
   const px = p.x - cam;
-
   if (playerImg && playerImg.complete && playerImg.naturalWidth > 0) {
     drawImageContain(ctx, playerImg, px, p.y, p.w, p.h, p.facing === -1);
   } else {
@@ -4302,7 +3251,6 @@ function winMiniGame() {
 function continueAfterRescue() {
   document.getElementById("miniGame").classList.remove("show");
   document.getElementById("gameVictory").classList.remove("show");
-
   document.getElementById("dialog").style.display = "block";
   document.getElementById("dialog").style.visibility = "visible";
 
@@ -4314,26 +3262,20 @@ function continueAfterRescue() {
 }
 
 /* ===================================================
-   小游戏 2：像素黎明杀机
+   黎明杀机
 =================================================== */
 const DBD_W = 400;
 const DBD_H = 225;
 
 const DBD = {
   canvas: null, ctx: null, running: false, raf: null, bound: false,
-  keys: {
-    w:false, a:false, s:false, d:false,
-    up:false, down:false, left:false, right:false,
-    interact:false
-  },
+  keys: { w:false, a:false, s:false, d:false, up:false, down:false, left:false, right:false, interact:false },
   prevInteract: false,
   player: null, mate: null, killer: null,
   walls: [], obstacles: [], gen: null, gate: null,
   qte: null, qteCooldown: 0,
   shake: 0, time: 0, phase: 'repair',
-  message: "", msgTimer: 0,
-  particles: [],
-  groundCanvas: null
+  message: "", msgTimer: 0, particles: [], groundCanvas: null
 };
 
 function buildDBDGround() {
@@ -4341,7 +3283,6 @@ function buildDBDGround() {
   oc.width = DBD_W;
   oc.height = DBD_H;
   const c = oc.getContext("2d");
-
   c.fillStyle = "#241a12";
   c.fillRect(0, 0, DBD_W, DBD_H);
 
@@ -4350,18 +3291,11 @@ function buildDBDGround() {
     const y = Math.random() * DBD_H;
     const r = 0.8 + Math.random() * 2.6;
     const t = Math.random();
-    if (t < 0.45) {
-      c.fillStyle = `rgba(58, 42, 28, ${0.15 + Math.random() * 0.35})`;
-    } else if (t < 0.82) {
-      c.fillStyle = `rgba(16, 10, 6, ${0.22 + Math.random() * 0.42})`;
-    } else {
-      c.fillStyle = `rgba(88, 64, 40, ${0.10 + Math.random() * 0.22})`;
-    }
-    c.beginPath();
-    c.arc(x, y, r, 0, Math.PI * 2);
-    c.fill();
+    if (t < 0.45) c.fillStyle = `rgba(58,42,28,${0.15 + Math.random() * 0.35})`;
+    else if (t < 0.82) c.fillStyle = `rgba(16,10,6,${0.22 + Math.random() * 0.42})`;
+    else c.fillStyle = `rgba(88,64,40,${0.10 + Math.random() * 0.22})`;
+    c.beginPath(); c.arc(x, y, r, 0, Math.PI * 2); c.fill();
   }
-
   for (let i = 0; i < 70; i++) {
     const x = Math.floor(Math.random() * DBD_W);
     const y = Math.floor(Math.random() * DBD_H);
@@ -4371,48 +3305,6 @@ function buildDBDGround() {
     c.fillStyle = "rgba(0,0,0,0.45)";
     c.fillRect(x, y + s, s, 1);
   }
-
-  for (let i = 0; i < 140; i++) {
-    const x = Math.random() * DBD_W;
-    const y = Math.random() * DBD_H;
-    const len = 2 + Math.random() * 4;
-    c.strokeStyle = `rgba(96, 78, 40, ${0.22 + Math.random() * 0.35})`;
-    c.lineWidth = 1;
-    c.beginPath();
-    c.moveTo(x, y);
-    c.lineTo(x + (Math.random() - 0.5) * 4, y - len);
-    c.stroke();
-  }
-
-  for (let i = 0; i < 14; i++) {
-    const cx = Math.random() * DBD_W;
-    const cy = Math.random() * DBD_H;
-    const baseR = 3 + Math.random() * 9;
-    c.fillStyle = `rgba(96, 10, 16, ${0.12 + Math.random() * 0.20})`;
-    c.beginPath();
-    c.arc(cx, cy, baseR, 0, Math.PI * 2);
-    c.fill();
-    for (let j = 0; j < 8; j++) {
-      const a = Math.random() * Math.PI * 2;
-      const d = baseR + Math.random() * 12;
-      c.fillStyle = `rgba(112, 12, 18, ${0.10 + Math.random() * 0.22})`;
-      c.beginPath();
-      c.arc(cx + Math.cos(a) * d, cy + Math.sin(a) * d, 0.8 + Math.random() * 1.8, 0, Math.PI * 2);
-      c.fill();
-    }
-  }
-
-  for (let i = 0; i < 3; i++) {
-    const x = Math.random() * DBD_W * 0.7;
-    const y = Math.random() * DBD_H;
-    c.strokeStyle = "rgba(88, 10, 14, 0.22)";
-    c.lineWidth = 2 + Math.random() * 2;
-    c.beginPath();
-    c.moveTo(x, y);
-    c.lineTo(x + 30 + Math.random() * 50, y + (Math.random() - 0.5) * 20);
-    c.stroke();
-  }
-
   return oc;
 }
 
@@ -4424,20 +3316,17 @@ function initDBD() {
     {x:0, y:0, w:T, h:DBD_H},
     {x:DBD_W-T, y:0, w:T, h:DBD_H}
   ];
-
   DBD.obstacles = [
-    {x:70,  y:45,  w:40, h:30},
+    {x:70, y:45, w:40, h:30},
     {x:160, y:130, w:45, h:30},
-    {x:230, y:35,  w:45, h:38},
+    {x:230, y:35, w:45, h:38},
     {x:280, y:150, w:50, h:35},
     {x:110, y:165, w:40, h:30},
-    {x:320, y:75,  w:35, h:40},
-    {x:60,  y:110, w:35, h:30}
+    {x:320, y:75, w:35, h:40},
+    {x:60, y:110, w:35, h:30}
   ];
-
   DBD.gen = {x:175, y:85, w:40, h:26, progress:0, repairing:false};
   DBD.gate = {x:DBD_W-T-2, y:80, w:T+4, h:50, progress:0, open:false};
-
   DBD.player = {x:30, y:180, w:10, h:10, speed:1.5, facing:1};
   DBD.mate = {x:45, y:185, w:10, h:10, speed:1.5};
   DBD.killer = {
@@ -4445,7 +3334,6 @@ function initDBD() {
     state:'patrol', patrolPoints:[[330,35],[330,190],[200,195],[60,120]],
     patrolIdx:0, target:null, chaseTimer:0, glow:0
   };
-
   DBD.qte = null;
   DBD.qteCooldown = 120;
   DBD.shake = 0;
@@ -4457,10 +3345,8 @@ function initDBD() {
   DBD.prevInteract = false;
   DBD.keys = {
     w:false, a:false, s:false, d:false,
-    up:false, down:false, left:false, right:false,
-    interact:false
+    up:false, down:false, left:false, right:false, interact:false
   };
-
   DBD.groundCanvas = buildDBDGround();
 }
 
@@ -4483,7 +3369,6 @@ function startRepairGame() {
 
   updateRepairHud();
   bindDBDControls();
-
   DBD.raf = requestAnimationFrame(dbdLoop);
 }
 
@@ -4501,7 +3386,6 @@ function updateRepairHud() {
 function bindDBDControls() {
   if (DBD.bound) return;
   DBD.bound = true;
-
   const bind = (id, key) => {
     const el = document.getElementById(id);
     el.addEventListener("pointerdown", (e) => { e.preventDefault(); DBD.keys[key] = true; });
@@ -4509,15 +3393,8 @@ function bindDBDControls() {
     el.addEventListener("pointerleave", () => { DBD.keys[key] = false; });
     el.addEventListener("pointercancel", () => { DBD.keys[key] = false; });
   };
-
-  bind("dbdW", "w");
-  bind("dbdA", "a");
-  bind("dbdS", "s");
-  bind("dbdD", "d");
-  bind("dbdUp", "up");
-  bind("dbdDown", "down");
-  bind("dbdLeft", "left");
-  bind("dbdRight", "right");
+  bind("dbdW", "w"); bind("dbdA", "a"); bind("dbdS", "s"); bind("dbdD", "d");
+  bind("dbdUp", "up"); bind("dbdDown", "down"); bind("dbdLeft", "left"); bind("dbdRight", "right");
   bind("dbdInteract", "interact");
 
   window.addEventListener("keydown", (e) => {
@@ -4532,7 +3409,6 @@ function bindDBDControls() {
     if (e.key === "ArrowRight") { DBD.keys.right = true; e.preventDefault(); }
     if (e.key === " " || e.key === "Enter") { DBD.keys.interact = true; e.preventDefault(); }
   });
-
   window.addEventListener("keyup", (e) => {
     if (e.key === "w" || e.key === "W") DBD.keys.w = false;
     if (e.key === "a" || e.key === "A") DBD.keys.a = false;
@@ -4602,20 +3478,15 @@ function updateKiller() {
   const k = DBD.killer;
   const p = DBD.player;
   const m = DBD.mate;
-
   const px = p.x + p.w/2, py = p.y + p.h/2;
   const mx = m.x + m.w/2, my = m.y + m.h/2;
   const kx = k.x + k.w/2, ky = k.y + k.h/2;
-
   const dp = Math.hypot(px-kx, py-ky);
   const dm = Math.hypot(mx-kx, my-ky);
-
   let tx, ty, dist;
   if (dp < dm) { tx = px; ty = py; dist = dp; }
   else { tx = mx; ty = my; dist = dm; }
-
   const canSee = dist < 115 && !lineBlocked(kx, ky, tx, ty, DBD.obstacles);
-
   if (canSee) {
     k.chaseTimer = 100;
     k.target = { x: tx, y: ty };
@@ -4623,16 +3494,13 @@ function updateKiller() {
   } else {
     k.glow = Math.max(0, k.glow - 0.02);
   }
-
   if (k.chaseTimer > 0) {
     k.chaseTimer--;
     k.state = 'chase';
     if (k.target) {
       const ddx = k.target.x - kx, ddy = k.target.y - ky;
       const d = Math.hypot(ddx, ddy);
-      if (d > 3) {
-        moveEntity(k, (ddx/d) * k.speed, (ddy/d) * k.speed);
-      }
+      if (d > 3) moveEntity(k, (ddx/d) * k.speed, (ddy/d) * k.speed);
     }
   } else {
     k.state = 'patrol';
@@ -4640,32 +3508,22 @@ function updateKiller() {
     const pt = k.patrolPoints[k.patrolIdx];
     const ddx = pt[0] - kx, ddy = pt[1] - ky;
     const d = Math.hypot(ddx, ddy);
-    if (d < 5) {
-      k.patrolIdx = (k.patrolIdx + 1) % k.patrolPoints.length;
-    } else {
-      moveEntity(k, (ddx/d) * k.speed * 0.65, (ddy/d) * k.speed * 0.65);
-    }
+    if (d < 5) k.patrolIdx = (k.patrolIdx + 1) % k.patrolPoints.length;
+    else moveEntity(k, (ddx/d) * k.speed * 0.65, (ddy/d) * k.speed * 0.65);
   }
-
   if (dp < 11) {
     p.x = 30; p.y = 180;
     DBD.shake = 25;
     DBD.message = "Bonan 被抓住了！回到起点";
     DBD.msgTimer = 130;
-    k.chaseTimer = 0;
-    k.state = 'patrol';
-    k.target = null;
-    k.patrolIdx = 0;
+    k.chaseTimer = 0; k.state = 'patrol'; k.target = null; k.patrolIdx = 0;
   }
   if (dm < 11) {
     m.x = 45; m.y = 185;
     DBD.shake = 25;
     DBD.message = "Easlyn 被抓住了！回到起点";
     DBD.msgTimer = 130;
-    k.chaseTimer = 0;
-    k.state = 'patrol';
-    k.target = null;
-    k.patrolIdx = 0;
+    k.chaseTimer = 0; k.state = 'patrol'; k.target = null; k.patrolIdx = 0;
   }
 }
 
@@ -4676,8 +3534,7 @@ function spawnSparks(x, y, color, count) {
       vx: (Math.random()-0.5)*2,
       vy: -Math.random()*2 - 0.5,
       life: 30 + Math.random()*20,
-      maxLife: 50,
-      color,
+      maxLife: 50, color,
       size: 1 + Math.random()*2
     });
   }
@@ -4686,10 +3543,7 @@ function spawnSparks(x, y, color, count) {
 function updateParticles() {
   for (let i = DBD.particles.length - 1; i >= 0; i--) {
     const p = DBD.particles[i];
-    p.x += p.vx;
-    p.y += p.vy;
-    p.vy += 0.08;
-    p.life--;
+    p.x += p.vx; p.y += p.vy; p.vy += 0.08; p.life--;
     if (p.life <= 0) DBD.particles.splice(i, 1);
   }
 }
@@ -4697,7 +3551,7 @@ function updateParticles() {
 function spawnQTE() {
   DBD.qte = {
     angle: 0,
-    speed: 1.7,
+    speed: 0.6,
     zoneStart: 30,
     zoneEnd: 90,
     perfectStart: 55,
@@ -4712,7 +3566,6 @@ function judgeQTE() {
   const q = DBD.qte;
   if (!q || !q.active) return;
   const a = q.angle % 360;
-
   if (a >= q.zoneStart && a <= q.zoneEnd) {
     if (a >= q.perfectStart && a <= q.perfectEnd) {
       q.result = 'perfect';
@@ -4732,10 +3585,8 @@ function judgeQTE() {
     DBD.killer.chaseTimer = 80;
     DBD.killer.target = { x: DBD.gen.x + DBD.gen.w/2, y: DBD.gen.y };
   }
-
   q.active = false;
   q.resultTimer = 40;
-
   if (DBD.gen.progress >= 100) {
     DBD.phase = 'gate';
     DBD.message = "发电机修好了！去右边拉大门";
@@ -4770,9 +3621,7 @@ function updateDBD() {
   moveEntity(m, mdx * m.speed, mdy * m.speed);
 
   const justPressed = DBD.keys.interact && !DBD.prevInteract;
-  if (DBD.qte && DBD.qte.active && justPressed) {
-    judgeQTE();
-  }
+  if (DBD.qte && DBD.qte.active && justPressed) judgeQTE();
   DBD.prevInteract = DBD.keys.interact;
 
   if (DBD.phase === 'repair') {
@@ -4783,9 +3632,7 @@ function updateDBD() {
       DBD.gen.repairing = true;
       if (DBD.qteCooldown > 0) DBD.qteCooldown--;
       else spawnQTE();
-    } else {
-      DBD.gen.repairing = false;
-    }
+    } else { DBD.gen.repairing = false; }
     if (DBD.gen.progress >= 100) {
       DBD.phase = 'gate';
       DBD.message = "发电机修好了！去右边拉大门";
@@ -4809,10 +3656,7 @@ function updateDBD() {
   }
 
   if (DBD.phase === 'escape') {
-    if (isNearGate(p) && isNearGate(m)) {
-      winDBD();
-      return;
-    }
+    if (isNearGate(p) && isNearGate(m)) { winDBD(); return; }
   }
 
   if (DBD.qte) {
@@ -4844,7 +3688,6 @@ function updateDBD() {
 function drawPerson(ctx, e, color, glow, flip) {
   const x = Math.round(e.x), y = Math.round(e.y);
   const w = e.w, h = e.h;
-
   const grad = ctx.createRadialGradient(x + w/2, y + h/2, 2, x + w/2, y + h/2, 16);
   grad.addColorStop(0, glow);
   grad.addColorStop(1, "rgba(0,0,0,0)");
@@ -4852,7 +3695,6 @@ function drawPerson(ctx, e, color, glow, flip) {
   ctx.fillStyle = grad;
   ctx.fillRect(x - 10, y - 10, w + 20, h + 20);
   ctx.globalAlpha = 1;
-
   ctx.fillStyle = color;
   ctx.fillRect(x, y + 2, w, h - 2);
   ctx.fillRect(x + 2, y, w - 4, 4);
@@ -4864,23 +3706,19 @@ function drawPerson(ctx, e, color, glow, flip) {
 function drawKillerSprite(ctx, k) {
   const x = Math.round(k.x), y = Math.round(k.y);
   const w = k.w, h = k.h;
-
   const grad = ctx.createRadialGradient(x + w/2, y + h/2, 2, x + w/2, y + h/2, 24);
   grad.addColorStop(0, k.state === 'chase' ? "rgba(255,40,40,0.6)" : "rgba(180,40,40,0.35)");
   grad.addColorStop(1, "rgba(0,0,0,0)");
   ctx.fillStyle = grad;
   ctx.fillRect(x - 20, y - 20, w + 40, h + 40);
-
   ctx.fillStyle = "#1a0a0a";
   ctx.fillRect(x, y, w, h);
   ctx.strokeStyle = k.state === 'chase' ? "#ff4040" : "#6a1a1a";
   ctx.lineWidth = 1;
   ctx.strokeRect(x + 0.5, y + 0.5, w - 1, h - 1);
-
   ctx.fillStyle = "#ff2020";
   ctx.fillRect(x + 3, y + 3, 2, 2);
   ctx.fillRect(x + w - 5, y + 3, 2, 2);
-
   ctx.fillStyle = "#3a1a1a";
   ctx.fillRect(x + 2, y + h - 4, w - 4, 3);
 }
@@ -4891,18 +3729,12 @@ function drawCornField(ctx, o) {
     const v = Math.sin(seed + n * 12.9898) * 43758.5453;
     return v - Math.floor(v);
   };
-
-  ctx.fillStyle = "rgba(8, 5, 3, 0.55)";
+  ctx.fillStyle = "rgba(8,5,3,0.55)";
   ctx.fillRect(o.x - 2, o.y + o.h - 6, o.w + 4, 8);
-
   ctx.fillStyle = "#1b120c";
   ctx.fillRect(o.x - 1, o.y + o.h - 4, o.w + 2, 4);
-  ctx.fillStyle = "#2c1f14";
-  ctx.fillRect(o.x - 1, o.y + o.h - 4, o.w + 2, 1);
-
   const n = Math.max(3, Math.round(o.w / 9));
   const step = o.w / n;
-
   for (let i = 0; i < n; i++) {
     const bx = o.x + i * step + step * 0.5;
     const jitter = rnd(i) * 4 - 2;
@@ -4911,62 +3743,29 @@ function drawCornField(ctx, o) {
     const x = Math.round(bx + jitter);
     const topR = Math.round(top);
     const hR = Math.round(stalkH);
-
     ctx.fillStyle = i % 2 === 0 ? "#4d5c22" : "#3f4d1b";
     ctx.fillRect(x, topR, 2, hR);
-
     ctx.fillStyle = "rgba(0,0,0,0.40)";
     ctx.fillRect(x + 2, topR, 1, hR);
-
     const leafColor = i % 2 === 0 ? "#5e7030" : "#4a5a22";
-    const leafDark = i % 2 === 0 ? "#3c4a18" : "#334015";
     ctx.fillStyle = leafColor;
     ctx.fillRect(x - 6, Math.round(top + stalkH * 0.32), 6, 2);
-    ctx.fillRect(x - 9, Math.round(top + stalkH * 0.32 - 2), 3, 2);
     ctx.fillRect(x + 2, Math.round(top + stalkH * 0.50), 7, 2);
-    ctx.fillRect(x + 9, Math.round(top + stalkH * 0.50 - 2), 3, 2);
-    ctx.fillRect(x - 4, Math.round(top + stalkH * 0.18), 4, 2);
-    ctx.fillRect(x + 2, Math.round(top + stalkH * 0.24), 5, 2);
-    ctx.fillStyle = leafDark;
-    ctx.fillRect(x - 6, Math.round(top + stalkH * 0.32) + 2, 6, 1);
-    ctx.fillRect(x + 2, Math.round(top + stalkH * 0.50) + 2, 7, 1);
-
-    if (i % 2 === 0) {
-      const cy = Math.round(top + stalkH * 0.42);
-      ctx.fillStyle = "#a8913f";
-      ctx.fillRect(x + 3, cy, 3, 7);
-      ctx.fillStyle = "#c9b45a";
-      ctx.fillRect(x + 3, cy, 2, 7);
-      ctx.fillStyle = "#6f5f24";
-      ctx.fillRect(x + 3, cy + 7, 3, 2);
-    }
-
     ctx.fillStyle = "#6b5a2a";
     ctx.fillRect(x, topR - 3, 2, 4);
-    ctx.fillStyle = "#8a7434";
-    ctx.fillRect(x, topR - 5, 1, 3);
-  }
-
-  ctx.fillStyle = "rgba(60, 70, 26, 0.45)";
-  for (let i = 0; i < 5; i++) {
-    const fx = o.x + rnd(i + 30) * o.w;
-    const fy = o.y + o.h - 2 + rnd(i + 40) * 4;
-    ctx.fillRect(Math.round(fx), Math.round(fy), 3, 1);
   }
 }
 
 function drawGeneratorSprite(ctx, g) {
   const x = g.x, y = g.y, w = g.w, h = g.h;
   const lit = g.progress / 100;
-
   if (lit > 0) {
     const grad = ctx.createRadialGradient(x + w/2, y + h/2, 5, x + w/2, y + h/2, 32);
-    grad.addColorStop(0, `rgba(255, 190, 80, ${0.18 + lit * 0.42})`);
-    grad.addColorStop(1, "rgba(255, 190, 80, 0)");
+    grad.addColorStop(0, `rgba(255,190,80,${0.18 + lit * 0.42})`);
+    grad.addColorStop(1, "rgba(255,190,80,0)");
     ctx.fillStyle = grad;
     ctx.fillRect(x - 20, y - 20, w + 40, h + 40);
   }
-
   ctx.fillStyle = "#1d150e";
   ctx.fillRect(x - 1, y + h - 4, w + 2, 5);
   ctx.fillStyle = "#3a3020";
@@ -4975,17 +3774,10 @@ function drawGeneratorSprite(ctx, g) {
   ctx.fillRect(x + 4, y + 4, w - 8, h - 8);
   ctx.fillStyle = "#7a6a3a";
   ctx.fillRect(x, y, w, 6);
-  ctx.fillStyle = "#9a8850";
-  ctx.fillRect(x, y, w, 2);
   ctx.fillStyle = "rgba(0,0,0,0.35)";
   ctx.fillRect(x + 4, y + h - 9, w - 8, 1);
   ctx.fillStyle = g.repairing ? "#ffd93b" : (lit >= 1 ? "#6bff9d" : "#8a7a4a");
   ctx.fillRect(x + w/2 - 2, y + h - 8, 4, 4);
-
-  ctx.fillStyle = "rgba(90, 10, 14, 0.35)";
-  ctx.fillRect(x + 6, y + 10, 4, 3);
-  ctx.fillRect(x + w - 11, y + 15, 5, 2);
-
   if (g.progress > 0) {
     ctx.fillStyle = "rgba(0,0,0,0.7)";
     ctx.fillRect(x - 4, y - 8, w + 8, 4);
@@ -4996,10 +3788,8 @@ function drawGeneratorSprite(ctx, g) {
 
 function drawGateSprite(ctx, g) {
   const x = g.x, y = g.y, w = g.w, h = g.h;
-
   ctx.fillStyle = "#2a1c12";
   ctx.fillRect(x - 2, y, w + 4, h);
-
   if (g.open) {
     ctx.fillStyle = "#6bff9d";
     ctx.fillRect(x, y + 4, w, h - 8);
@@ -5017,21 +3807,24 @@ function drawGateSprite(ctx, g) {
     }
     ctx.fillStyle = "#ff4040";
     ctx.fillRect(x + 2, y + 2, 3, 3);
-    ctx.fillStyle = "rgba(90, 8, 12, 0.45)";
-    ctx.fillRect(x + 1, y + h - 14, 4, 10);
   }
 }
 
 function drawQTE(ctx) {
   const q = DBD.qte;
-  const cx = DBD.gen.x + DBD.gen.w/2;
-  const cy = DBD.gen.y - 28;
-  const r = 20;
+  const GEN_SCALE = 5;
+  const genCenterX = DBD.gen.x + DBD.gen.w / 2;
+  const genCenterY = DBD.gen.y + DBD.gen.h / 2;
+  const genVisualTop = genCenterY - (DBD.gen.h * GEN_SCALE) / 2;
+
+  const cx = genCenterX;
+  const cy = Math.max(36, genVisualTop - 22);
+  const r = 22;
 
   ctx.beginPath();
-  ctx.arc(cx, cy, r, 0, Math.PI*2);
-  ctx.strokeStyle = "rgba(255,210,230,0.2)";
-  ctx.lineWidth = 4;
+  ctx.arc(cx, cy, r, 0, Math.PI * 2);
+  ctx.strokeStyle = "rgba(255,210,230,0.15)";
+  ctx.lineWidth = 5;
   ctx.stroke();
 
   const zStart = (q.zoneStart - 90) * Math.PI / 180;
@@ -5039,7 +3832,7 @@ function drawQTE(ctx) {
   ctx.beginPath();
   ctx.arc(cx, cy, r, zStart, zEnd);
   ctx.strokeStyle = "rgba(255,220,100,0.95)";
-  ctx.lineWidth = 4;
+  ctx.lineWidth = 5;
   ctx.stroke();
 
   const pStart = (q.perfectStart - 90) * Math.PI / 180;
@@ -5047,7 +3840,7 @@ function drawQTE(ctx) {
   ctx.beginPath();
   ctx.arc(cx, cy, r, pStart, pEnd);
   ctx.strokeStyle = "#fff";
-  ctx.lineWidth = 4;
+  ctx.lineWidth = 5;
   ctx.stroke();
 
   if (q.active) {
@@ -5057,25 +3850,25 @@ function drawQTE(ctx) {
     ctx.beginPath();
     ctx.moveTo(cx, cy);
     ctx.lineTo(px, py);
-    ctx.strokeStyle = "rgba(255,255,255,0.9)";
-    ctx.lineWidth = 1.5;
+    ctx.strokeStyle = "rgba(255,255,255,0.95)";
+    ctx.lineWidth = 2;
     ctx.stroke();
     ctx.beginPath();
-    ctx.arc(px, py, 3, 0, Math.PI*2);
+    ctx.arc(px, py, 3.5, 0, Math.PI * 2);
     ctx.fillStyle = "#fff";
     ctx.fill();
     ctx.beginPath();
-    ctx.arc(cx, cy, 2, 0, Math.PI*2);
+    ctx.arc(cx, cy, 2.5, 0, Math.PI * 2);
     ctx.fillStyle = "#ffd6e3";
     ctx.fill();
   }
 
   if (q.active) {
-    ctx.font = "bold 7px 'Consolas', monospace";
-    ctx.fillStyle = "rgba(255,255,255,0.85)";
+    ctx.font = "bold 8px 'Consolas', monospace";
+    ctx.fillStyle = "rgba(255,255,255,0.9)";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillText("按 空格", cx, cy + r + 10);
+    ctx.fillText("按 空格", cx, cy + r + 12);
   }
 
   if (q.result && q.resultTimer > 0) {
@@ -5084,11 +3877,11 @@ function drawQTE(ctx) {
     if (q.result === 'perfect') { text = "PERFECT"; color = "#fff"; }
     else if (q.result === 'good') { text = "GOOD"; color = "#ffd93b"; }
     else { text = "MISS"; color = "#ff5a7a"; }
-    ctx.font = "bold 9px 'Consolas', monospace";
+    ctx.font = "bold 10px 'Consolas', monospace";
     ctx.fillStyle = color;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillText(text, cx, cy + r + 22);
+    ctx.fillText(text, cx, cy + r + 24);
     ctx.globalAlpha = 1;
   }
 }
@@ -5100,12 +3893,8 @@ function drawDBD() {
     ctx.translate((Math.random()-0.5)*DBD.shake, (Math.random()-0.5)*DBD.shake);
   }
 
-  if (DBD.groundCanvas) {
-    ctx.drawImage(DBD.groundCanvas, 0, 0);
-  } else {
-    ctx.fillStyle = "#241a12";
-    ctx.fillRect(0, 0, DBD_W, DBD_H);
-  }
+  if (DBD.groundCanvas) ctx.drawImage(DBD.groundCanvas, 0, 0);
+  else { ctx.fillStyle = "#241a12"; ctx.fillRect(0, 0, DBD_W, DBD_H); }
 
   const k = DBD.killer;
   const kx = k.x + k.w/2, ky = k.y + k.h/2;
@@ -5114,53 +3903,79 @@ function drawDBD() {
   kg.addColorStop(0, "rgba(255,50,50,0.10)");
   kg.addColorStop(1, "rgba(255,50,50,0)");
   ctx.fillStyle = kg;
-  ctx.beginPath();
-  ctx.arc(kx, ky, R, 0, Math.PI*2);
-  ctx.fill();
+  ctx.beginPath(); ctx.arc(kx, ky, R, 0, Math.PI*2); ctx.fill();
 
   for (const w of DBD.walls) {
     ctx.fillStyle = "#150e09";
     ctx.fillRect(w.x, w.y, w.w, w.h);
     ctx.fillStyle = "#2b1d12";
     ctx.fillRect(w.x, w.y, w.w, 2);
-    ctx.fillStyle = "rgba(120, 20, 24, 0.20)";
-    ctx.fillRect(w.x, w.y + w.h - 2, w.w, 2);
   }
 
   for (const o of DBD.obstacles) drawCornField(ctx, o);
 
+  /* 发电机 ×5 */
+  const GEN_SCALE = 5;
   if (dbdGeneratorImg && dbdGeneratorImg.complete && dbdGeneratorImg.naturalWidth > 0) {
-    drawImageContain(ctx, dbdGeneratorImg, DBD.gen.x, DBD.gen.y, DBD.gen.w, DBD.gen.h, false);
+    const cw = DBD.gen.w * GEN_SCALE;
+    const ch = DBD.gen.h * GEN_SCALE;
+    const cx = DBD.gen.x + DBD.gen.w / 2;
+    const cy = DBD.gen.y + DBD.gen.h / 2;
+    drawImageContain(ctx, dbdGeneratorImg, cx - cw / 2, cy - ch / 2, cw, ch, false);
     if (DBD.gen.progress > 0) {
+      const barW = cw + 8;
+      const barX = cx - barW / 2;
+      const barY = cy - ch / 2 - 8;
       ctx.fillStyle = "rgba(0,0,0,0.7)";
-      ctx.fillRect(DBD.gen.x - 4, DBD.gen.y - 8, DBD.gen.w + 8, 4);
+      ctx.fillRect(barX, barY, barW, 4);
       ctx.fillStyle = DBD.gen.progress >= 100 ? "#6bff9d" : "#ffd93b";
-      ctx.fillRect(DBD.gen.x - 4, DBD.gen.y - 8, (DBD.gen.w + 8) * (DBD.gen.progress / 100), 4);
+      ctx.fillRect(barX, barY, barW * (DBD.gen.progress / 100), 4);
     }
   } else {
     drawGeneratorSprite(ctx, DBD.gen);
   }
 
+  /* 大门 ×5 */
+  const GATE_SCALE = 5;
   if (dbdGateImg && dbdGateImg.complete && dbdGateImg.naturalWidth > 0) {
-    drawImageContain(ctx, dbdGateImg, DBD.gate.x - 4, DBD.gate.y, DBD.gate.w + 8, DBD.gate.h, false);
+    const gw = (DBD.gate.w + 8) * GATE_SCALE;
+    const gh = DBD.gate.h * GATE_SCALE;
+    const gcx = DBD.gate.x + DBD.gate.w / 2;
+    const gcy = DBD.gate.y + DBD.gate.h / 2;
+    drawImageContain(ctx, dbdGateImg, gcx - gw / 2, gcy - gh / 2, gw, gh, false);
   } else {
     drawGateSprite(ctx, DBD.gate);
   }
 
+  /* 人物 ×3 */
+  const CHAR_SCALE = 3;
+
   if (dbdEaslynImg && dbdEaslynImg.complete && dbdEaslynImg.naturalWidth > 0) {
-    drawImageContain(ctx, dbdEaslynImg, DBD.mate.x - 2, DBD.mate.y - 2, DBD.mate.w + 4, DBD.mate.h + 4, false);
+    const mw = (DBD.mate.w + 4) * CHAR_SCALE;
+    const mh = (DBD.mate.h + 4) * CHAR_SCALE;
+    const mcx = DBD.mate.x + DBD.mate.w / 2;
+    const mcy = DBD.mate.y + DBD.mate.h / 2;
+    drawImageContain(ctx, dbdEaslynImg, mcx - mw / 2, mcy - mh / 2, mw, mh, false);
   } else {
     drawPerson(ctx, DBD.mate, "#ff8fb8", "#ffb8d0", false);
   }
 
   if (dbdKillerImg && dbdKillerImg.complete && dbdKillerImg.naturalWidth > 0) {
-    drawImageContain(ctx, dbdKillerImg, DBD.killer.x - 3, DBD.killer.y - 3, DBD.killer.w + 6, DBD.killer.h + 6, false);
+    const kw = (DBD.killer.w + 6) * CHAR_SCALE;
+    const kh = (DBD.killer.h + 6) * CHAR_SCALE;
+    const kcx = DBD.killer.x + DBD.killer.w / 2;
+    const kcy = DBD.killer.y + DBD.killer.h / 2;
+    drawImageContain(ctx, dbdKillerImg, kcx - kw / 2, kcy - kh / 2, kw, kh, false);
   } else {
     drawKillerSprite(ctx, DBD.killer);
   }
 
   if (dbdPlayerImg && dbdPlayerImg.complete && dbdPlayerImg.naturalWidth > 0) {
-    drawImageContain(ctx, dbdPlayerImg, DBD.player.x - 2, DBD.player.y - 2, DBD.player.w + 4, DBD.player.h + 4, DBD.player.facing < 0);
+    const pw = (DBD.player.w + 4) * CHAR_SCALE;
+    const ph = (DBD.player.h + 4) * CHAR_SCALE;
+    const pcx = DBD.player.x + DBD.player.w / 2;
+    const pcy = DBD.player.y + DBD.player.h / 2;
+    drawImageContain(ctx, dbdPlayerImg, pcx - pw / 2, pcy - ph / 2, pw, ph, DBD.player.facing < 0);
   } else {
     drawPerson(ctx, DBD.player, "#6bb0ff", "#a0d0ff", DBD.player.facing < 0);
   }
@@ -5185,14 +4000,14 @@ function drawDBD() {
 
   const vg = ctx.createRadialGradient(DBD_W/2, DBD_H/2, DBD_W*0.26, DBD_W/2, DBD_H/2, DBD_W*0.75);
   vg.addColorStop(0, "rgba(0,0,0,0)");
-  vg.addColorStop(1, "rgba(26, 2, 6, 0.62)");
+  vg.addColorStop(1, "rgba(26,2,6,0.62)");
   ctx.fillStyle = vg;
   ctx.fillRect(0, 0, DBD_W, DBD_H);
 
   if (DBD.msgTimer > 0) {
-    ctx.fillStyle = "rgba(8, 4, 6, 0.82)";
+    ctx.fillStyle = "rgba(8,4,6,0.82)";
     ctx.fillRect(DBD_W/2 - 110, 12, 220, 18);
-    ctx.strokeStyle = "rgba(255, 90, 110, 0.35)";
+    ctx.strokeStyle = "rgba(255,90,110,0.35)";
     ctx.lineWidth = 1;
     ctx.strokeRect(DBD_W/2 - 110 + 0.5, 12 + 0.5, 219, 17);
     ctx.fillStyle = "#ffd6e3";
@@ -5215,7 +4030,6 @@ function winDBD() {
 function continueAfterRepair() {
   document.getElementById("repairGame").classList.remove("show");
   document.getElementById("repairVictory").classList.remove("show");
-
   document.getElementById("dialog").style.display = "block";
   document.getElementById("dialog").style.visibility = "visible";
 
@@ -5226,7 +4040,7 @@ function continueAfterRepair() {
   render();
 }
 
-/* ===== 结局特效 ===== */
+/* 结局特效 */
 let effectStarted = false;
 let effectRaf = null;
 let snowflakes = [];
@@ -5284,7 +4098,6 @@ function startEndingEffect() {
     const w = W();
     const h = H();
     effectCtx.clearRect(0, 0, w, h);
-
     for (const s of snowflakes) {
       s.sway += s.swaySpeed;
       s.x += s.vx + Math.sin(s.sway) * 0.28;
@@ -5297,7 +4110,6 @@ function startEndingEffect() {
       effectCtx.fillStyle = `rgba(255,255,255,${s.opacity})`;
       effectCtx.fill();
     }
-
     for (const b of bubbles) {
       b.sway += b.swaySpeed;
       b.x += b.vx + Math.sin(b.sway) * 0.4;
@@ -5305,7 +4117,6 @@ function startEndingEffect() {
       if (b.y < -b.r * 2) { Object.assign(b, makeBubble()); b.y = h + b.r * 2; }
       if (b.x < -b.r * 2) b.x = w + b.r * 2;
       if (b.x > w + b.r * 2) b.x = -b.r * 2;
-
       const grad = effectCtx.createRadialGradient(
         b.x - b.r * 0.35, b.y - b.r * 0.35, b.r * 0.15,
         b.x, b.y, b.r
@@ -5313,21 +4124,17 @@ function startEndingEffect() {
       grad.addColorStop(0, `rgba(255,220,236,${b.opacity + 0.28})`);
       grad.addColorStop(0.55, `rgba(255,178,208,${b.opacity})`);
       grad.addColorStop(1, `rgba(255,158,196,${b.opacity * 0.25})`);
-
       effectCtx.beginPath();
       effectCtx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
       effectCtx.fillStyle = grad;
       effectCtx.fill();
-
       effectCtx.beginPath();
       effectCtx.arc(b.x - b.r * 0.32, b.y - b.r * 0.32, b.r * 0.16, 0, Math.PI * 2);
       effectCtx.fillStyle = `rgba(255,255,255,${Math.min(b.opacity + 0.45, 0.85)})`;
       effectCtx.fill();
     }
-
     effectRaf = requestAnimationFrame(draw);
   }
-
   draw();
 }
 </script>
