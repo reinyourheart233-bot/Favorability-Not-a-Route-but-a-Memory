@@ -35,7 +35,6 @@
     background: linear-gradient(160deg, #2b3340, #3a2f3a 60%, #46392f);
     background-size: cover;
     background-position: center;
-    transition: background-image .5s ease;
   }
   #bgShade {
     position: absolute; inset: 0;
@@ -76,6 +75,13 @@
     z-index: 10;
   }
 
+  @media (max-width: 600px) {
+    #dialog {
+      backdrop-filter: blur(8px) saturate(120%);
+      -webkit-backdrop-filter: blur(8px) saturate(120%);
+    }
+  }
+
   #nameTagWrap {
     position: absolute;
     left: clamp(18px, 5vw, 64px);
@@ -108,39 +114,30 @@
     -webkit-backdrop-filter: blur(10px);
   }
   #nameText.boy {
-    background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, .92),
-      rgba(200, 224, 242, .55) 55%,
-      rgba(200, 224, 242, .15) 100%
-    );
+    background: linear-gradient(to bottom, rgba(255,255,255,.92), rgba(200,224,242,.55) 55%, rgba(200,224,242,.15) 100%);
     color: #2a5a7a;
-    box-shadow: 0 3px 12px rgba(91, 127, 158, .22);
-    border: 1px solid rgba(255, 255, 255, .80);
-    border-bottom-color: rgba(255, 255, 255, .35);
+    box-shadow: 0 3px 12px rgba(91,127,158,.22);
+    border: 1px solid rgba(255,255,255,.80);
+    border-bottom-color: rgba(255,255,255,.35);
   }
   #nameText.girl {
-    background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, .92),
-      rgba(250, 218, 232, .55) 55%,
-      rgba(250, 218, 232, .15) 100%
-    );
+    background: linear-gradient(to bottom, rgba(255,255,255,.92), rgba(250,218,232,.55) 55%, rgba(250,218,232,.15) 100%);
     color: #7a3a52;
-    box-shadow: 0 3px 12px rgba(179, 112, 140, .22);
-    border: 1px solid rgba(255, 255, 255, .80);
-    border-bottom-color: rgba(255, 255, 255, .35);
+    box-shadow: 0 3px 12px rgba(179,112,140,.22);
+    border: 1px solid rgba(255,255,255,.80);
+    border-bottom-color: rgba(255,255,255,.35);
   }
 
   #dialogText {
     font-size: clamp(16px, 2.4vw, 18px);
     line-height: 1.95;
     color: #3f3038;
-    text-shadow: 0 1px 3px rgba(255, 255, 255, .95), 0 0 2px rgba(255, 255, 255, .95);
+    text-shadow: 0 1px 3px rgba(255,255,255,.95), 0 0 2px rgba(255,255,255,.95);
     min-height: 66px;
     white-space: pre-wrap;
   }
   #dialogText.narration { color: #6a5a64; }
+  #dialogText.os { color: #8a7a94; font-style: italic; }
   #dialogText.prompt { color: #8a7a84; font-style: italic; }
 
   #hint {
@@ -150,7 +147,7 @@
     font-size: 12px;
     color: rgba(90, 60, 78, .70);
     letter-spacing: 1px;
-    text-shadow: 0 1px 3px rgba(255, 255, 255, .95);
+    text-shadow: 0 1px 3px rgba(255,255,255,.95);
     animation: blink 1.8s infinite;
   }
   @keyframes blink { 0%,100% { opacity: .3; } 50% { opacity: .9; } }
@@ -174,41 +171,28 @@
     line-height: 1.6;
     color: #3f3038;
     font-weight: 500;
-    background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, .90),
-      rgba(255, 255, 255, .55) 45%,
-      rgba(255, 255, 255, .12) 100%
-    );
-    border: 1px solid rgba(255, 255, 255, .85);
-    border-bottom-color: rgba(255, 255, 255, .30);
+    background: linear-gradient(to bottom, rgba(255,255,255,.90), rgba(255,255,255,.55) 45%, rgba(255,255,255,.12) 100%);
+    border: 1px solid rgba(255,255,255,.85);
+    border-bottom-color: rgba(255,255,255,.30);
     border-radius: 14px;
     cursor: pointer;
     backdrop-filter: blur(12px) saturate(140%);
     -webkit-backdrop-filter: blur(12px) saturate(140%);
-    box-shadow: 0 6px 18px rgba(90, 50, 70, .12);
-    text-shadow: 0 1px 2px rgba(255, 255, 255, .95);
+    box-shadow: 0 6px 18px rgba(90,50,70,.12);
+    text-shadow: 0 1px 2px rgba(255,255,255,.95);
     transition: background .18s, transform .18s, border-color .18s, box-shadow .18s;
     animation: choiceIn .28s ease both;
   }
   #choices button:hover {
-    background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, .70) 45%,
-      rgba(255, 255, 255, .25) 100%
-    );
-    border-color: rgba(255, 255, 255, 1);
+    background: linear-gradient(to bottom, rgba(255,255,255,1), rgba(255,255,255,.70) 45%, rgba(255,255,255,.25) 100%);
+    border-color: rgba(255,255,255,1);
     transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(90, 50, 70, .18);
+    box-shadow: 0 10px 24px rgba(90,50,70,.18);
   }
   #choices button:nth-child(1) { animation-delay: 0s; }
   #choices button:nth-child(2) { animation-delay: .06s; }
   #choices button:nth-child(3) { animation-delay: .12s; }
-  @keyframes choiceIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  @keyframes choiceIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
   .fade { animation: fade .35s ease; }
   @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
@@ -268,10 +252,7 @@
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
   }
-  #cover button:hover {
-    background: rgba(255,255,255,.28);
-    transform: translateY(-2px);
-  }
+  #cover button:hover { background: rgba(255,255,255,.28); transform: translateY(-2px); }
 
   #chapterCard {
     position: absolute; inset: 0;
@@ -287,12 +268,7 @@
     backdrop-filter: blur(3px);
   }
   #chapterCard.show { display: flex; }
-  #chapterCard .num {
-    font-size: 13px;
-    letter-spacing: 6px;
-    color: rgba(255,255,255,.42);
-    margin-bottom: 18px;
-  }
+  #chapterCard .num { font-size: 13px; letter-spacing: 6px; color: rgba(255,255,255,.42); margin-bottom: 18px; }
   #chapterCard .name {
     font-family: var(--calligraphy);
     font-size: clamp(26px, 5.4vw, 36px);
@@ -302,12 +278,7 @@
     text-shadow: 0 4px 24px rgba(0,0,0,.5);
     max-width: 85%;
   }
-  #chapterCard .line {
-    width: 46px;
-    height: 1px;
-    background: rgba(255,255,255,.28);
-    margin: 26px auto 0;
-  }
+  #chapterCard .line { width: 46px; height: 1px; background: rgba(255,255,255,.28); margin: 26px auto 0; }
   #chapterCard .tip {
     position: absolute;
     bottom: 40px; left: 0; right: 0;
@@ -326,8 +297,8 @@
     display: none;
     z-index: 50;
   }
-  #meteorCanvas {
-    position: absolute;
+  #effectCanvas {
+    position: fixed;
     inset: 0;
     width: 100%;
     height: 100%;
@@ -340,62 +311,193 @@
     max-width: 640px;
     margin: 0 auto;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 110px);
+    padding-top: 6vh;
   }
   #endingImg {
     display: none;
-    width: 100%;
+    width: auto;
+    max-width: 100%;
     max-height: 340px;
-    object-fit: cover;
     border-radius: 16px;
     margin-bottom: 22px;
     box-shadow: 0 18px 50px rgba(0,0,0,.4);
+    position: relative;
+    z-index: 2;
   }
   #endingTitle {
     font-family: var(--calligraphy);
-    font-size: clamp(26px, 4.8vw, 32px);
-    letter-spacing: 4px;
+    font-size: clamp(34px, 6.2vw, 44px);
+    letter-spacing: 6px;
     color: #f0e6ea;
-    margin: 0 0 28px;
-    text-shadow: 0 2px 14px rgba(0,0,0,.5);
-  }
-  #endingText {
-    font-size: clamp(15.5px, 2.3vw, 17px);
-    line-height: 2.2;
-    color: #e6dde2;
-    white-space: pre-wrap;
-    text-align: left;
-    padding: 24px 22px;
-    border-radius: 18px;
-    background: rgba(255,255,255,.05);
-    border: 1px solid rgba(255,255,255,.1);
-    margin-bottom: 28px;
+    margin: 0 0 22px;
+    text-shadow: 0 2px 18px rgba(0,0,0,.6);
+    position: relative;
+    z-index: 2;
   }
   #endingNote {
     font-size: 13px;
-    letter-spacing: 1.5px;
-    color: rgba(255,255,255,.42);
+    letter-spacing: 2px;
+    color: rgba(255,255,255,.45);
     line-height: 2;
-    margin-bottom: 34px;
+    margin-bottom: 46px;
+    position: relative;
+    z-index: 2;
   }
+  .ending-btns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    position: relative;
+    z-index: 2;
+  }
+  #affectionBtn {
+    border: 1px solid rgba(255,200,222,.55);
+    background: linear-gradient(to bottom, rgba(255,200,222,.22), rgba(255,200,222,.08));
+    color: #ffd6e3;
+    padding: 14px 30px;
+    border-radius: 999px;
+    font-size: 15px;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: background .2s, transform .2s;
+    text-shadow: 0 1px 8px rgba(255,150,190,.40);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  #affectionBtn:hover { background: linear-gradient(to bottom, rgba(255,200,222,.38), rgba(255,200,222,.18)); transform: translateY(-2px); }
   #restartBtn {
     border: 1px solid rgba(255,255,255,.25);
     background: rgba(255,255,255,.07);
     color: #f2ece6;
-    padding: 11px 30px;
+    padding: 14px 30px;
     border-radius: 999px;
-    font-size: 14px;
-    letter-spacing: 2px;
+    font-size: 15px;
+    letter-spacing: 3px;
     cursor: pointer;
     transition: background .2s;
   }
   #restartBtn:hover { background: rgba(255,255,255,.16); }
+
+  #affectionPanel {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(6,8,12,.82);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 80;
+    padding: 20px;
+  }
+  #affectionPanel.show { display: flex; }
+  .aff-inner {
+    width: min(520px, 100%);
+    max-height: 86vh;
+    overflow-y: auto;
+    background: linear-gradient(160deg, rgba(30,22,32,.96), rgba(20,22,30,.96));
+    border: 1px solid rgba(255,190,215,.20);
+    border-radius: 22px;
+    padding: 26px 22px 24px;
+    box-shadow: 0 24px 80px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.06);
+    color: #f2ece6;
+    text-align: left;
+  }
+  .aff-label {
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 11.5px;
+    letter-spacing: 2px;
+    color: rgba(255,190,215,.55);
+    margin-bottom: 16px;
+  }
+  .aff-loading {
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 13px;
+    color: rgba(255,220,235,.80);
+    margin-bottom: 18px;
+    letter-spacing: 1px;
+  }
+  .aff-loading span { animation: dotBlink 1.2s infinite; display: inline-block; }
+  .aff-loading span:nth-child(2) { animation-delay: .2s; }
+  .aff-loading span:nth-child(3) { animation-delay: .4s; }
+  @keyframes dotBlink { 0%,100% { opacity: .25; } 50% { opacity: 1; } }
+  .aff-list { list-style: none; padding: 0; margin: 0 0 20px; }
+  .aff-list li {
+    font-size: 14.5px;
+    line-height: 1.9;
+    color: rgba(240,230,234,.90);
+    padding: 8px 0;
+    border-bottom: 1px dashed rgba(255,190,215,.10);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    opacity: 0;
+    transform: translateY(6px);
+    animation: affIn .35s ease forwards;
+  }
+  .aff-list li:last-child { border-bottom: 0; }
+  .aff-list li .aff-plus {
+    font-family: "Consolas", "Courier New", monospace;
+    color: #ff9fc4;
+    font-weight: 600;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+    font-size: 13.5px;
+  }
+  @keyframes affIn { to { opacity: 1; transform: translateY(0); } }
+  .aff-total {
+    margin-top: 8px;
+    padding: 16px 18px;
+    border-radius: 14px;
+    background: linear-gradient(to bottom, rgba(255,178,208,.14), rgba(255,178,208,.04));
+    border: 1px solid rgba(255,178,208,.28);
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: #ffd6e3;
+    text-align: center;
+    line-height: 1.9;
+    opacity: 0;
+    animation: affIn .5s ease forwards;
+  }
+  .aff-total strong { display: block; font-size: 20px; letter-spacing: 3px; margin-top: 6px; color: #ffb2c8; }
+  .aff-note {
+    margin-top: 16px;
+    font-size: 13px;
+    line-height: 2;
+    color: rgba(230,210,220,.65);
+    font-style: italic;
+    opacity: 0;
+    animation: affIn .6s ease forwards;
+  }
+  .aff-close {
+    margin-top: 22px;
+    display: block;
+    width: 100%;
+    border: 1px solid rgba(255,190,215,.35);
+    background: rgba(255,190,215,.08);
+    color: #ffd6e3;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  .aff-close:hover { background: rgba(255,190,215,.18); }
 
   #photoOverlay {
     position: absolute; inset: 0;
     display: none;
     align-items: center;
     justify-content: center;
-    background: rgba(8,10,14,.84);
+    background: rgba(8,10,14,.98);
     z-index: 60;
     cursor: pointer;
     padding: 24px;
@@ -410,24 +512,10 @@
     transform: scale(.94);
     transition: opacity .55s ease, transform .55s ease;
   }
-  #photoOverlay.show img {
-    opacity: 1;
-    transform: scale(1);
-  }
-  #photoFlash {
-    position: absolute; inset: 0;
-    background: #fff;
-    opacity: 0;
-    pointer-events: none;
-  }
-  #photoOverlay.flash #photoFlash {
-    animation: flashAnim .7s ease-out;
-  }
-  @keyframes flashAnim {
-    0% { opacity: 0; }
-    12% { opacity: .92; }
-    100% { opacity: 0; }
-  }
+  #photoOverlay.show img { opacity: 1; transform: scale(1); }
+  #photoFlash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; }
+  #photoOverlay.flash #photoFlash { animation: flashAnim .7s ease-out; }
+  @keyframes flashAnim { 0% { opacity: 0; } 12% { opacity: .92; } 100% { opacity: 0; } }
   #photoHint {
     position: absolute;
     bottom: 18px; left: 0; right: 0;
@@ -436,7 +524,1054 @@
     color: rgba(255,255,255,.42);
     letter-spacing: 1px;
   }
+
+  /* ===== 快穿式系统提示 ===== */
+  #sysToast {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 20vh;
+    z-index: 66;
+    cursor: pointer;
+  }
+  #sysToast.show { display: flex; }
+
+  .sys-toast-box {
+    position: relative;
+    min-width: min(420px, 84vw);
+    max-width: 86vw;
+    padding: 24px 32px 22px;
+    background: linear-gradient(160deg, rgba(14, 9, 20, .94), rgba(30, 14, 28, .94));
+    border: 1px solid rgba(255, 140, 190, .55);
+    box-shadow:
+      0 0 0 1px rgba(255, 140, 190, .08),
+      0 0 44px rgba(255, 90, 160, .30),
+      inset 0 0 34px rgba(255, 90, 160, .12);
+    font-family: "Consolas", "Courier New", monospace;
+    text-align: center;
+    overflow: hidden;
+    animation: sysToastIn .5s cubic-bezier(.2,.9,.3,1.2);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  @keyframes sysToastIn {
+    0%   { opacity: 0; transform: translateY(-16px) scale(.9); filter: blur(8px); }
+    55%  { opacity: 1; filter: blur(0); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .sys-toast-box::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 210, 236, .95), transparent);
+    animation: sysScan 2s linear infinite;
+    pointer-events: none;
+  }
+  @keyframes sysScan {
+    0%   { top: 0; opacity: 0; }
+    12%  { opacity: 1; }
+    88%  { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+  .sys-toast-tag {
+    font-size: 10px;
+    letter-spacing: 8px;
+    color: rgba(255, 160, 200, .65);
+    margin-bottom: 14px;
+  }
+  .sys-toast-text {
+    font-size: clamp(15px, 2.5vw, 18px);
+    letter-spacing: 2px;
+    line-height: 1.9;
+    color: #ffd6e3;
+    text-shadow: 0 0 20px rgba(255, 110, 175, .75);
+    min-height: 1.9em;
+    word-break: break-word;
+  }
+  .sys-toast-text::after {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 1.05em;
+    margin-left: 5px;
+    vertical-align: text-bottom;
+    background: #ff9fc4;
+    box-shadow: 0 0 10px rgba(255, 140, 190, .9);
+    animation: cursorBlink .8s steps(1) infinite;
+  }
+  @keyframes cursorBlink {
+    0%, 49%   { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+
+  /* ===== 好感度结算动效 ===== */
+  #affGain {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(6,8,12,.86);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 67;
+    cursor: pointer;
+  }
+  #affGain.show { display: flex; }
+
+  .aff-gain-inner {
+    width: min(420px, 86vw);
+    padding: 36px 30px 30px;
+    background: linear-gradient(160deg, rgba(14, 9, 20, .96), rgba(30, 14, 28, .96));
+    border: 1px solid rgba(255, 140, 190, .55);
+    border-radius: 18px;
+    box-shadow:
+      0 0 0 1px rgba(255, 140, 190, .08),
+      0 0 50px rgba(255, 90, 160, .32),
+      inset 0 0 34px rgba(255, 90, 160, .10);
+    font-family: "Consolas", "Courier New", monospace;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    animation: affGainIn .55s cubic-bezier(.2,.9,.3,1.2);
+  }
+  @keyframes affGainIn {
+    0%   { opacity: 0; transform: translateY(20px) scale(.92); filter: blur(10px); }
+    55%  { opacity: 1; filter: blur(0); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .aff-gain-inner::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 210, 236, .95), transparent);
+    animation: sysScan 2.4s linear infinite;
+    pointer-events: none;
+  }
+  .aff-gain-label {
+    font-size: 10px;
+    letter-spacing: 6px;
+    color: rgba(255, 160, 200, .65);
+    margin-bottom: 18px;
+  }
+  .aff-gain-num {
+    font-size: clamp(52px, 12vw, 72px);
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ffd6e3;
+    text-shadow: 0 0 28px rgba(255, 110, 175, .85), 0 0 60px rgba(255, 90, 160, .5);
+    line-height: 1.1;
+    margin-bottom: 4px;
+    font-variant-numeric: tabular-nums;
+  }
+  .aff-gain-num small {
+    font-size: .42em;
+    letter-spacing: 2px;
+    color: #ff9fc4;
+    margin-left: 4px;
+  }
+  .aff-gain-bar {
+    height: 8px;
+    margin: 18px 0 16px;
+    background: rgba(255, 180, 220, .12);
+    border: 1px solid rgba(255, 180, 220, .28);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .aff-gain-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #ffb2c8, #ff6b9d);
+    box-shadow: 0 0 14px rgba(255, 107, 157, 0.85);
+    transition: width .08s linear;
+  }
+  .aff-gain-text {
+    font-size: 14px;
+    letter-spacing: 1px;
+    line-height: 1.9;
+    color: rgba(255, 220, 235, .9);
+    min-height: 1.9em;
+    margin-bottom: 4px;
+  }
+  .aff-gain-hint {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: rgba(255, 180, 220, .55);
+    margin-top: 14px;
+    animation: blink 1.8s infinite;
+  }
+
+  /* ===== 睁眼特效 ===== */
+  #eyeOpen {
+    position: fixed;
+    inset: 0;
+    z-index: 98;
+    display: none;
+    background: #000;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  #eyeOpen.show { display: block; }
+
+  .eyelid {
+    position: absolute;
+    left: -4px;
+    right: -4px;
+    height: 50.15%;
+    background: #000;
+    transition: transform 1.25s cubic-bezier(.6, 0, .2, 1);
+    will-change: transform;
+    z-index: 1;
+  }
+  .eyelid.top { top: 0; }
+  .eyelid.bottom { bottom: 0; }
+  #eyeOpen.open .eyelid.top { transform: translateY(-103%); }
+  #eyeOpen.open .eyelid.bottom { transform: translateY(103%); }
+
+  .eye-seam {
+    position: absolute;
+    left: 0; right: 0;
+    top: 50%;
+    height: 2px;
+    margin-top: -1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 214, 236, .95), transparent);
+    filter: blur(1.5px);
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+  #eyeOpen.open .eye-seam {
+    animation: seamOpen 1.15s ease forwards;
+  }
+  @keyframes seamOpen {
+    0%   { opacity: 0; transform: scaleX(.1); }
+    18%  { opacity: 1; transform: scaleX(1); }
+    55%  { opacity: .85; }
+    100% { opacity: 0; transform: scaleX(1); }
+  }
+
+  .eye-flash {
+    position: absolute;
+    inset: 0;
+    background: #fff;
+    opacity: 0;
+    z-index: 3;
+    pointer-events: none;
+  }
+  #eyeOpen.open .eye-flash {
+    animation: eyeFlash 1.25s ease-out forwards;
+  }
+  @keyframes eyeFlash {
+    0%   { opacity: 0; }
+    18%  { opacity: .28; }
+    100% { opacity: 0; }
+  }
+
+  /* ===== 小游戏：救公主 ===== */
+  #miniGame {
+    position: fixed;
+    inset: 0;
+    display: none;
+    background: #0f1218;
+    z-index: 70;
+    flex-direction: column;
+  }
+  #miniGame.show { display: flex; }
+
+  .game-hud {
+    position: absolute;
+    top: 20px; left: 20px;
+    color: #fff;
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 6px rgba(120, 60, 100, .5);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 2;
+  }
+  .heart-icon {
+    display: inline-block;
+    color: #ff6b9d;
+    font-size: 18px;
+    text-shadow: 0 0 10px rgba(255, 107, 157, 0.8);
+    line-height: 1;
+  }
+  .game-canvas-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    min-height: 0;
+  }
+  #gameCanvas {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    background: #ffe6f2;
+    border-radius: 14px;
+    box-shadow: 0 10px 40px rgba(255, 150, 200, .35);
+    touch-action: none;
+  }
+  .game-controls {
+    position: absolute;
+    left: 0; right: 0; bottom: 20px;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .game-controls > * { pointer-events: auto; }
+  .dpad { display: flex; gap: 10px; }
+  .ctrl-btn {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,.35);
+    background: rgba(255,255,255,.12);
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background .1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+  }
+  .ctrl-btn:active { background: rgba(255,255,255,.32); }
+  .jump-btn {
+    width: 84px; height: 84px;
+    font-size: 17px;
+    letter-spacing: 2px;
+    background: rgba(255,180,210,.18);
+    border-color: rgba(255,180,210,.50);
+    color: #ffe4ed;
+  }
+  .jump-btn:active { background: rgba(255,180,210,.45); }
+
+  .game-victory {
+    position: absolute;
+    inset: 0;
+    background: rgba(8,10,14,.88);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .game-victory.show { display: flex; }
+  .victory-text {
+    font-family: var(--calligraphy);
+    font-size: 46px;
+    color: #ffd6e3;
+    letter-spacing: 8px;
+    text-shadow: 0 4px 20px rgba(255,150,190,.4);
+    margin-bottom: 14px;
+  }
+  .victory-sub { font-size: 14px; color: rgba(255,255,255,.55); letter-spacing: 3px; margin-bottom: 34px; }
+  .victory-btn {
+    padding: 14px 48px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,200,222,.5);
+    background: linear-gradient(to bottom, rgba(255,200,222,.22), rgba(255,200,222,.08));
+    color: #ffd6e3;
+    font-size: 16px;
+    letter-spacing: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background .2s;
+  }
+  .victory-btn:hover { background: linear-gradient(to bottom, rgba(255,200,222,.38), rgba(255,200,222,.18)); }
+
+  /* ===== 系统提示（打字机） ===== */
+  #systemPrompt {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: #05070c;
+    z-index: 75;
+    cursor: pointer;
+    padding: 20px;
+    overflow: hidden;
+  }
+  #systemPrompt.show { display: flex; }
+  #systemPrompt::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(255, 180, 220, 0.05) 0px,
+      rgba(255, 180, 220, 0.05) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    pointer-events: none;
+  }
+  #systemPrompt::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,.7) 100%);
+    pointer-events: none;
+  }
+  .sys-box {
+    position: relative;
+    z-index: 2;
+    max-width: 560px;
+    width: 100%;
+    padding: 44px 32px;
+    border: 1px solid rgba(255, 180, 220, 0.4);
+    background: rgba(10, 8, 16, 0.85);
+    box-shadow: 0 0 50px rgba(255, 150, 200, 0.18), inset 0 0 30px rgba(255, 150, 200, 0.06);
+    text-align: center;
+    font-family: "Consolas", "Courier New", monospace;
+    animation: sysIn 0.5s ease;
+  }
+  @keyframes sysIn {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .sys-tag {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: rgba(255, 180, 220, 0.6);
+    margin-bottom: 28px;
+  }
+  .sys-title {
+    font-family: var(--calligraphy);
+    font-size: clamp(28px, 5vw, 38px);
+    color: #ffd6e3;
+    letter-spacing: 4px;
+    margin-bottom: 18px;
+    text-shadow: 0 0 24px rgba(255, 150, 200, 0.5);
+  }
+  .sys-text {
+    font-size: 15px;
+    color: rgba(255, 220, 235, 0.9);
+    letter-spacing: 2px;
+    line-height: 2;
+    margin-bottom: 8px;
+    min-height: 1.9em;
+  }
+  .sys-sub {
+    font-size: 14px;
+    color: #ffb2c8;
+    letter-spacing: 2px;
+    line-height: 2;
+    margin-bottom: 34px;
+    min-height: 1.9em;
+  }
+  .sys-text.sys-typing::after,
+  .sys-sub.sys-typing::after {
+    content: "▊";
+    display: inline-block;
+    margin-left: 3px;
+    color: #ffb2c8;
+    animation: blink 0.7s steps(1) infinite;
+    font-size: .85em;
+    vertical-align: text-bottom;
+  }
+  .sys-hint {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: rgba(255, 180, 220, 0.6);
+    animation: blink 1.6s infinite;
+    min-height: 1.4em;
+  }
+
+  /* ===== 规则说明界面 ===== */
+  #dbdRules {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: #05070c;
+    z-index: 76;
+    cursor: pointer;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  #dbdRules.show { display: flex; }
+  #dbdRules::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(255, 180, 220, 0.05) 0px,
+      rgba(255, 180, 220, 0.05) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    pointer-events: none;
+  }
+  .rules-box {
+    position: relative;
+    z-index: 2;
+    max-width: 540px;
+    width: 100%;
+    padding: 36px 28px;
+    border: 1px solid rgba(255, 180, 220, 0.4);
+    background: rgba(10, 8, 16, 0.9);
+    box-shadow: 0 0 50px rgba(255, 150, 200, 0.18), inset 0 0 30px rgba(255, 150, 200, 0.06);
+    text-align: center;
+    font-family: "Consolas", "Courier New", monospace;
+    animation: sysIn 0.5s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .rules-title {
+    font-family: var(--calligraphy);
+    font-size: clamp(24px, 4.4vw, 32px);
+    color: #ffd6e3;
+    letter-spacing: 4px;
+    margin-bottom: 24px;
+    text-shadow: 0 0 24px rgba(255, 150, 200, 0.5);
+  }
+  .rules-content {
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  .rule-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px dashed rgba(255, 180, 220, 0.1);
+    font-size: 13.5px;
+    color: rgba(255, 220, 235, 0.9);
+    letter-spacing: 1px;
+  }
+  .rule-key {
+    display: inline-block;
+    min-width: 100px;
+    padding: 5px 10px;
+    background: rgba(255, 180, 220, 0.12);
+    border: 1px solid rgba(255, 180, 220, 0.3);
+    border-radius: 6px;
+    color: #ffd6e3;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .rule-goal {
+    font-size: 12.5px;
+    line-height: 2;
+    color: rgba(255, 220, 235, 0.78);
+    margin-top: 14px;
+    padding: 14px 16px;
+    background: rgba(255, 180, 220, 0.06);
+    border-radius: 10px;
+    letter-spacing: 1px;
+  }
+  .rule-warn {
+    font-size: 12.5px;
+    line-height: 1.9;
+    color: rgba(255, 140, 160, 0.9);
+    margin-top: 12px;
+    padding: 10px 14px;
+    background: rgba(255, 80, 120, 0.08);
+    border: 1px solid rgba(255, 80, 120, 0.2);
+    border-radius: 10px;
+    letter-spacing: 1px;
+  }
+
+  /* ===== 小游戏 2：像素黎明杀机 ===== */
+  #repairGame {
+    position: fixed;
+    inset: 0;
+    display: none;
+    background: #05060a;
+    z-index: 72;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow: hidden;
+  }
+  #repairGame.show { display: flex; }
+
+  .dbd-top {
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(600px, 90%);
+    z-index: 3;
+    text-align: center;
+    pointer-events: none;
+  }
+  .dbd-status {
+    font-family: "Consolas", monospace;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #ffb2c8;
+    margin-bottom: 8px;
+    text-shadow: 0 0 10px rgba(255, 150, 200, 0.5);
+  }
+  .repair-progress-wrap {
+    height: 8px;
+    background: rgba(255, 180, 220, 0.1);
+    border: 1px solid rgba(255, 180, 220, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .repair-progress {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #ffb2c8, #ff6b9d);
+    box-shadow: 0 0 12px rgba(255, 107, 157, 0.7);
+    transition: width 0.1s linear;
+  }
+  .repair-percent {
+    margin-top: 6px;
+    font-family: "Consolas", monospace;
+    font-size: 11px;
+    color: #ffd6e3;
+    letter-spacing: 2px;
+  }
+
+  .dbd-canvas-wrap {
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 130px;
+  }
+  #repairCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    background: #241a12;
+    border: 2px solid #3a2a1e;
+    border-radius: 6px;
+    touch-action: none;
+  }
+
+  .dbd-controls {
+    position: absolute;
+    left: 0; right: 0; bottom: 16px;
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    z-index: 3;
+    pointer-events: none;
+    gap: 10px;
+  }
+  .dbd-controls > * { pointer-events: auto; }
+
+  .dbd-pad-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .dbd-pad-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: rgba(255, 180, 220, 0.55);
+    font-family: "Consolas", monospace;
+  }
+  .dbd-pad-label.boy { color: rgba(140, 200, 255, 0.7); }
+  .dbd-pad-label.girl { color: rgba(255, 160, 200, 0.7); }
+
+  .dbd-dpad {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+  .dbd-dpad-mid {
+    display: flex;
+    gap: 3px;
+  }
+
+  .ctrl-btn.dbd-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 180, 220, 0.4);
+    background: rgba(40, 20, 35, 0.75);
+    color: #ffd6e3;
+    font-size: 14px;
+    font-family: inherit;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: background 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+  }
+  .ctrl-btn.dbd-btn:active { background: rgba(255, 107, 157, 0.4); }
+
+  .ctrl-btn.dbd-btn.boy-btn {
+    border-color: rgba(140, 200, 255, 0.45);
+    color: #b8dfff;
+  }
+  .ctrl-btn.dbd-btn.boy-btn:active { background: rgba(100, 170, 255, 0.4); }
+
+  .ctrl-btn.dbd-interact {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 180, 220, 0.55);
+    background: rgba(255, 180, 220, 0.16);
+    color: #ffd6e3;
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-family: inherit;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+    transition: background 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .ctrl-btn.dbd-interact:active { background: rgba(255, 107, 157, 0.5); }
+
+  /* ===== GTA 赛车小游戏 ===== */
+  #gtaGame {
+    position: fixed;
+    inset: 0;
+    display: none;
+    background: #0a0a12;
+    z-index: 73;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  #gtaGame.show { display: flex; }
+
+  .gta-top {
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    text-align: center;
+    pointer-events: none;
+  }
+  .gta-status {
+    font-family: "Consolas", monospace;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: #ffb2c8;
+    text-shadow: 0 0 10px rgba(255, 150, 200, 0.5);
+  }
+
+  .gta-canvas-wrap {
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 4 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 100px;
+  }
+  #gtaCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    border: 2px solid #3a2a1e;
+    border-radius: 6px;
+    touch-action: none;
+  }
+
+  .gta-controls {
+    position: absolute;
+    left: 0; right: 0; bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .gta-controls > * { pointer-events: auto; }
+  .gta-btn {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,180,220,.5);
+    background: rgba(40,20,35,.75);
+    color: #ffd6e3;
+    font-size: 24px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.1s;
+  }
+  .gta-btn:active { background: rgba(255,107,157,.4); }
+
+  /* ===== 拣爱式小游戏：今天吃什么 ===== */
+  #pickFood {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 50% 30%, #2a2f38 0%, #101318 75%);
+    z-index: 55;
+    padding: 20px;
+  }
+  #pickFood.show { display: flex; }
+
+  #pickFood .pf-scene {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(20,24,32,.45), rgba(40,26,34,.70));
+    pointer-events: none;
+  }
+
+  .pf-wrap {
+    position: relative;
+    z-index: 2;
+    width: min(480px, 100%);
+    height: min(680px, 88vh);
+    display: flex;
+    flex-direction: column;
+    background: #1a1e26;
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,.65);
+    animation: pfIn .4s ease;
+  }
+  @keyframes pfIn { from { opacity: 0; transform: translateY(16px) scale(.98); } to { opacity: 1; transform: none; } }
+
+  .pf-head {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgba(0,0,0,.28);
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,.60);
+    flex-shrink: 0;
+  }
+  .pf-head-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #6bff9d;
+    box-shadow: 0 0 8px #6bff9d;
+  }
+
+  .pf-chat {
+    flex: 1;
+    overflow-y: auto;
+    padding: 18px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: linear-gradient(180deg, #14171d, #0f1216);
+    scroll-behavior: smooth;
+  }
+  .pf-chat::-webkit-scrollbar { width: 4px; }
+  .pf-chat::-webkit-scrollbar-thumb { background: rgba(255,255,255,.12); border-radius: 2px; }
+
+  .pf-msg {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    max-width: 88%;
+    animation: pfMsgIn .35s cubic-bezier(.2,.9,.3,1.2);
+  }
+  .pf-msg.right { align-self: flex-end; flex-direction: row-reverse; }
+  .pf-msg.left { align-self: flex-start; }
+  @keyframes pfMsgIn {
+    from { opacity: 0; transform: translateY(10px) scale(.96); }
+    to { opacity: 1; transform: none; }
+  }
+
+  .pf-ava {
+    width: 34px; height: 34px;
+    border-radius: 9px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--calligraphy);
+    font-size: 19px;
+    font-weight: 600;
+  }
+  .pf-ava.boy {
+    background: linear-gradient(145deg, #cfe4f5, #7fa8c9);
+    color: #1c3348;
+    box-shadow: 0 4px 12px rgba(120,170,210,.30);
+  }
+  .pf-ava.girl {
+    background: linear-gradient(145deg, #ffd6e3, #e8a0c0);
+    color: #5a2a3e;
+    box-shadow: 0 4px 12px rgba(230,150,180,.30);
+  }
+
+  .pf-bubble {
+    padding: 10px 14px;
+    font-size: 14.5px;
+    line-height: 1.65;
+    border-radius: 14px;
+    max-width: 250px;
+    word-break: break-word;
+    letter-spacing: 1px;
+  }
+  .pf-msg.right .pf-bubble {
+    background: linear-gradient(145deg, #3a5a7a, #2c4560);
+    color: #e6f2ff;
+    border-bottom-right-radius: 4px;
+    border: 1px solid rgba(140, 200, 255, .22);
+  }
+  .pf-msg.left .pf-bubble {
+    background: linear-gradient(145deg, #4a3a44, #3a2c34);
+    color: #ffe6ee;
+    border-bottom-left-radius: 4px;
+    border: 1px solid rgba(255, 160, 200, .20);
+  }
+
+  .pf-bubble.shake { animation: pfShake .45s ease; }
+  @keyframes pfShake {
+    0%,100% { transform: translateX(0); }
+    20% { transform: translateX(-5px); }
+    40% { transform: translateX(5px); }
+    60% { transform: translateX(-3px); }
+    80% { transform: translateX(2px); }
+  }
+
+  .pf-ball-zone {
+    position: relative;
+    flex-shrink: 0;
+    height: 168px;
+    overflow: hidden;
+    border-top: 1px solid rgba(255,255,255,.07);
+    background:
+      radial-gradient(circle at 50% 130%, rgba(255,170,205,.13), rgba(0,0,0,0) 65%),
+      rgba(0,0,0,.38);
+    touch-action: manipulation;
+  }
+
+  .pf-zone-hint {
+    position: absolute;
+    left: 0; right: 0; top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: rgba(255,255,255,.09);
+    pointer-events: none;
+    user-select: none;
+    font-family: "Consolas", "Courier New", monospace;
+  }
+
+  .pf-ball-wrap {
+    position: absolute;
+    left: 0; top: 0;
+    width: 56px;
+    height: 56px;
+    will-change: transform;
+  }
+
+  .pf-ball {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12.5px;
+    letter-spacing: 1px;
+    color: #ffe9f1;
+    text-shadow: 0 1px 4px rgba(0,0,0,.5);
+    background:
+      radial-gradient(circle at 34% 28%, rgba(255,255,255,.55), rgba(255,255,255,.06) 42%, rgba(255,255,255,0) 62%),
+      radial-gradient(circle at 50% 50%, rgba(255,178,208,.34), rgba(255,140,190,.12) 70%, rgba(255,120,180,.04));
+    border: 1px solid rgba(255,196,222,.45);
+    box-shadow:
+      0 6px 18px rgba(255,110,175,.22),
+      inset 0 1px 0 rgba(255,255,255,.45),
+      inset 0 -6px 14px rgba(255,110,175,.14);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: border-color .18s, box-shadow .18s;
+  }
+
+  .pf-ball:hover {
+    border-color: rgba(255,224,238,.85);
+    box-shadow:
+      0 8px 24px rgba(255,110,175,.35),
+      inset 0 1px 0 rgba(255,255,255,.6),
+      inset 0 -6px 14px rgba(255,110,175,.2);
+  }
+
+  .pf-ball.pop {
+    animation: pfPop .4s cubic-bezier(.3,.8,.4,1) forwards;
+  }
+
+  @keyframes pfPop {
+    0%   { transform: scale(1);    opacity: 1; }
+    45%  { transform: scale(1.25); opacity: .9; }
+    100% { transform: scale(.35);  opacity: 0; }
+  }
+
+  @media (max-width: 600px) {
+    .dbd-controls { padding: 0 8px; bottom: 10px; }
+    .ctrl-btn.dbd-btn { width: 36px; height: 36px; font-size: 12px; }
+    .ctrl-btn.dbd-interact { width: 58px; height: 58px; font-size: 12px; }
+    .dbd-canvas-wrap { margin-bottom: 110px; margin-top: 30px; }
+    .dbd-pad-label { font-size: 8px; }
+    .pf-wrap { height: min(640px, 90vh); }
+    .pf-ava { width: 30px; height: 30px; font-size: 17px; }
+    .pf-bubble { font-size: 13.5px; max-width: 210px; }
+    .pf-ball-zone { height: 150px; }
+    .gta-canvas-wrap { margin-bottom: 80px; }
+    .gta-btn { width: 60px; height: 60px; font-size: 20px; }
+  }
 </style>
+<base target="_blank">
 </head>
 <body>
 
@@ -478,118 +1613,522 @@
   </div>
 
   <div id="final">
-    <canvas id="meteorCanvas"></canvas>
+    <canvas id="effectCanvas"></canvas>
     <div class="inner">
       <img id="endingImg" src="" alt="">
       <h2 id="endingTitle"></h2>
-      <div id="endingText"></div>
       <div id="endingNote"></div>
-      <button id="restartBtn" onclick="location.reload()">再玩一次</button>
+      <div class="ending-btns">
+        <button id="affectionBtn" onclick="openAffection()">查看此时的好感度</button>
+        <button id="restartBtn" onclick="location.reload()">再玩一次</button>
+      </div>
+    </div>
+
+    <div id="affectionPanel">
+      <div class="aff-inner">
+        <div class="aff-label">// EASLYN.EXE · 正在读取存档 //</div>
+        <div class="aff-loading" id="affLoading">正在计算好感度<span>.</span><span>.</span><span>.</span></div>
+        <ul class="aff-list" id="affList"></ul>
+        <div class="aff-total" id="affTotal"></div>
+        <div class="aff-note" id="affNote"></div>
+        <button class="aff-close" onclick="closeAffection()">关 闭</button>
+      </div>
     </div>
   </div>
 </div>
 
-<script>
-/* =====================================================
-   图片配置：只改这里
-   格式：https://i.postimg.cc/xxxxxxx/xxx.png
-===================================================== */
-const IMG = {
-  cover:  "https://i.postimg.cc/02xwBjfX/8e0dc3e1d797614328c8ac104efed4c9.png",
-  ch1:    "https://i.postimg.cc/SKW7wgKT/0ebfd1f74d43896fdb716af69ce7ae3a.png",
-  ch2:    "https://i.postimg.cc/rpQz04ZT/f9ef969c8db60596fa9ccdbaa6791212.png",
-  ch3:    "https://i.postimg.cc/3W5w5FN2/39e53821ee14e9767160c5794d2cf264.png",
-  ch4:    "https://i.postimg.cc/Zq7pkXSr/2d7d56eae5da7032354c427e4e113a73.png",
-  ch5:    "https://i.postimg.cc/13yq8yRG/ac22425f86c83c84ee9f7cd5235f9314.png",
-  ch6:    "https://i.postimg.cc/YSsGDg66/386162a3c1446f30e97e67cf480acc50.png",
-  ch7:    "https://i.postimg.cc/J0bsh2fR/d438d62c0e5c702f92e79c8d5f9d7669.png",
-  photo1: "https://i.postimg.cc/43k2DJHS/pai-zhao.jpg",
-  selfie: "https://i.postimg.cc/xT60PQy3/531752fa6ae0306742f95d33cf277f41.png",
-  ending: "https://i.postimg.cc/结局图",
-  avatarBoy:  "https://i.postimg.cc/g0L44rz5/IMG-8940.png",
-  avatarGirl: "https://i.postimg.cc/fTMXky18/IMG-8945.png"
-};
-/* ===================================================== */
+<!-- ===== 快穿式系统提示 ===== -->
+<div id="sysToast" onclick="skipSysToast(event)">
+  <div class="sys-toast-box">
+    <div class="sys-toast-tag">// SYSTEM //</div>
+    <div class="sys-toast-text" id="sysToastText"></div>
+  </div>
+</div>
 
+<!-- ===== 好感度结算动效 ===== -->
+<div id="affGain" onclick="skipAffGain(event)">
+  <div class="aff-gain-inner">
+    <div class="aff-gain-label">// AFFECTION //</div>
+    <div class="aff-gain-num"><span id="affGainNum">0</span><small>%</small></div>
+    <div class="aff-gain-bar"><div class="aff-gain-fill" id="affGainFill"></div></div>
+    <div class="aff-gain-text" id="affGainText"></div>
+    <div class="aff-gain-hint">点击继续</div>
+  </div>
+</div>
+
+<!-- ===== 睁眼特效 ===== -->
+<div id="eyeOpen" aria-hidden="true">
+  <div class="eyelid top"></div>
+  <div class="eyelid bottom"></div>
+  <div class="eye-seam"></div>
+  <div class="eye-flash"></div>
+</div>
+
+<!-- ===== GTA 赛车小游戏 ===== -->
+<div id="gtaGame">
+  <div class="gta-top">
+    <div class="gta-status" id="gtaStatus">GTA · 赛车</div>
+  </div>
+  <div class="gta-canvas-wrap">
+    <canvas id="gtaCanvas"></canvas>
+  </div>
+  <div class="gta-controls">
+    <button class="gta-btn" id="gtaLeft">◀</button>
+    <button class="gta-btn" id="gtaRight">▶</button>
+  </div>
+  <div class="game-victory" id="gtaVictory">
+    <div class="victory-text">过关</div>
+    <div class="victory-sub">还挺快的。</div>
+    <button class="victory-btn" onclick="continueAfterGTA()">继续</button>
+  </div>
+</div>
+
+<!-- ===== 拣爱式小游戏：今天吃什么 ===== -->
+<div id="pickFood">
+  <div class="pf-scene"></div>
+  <div class="pf-wrap">
+    <div class="pf-head">
+      <span class="pf-head-dot"></span>
+      <span id="pfHeadName">？</span>
+    </div>
+    <div class="pf-chat" id="pfChat"></div>
+    <div class="pf-ball-zone" id="pfBallZone">
+      <div class="pf-zone-hint">戳一个球 · 今晚吃什么</div>
+    </div>
+  </div>
+</div>
+
+<div id="systemPrompt">
+  <div class="sys-box">
+    <div class="sys-tag">// SYSTEM.EXE //</div>
+    <div class="sys-title" id="sysTitle"></div>
+    <div class="sys-text" id="sysText"></div>
+    <div class="sys-sub" id="sysSub"></div>
+    <div class="sys-hint" id="sysHint">点击开始</div>
+  </div>
+</div>
+
+<!-- 规则说明界面 -->
+<div id="dbdRules">
+  <div class="rules-box">
+    <div class="sys-tag">// SYSTEM.EXE · 第二关 //</div>
+    <div class="rules-title">黎明杀机 · 像素版</div>
+    <div class="rules-content">
+      <div class="rule-row">
+        <span class="rule-key">W A S D</span>
+        <span>Bonan 移动</span>
+      </div>
+      <div class="rule-row">
+        <span class="rule-key">↑ ↓ ← →</span>
+        <span>Easlyn 移动</span>
+      </div>
+      <div class="rule-row">
+        <span class="rule-key">空格 / Enter</span>
+        <span>互动 / QTE 判定</span>
+      </div>
+    </div>
+    <div class="rule-goal">
+      目标：<br>
+      1. 两人一起走到发电机旁<br>
+      2. Bonan 按住空格修机，Easlyn 在旁边会更快<br>
+      3. 修机时出现 QTE，指针进入判定区时按空格<br>
+      4. 修满 100%，去右侧大门<br>
+      5. 两人一起按住空格拉门<br>
+      6. 门开后，两人一起走到门口逃生
+    </div>
+    <div class="rule-warn">
+      ⚠ 苞米地能挡住杀手的视线。躲进去，别出声。
+    </div>
+    <div class="sys-hint" style="margin-top:24px;">点击开始</div>
+  </div>
+</div>
+
+<div id="miniGame">
+  <div class="game-hud">
+    <span class="heart-icon">♥</span>
+    <span id="coinCount">0</span> / <span id="coinTotal">8</span>
+  </div>
+  <div class="game-canvas-wrap">
+    <canvas id="gameCanvas"></canvas>
+  </div>
+  <div class="game-controls">
+    <div class="dpad">
+      <button class="ctrl-btn" id="btnLeft">◀</button>
+      <button class="ctrl-btn" id="btnRight">▶</button>
+    </div>
+    <button class="ctrl-btn jump-btn" id="btnJump">跳</button>
+  </div>
+  <div class="game-victory" id="gameVictory">
+    <div class="victory-text">公主就在前面</div>
+    <div class="victory-sub">但故事还没完。</div>
+    <button class="victory-btn" onclick="continueAfterRescue()">继续</button>
+  </div>
+</div>
+
+<div id="repairGame">
+  <div class="dbd-top">
+    <div class="dbd-status" id="dbdPhase">修理发电机</div>
+    <div class="repair-progress-wrap">
+      <div class="repair-progress" id="repairProgress"></div>
+    </div>
+    <div class="repair-percent" id="repairPercent">0%</div>
+  </div>
+  <div class="dbd-canvas-wrap">
+    <canvas id="repairCanvas"></canvas>
+  </div>
+  <div class="dbd-controls">
+    <div class="dbd-pad-group">
+      <div class="dbd-pad-label boy">BONAN · WASD</div>
+      <div class="dbd-dpad">
+        <button class="ctrl-btn dbd-btn boy-btn" id="dbdW">W</button>
+        <div class="dbd-dpad-mid">
+          <button class="ctrl-btn dbd-btn boy-btn" id="dbdA">A</button>
+          <button class="ctrl-btn dbd-btn boy-btn" id="dbdS">S</button>
+          <button class="ctrl-btn dbd-btn boy-btn" id="dbdD">D</button>
+        </div>
+      </div>
+    </div>
+    <button class="ctrl-btn dbd-interact" id="dbdInteract">互动</button>
+    <div class="dbd-pad-group">
+      <div class="dbd-pad-label girl">EASLYN · 方向键</div>
+      <div class="dbd-dpad">
+        <button class="ctrl-btn dbd-btn" id="dbdUp">▲</button>
+        <div class="dbd-dpad-mid">
+          <button class="ctrl-btn dbd-btn" id="dbdLeft">◀</button>
+          <button class="ctrl-btn dbd-btn" id="dbdDown">▼</button>
+          <button class="ctrl-btn dbd-btn" id="dbdRight">▶</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="game-victory" id="repairVictory">
+    <div class="victory-text">逃生成功</div>
+    <div class="victory-sub">她就在前面。</div>
+    <button class="victory-btn" onclick="continueAfterRepair()">继续</button>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   图片配置
+   ============================================================ */
+const IMG = {
+  cover: "https://i.postimg.cc/02xwBjfX/8e0dc3e1d797614328c8ac104efed4c9.png",
+  prologue: "https://i.postimg.cc/zXKzqmK4/b3f854a11347c768b10e85859cb6cfea.jpg",
+  prologue2: "https://i.postimg.cc/vHfYGRf3/795ed3029fcd4d9d99dea127d93bd331.jpg",
+  ch1: "https://i.postimg.cc/mg4bDdyd/e61a45d2b61b7f9fd8f8d3fc924309a9.jpg",
+  ch2: "https://i.postimg.cc/267Qs9TZ/7d099b42abfd166398cee9fe139bcdc7.jpg",
+  ch3: "https://i.postimg.cc/HkmpxS9R/eb6fed7151269e38815f1ac2f1a3cd4f.jpg",
+  ch4: "https://i.postimg.cc/t4bXTrNc/e5049ef7e444f1ddbfa876175205567b.jpg",
+  ch5: "https://i.postimg.cc/3R84v8jz/aec65040d2c5e6ba36934537c161a4f0.jpg",
+  ch6: "https://i.postimg.cc/dVFq1WjH/cbbcc45dd5c3b5b693a7cc6cfc855a38.jpg",
+  ch7: "https://i.postimg.cc/CLkhwykJ/31090b1fd67a40eb1e7ab0b0b5fe0e2a.jpg",
+  ch8: "https://i.postimg.cc/MKV6zkVm/9998c9e0a289bd363f88228d282dec2a.jpg",
+  ch9: "https://i.postimg.cc/c4wxdqwM/4de26b94b10cb9b54bf673dde76179b3.jpg",
+  ch3Photo: "https://i.postimg.cc/TP9hf88S/8d5862650c734808f6a6f49f4407197a.jpg",
+  photo1: "https://i.postimg.cc/15qt4VhW/6b5d3c91ffacb3ba0474e5640c32ccb1.jpg",
+  selfie: "https://i.postimg.cc/xT60PQy3/531752fa6ae0306742f95d33cf277f41.png",
+  ending: "https://i.postimg.cc/T3xRwkJQ/a0b445ddf9d02e23b534aa1deb06f5a4.png",
+  avatarUnknown: "https://i.postimg.cc/W17sJM92/jian-ying.png",
+  avatarBoy: "https://i.postimg.cc/g0L44rz5/IMG-8940.png",
+  avatarGirl: "https://i.postimg.cc/fTMXky18/IMG-8945.png",
+  player: "https://i.postimg.cc/htnSjC0g/gong-zhu.png",
+  mario: "https://i.postimg.cc/htnSjC0g/gong-zhu.png",
+  enemy: "https://i.postimg.cc/c4PL72zt/ong.png",
+  coin: "https://i.postimg.cc/Dwh2ZCcZ/guo-bao-rou8.png",
+  goal: "https://i.postimg.cc/Dwc7bqCL/yi-zi-(1).png",
+  dbdPlayer: "https://i.postimg.cc/htnSjC0g/gong-zhu.png",
+  dbdEaslyn: "https://i.postimg.cc/Dwc7bqCL/yi-zi-(1).png",
+  dbdKiller: "https://i.postimg.cc/FKKbvbCJ/tu-fu.png",
+  dbdGenerator: "https://i.postimg.cc/52Jx0Pmj/ji-zi.png",
+  dbdGate: "https://i.postimg.cc/Sx4ysZfw/da-menan-6933523076.png",
+  gtaCar: "",
+  gtaCarEnemy: ""
+};
+
+let playerName = "？";
+
+/* =====================================================
+   章节数据
+===================================================== */
 const CHAPTERS = [
   {
-    title: "第一章 · 第一天上午 · 教堂到中央大街",
+    title: "序章 · 混沌",
+    img: IMG.prologue,
+    lines: [
+      { who: "os", text: "……我这是，在哪儿？" },
+      { who: "narr", text: "四周一片混沌。没有天，也没有地。" },
+      { who: "os", text: "头好疼……什么都想不起来。" },
+      { who: "os", text: "只记得一件事——" },
+      { who: "os", text: "要攻略，第一个见到的人。" },
+      { who: "os", text: "……攻略谁？为什么？" },
+      { who: "os", text: "想不起来了。" },
+      { who: "bg", img: "prologue2" },
+      { who: "narr", text: "混沌深处，孤零零立着一张桌子。" },
+      { who: "os", text: "桌子上……好像放着什么。" },
+      { who: "narr", text: "一张游戏碟。封面上印着一行字——" },
+      { who: "narr", text: "《好感度不是攻略，是回忆》" },
+      { who: "os", text: "这是……我做的那个游戏？" },
+      { who: "os", text: "不对。我做过游戏吗？" },
+      { who: "narr", text: "他伸出手，指尖刚碰到碟面——" },
+      { who: "flash", text: "咔嚓。" },
+      { who: "narr", text: "白光炸开。世界碎成无数片，从四面八方涌过来。" },
+      { who: "os", text: "等等——！" },
+      { who: "os", text: "要攻略……第一个见到的人……" },
+      { who: "systemPrompt", text: "welcome" }
+    ]
+  },
+  {
+    title: "第一章 · 醒来",
     img: IMG.ch1,
     lines: [
-      { who: "narr", text: "索菲亚教堂的鸽子比想象中多。Easlyn 站在广场上抬头看。" },
-      { who: "boy", text: "哟，冬天还真有鸽子。" },
-      { who: "boy", text: "我一直以为就夏天有。" },
-      { who: "girl", text: "给我拍照📷" },
-      { who: "boy", text: "行，但我技术一般啊。" },
-      { who: "girl", text: "拍就行了，又不要求你拍多好。" },
-      { who: "narr", text: "快门按了两下。两人往中央大街走。人挺多，Bonan 走得时快时慢，又停下来等她。" },
+      { who: "narr", text: "黑暗。" },
+      { who: "narr", text: "很沉，很重，像被什么压着。" },
+      { who: "narr", text: "然后是一阵电流般的嗡鸣——" },
+      { who: "narr", text: "再睁开眼，四周是像素的风。" },
+      { who: "unknown", text: "……这是哪儿？" },
+      { who: "narr", text: "他低头看自己。像素的胳膊，像素的手。" },
+      { who: "narr", text: "脑子里乱七八糟的，像有人把一整个房间的东西全打翻了。" },
+      { who: "unknown", text: "我记得……" },
+      { who: "unknown", text: "我结过婚。" },
+      { who: "unknown", text: "后来……她出轨了。" },
+      { who: "narr", text: "他说出这句话的时候，嗓子像被什么堵住了。" },
+      { who: "unknown", text: "然后离婚了。" },
+      { who: "unknown", text: "离婚十个月后，孩子出生了。" },
+      { who: "narr", text: "是谁的孩子，他不愿意想。" },
+      { who: "unknown", text: "……然后就抑郁了。" },
+      { who: "unknown", text: "每天醒过来，都觉得没意思。" },
+      { who: "unknown", text: "吃饭没意思。出门没意思。活着没意思。" },
+      { who: "narr", text: "他坐在像素的地上，不想动。" },
+      { who: "unknown", text: "就这样吧。" },
+      { who: "unknown", text: "反正也没人在乎。" },
+      { who: "narr", text: "然后他听见脚步声。" },
+      { who: "girl", text: "喂。" },
+      { who: "narr", text: "一个女孩站在他面前，手里端着两杯东西。" },
+      { who: "narr", text: "他抬头看她。" },
+      { who: "narr", text: "不认识。" },
+      { who: "narr", text: "但不知道为什么，心里有个很轻的声音在说——" },
+      { who: "unknown", text: "（第一个见到的人。）" },
+      { who: "unknown", text: "（要攻略她。）" },
+      { who: "narr", text: "他愣了一下。" },
+      { who: "unknown", text: "（……攻略？我为什么会有这个念头？）" },
+      { who: "girl", text: "西瓜汁，喝吗？" },
+      { who: "unknown", text: "……不用。" },
+      { who: "girl", text: "我觉得你说的西瓜汁有客气的成分。" },
+      { who: "girl", text: "所以我直接自作主张。" },
+      { who: "narr", text: "她把杯子塞到他手里。" },
+      { who: "unknown", text: "……为什么是西瓜汁？" },
+      { who: "girl", text: "是因为我爱吃西瓜。" },
+      { who: "narr", text: "她说得很理所当然，好像这世界就是该这么运转。" },
+      { who: "narr", text: "他喝了一口。凉丝丝的，有点甜。" },
+      { who: "unknown", text: "……你谁啊。" },
+      { who: "girl", text: "Easlyn。你呢？" },
+      { who: "unknown", text: "……我不记得了。" },
+      { who: "narr", text: "他说完，自己先愣了一下。" },
+      { who: "narr", text: "他以为她会追问'那你记得什么'，或者'你怎么会不记得'。" },
+      { who: "narr", text: "但她没有。" },
+      { who: "girl", text: "不记得就不记得吧。" },
+      { who: "girl", text: "反正我记得你就行。" },
+      { who: "narr", text: "她说得很自然。" },
+      { who: "narr", text: "像在说一件早就知道的事。" },
+      { who: "unknown", text: "……你认识我？" },
+      { who: "girl", text: "你猜。" },
+      { who: "narr", text: "她笑了一下。" },
+      { who: "narr", text: "没往下说。" },
+      { who: "unknown", text: "（这个人……）" },
+      { who: "unknown", text: "（怎么好像早就认识我。）" },
+      { who: "narr", text: "他低头看着手里的西瓜汁。" },
+      { who: "narr", text: "刚才那种“算了吧”的感觉，好像被什么很轻很轻的东西，托了一下。" },
+      { who: "girl", text: "走吧。" },
+      { who: "unknown", text: "去哪儿？" },
+      { who: "girl", text: "不知道。" },
+      { who: "girl", text: "但总不能一直坐在这儿吧。" },
+      { who: "narr", text: "他犹豫了一下。" },
+      { who: "narr", text: "然后站起来。" },
+      { who: "unknown", text: "……行。" },
+      { who: "girl", text: "对了。" },
+      { who: "girl", text: "你还没告诉我你叫什么。" },
+      { who: "unknown", text: "……我真不记得。" },
+      { who: "narr", text: "空气安静了一秒。" },
+      { who: "narr", text: "视野角落，忽然浮起一行小字。" },
+      { who: "narr", text: "【系统提示：玩家代号已生成——“？”】" },
+      { who: "unknown", text: "（……代号？）" },
+      { who: "unknown", text: "（算了。反正也想不起来。）" },
+      { who: "girl", text: "想不起来，就先不想。" },
+      { who: "girl", text: "走吧。" },
+      { who: "narr", text: "她笑了一下。" },
+      { who: "narr", text: "听到那个笑声的时候，胸口某个地方，轻轻动了一下。" },
+      { who: "unknown", text: "（奇怪。）" },
+      { who: "unknown", text: "（好像，在哪儿听过。）" },
+      { who: "affGain", text: "15", text2: "今天，好像有点不一样。" }
+    ]
+  },
+  {
+    title: "第二章 · 游戏",
+    img: IMG.ch2,
+    lines: [
+      { who: "narr", text: "第二天。或者第二天。" },
+      { who: "narr", text: "这世界没有白天黑夜，只有加载中。" },
+      { who: "girl", text: "来，教你玩个东西。" },
+      { who: "unknown", text: "什么？" },
+      { who: "girl", text: "GTA。" },
+      { who: "unknown", text: "……那是什么？" },
+      { who: "girl", text: "你连GTA都不记得了？" },
+      { who: "unknown", text: "我连自己都不记得。" },
+      { who: "girl", text: "也是。" },
+      { who: "girl", text: "没事，我带你。" },
+      { who: "narr", text: "屏幕上出现一辆车。" },
+      { who: "narr", text: "城市的像素在两边后退。" },
+      { who: "girl", text: "左右键，别撞车。" },
+      { who: "girl", text: "撞了也没事，再来。" },
+      { who: "unknown", text: "……就这么简单？" },
+      { who: "girl", text: "简单吗？" },
+      { who: "game", text: "gta" },
+      { who: "narr", text: "过关的瞬间，整个屏幕闪了一下。" },
+      { who: "narr", text: "一行小字浮了出来——" },
+      { who: "sys", text: "你的好感度 +15%" },
+      { who: "unknown", text: "（……什么？）" },
+      { who: "unknown", text: "（我的好感度？）" },
+      { who: "unknown", text: "（这不是我攻略她的游戏吗？）" },
+      { who: "unknown", text: "（怎么涨的是我的好感度？）" },
+      { who: "narr", text: "他盯着那行字，看了好几秒。" },
+      { who: "narr", text: "她好像一点也不意外，也没问。" },
+      { who: "unknown", text: "（……算了，先不问了。）" },
+      { who: "narr", text: "他又偷偷看了一眼 Easlyn。" },
+      { who: "narr", text: "她正盯着屏幕，侧脸被像素的光映得有点好看。" },
+      { who: "girl", text: "还玩吗？" },
+      { who: "unknown", text: "……玩。" },
+      { who: "narr", text: "他没想明白。" },
+      { who: "narr", text: "但那一刻，他不想停下来。" },
+      { who: "narr", text: "又玩了几局。" },
+      { who: "narr", text: "每一次过关，那行字都会跳出来。" },
+      { who: "sys", text: "你的好感度 +15%" },
+      { who: "unknown", text: "（不对劲。）" },
+      { who: "unknown", text: "（这到底是什么游戏。）" },
+      { who: "girl", text: "你盯着什么呢？" },
+      { who: "unknown", text: "没……没什么。" },
+      { who: "girl", text: "你脸红了。" },
+      { who: "unknown", text: "没有。" },
+      { who: "girl", text: "有。" },
+      { who: "narr", text: "他别过头去。" },
+      { who: "narr", text: "但嘴角好像，有点压不住。" },
+      { who: "affGain", text: "30", text2: "她笑的时候，心跳漏了一拍。" }
+    ]
+  },
+  {
+    title: "第三章 · 她来了",
+    img: IMG.ch3,
+    afterChoiceGame: "pickFood",
+    lines: [
+      { who: "girl", text: "我想到一个地方。" },
+      { who: "unknown", text: "哪儿？" },
+      { who: "girl", text: "你的城市。" },
+      { who: "unknown", text: "……我不记得我的城市。" },
+      { who: "girl", text: "你刚才说梦话了。" },
+      { who: "unknown", text: "我说什么了？" },
+      { who: "girl", text: "你说“中央大街”。" },
+      { who: "unknown", text: "……那是哪儿？" },
+      { who: "girl", text: "不知道。" },
+      { who: "girl", text: "但听起来，像是个很热闹的地方。" },
+      { who: "girl", text: "走吧，去看看。" },
+      { who: "narr", text: "他愣了几秒。" },
+      { who: "narr", text: "然后站起来。" },
+      { who: "unknown", text: "……行。" },
+      { who: "narr", text: "索菲亚教堂的鸽子比想象中多。" },
+      { who: "narr", text: "Easlyn 站在广场上抬头看。" },
+      { who: "girl", text: "哟，冬天还真有鸽子。" },
+      { who: "unknown", text: "……我好像，来过这儿。" },
+      { who: "girl", text: "来过？" },
+      { who: "unknown", text: "不记得了。" },
+      { who: "unknown", text: "但就是……很熟悉。" },
+      { who: "narr", text: "快门按了两下。两人往中央大街走。" },
+      { who: "narr", text: "人挺多。他走得时快时慢，又停下来等她。" },
       { who: "girl", text: "你腿长了不起啊，走那么快。" },
-      { who: "boy", text: "我走得快吗？" },
-      { who: "boy", text: "没注意。" },
-      { who: "boy", text: "主要你太小只了。" },
+      { who: "unknown", text: "我走得快吗？" },
+      { who: "unknown", text: "没注意。" },
+      { who: "unknown", text: "主要你太小只了。" },
       { who: "narr", text: "石板路很长。Easlyn 看着两边不算拥挤的人群。" },
-      { who: "boy", text: "这儿其实没啥好玩的。" },
-      { who: "boy", text: "主要晚上有氛围感。" },
-      { who: "boy", text: "晚上有空可以再来。" },
+      { who: "unknown", text: "这儿其实没啥好玩的。" },
+      { who: "unknown", text: "主要晚上有氛围感。" },
+      { who: "unknown", text: "晚上有空可以再来。" },
       { who: "girl", text: "原来如此。" },
-      { who: "narr", text: "走到中央大街尽头，快到中午了。Bonan 看了眼时间。" },
-      { who: "boy", text: "饿了吧。" },
-      { who: "boy", text: "带你去吃个东北菜。" }
+      { who: "narr", text: "他走着走着，忽然停下脚步。" },
+      { who: "unknown", text: "等等。" },
+      { who: "girl", text: "怎么了？" },
+      { who: "narr", text: "他站在石板路中央，环顾四周。" },
+      { who: "narr", text: "教堂。大街。鸽子。风。" },
+      { who: "narr", text: "这些画面，好像在哪儿见过。" },
+      { who: "unknown", text: "（不是游戏里那种见过。）" },
+      { who: "unknown", text: "（是……现实里。）" },
+      { who: "unknown", text: "（我穿进游戏之前……）" },
+      { who: "unknown", text: "（好像就是哈尔滨人。）" },
+      { who: "narr", text: "他转头看向 Easlyn。" },
+      { who: "narr", text: "她站在不远处，等他。" },
+      { who: "unknown", text: "（她到底是一串代码……）" },
+      { who: "unknown", text: "（还是真人？）" },
+      { who: "unknown", text: "（如果她是真人……我是不是在哪儿见过她？）" },
+      { who: "girl", text: "喂，走不走？" },
+      { who: "unknown", text: "……走。" },
+      { who: "narr", text: "他把那个念头压了下去。" },
+      { who: "narr", text: "走到中央大街尽头，快到中午了。" },
+      { who: "unknown", text: "饿了吧。" },
+      { who: "unknown", text: "带你去吃饭。" },
+      { who: "affGain", text: "45", text2: "这些地方，好像梦到过。" }
     ],
     choice: {
       q: "Easlyn？",
       options: [
         { label: "“行，你带路”", tone: "fun",
           reply: [
-            { who: "boy", text: "走，六泰居。" },
-            { who: "girl", text: "听名字还挺高大上的。" },
-            { who: "narr", text: "两人拐进街边，往饭馆走。" }
+            { who: "unknown", text: "走，我知道几家。" },
+            { who: "girl", text: "那你推荐。" },
+            { who: "narr", text: "两人站在街边，开始盘算吃什么。" }
           ]},
         { label: "“是有点饿了，走”", tone: "straight",
           reply: [
-            { who: "boy", text: "那快点，中午人多。" },
+            { who: "unknown", text: "那快点，中午人多。" },
             { who: "girl", text: "okokokokk。" },
-            { who: "narr", text: "Bonan 笑了一下，放慢了脚步。" }
+            { who: "narr", text: "他笑了一下，放慢了脚步。" }
           ]},
-        { label: "“东北菜分量大，我们点两三个菜就行了吧”", tone: "soft",
+        { label: "“你定吧，我都可以”", tone: "soft",
           reply: [
-            { who: "boy", text: "想吃什么就点什么，总得先尝尝都。" },
-            { who: "girl", text: "行，那我到时候看看。" },
-            { who: "narr", text: "两人往饭馆走，路上还在讨论点什么。" }
+            { who: "unknown", text: "那我就随便挑了。" },
+            { who: "girl", text: "行，别太难吃就行。" },
+            { who: "narr", text: "他点点头，低头想了想。" }
           ]}
       ]
     }
   },
   {
-    title: "第二章 · 第一天中午 · 六泰居",
-    img: IMG.ch2,
+    title: "第四章 · 六泰居",
+    img: IMG.ch4,
     lines: [
       { who: "narr", text: "已经悄然到达啊两个人。" },
-      { who: "boy", text: "你先看看想吃什么吧。" },
+      { who: "unknown", text: "你先看看想吃什么吧。" },
       { who: "girl", text: "来，我来看看。" },
-      { who: "narr", text: "Bonan 点点头，递过去菜单，然后推荐了几个菜。" },
+      { who: "narr", text: "他点点头，递过去菜单，然后推荐了几个菜。" },
       { who: "girl", text: "我要炒一本。" },
-      { who: "boy", text: "ok啊直接破产。" },
-      { who: "boy", text: "孩子们，看我的吧。" }
+      { who: "unknown", text: "ok啊直接破产。" },
+      { who: "unknown", text: "孩子们，看我的吧。" }
     ],
     choice: {
       q: "Easlyn 把菜单往他那边推了推——",
       options: [
         { label: "“那你点，我尝尝你的眼光”", tone: "fun",
           reply: [
-            { who: "boy", text: "行，我来看看。" },
+            { who: "unknown", text: "行，我来看看。" },
             { who: "girl", text: "ok。" },
             { who: "narr", text: "来个锅包肉吧，品鉴一下东北正宗锅包肉。" },
-            { who: "boy", text: "没吃过正宗的吧。" },
+            { who: "unknown", text: "没吃过正宗的吧。" },
             { who: "narr", text: "Easlyn 点头。" },
             { who: "girl", text: "可以啊，来东北就得吃锅包肉。" }
           ]},
         { label: "“剩下的你看着来吧，我不知道还有什么东北菜”", tone: "straight",
           reply: [
-            { who: "boy", text: "点。" },
+            { who: "unknown", text: "点。" },
             { who: "narr", text: "锅包肉上来，Easlyn 赶紧品尝。" },
             { who: "girl", text: "emmm yummy~。" },
-            { who: "boy", text: "怎么样。" }
+            { who: "unknown", text: "怎么样。" }
           ]},
         { label: "“御座~”", tone: "soft",
           reply: [
@@ -600,154 +2139,155 @@ const CHAPTERS = [
     }
   },
   {
-    title: "第三章 · 第一天下午 · 江边、大桥和烤肉",
-    img: IMG.ch3,
+    title: "第五章 · 江边、大桥和烤肉",
+    img: IMG.ch5,
     lines: [
       { who: "narr", text: "吃完饭，两人往江边走。防洪纪念塔就在中央大街尽头。" },
-      { who: "narr", text: "这里的风比想象中凉。Easlyn 缩了缩肩膀。Bonan 看了一眼，往风口那边站了半步。" }
+      { who: "narr", text: "这里的风比想象中凉。Easlyn 缩了缩肩膀。他看了一眼，往风口那边站了半步。" }
     ],
     choice: {
       q: "Easlyn 看着他挡在风口的背影——",
       options: [
         { label: "“你这挡风挡得挺专业啊”", tone: "fun",
           reply: [
-            { who: "boy", text: "要不要回去穿厚衣服。" },
+            { who: "unknown", text: "要不要回去穿厚衣服。" },
             { who: "girl", text: "那倒不用，还能抗。" },
             { who: "narr", text: "不得不说哈尔滨的冬天，真冷。" },
-            { who: "boy", text: "老东西。" },
+            { who: "unknown", text: "老东西。" },
             { who: "girl", text: "老东西。" }
           ]},
         { label: "“你站过来点，风口那边冷”", tone: "straight",
           reply: [
-            { who: "narr", text: "Bonan 愣了一下，往她那边挪了一步。" },
-            { who: "boy", text: "这样？" },
+            { who: "narr", text: "他愣了一下，往她那边挪了一步。" },
+            { who: "unknown", text: "这样？" },
             { who: "girl", text: "嗯，好多了。" },
-            { who: "boy", text: "那你怎么不早说。" },
+            { who: "unknown", text: "那你怎么不早说。" },
             { who: "girl", text: "现在说也不晚。" }
           ]},
         { label: "“你穿这么少还替我挡风，够意思”", tone: "soft",
           reply: [
-            { who: "boy", text: "没事，我不冷。" },
+            { who: "unknown", text: "没事，我不冷。" },
             { who: "girl", text: "嗯呢，你穿的像狗熊。" },
-            { who: "boy", text: "噗嗤笑了一下，什么狗熊？" },
+            { who: "unknown", text: "噗嗤笑了一下，什么狗熊？" },
             { who: "girl", text: "穿得厚的像狗熊。" }
           ]}
       ]
     },
     next: [
       { who: "narr", text: "下午去了中东铁路大桥。桥很长，江面很宽，好像结冰了。" },
-      { who: "boy", text: "这儿拍照好看。" },
+      { who: "unknown", text: "这儿拍照好看。" },
       { who: "girl", text: "拍好看点啊，我要拍黑吉辽蒙在东北。" },
-      { who: "boy", text: "内心os：老东西在立单身人设？" },
-      { who: "boy", text: "行，你站那儿别动。" },
-      { who: "narr", text: "Bonan 举起手机，退后两步，蹲下来找角度。" },
-      { who: "boy", text: "往左一点。" },
-      { who: "boy", text: "再往左一点。" },
+      { who: "unknown", text: "内心os：老东西在立单身人设？" },
+      { who: "unknown", text: "行，你站那儿别动。" },
+      { who: "narr", text: "他举起手机，退后两步，蹲下来找角度。" },
+      { who: "unknown", text: "往左一点。" },
+      { who: "unknown", text: "再往左一点。" },
       { who: "girl", text: "到底哪边啊。" },
-      { who: "boy", text: "就这儿，别动。" },
+      { who: "unknown", text: "就这儿，别动。" },
       { who: "narr", text: "他抬手，快门按下去。" },
       { who: "photo", text: IMG.photo1 },
       { who: "narr", text: "晚上，西城红场，西塔老太太，炭火很旺。" },
-      { who: "narr", text: "Bonan 一直在烤，非常绅士。" },
+      { who: "narr", text: "他一直在烤，非常绅士。" },
       { who: "girl", text: "不错儿。" },
-      { who: "boy", text: "不错儿。" },
-      { who: "narr", text: "他还在忙碌......" }
+      { who: "unknown", text: "不错儿。" },
+      { who: "narr", text: "他还在忙碌......" },
+      { who: "affGain", text: "60", text2: "风很冷，但她站在旁边，就不冷了。" }
     ]
   },
   {
-    title: "第四章 · 第二天上午 · 巴洛克",
-    img: IMG.ch4,
+    title: "第六章 · 巴洛克",
+    img: IMG.ch6,
     lines: [
       { who: "narr", text: "第二天上午，巴洛克。老建筑一排排。" },
-      { who: "narr", text: "Easlyn 走得很慢，Bonan 也走得很慢。" },
+      { who: "narr", text: "Easlyn 走得很慢，他也走得很慢。" },
       { who: "girl", text: "这楼看着挺老的，有啥讲究吗？" },
-      { who: "boy", text: "不知道。" },
-      { who: "boy", text: "我也不太懂这个。" },
+      { who: "unknown", text: "不知道。" },
+      { who: "unknown", text: "我也不太懂这个。" },
       { who: "girl", text: "你不是本地人吗？" },
-      { who: "boy", text: "本地啥啊。" },
-      { who: "boy", text: "我也是外地来的。" },
-      { who: "boy", text: "就在这儿买了个房而已。" },
+      { who: "unknown", text: "本地啥啊。" },
+      { who: "unknown", text: "我也是外地来的。" },
+      { who: "unknown", text: "就在这儿买了个房而已。" },
       { who: "narr", text: "Easlyn 笑出声。" },
       { who: "girl", text: "合着你也算游客。" },
-      { who: "boy", text: "半拉游客。" },
-      { who: "boy", text: "定居是定居了，人文是一点不了解。" }
+      { who: "unknown", text: "半拉游客。" },
+      { who: "unknown", text: "定居是定居了，人文是一点不了解。" }
     ],
     choice: {
       q: "Easlyn 看着两边的老建筑——",
       options: [
         { label: "“那咱俩都是外地人，瞎逛吧”", tone: "fun",
           reply: [
-            { who: "boy", text: "瞎逛就瞎逛。" },
-            { who: "boy", text: "反正也没什么事儿。" },
+            { who: "unknown", text: "瞎逛就瞎逛。" },
+            { who: "unknown", text: "反正也没什么事儿。" },
             { who: "girl", text: "ok，lets 瞎逛。" }
           ]},
         { label: "“你站过去，我给你拍一张”", tone: "straight",
           reply: [
-            { who: "narr", text: "Bonan 靠在一面老墙前，有点不自然。" },
+            { who: "narr", text: "他靠在一面老墙前，有点不自然。" },
             { who: "girl", text: "别绷着，笑一个。" },
             { who: "narr", text: "他笑了一下，快门按下去。" },
-            { who: "boy", text: "我不好意思让别人给我拍照。" },
+            { who: "unknown", text: "我不好意思让别人给我拍照。" },
             { who: "girl", text: "hhhhhhhhhhh。" }
           ]},
         { label: "“不懂就瞎看，反正也不收门票”", tone: "soft",
           reply: [
-            { who: "boy", text: "有道理。" },
-            { who: "boy", text: "不花钱的地方，随便看。" },
+            { who: "unknown", text: "有道理。" },
+            { who: "unknown", text: "不花钱的地方，随便看。" },
             { who: "girl", text: "你这觉悟挺高。" },
-            { who: "boy", text: "那必须的。" }
+            { who: "unknown", text: "那必须的。" }
           ]}
       ]
     }
   },
   {
-    title: "第五章 · 第二天中午 · 小龙虾",
-    img: IMG.ch5,
+    title: "第七章 · 小龙虾",
+    img: IMG.ch7,
     lines: [
-      { who: "narr", text: "中午去吃小龙虾。Bonan 戴上手套，开始剥虾。" },
-      { who: "boy", text: "这个餐厅如何呢。" },
+      { who: "narr", text: "中午去吃小龙虾。他戴上手套，开始剥虾。" },
+      { who: "unknown", text: "这个餐厅如何呢。" },
       { who: "girl", text: "御座。" },
-      { who: "boy", text: "不错儿。" },
+      { who: "unknown", text: "不错儿。" },
       { who: "narr", text: "吃一半的时候，Easlyn 开口。" },
       { who: "girl", text: "很开心啊，玩的很御座。" },
-      { who: "boy", text: "御座~。" }
+      { who: "unknown", text: "御座~。" }
     ],
     choice: {
       q: "Easlyn 一直耍手机中——",
       options: [
         { label: "装疯卖傻中：“礼尚往来”", tone: "straight",
           reply: [
-            { who: "narr", text: "Bonan 愣了一下，接过那只虾。" },
-            { who: "boy", text: "哟，还有这待遇。" },
+            { who: "narr", text: "他愣了一下，接过那只虾。" },
+            { who: "unknown", text: "哟，还有这待遇。" },
             { who: "girl", text: "嗯哼。" },
-            { who: "boy", text: "哦吼。" },
+            { who: "unknown", text: "哦吼。" },
             { who: "girl", text: "诶嘿。" }
           ]},
         { label: "“你自己吃吧快”", tone: "soft",
           reply: [
-            { who: "narr", text: "Bonan 点头，胡吃海塞中。" },
+            { who: "narr", text: "他点头，胡吃海塞中。" },
             { who: "girl", text: "我说真的啊。" },
-            { who: "boy", text: "知道了知道了。" },
+            { who: "unknown", text: "知道了知道了。" },
             { who: "narr", text: "然后他开始胡吃海塞中。" }
           ]},
         { label: "“行，那我胡吃海塞了”", tone: "fun",
           reply: [
-            { who: "boy", text: "胡吃海塞，够不够？" },
+            { who: "unknown", text: "胡吃海塞，够不够？" },
             { who: "girl", text: "差不多。" },
-            { who: "narr", text: "Bonan 胡吃海塞中。" },
+            { who: "narr", text: "他开始胡吃海塞中。" },
             { who: "girl", text: "服务不错，五星好评。" },
-            { who: "narr", text: "Bonan 笑出声。" }
+            { who: "narr", text: "他笑出声。" }
           ]}
       ]
     }
   },
   {
-    title: "第六章 · 第二天下午 · 秋林和手工",
-    img: IMG.ch6,
+    title: "第八章 · 秋林和手工",
+    img: IMG.ch8,
     lines: [
-      { who: "narr", text: "下午逛秋林。Bonan 随意的扫了扫货架。" },
-      { who: "boy", text: "感觉也没什么特产，在外面都能买到。" },
+      { who: "narr", text: "下午逛秋林。他随意的扫了扫货架。" },
+      { who: "unknown", text: "感觉也没什么特产，在外面都能买到。" },
       { who: "girl", text: "确实，随便看看吧。" },
-      { who: "boy", text: "小转一下吧。" },
+      { who: "unknown", text: "小转一下吧。" },
       { who: "girl", text: "嗯哼。" }
     ],
     choice: {
@@ -755,148 +2295,299 @@ const CHAPTERS = [
       options: [
         { label: "“那就不买了，省得拎”", tone: "fun",
           reply: [
-            { who: "boy", text: "行，省事。" },
+            { who: "unknown", text: "行，省事。" },
             { who: "girl", text: "反正网上都能买。" },
-            { who: "boy", text: "对，还包邮。" }
+            { who: "unknown", text: "对，还包邮。" }
           ]},
         { label: "“来都来了，随便拿两样”", tone: "straight",
           reply: [
-            { who: "boy", text: "行，你挑。" },
-            { who: "narr", text: "Easlyn 随手拿了两样，Bonan 接过去拎着。" },
+            { who: "unknown", text: "行，你挑。" },
+            { who: "narr", text: "Easlyn 随手拿了两样，他接过去拎着。" },
             { who: "girl", text: "就这两样吧。" },
-            { who: "boy", text: "够了？" },
+            { who: "unknown", text: "够了？" },
             { who: "girl", text: "够了。" }
           ]},
         { label: "“你平时买东西也这么随缘吗”", tone: "soft",
           reply: [
-            { who: "boy", text: "差不多。" },
-            { who: "boy", text: "能用就行，不讲究。" },
+            { who: "unknown", text: "差不多。" },
+            { who: "unknown", text: "能用就行，不讲究。" },
             { who: "girl", text: "挺好，省心。" }
           ]}
       ]
     },
     next: [
-      { who: "narr", text: "中间找时间做了手工。Bonan 坐在 Easlyn 对面，低头弄手里的东西。" },
-      { who: "boy", text: "我做得好不好？" },
+      { who: "narr", text: "中间找时间做了手工。他坐在 Easlyn 对面，低头弄手里的东西。" },
+      { who: "unknown", text: "我做得好不好？" },
       { who: "girl", text: "好看，你手挺巧的。" },
-      { who: "boy", text: "真的？" },
-      { who: "girl", text: "骗你干嘛。" }
+      { who: "unknown", text: "真的？" },
+      { who: "girl", text: "骗你干嘛。" },
+      { who: "narr", text: "他低头继续弄手里的东西。" },
+      { who: "narr", text: "视野角落，又浮起一行小字。" },
+      { who: "narr", text: "【好感度：88%】" },
+      { who: "unknown", text: "（……88%？）" },
+      { who: "unknown", text: "（不对劲。）" },
+      { who: "unknown", text: "（这涨的……是我的好感度吧？）" },
+      { who: "unknown", text: "（我攻略她，怎么涨的是我自己的？）" },
+      { who: "affGain", text: "88", text2: "不对劲。怎么涨的是我的好感度。" }
     ]
   },
   {
-    title: "第七章 · 第二天晚上 · 酒店和最后",
-    img: IMG.ch7,
+    title: "第九章 · 酒店和最后",
+    img: IMG.ch9,
     lines: [
-      { who: "narr", text: "晚上，Bonan 问她吃什么。" },
+      { who: "narr", text: "晚上，他问她吃什么。" },
       { who: "girl", text: "都行。" },
-      { who: "boy", text: "那就肥姨妈？还是自己煮？" },
+      { who: "unknown", text: "那就肥姨妈？还是自己煮？" },
       { who: "girl", text: "自己煮吧，肥姨妈不好吃，我还是喜欢好欢螺。" },
-      { who: "boy", text: "行，那我点外送。" },
+      { who: "unknown", text: "行，那我点外送。" },
       { who: "narr", text: "两个人回酒店，等外卖。" },
       { who: "girl", text: "在酒店造作吧，煮臭臭螺蛳粉。" },
-      { who: "boy", text: "yea~造作。" },
+      { who: "unknown", text: "yea~造作。" },
       { who: "narr", text: "外卖到了。水一开，螺蛳粉下锅，房间里很快全是味。" },
       { who: "girl", text: "完了，这味儿得开到明天。" },
-      { who: "boy", text: "开窗。" },
+      { who: "unknown", text: "开窗。" },
       { who: "narr", text: "两个人把窗开了条缝，等待螺蛳粉煮熟。" },
       { who: "girl", text: "期待中，好欢螺比肥姨妈好吃太多了。" },
-      { who: "boy", text: "yea~" },
+      { who: "unknown", text: "yea~" },
       { who: "girl", text: "吃吃吃吃吃" },
       { who: "narr", text: "煮好了，一个人一个锅，造作中。房间里安静了一会儿。" },
+      { who: "girl", text: "哎。" },
+      { who: "unknown", text: "嗯？" },
+      { who: "girl", text: "我做了个游戏，你要玩吗。" },
+      { who: "narr", text: "他接过手机。屏幕亮着。" },
+      { who: "narr", text: "里面是像素的街道，像素的教堂，像素的桥。" },
+      { who: "narr", text: "还有像素的……他和她。" },
+      { who: "unknown", text: "……这是。" },
+      { who: "girl", text: "你猜。" },
+      { who: "narr", text: "他往下翻。每一页都是这几天的事。" },
+      { who: "narr", text: "教堂的鸽子。中央大街的石板路。江边的风。" },
+      { who: "narr", text: "还有她笑的样子。" },
+      { who: "unknown", text: "Easlyn。" },
+      { who: "girl", text: "嗯？" },
+      { who: "unknown", text: "我到底是谁？" },
+      { who: "unknown", text: "这个游戏的男主，到底是谁？" },
+      { who: "narr", text: "他盯着屏幕，又抬头看她。" },
+      { who: "narr", text: "现实和游戏在这一刻叠在了一起。" },
+      { who: "narr", text: "游戏里的游戏，也在屏幕上闪着。" },
+      { who: "narr", text: "到底哪层是真的，他有点分不清了。" },
+      { who: "girl", text: "你猜。" },
+      { who: "unknown", text: "……我猜不出来。" },
+      { who: "girl", text: "那我给你看样东西。" },
+      { who: "narr", text: "Easlyn 拿起手机，对着他按下了快门。" },
+      { who: "photo", text: IMG.selfie, revealName: true },
+      { who: "narr", text: "屏幕上，是他自己的脸。" },
+      { who: "narr", text: "不是像素的。" },
+      { who: "narr", text: "是真的。" },
+      { who: "narr", text: "他认得那张脸。" },
+      { who: "unknown", text: "……这是我。" },
+      { who: "narr", text: "他的手有点抖。" },
+      { who: "unknown", text: "我是……Bonan。" },
+      { who: "narr", text: "他想起来了。" },
+      { who: "narr", text: "不是全部，但足够了。" },
+      { who: "narr", text: "那些日子，那些街道。" },
+      { who: "narr", text: "还有，坐在他对面，看着他的这个女孩。" },
+      { who: "narr", text: "他抬起头，环顾房间。" },
+      { who: "boy", text: "索菲亚大教堂。" },
+      { who: "boy", text: "中央大街。" },
+      { who: "boy", text: "江边。大桥。巴洛克。秋林。" },
+      { who: "narr", text: "他的声音停住了。" },
+      { who: "boy", text: "这些地方……" },
+      { who: "boy", text: "是我现实中的家。" },
+      { who: "narr", text: "房间里很安静。" },
+      { who: "narr", text: "他忽然想起一件事。" },
+      { who: "boy", text: "我穿进游戏之前……" },
+      { who: "boy", text: "好像就是哈尔滨人。" },
+      { who: "narr", text: "他抬起头，看着 Easlyn。" },
+      { who: "narr", text: "她坐在对面，抱着膝盖，安安静静地看着他。" },
+      { who: "narr", text: "不像一串代码。" },
+      { who: "narr", text: "有温度。有表情。有那种……只有真人才会有的笑。" },
       { who: "boy", text: "Easlyn。" },
-      { who: "girl", text: "哎，我做了个游戏你要玩吗。" },
-      { who: "narr", text: "Bonan 接过手机，低头看了起来。" },
-      { who: "narr", text: "屏幕的光映在他脸上。他看得很认真，偶尔笑一下。" },
-      { who: "narr", text: "玩到最后一页，他停住了。" },
-      { who: "narr", text: "房间里很安静。他盯着屏幕，看了很久。" },
-      { who: "boy", text: "这男主是谁啊？" },
-      { who: "narr", text: "他问得很自然。" },
-      { who: "narr", text: "但 Easlyn 看得出来，他是故意的。" },
-      { who: "narr", text: "他早就猜到了。" }
-    ],
-    choice: {
-      q: "Easlyn？",
-      options: [
-        { label: "“不知道”", tone: "dontknow",
-          reply: [
-            { who: "girl", text: "不知道。" },
-            { who: "boy", text: "真的不知道？" },
-            { who: "girl", text: "真的不知道。" },
-            { who: "narr", text: "Bonan 盯着她看了几秒。" },
-            { who: "boy", text: "那我知道了。" }
-          ],
-          replyEnding: "dontknow" },
-
-        { label: "“我给你找照片”", tone: "selfie",
-          reply: [
-            { who: "girl", text: "我给你找照片。" },
-            { who: "narr", text: "Easlyn 拿起手机，装模作样地翻了两下。" },
-            { who: "narr", text: "然后她假装不经意地，把镜头对准了 Bonan。" },
-            { who: "narr", text: "咔嚓。" },
-            { who: "boy", text: "你拍什么呢？" },
-            { who: "narr", text: "Easlyn 把屏幕转过去，怼到 Bonan 面前。" },
-            { who: "narr", text: "屏幕上，是 Bonan 自己的脸。" },
-            { who: "photo", text: IMG.selfie }
-          ],
-          replyEnding: "selfie" },
-
-        { label: "“你猜”", tone: "guess",
-          reply: [
-            { who: "boy", text: "我猜……" },
-            { who: "narr", text: "他故意拉长了声音。" },
-            { who: "boy", text: "算了，不猜了。" },
-            { who: "narr", text: "他笑了一下，看着 Easlyn。" },
-            { who: "boy", text: "反正我心里有数。" }
-          ],
-          replyEnding: "guess" }
-      ]
-    }
+      { who: "girl", text: "嗯？" },
+      { who: "boy", text: "你到底是一串代码，还是真人？" },
+      { who: "narr", text: "Easlyn 没说话。" },
+      { who: "narr", text: "只是看着他，安安静静地笑。" },
+      { who: "boy", text: "……你说话啊。" },
+      { who: "girl", text: "你猜。" },
+      { who: "boy", text: "又猜。" },
+      { who: "boy", text: "我不想猜了。" },
+      { who: "narr", text: "他盯着她，忽然想到什么。" },
+      { who: "boy", text: "等等。" },
+      { who: "boy", text: "这个游戏，是我做的。" },
+      { who: "boy", text: "我让一个人玩过。" },
+      { who: "boy", text: "一个……现实中还没见过面的人。" },
+      { who: "narr", text: "他的声音停住了。" },
+      { who: "boy", text: "Easlyn……" },
+      { who: "boy", text: "是你吗？" },
+      { who: "narr", text: "Easlyn 笑了一下。" },
+      { who: "girl", text: "拿出你的勇气，我看看。" },
+      { who: "boy", text: "什么勇气？" },
+      { who: "girl", text: "让我看看你有多喜欢我。" },
+      { who: "girl", text: "我看到了，就告诉你。" },
+      { who: "narr", text: "话没说完，房间里的灯闪了一下。" },
+      { who: "narr", text: "不是灯闪——是整个房间被吸进了屏幕里。" },
+      { who: "narr", text: "再睁开眼，Bonan 站在一片粉色的世界里。" },
+      { who: "narr", text: "像素的天，像素的地，像素的城堡。" },
+      { who: "boy", text: "……这是。" },
+      { who: "narr", text: "是他们一起玩过的那个游戏。" },
+      { who: "narr", text: "救公主。" },
+      { who: "systemPrompt", text: "rescue" }
+    ]
   }
 ];
 
-const ENDINGS = {
-  guess: {
-    title: "结局 · 他明白了",
-    text:
-      "Bonan 没有再问。\n" +
-      "他低头吃了一口粉，嘴角还在笑。\n\n" +
-      "Easlyn 也没说话。\n" +
-      "房间里只有吸粉的声音。\n\n" +
-      "有些答案，两个人都知道。\n" +
-      "只是谁都没有说破。"
+const FOOD_OPTIONS = ["火锅", "日料", "烤肉", "西餐", "东北菜"];
+
+const PICK_FOOD_AFTER = [
+  { who: "unknown", text: "那就东北菜。我知道一家，六泰居。" },
+  { who: "girl", text: "听名字还挺高大的。" },
+  { who: "narr", text: "两人拐进街边，往饭馆走。" }
+];
+
+const AFTER_RESCUE = [
+  { who: "narr", text: "粉色的世界开始褪色。公主站在光的尽头。" },
+  { who: "narr", text: "是 Easlyn 的样子。" },
+  { who: "narr", text: "他站在那儿，看了很久。" },
+  { who: "boy", text: "……原来。" },
+  { who: "boy", text: "我早就喜欢你了。" },
+  { who: "narr", text: "不是游戏里的那种喜欢。" },
+  { who: "narr", text: "是真的。" },
+  { who: "narr", text: "然后画面碎成光点。Bonan 又坐回了酒店房间。" },
+  { who: "narr", text: "屏幕上还留着那句话。" },
+  { who: "narr", text: "他盯着屏幕，忽然停住了。" },
+  { who: "boy", text: "等等……" },
+  { who: "boy", text: "这游戏里，男主去过的每一个地方。" },
+  { who: "boy", text: "索菲亚教堂、中央大街、江边、大桥、巴洛克、秋林。" },
+  { who: "narr", text: "他抬起头。" },
+  { who: "boy", text: "全都是我这几天带你去的地方。" },
+  { who: "narr", text: "房间里很安静。Easlyn 抱着膝盖，看着他，没说话。" },
+  { who: "narr", text: "然后他忽然笑了。" },
+  { who: "boy", text: "这男主……是我。" },
+  { who: "narr", text: "他往后靠了一下，长出一口气。" },
+  { who: "boy", text: "我们……" },
+  { who: "boy", text: "好像就是因为打游戏，感情才升温的吧。" },
+  { who: "narr", text: "Easlyn 笑了一下。没有说话。" },
+  { who: "narr", text: "他看着她。" },
+  { who: "boy", text: "Easlyn。" },
+  { who: "girl", text: "嗯？" },
+  { who: "boy", text: "游戏里的我，喜欢游戏里的你。" },
+  { who: "boy", text: "那现实生活中的那个我呢？" },
+  { who: "boy", text: "还是喜欢你的吗？" },
+  { who: "narr", text: "Easlyn 没有说话。" },
+  { who: "narr", text: "只是看着他，安安静静地笑。" },
+  { who: "boy", text: "……你说话啊。" },
+  { who: "girl", text: "你猜。" },
+  { who: "boy", text: "又猜。" },
+  { who: "boy", text: "我不想猜了。" },
+  { who: "narr", text: "他抬起头，看向空气。" },
+  { who: "boy", text: "现在是在游戏世界里，对吧。" },
+  { who: "boy", text: "系统。" },
+  { who: "boy", text: "帮我查看 Easlyn 的好感度。" },
+  { who: "narr", text: "房间里安静了一秒。" },
+  { who: "narr", text: "然后，视野角落浮起一行小字——" },
+  { who: "sys", text: "权限不足。想查看 Easlyn 的好感度，你们两个必须一起通关。" },
+  { who: "boy", text: "……一起通关？" },
+  { who: "sys", text: "检测到你们共同玩过的游戏：《黎明杀机》。" },
+  { who: "sys", text: "通关后即可查看。" },
+  { who: "narr", text: "Easlyn 笑了一下，没有说话。" },
+  { who: "narr", text: "然后，房间里的灯闪了一下。" },
+  { who: "narr", text: "不是灯闪——是整个房间被吸进了屏幕里。" },
+  { who: "narr", text: "再睁开眼，Bonan 站在一片雾蒙蒙的空地上。" },
+  { who: "narr", text: "Easlyn 就站在他旁边。" },
+  { who: "boy", text: "……这地方。" },
+  { who: "boy", text: "这不是我们玩过的那个游戏吗。" },
+  { who: "girl", text: "黎明杀机。" },
+  { who: "narr", text: "远处传来一阵低低的嗡鸣。是发电机。" },
+  { who: "systemPrompt", text: "dbdRules" }
+];
+
+const AFTER_REPAIR = [
+  { who: "narr", text: "门开了。" },
+  { who: "narr", text: "两个像素小人一前一后跑了出去。" },
+  { who: "narr", text: "屏幕上跳出两行字——" },
+  { who: "narr", text: "“逃生成功。”" },
+  { who: "sys", text: "好感度权限已解锁。" },
+  { who: "narr", text: "像素的光暗下去。房间里只剩下螺蛳粉的味道。" },
+  { who: "boy", text: "……你这个人。" },
+  { who: "narr", text: "他笑着，没再说话。" },
+  { who: "affGain", text: "100", text2: "原来，我早就喜欢你了。" }
+];
+
+const SYSTEM_PROMPTS = {
+  welcome: {
+    title: "SYSTEM",
+    text: "检测到新玩家。你已进入《好感度不是攻略，是回忆》。",
+    sub: "任务：攻略你在这个世界遇到的第一个人。提示：你的每一次心动，都会被记录。",
+    hint: "点击进入"
   },
-  selfie: {
-    title: "结局 · 拍到了",
-    text:
-      "Bonan 看着屏幕，愣了两秒。\n" +
-      "“……这是我？”\n\n" +
-      "“不然呢。”Easlyn 伸手把手机拿回来。\n" +
-      "“你什么时候拍的？”\n" +
-      "“就刚刚。”\n" +
-      "“我不是让你找照片吗？”\n" +
-      "“找了。”Easlyn 说，“这不是给你找出来了。”\n\n" +
-      "Bonan 反应过来，没再说话。\n" +
-      "他低头吃了一口粉，耳朵有点红。\n" +
-      "“你脸红什么。”\n" +
-      "“没有。”\n" +
-      "“有。”\n" +
-      "“……螺蛳粉太辣了。”\n\n" +
-      "然后，就没有然后了。"
-  },
-  dontknow: {
-    title: "结局 · 那我知道了",
-    text:
-      "Bonan 没再追问。\n" +
-      "他低头继续吃粉，表情很平常。\n\n" +
-      "Easlyn 也没再解释。\n" +
-      "两个人就这么安静地吃完了这一锅。\n\n" +
-      "他说的“我知道了”，\n" +
-      "到底知道了什么，她没问。\n" +
-      "他也没说。"
+  rescue: {
+    title: "SYSTEM",
+    text: "想查看 Easlyn 的好感度",
+    sub: "请先通过小游戏。",
+    hint: "点击开始"
   }
 };
 
+const ENDINGS = {
+  guess: {
+    title: "他明白了",
+    affTotal: "好感度：已溢出",
+    affNote:
+      "这不是攻略。\n" +
+      "没有可攻略的选项，也没有好感度下降的路线。\n" +
+      "她只是在记。\n" +
+      "剩下的事，就看现实中的你们了。"
+  }
+};
+
+const AFFECTION_ITEMS = [
+  "醒来时那杯自作主张的西瓜汁",
+  "她说‘不记得就不记得吧’的时候，没再问下去",
+  "中央大街被挤到，往他那边靠了半步",
+  "江风大的时候，他挡在风口站了半步",
+  "大桥上他拍照时喊的那句“往左一点”",
+  "烤肉时他夹过来的第一块肉",
+  "巴洛克他说“我也是外地的”那一下",
+  "小龙虾他剥好的虾，放进碗里",
+  "秋林他接过袋子，一直没松手",
+  "手工桌上，他低头认真的样子",
+  "螺蛳粉开锅后那句“最后一晚了”",
+  "最后一页，他问“这男主到底是谁啊”"
+];
+
 let state = null;
+
+let playerImg = null;
+let enemyImg = null;
+let coinImg = null;
+let goalImg = null;
+let dbdPlayerImg = null;
+let dbdEaslynImg = null;
+let dbdKillerImg = null;
+let dbdGeneratorImg = null;
+let dbdGateImg = null;
+let gtaCarImg = null;
+let gtaCarEnemyImg = null;
+
+(function preloadGameImages() {
+  const load = (src) => {
+    if (!src) return null;
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.src = src;
+    return img;
+  };
+  playerImg = load(IMG.player || IMG.mario);
+  enemyImg = load(IMG.enemy);
+  coinImg = load(IMG.coin);
+  goalImg = load(IMG.goal);
+  dbdPlayerImg = load(IMG.dbdPlayer);
+  dbdEaslynImg = load(IMG.dbdEaslyn);
+  dbdKillerImg = load(IMG.dbdKiller);
+  dbdGeneratorImg = load(IMG.dbdGenerator);
+  dbdGateImg = load(IMG.dbdGate);
+  gtaCarImg = load(IMG.gtaCar);
+  gtaCarEnemyImg = load(IMG.gtaCarEnemy);
+})();
 
 (function setCoverBg() {
   const cover = document.getElementById("cover");
@@ -908,23 +2599,31 @@ let state = null;
 
 (function setupAvatarError() {
   const avatarImg = document.getElementById("avatarImg");
-  avatarImg.onerror = function() {
-    this.style.display = "none";
-  };
+  avatarImg.onerror = function() { this.style.display = "none"; };
 })();
 
 function startGame() {
   document.getElementById("cover").style.display = "none";
-  state = {
-    chapter: 0,
-    lines: [],
-    idx: 0,
-    phase: "intro",
-    current: null,
-    pendingNext: false,
-    pendingEnding: null
-  };
-  loadChapter(0);
+
+  const eye = document.getElementById("eyeOpen");
+  eye.classList.add("show");
+  void eye.offsetWidth;
+
+  setTimeout(function() {
+    eye.classList.add("open");
+  }, 420);
+
+  setTimeout(function() {
+    eye.classList.remove("show");
+    eye.classList.remove("open");
+
+    state = {
+      chapter: 0, lines: [], idx: 0, phase: "intro",
+      current: null, pendingNext: false, pendingEnding: null,
+      endingKey: null, sequencePhase: null, pickFoodDone: false
+    };
+    loadChapter(0);
+  }, 1780);
 }
 
 function setBg(img) {
@@ -933,7 +2632,6 @@ function setBg(img) {
     bg.style.backgroundImage = `url('${img}')`;
   } else {
     bg.style.backgroundImage = "";
-    bg.style.background = "linear-gradient(160deg, #2b3340, #3a2f3a 60%, #46392f)";
   }
 }
 
@@ -947,7 +2645,6 @@ function loadChapter(i) {
   state.pendingEnding = null;
 
   setBg(state.current.img);
-
   hideNameTag();
 
   const titleEl = document.getElementById("chapterTitle");
@@ -955,6 +2652,7 @@ function loadChapter(i) {
   titleEl.textContent = state.current.title;
 
   document.getElementById("dialog").style.display = "none";
+  document.getElementById("dialog").style.visibility = "visible";
   document.getElementById("choices").classList.remove("show");
   document.getElementById("choices").innerHTML = "";
 
@@ -969,10 +2667,9 @@ function loadChapter(i) {
 }
 
 function enterChapter() {
-  const card = document.getElementById("chapterCard");
-  card.classList.remove("show");
-
+  document.getElementById("chapterCard").classList.remove("show");
   document.getElementById("dialog").style.display = "block";
+  document.getElementById("dialog").style.visibility = "visible";
 
   const titleEl = document.getElementById("chapterTitle");
   titleEl.textContent = state.current.title;
@@ -989,55 +2686,148 @@ function hideNameTag() {
   nameText.textContent = "";
 }
 
+let lastAvatarSrc = "";
+
 function showNameTag(who) {
   const avatarImg = document.getElementById("avatarImg");
-  const nameText = document.getElementById("nameText");
+  const nameText  = document.getElementById("nameText");
 
-  if (who === "boy") {
-    nameText.textContent = "Bonan";
-    nameText.className = "boy";
-    nameText.style.display = "inline-block";
+  let name = "", cls = "boy", src = "";
 
-    if (IMG.avatarBoy) {
-      avatarImg.src = IMG.avatarBoy;
-      avatarImg.style.display = "block";
-    } else {
-      avatarImg.style.display = "none";
-    }
+  if (who === "unknown") {
+    name = playerName;
+    cls  = "boy";
+    src  = (playerName === "？") ? IMG.avatarUnknown : IMG.avatarBoy;
+  } else if (who === "boy") {
+    name = "Bonan";
+    cls  = "boy";
+    src  = IMG.avatarBoy;
   } else if (who === "girl") {
-    nameText.textContent = "Easlyn";
-    nameText.className = "girl";
-    nameText.style.display = "inline-block";
-
-    if (IMG.avatarGirl) {
-      avatarImg.src = IMG.avatarGirl;
-      avatarImg.style.display = "block";
-    } else {
-      avatarImg.style.display = "none";
-    }
+    name = "Easlyn";
+    cls  = "girl";
+    src  = IMG.avatarGirl;
   } else {
     hideNameTag();
+    return;
+  }
+
+  nameText.textContent = name;
+  nameText.className = cls;
+  nameText.style.display = "inline-block";
+
+  if (src !== lastAvatarSrc) {
+    lastAvatarSrc = src;
+    if (src) {
+      avatarImg.src = src;
+      avatarImg.style.display = "block";
+    } else {
+      avatarImg.removeAttribute("src");
+      avatarImg.style.display = "none";
+    }
+  } else if (src) {
+    avatarImg.style.display = "block";
+  } else {
+    avatarImg.style.display = "none";
   }
 }
 
 function render() {
   const line = state.lines[state.idx];
+  if (!line) { nextChapter(); return; }
 
-  if (line.who === "photo") {
-    showPhoto(line.text);
+  if (line.who === "bg") {
+    const prevPhase = state.phase;
+    state.phase = "bgswitch";
+    setBg(IMG[line.img]);
+    state.idx++;
+    setTimeout(function() {
+      state.phase = prevPhase;
+      if (state.idx < state.lines.length) render();
+      else nextChapter();
+    }, 460);
+    return;
+  }
+
+  if (line.who === "photo") { showPhoto(line.text); return; }
+  if (line.who === "game") { startGTAGame(); return; }
+  if (line.who === "flash") {
+    screenFlash();
+    const prevPhase = state.phase;
+    state.phase = "flashwait";
+    setTimeout(() => {
+      state.phase = prevPhase;
+      if (state.idx < state.lines.length - 1) { state.idx++; render(); }
+      else { nextChapter(); }
+    }, 420);
+    return;
+  }
+
+  if (line.who === "affGain") {
+    const target = parseInt(line.text, 10);
+    hideNameTag();
+    showAffectionGain(target, line.text2 || "", function() {
+      if (state.idx < state.lines.length - 1) {
+        state.idx++;
+        render();
+      } else {
+        nextChapter();
+      }
+    });
+    return;
+  }
+
+  if (line.who === "systemPrompt") {
+    const key = line.text;
+    if (key === "dbdRules") {
+      showDBDRules(() => {
+        state.sequencePhase = "repair";
+        startRepairGame();
+      });
+      return;
+    }
+    const cfg = SYSTEM_PROMPTS[key];
+    showSystemPrompt(cfg, () => {
+      if (key === "rescue") {
+        state.sequencePhase = "rescue";
+        startRescueGame();
+      } else if (state.idx < state.lines.length - 1) {
+        state.idx++;
+        render();
+      } else {
+        nextChapter();
+      }
+    });
+    return;
+  }
+
+  if (line.who === "sys") {
+    hideNameTag();
+    showSysToast(line.text, function() {
+      if (state.idx < state.lines.length - 1) {
+        state.idx++;
+        render();
+      } else {
+        nextChapter();
+      }
+    });
     return;
   }
 
   const text = document.getElementById("dialogText");
 
-  if (line.who === "boy" || line.who === "girl") {
+  if (line.who === "boy" || line.who === "girl" || line.who === "unknown") {
     showNameTag(line.who);
     text.className = "";
+    text.textContent = line.text;
+  } else if (line.who === "os") {
+    hideNameTag();
+    text.className = "os";
+    text.textContent = "（内心OS）" + line.text;
   } else {
     hideNameTag();
     text.className = "narration";
+    text.textContent = line.text;
   }
-  text.textContent = line.text;
 
   const dialog = document.getElementById("dialog");
   dialog.classList.remove("fade");
@@ -1051,39 +2841,281 @@ function render() {
     state.phase === "choice" ? "" : "点击继续";
 }
 
+/* =====================================================
+   好感度结算动效
+===================================================== */
+let lastAffPercent = 0;
+let affGainLock = false;
+let affGainDone = false;
+let affGainTimer = null;
+
+function showAffectionGain(to, text, onDone) {
+  const el = document.getElementById("affGain");
+  const numEl = document.getElementById("affGainNum");
+  const fillEl = document.getElementById("affGainFill");
+  const textEl = document.getElementById("affGainText");
+
+  if (affGainTimer) { clearTimeout(affGainTimer); affGainTimer = null; }
+
+  const from = lastAffPercent;
+  lastAffPercent = to;
+
+  numEl.textContent = from;
+  fillEl.style.width = from + "%";
+  textEl.textContent = "";
+
+  el._onDone = onDone;
+  affGainLock = true;
+  affGainDone = false;
+
+  el.classList.remove("show");
+  void el.offsetWidth;
+  el.classList.add("show");
+
+  const startTime = performance.now();
+  const duration = 900;
+
+  function step(now) {
+    const t = Math.min(1, (now - startTime) / duration);
+    const ease = 1 - Math.pow(1 - t, 3);
+    const cur = from + (to - from) * ease;
+    numEl.textContent = Math.round(cur);
+    fillEl.style.width = cur + "%";
+    if (t < 1) {
+      requestAnimationFrame(step);
+    } else {
+      numEl.textContent = to;
+      fillEl.style.width = to + "%";
+      setTimeout(function() {
+        textEl.textContent = text;
+        affGainDone = true;
+        affGainTimer = setTimeout(function() { closeAffGain(); }, 2400);
+      }, 160);
+    }
+  }
+
+  requestAnimationFrame(step);
+}
+
+function closeAffGain() {
+  const el = document.getElementById("affGain");
+  if (!el.classList.contains("show")) return;
+  if (affGainTimer) { clearTimeout(affGainTimer); affGainTimer = null; }
+
+  el.classList.remove("show");
+  affGainLock = false;
+
+  const cb = el._onDone;
+  el._onDone = null;
+
+  setTimeout(function() {
+    if (cb) cb();
+  }, 120);
+}
+
+function skipAffGain(e) {
+  if (e) e.stopPropagation();
+  if (!affGainDone) return;
+  closeAffGain();
+}
+
+/* =====================================================
+   快穿式系统提示
+===================================================== */
+let sysToastLock = false;
+let sysToastInterval = null;
+let sysToastTimeout = null;
+let sysToastDone = false;
+
+function showSysToast(text, onDone) {
+  const el = document.getElementById("sysToast");
+  const txtEl = document.getElementById("sysToastText");
+
+  if (sysToastInterval) { clearInterval(sysToastInterval); sysToastInterval = null; }
+  if (sysToastTimeout) { clearTimeout(sysToastTimeout); sysToastTimeout = null; }
+
+  sysToastLock = true;
+  sysToastDone = false;
+  el._onDone = onDone;
+  el._fullText = text;
+
+  txtEl.textContent = "";
+  el.classList.remove("show");
+  void el.offsetWidth;
+  el.classList.add("show");
+
+  let i = 0;
+  sysToastInterval = setInterval(function() {
+    i++;
+    txtEl.textContent = text.slice(0, i);
+    if (i >= text.length) {
+      clearInterval(sysToastInterval);
+      sysToastInterval = null;
+      sysToastTimeout = setTimeout(function() { closeSysToast(); }, 1700);
+    }
+  }, 55);
+}
+
+function closeSysToast() {
+  const el = document.getElementById("sysToast");
+  if (sysToastDone) return;
+  sysToastDone = true;
+
+  if (sysToastInterval) { clearInterval(sysToastInterval); sysToastInterval = null; }
+  if (sysToastTimeout) { clearTimeout(sysToastTimeout); sysToastTimeout = null; }
+
+  document.getElementById("sysToastText").textContent = el._fullText || "";
+  el.classList.remove("show");
+
+  const cb = el._onDone;
+  el._onDone = null;
+
+  setTimeout(function() {
+    sysToastLock = false;
+    if (cb) cb();
+  }, 340);
+}
+
+function skipSysToast(e) {
+  if (e) e.stopPropagation();
+  if (sysToastDone) return;
+  closeSysToast();
+}
+
+/* =====================================================
+   系统提示（打字机效果）
+===================================================== */
+let sysPromptTimer = null;
+let sysPromptDone = false;
+
+function showSystemPrompt(config, onStart) {
+  const el = document.getElementById("systemPrompt");
+  const titleEl = document.getElementById("sysTitle");
+  const textEl = document.getElementById("sysText");
+  const subEl = document.getElementById("sysSub");
+  const hintEl = document.getElementById("sysHint");
+
+  if (sysPromptTimer) { clearTimeout(sysPromptTimer); sysPromptTimer = null; }
+
+  titleEl.textContent = config.title || "";
+  textEl.textContent = "";
+  subEl.textContent = "";
+  hintEl.textContent = "";
+  hintEl.style.opacity = "0";
+
+  textEl.classList.add("sys-typing");
+  subEl.classList.remove("sys-typing");
+
+  el.classList.add("show");
+  el.onclick = null;
+
+  const fullText = config.text || "";
+  const fullSub = config.sub || "";
+  const fullHint = config.hint || "点击开始";
+
+  let i = 0, j = 0;
+  sysPromptDone = false;
+
+  function finishTyping() {
+    textEl.classList.remove("sys-typing");
+    subEl.classList.remove("sys-typing");
+    sysPromptDone = true;
+    hintEl.textContent = fullHint;
+    hintEl.style.opacity = "1";
+    el.onclick = function() {
+      el.classList.remove("show");
+      el.onclick = null;
+      if (onStart) onStart();
+    };
+  }
+
+  function typeText() {
+    if (i < fullText.length) {
+      i++;
+      textEl.textContent = fullText.slice(0, i);
+      sysPromptTimer = setTimeout(typeText, 45);
+    } else {
+      textEl.classList.remove("sys-typing");
+      if (fullSub.length > 0) {
+        subEl.classList.add("sys-typing");
+        typeSub();
+      } else {
+        finishTyping();
+      }
+    }
+  }
+
+  function typeSub() {
+    if (j < fullSub.length) {
+      j++;
+      subEl.textContent = fullSub.slice(0, j);
+      sysPromptTimer = setTimeout(typeSub, 45);
+    } else {
+      subEl.classList.remove("sys-typing");
+      finishTyping();
+    }
+  }
+
+  function skipAll() {
+    if (sysPromptTimer) { clearTimeout(sysPromptTimer); sysPromptTimer = null; }
+    textEl.textContent = fullText;
+    subEl.textContent = fullSub;
+    finishTyping();
+  }
+
+  // 打字过程中点击跳过，打字完成后点击进入
+  el.onclick = function() {
+    if (!sysPromptDone) {
+      skipAll();
+    }
+  };
+
+  sysPromptTimer = setTimeout(typeText, 400);
+}
+
 function advance() {
+  if (sysToastLock) return;
+  if (affGainLock) return;
   if (state.phase === "choice") return;
   if (state.phase === "card") return;
+  if (state.phase === "bgswitch") return;
+  if (state.phase === "flashwait") return;
   if (document.getElementById("photoOverlay").classList.contains("show")) return;
+  if (document.getElementById("affectionPanel").classList.contains("show")) return;
+  if (document.getElementById("systemPrompt").classList.contains("show")) return;
+  if (document.getElementById("dbdRules").classList.contains("show")) return;
+  if (document.getElementById("pickFood").classList.contains("show")) return;
+  if (document.getElementById("gtaGame").classList.contains("show")) return;
+  if (MG.running || DBD.running || GTA.running) return;
 
-  if (state.phase === "prompt") {
-    showChoices();
-    return;
-  }
+  if (state.phase === "prompt") { showChoices(); return; }
 
-  if (state.idx < state.lines.length - 1) {
-    state.idx++;
-    render();
-    return;
-  }
+  if (state.idx < state.lines.length - 1) { state.idx++; render(); return; }
 
   if (state.phase === "intro") {
-    showChoicePrompt();
+    if (state.current.choice) { showChoicePrompt(); }
+    else { nextChapter(); }
     return;
   }
 
-  if (state.phase === "reply") {
-    afterReply();
-    return;
-  }
+  if (state.phase === "reply") { afterReply(); return; }
 
-  if (state.phase === "next") {
-    nextChapter();
-    return;
-  }
+  if (state.phase === "next") { nextChapter(); return; }
 }
 
 function afterReply() {
+  if (state.sequencePhase === "pickFoodAfter") {
+    state.sequencePhase = null;
+    nextChapter();
+    return;
+  }
+
+  if (state.sequencePhase === "afterRepair") {
+    state.sequencePhase = "ending";
+    showEnding("guess");
+    return;
+  }
+
   if (state.pendingNext) {
     state.lines = state.current.next;
     state.idx = 0;
@@ -1092,29 +3124,38 @@ function afterReply() {
     render();
     return;
   }
+
   if (state.pendingEnding) {
     const key = state.pendingEnding;
     state.pendingEnding = null;
-    showEnding(key);
+    state.endingKey = key;
+    state.sequencePhase = "systemPrompt1";
+    showSystemPrompt(SYSTEM_PROMPTS.rescue, () => {
+      state.sequencePhase = "rescue";
+      startRescueGame();
+    });
     return;
   }
+
+  if (state.current.afterChoiceGame === "pickFood" && !state.pickFoodDone) {
+    state.pickFoodDone = true;
+    startPickFood();
+    return;
+  }
+
   nextChapter();
 }
 
 function nextChapter() {
-  if (state.chapter < CHAPTERS.length - 1) {
-    loadChapter(state.chapter + 1);
-  }
+  if (state.chapter < CHAPTERS.length - 1) loadChapter(state.chapter + 1);
 }
 
 function showChoicePrompt() {
   state.phase = "prompt";
   hideNameTag();
-
   const text = document.getElementById("dialogText");
   text.className = "prompt";
   text.textContent = state.current.choice.q;
-
   document.getElementById("hint").textContent = "点击继续";
 }
 
@@ -1127,10 +3168,7 @@ function showChoices() {
   choice.options.forEach((opt, i) => {
     const btn = document.createElement("button");
     btn.textContent = opt.label;
-    btn.onclick = (e) => {
-      e.stopPropagation();
-      choose(i);
-    };
+    btn.onclick = (e) => { e.stopPropagation(); choose(i); };
     box.appendChild(btn);
   });
 
@@ -1140,17 +3178,12 @@ function showChoices() {
   const text = document.getElementById("dialogText");
   text.className = "prompt";
   text.textContent = choice.q;
-
   document.getElementById("hint").textContent = "";
 }
 
 function choose(i) {
   const opt = state.current.choice.options[i];
-
-  if (opt.ending) {
-    showEnding(opt.ending);
-    return;
-  }
+  if (opt.ending) { showEnding(opt.ending); return; }
 
   state.lines = opt.reply;
   state.idx = 0;
@@ -1163,35 +3196,30 @@ function choose(i) {
   render();
 }
 
-/* ===== 拍照定格：预加载新图，加载完才显示，避免先跳旧图 ===== */
 function showPhoto(src) {
   const overlay = document.getElementById("photoOverlay");
   const img = document.getElementById("photoImg");
+  const dialog = document.getElementById("dialog");
 
-  // 1. 先清空旧图，避免旧图残留在屏幕上
+  dialog.style.visibility = "hidden";
+
   img.removeAttribute("src");
   overlay.classList.remove("show");
   overlay.classList.remove("flash");
 
-  // 2. 预加载新图
   const preload = new Image();
-
   preload.onload = function() {
     img.src = src;
     overlay.classList.add("show");
-    // 触发白闪
     void overlay.offsetWidth;
     overlay.classList.add("flash");
   };
-
   preload.onerror = function() {
-    // 即使加载失败也不卡住，至少能继续点下去
     img.src = src;
     overlay.classList.add("show");
     void overlay.offsetWidth;
     overlay.classList.add("flash");
   };
-
   preload.src = src;
 
   document.getElementById("hint").textContent = "";
@@ -1203,6 +3231,13 @@ function closePhoto(e) {
   overlay.classList.remove("show");
   overlay.classList.remove("flash");
 
+  const line = state.lines[state.idx];
+  if (line && line.revealName) {
+    playerName = "Bonan";
+  }
+
+  document.getElementById("dialog").style.visibility = "visible";
+
   if (state.idx < state.lines.length - 1) {
     state.idx++;
     render();
@@ -1213,11 +3248,32 @@ function closePhoto(e) {
   }
 }
 
+function screenFlash() {
+  const d = document.createElement("div");
+  d.style.cssText = "position:fixed;inset:0;background:#fff;z-index:95;pointer-events:none;";
+  document.body.appendChild(d);
+  d.animate(
+    [{ opacity: 0 }, { opacity: 1, offset: 0.14 }, { opacity: 0 }],
+    { duration: 780, easing: "ease-out" }
+  );
+  setTimeout(() => { if (d.parentNode) d.parentNode.removeChild(d); }, 820);
+}
+
+function showDBDRules(onStart) {
+  const el = document.getElementById("dbdRules");
+  el.classList.add("show");
+  el.onclick = function() {
+    el.classList.remove("show");
+    el.onclick = null;
+    if (onStart) onStart();
+  };
+}
+
 function showEnding(key) {
   const ending = ENDINGS[key];
+  state.endingKey = key;
 
   hideNameTag();
-
   document.getElementById("dialog").style.display = "none";
   document.getElementById("choices").style.display = "none";
   document.getElementById("chapterTitle").classList.remove("show");
@@ -1228,94 +3284,2050 @@ function showEnding(key) {
   final.scrollTop = 0;
 
   const endingImg = document.getElementById("endingImg");
-  if (IMG.ending) {
-    endingImg.src = IMG.ending;
+  if (ending.img) {
+    endingImg.src = ending.img;
     endingImg.style.display = "block";
   } else {
     endingImg.style.display = "none";
   }
 
   document.getElementById("endingTitle").textContent = ending.title;
-  document.getElementById("endingText").textContent = ending.text;
-  document.getElementById("endingNote").textContent =
-    "这个游戏是 Easlyn 做的。";
+  document.getElementById("endingNote").textContent = "这个游戏是 Easlyn 做的。";
 
-  document.getElementById("meteorCanvas").style.display = "none";
+  startEndingEffect();
 }
 
-/* ===== 流星特效（保留函数，当前结局不触发） ===== */
-let meteors = [];
-let meteorTimer = null;
-let meteorRaf = null;
+function openAffection() {
+  const panel = document.getElementById("affectionPanel");
+  const list = document.getElementById("affList");
+  const totalEl = document.getElementById("affTotal");
+  const noteEl = document.getElementById("affNote");
+  const loadingEl = document.getElementById("affLoading");
 
-function startMeteors() {
-  const canvas = document.getElementById("meteorCanvas");
-  const ctx = canvas.getContext("2d");
+  panel.classList.add("show");
+
+  list.innerHTML = "";
+  totalEl.style.opacity = 0;
+  totalEl.style.animation = "none";
+  noteEl.style.opacity = 0;
+  noteEl.style.animation = "none";
+  loadingEl.style.display = "block";
+
+  setTimeout(function() {
+    loadingEl.style.display = "none";
+
+    AFFECTION_ITEMS.forEach(function(text, i) {
+      const li = document.createElement("li");
+      li.style.animationDelay = (i * 0.12) + "s";
+      const span = document.createElement("span");
+      span.textContent = text;
+      const plus = document.createElement("span");
+      plus.className = "aff-plus";
+      plus.textContent = i === 11 ? "+∞" : "+1";
+      li.appendChild(span);
+      li.appendChild(plus);
+      list.appendChild(li);
+    });
+
+    const ending = ENDINGS[state.endingKey] || ENDINGS.guess;
+
+    setTimeout(function() {
+      totalEl.innerHTML = "好感度" + ending.affTotal.replace("好感度：", "：") + "<strong>100 / 100</strong>";
+      void totalEl.offsetWidth;
+      totalEl.style.animation = "affIn .5s ease forwards";
+      noteEl.textContent = ending.affNote;
+      void noteEl.offsetWidth;
+      noteEl.style.animation = "affIn .6s ease forwards";
+    }, AFFECTION_ITEMS.length * 120);
+  }, 900);
+}
+
+function closeAffection() {
+  document.getElementById("affectionPanel").classList.remove("show");
+}
+
+function drawImageContain(ctx, img, x, y, w, h, flip) {
+  const iw = img.naturalWidth || img.width;
+  const ih = img.naturalHeight || img.height;
+  if (!iw || !ih) return;
+  const scale = Math.min(w / iw, h / ih);
+  const dw = iw * scale;
+  const dh = ih * scale;
+  const dx = (w - dw) / 2;
+  const dy = (h - dh) / 2;
+
+  ctx.save();
+  if (flip) {
+    ctx.translate(x + w, y);
+    ctx.scale(-1, 1);
+    ctx.drawImage(img, dx, dy, dw, dh);
+  } else {
+    ctx.translate(x, y);
+    ctx.drawImage(img, dx, dy, dw, dh);
+  }
+  ctx.restore();
+}
+
+/* ===================================================
+   GTA 赛车小游戏
+=================================================== */
+const GTA_W = 400;
+const GTA_H = 300;
+
+const GTA = {
+  canvas: null, ctx: null, running: false, raf: null, bound: false,
+  keys: { left: false, right: false },
+  playerX: GTA_W / 2,
+  playerW: 26,
+  playerH: 46,
+  cars: [],
+  spawnTimer: 0,
+  roadOffset: 0,
+  distance: 0,
+  targetDistance: 1200,
+  speed: 4,
+  shake: 0,
+  invincible: 0
+};
+
+function startGTAGame() {
+  document.getElementById("dialog").style.display = "none";
+  document.getElementById("dialog").style.visibility = "visible";
+  document.getElementById("chapterTitle").classList.remove("show");
+  document.getElementById("choices").classList.remove("show");
+  document.getElementById("choices").innerHTML = "";
+  initGTA();
+}
+
+function initGTA() {
+  GTA.canvas = document.getElementById("gtaCanvas");
+  GTA.ctx = GTA.canvas.getContext("2d");
+  GTA.canvas.width = GTA_W;
+  GTA.canvas.height = GTA_H;
+
+  GTA.running = true;
+  GTA.keys = { left: false, right: false };
+  GTA.playerX = GTA_W / 2;
+  GTA.cars = [];
+  GTA.spawnTimer = 0;
+  GTA.roadOffset = 0;
+  GTA.distance = 0;
+  GTA.shake = 0;
+  GTA.invincible = 0;
+
+  document.getElementById("gtaGame").classList.add("show");
+  document.getElementById("gtaVictory").classList.remove("show");
+
+  bindGTAControls();
+  GTA.raf = requestAnimationFrame(gtaLoop);
+}
+
+function bindGTAControls() {
+  if (GTA.bound) return;
+  GTA.bound = true;
+
+  const bind = (id, key) => {
+    const el = document.getElementById(id);
+    el.addEventListener("pointerdown", (e) => { e.preventDefault(); GTA.keys[key] = true; });
+    el.addEventListener("pointerup", (e) => { e.preventDefault(); GTA.keys[key] = false; });
+    el.addEventListener("pointerleave", () => { GTA.keys[key] = false; });
+    el.addEventListener("pointercancel", () => { GTA.keys[key] = false; });
+  };
+
+  bind("gtaLeft", "left");
+  bind("gtaRight", "right");
+
+  window.addEventListener("keydown", (e) => {
+    if (!GTA.running) return;
+    if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") { GTA.keys.left = true; e.preventDefault(); }
+    if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") { GTA.keys.right = true; e.preventDefault(); }
+  });
+
+  window.addEventListener("keyup", (e) => {
+    if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") GTA.keys.left = false;
+    if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") GTA.keys.right = false;
+  });
+}
+
+function gtaLoop() {
+  if (!GTA.running) return;
+  updateGTA();
+  drawGTA();
+  GTA.raf = requestAnimationFrame(gtaLoop);
+}
+
+function updateGTA() {
+  if (GTA.shake > 0.5) GTA.shake *= 0.9; else GTA.shake = 0;
+  if (GTA.invincible > 0) GTA.invincible--;
+
+  const moveSpeed = 5;
+  if (GTA.keys.left) GTA.playerX -= moveSpeed;
+  if (GTA.keys.right) GTA.playerX += moveSpeed;
+
+  const minX = 30 + GTA.playerW / 2;
+  const maxX = GTA_W - 30 - GTA.playerW / 2;
+  if (GTA.playerX < minX) GTA.playerX = minX;
+  if (GTA.playerX > maxX) GTA.playerX = maxX;
+
+  GTA.roadOffset += GTA.speed;
+  if (GTA.roadOffset > 40) GTA.roadOffset -= 40;
+  GTA.distance += GTA.speed * 0.5;
+
+  GTA.spawnTimer--;
+  if (GTA.spawnTimer <= 0) {
+    GTA.spawnTimer = 40 + Math.random() * 40;
+    const laneCount = 3;
+    const laneW = (GTA_W - 60) / laneCount;
+    const lane = Math.floor(Math.random() * laneCount);
+    const carX = 30 + laneW * lane + laneW / 2;
+
+    GTA.cars.push({
+      x: carX - 13,
+      y: -50,
+      w: 26,
+      h: 46,
+      color: Math.random() < 0.5 ? "#d64545" : "#e8a020",
+      speed: 1.5 + Math.random() * 1.5
+    });
+  }
+
+  const playerY = GTA_H - 70;
+  for (let i = GTA.cars.length - 1; i >= 0; i--) {
+    const car = GTA.cars[i];
+    car.y += GTA.speed + car.speed;
+
+    if (car.y > GTA_H + 50) {
+      GTA.cars.splice(i, 1);
+      continue;
+    }
+
+    if (GTA.invincible <= 0) {
+      if (GTA.playerX - GTA.playerW/2 < car.x + car.w &&
+          GTA.playerX + GTA.playerW/2 > car.x &&
+          playerY < car.y + car.h &&
+          playerY + GTA.playerH > car.y) {
+        GTA.shake = 15;
+        GTA.invincible = 60;
+        GTA.playerX = GTA_W / 2;
+        GTA.cars.splice(i, 1);
+      }
+    }
+  }
+
+  if (GTA.distance >= GTA.targetDistance) {
+    winGTA();
+  }
+}
+
+function drawCar(ctx, x, y, w, h, color, isPlayer) {
+  const img = isPlayer ? gtaCarImg : gtaCarEnemyImg;
+  if (img && img.complete && img.naturalWidth > 0) {
+    drawImageContain(ctx, img, x, y, w, h, false);
+    return;
+  }
+
+  ctx.fillStyle = color;
+  ctx.fillRect(x, y, w, h);
+  ctx.fillStyle = isPlayer ? "#a0d0ff" : "#2a2a2a";
+  ctx.fillRect(x + 4, y + 8, w - 8, h * 0.25);
+  ctx.fillRect(x + 4, y + h * 0.55, w - 8, h * 0.2);
+
+  if (isPlayer) {
+    ctx.fillStyle = "#ffd93b";
+    ctx.fillRect(x + 3, y, 5, 3);
+    ctx.fillRect(x + w - 8, y, 5, 3);
+  } else {
+    ctx.fillStyle = "#ff4040";
+    ctx.fillRect(x + 3, y + h - 3, 5, 3);
+    ctx.fillRect(x + w - 8, y + h - 3, 5, 3);
+  }
+}
+
+function drawGTA() {
+  const ctx = GTA.ctx;
+  ctx.save();
+  if (GTA.shake > 0.5) {
+    ctx.translate((Math.random()-0.5)*GTA.shake, (Math.random()-0.5)*GTA.shake);
+  }
+
+  ctx.fillStyle = "#3a3a3a";
+  ctx.fillRect(0, 0, GTA_W, GTA_H);
+  ctx.fillStyle = "#5a5a5a";
+  ctx.fillRect(0, 0, 28, GTA_H);
+  ctx.fillRect(GTA_W - 28, 0, 28, GTA_H);
+  ctx.fillStyle = "#fff";
+  ctx.fillRect(26, 0, 3, GTA_H);
+  ctx.fillRect(GTA_W - 29, 0, 3, GTA_H);
+
+  const laneCount = 3;
+  const laneW = (GTA_W - 60) / laneCount;
+  for (let i = 1; i < laneCount; i++) {
+    const x = 30 + laneW * i;
+    for (let y = -40 + (GTA.roadOffset % 40); y < GTA_H; y += 40) {
+      ctx.fillStyle = "rgba(255,255,255,0.35)";
+      ctx.fillRect(x - 1, y, 2, 20);
+    }
+  }
+
+  ctx.fillStyle = "rgba(0,0,0,0.6)";
+  ctx.fillRect(0, 0, GTA_W, 22);
+  ctx.fillStyle = "rgba(255,178,200,0.8)";
+  ctx.fillRect(0, 0, GTA_W * Math.min(1, GTA.distance / GTA.targetDistance), 22);
+
+  ctx.fillStyle = "#fff";
+  ctx.font = "bold 10px 'Consolas', monospace";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(`距离 ${Math.floor(GTA.distance)} / ${GTA.targetDistance}`, GTA_W / 2, 11);
+
+  for (const car of GTA.cars) {
+    drawCar(ctx, car.x, car.y, car.w, car.h, car.color, false);
+  }
+
+  const py = GTA_H - 70;
+  if (GTA.invincible > 0 && Math.floor(GTA.invincible / 4) % 2 === 0) {
+    // 闪烁
+  } else {
+    drawCar(ctx, GTA.playerX - GTA.playerW/2, py, GTA.playerW, GTA.playerH, "#4a9eff", true);
+  }
+
+  const vg = ctx.createRadialGradient(GTA_W/2, GTA_H/2, GTA_W*0.3, GTA_W/2, GTA_H/2, GTA_W*0.75);
+  vg.addColorStop(0, "rgba(0,0,0,0)");
+  vg.addColorStop(1, "rgba(0,0,0,0.5)");
+  ctx.fillStyle = vg;
+  ctx.fillRect(0, 0, GTA_W, GTA_H);
+
+  ctx.restore();
+}
+
+function winGTA() {
+  if (!GTA.running) return;
+  GTA.running = false;
+  if (GTA.raf) { cancelAnimationFrame(GTA.raf); GTA.raf = null; }
+  document.getElementById("gtaVictory").classList.add("show");
+}
+
+function continueAfterGTA() {
+  document.getElementById("gtaGame").classList.remove("show");
+  document.getElementById("gtaVictory").classList.remove("show");
+
+  document.getElementById("dialog").style.display = "block";
+  document.getElementById("dialog").style.visibility = "visible";
+  document.getElementById("chapterTitle").classList.add("show");
+
+  state.idx++;
+  render();
+}
+
+/* ===================================================
+   拣爱式小游戏：今天吃什么
+=================================================== */
+const PF = {
+  busy: false,
+  done: false,
+  timer: null,
+  balls: [],
+  raf: null,
+  zoneW: 0,
+  zoneH: 0
+};
+
+function pfScrollToBottom() {
+  const chat = document.getElementById("pfChat");
+  requestAnimationFrame(() => { chat.scrollTop = chat.scrollHeight; });
+}
+
+function pfAppendMessage(who, text, opts) {
+  const chat = document.getElementById("pfChat");
+  const msg = document.createElement("div");
+  msg.className = "pf-msg " + (who === "boy" ? "right" : "left");
+
+  const ava = document.createElement("div");
+  ava.className = "pf-ava " + (who === "boy" ? "boy" : "girl");
+  ava.textContent = who === "boy" ? "B" : "E";
+
+  const bubble = document.createElement("div");
+  bubble.className = "pf-bubble";
+  bubble.textContent = text;
+  if (opts && opts.shake) bubble.classList.add("shake");
+
+  msg.appendChild(ava);
+  msg.appendChild(bubble);
+  chat.appendChild(msg);
+  pfScrollToBottom();
+  return msg;
+}
+
+function pfResetBalls() {
+  const zone = document.getElementById("pfBallZone");
+  zone.querySelectorAll(".pf-ball-wrap").forEach(el => el.remove());
+
+  PF.balls = [];
+  PF.busy = false;
+  PF.done = false;
+
+  if (PF.raf) { cancelAnimationFrame(PF.raf); PF.raf = null; }
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      PF.zoneW = zone.clientWidth;
+      PF.zoneH = zone.clientHeight;
+
+      FOOD_OPTIONS.forEach(f => pfSpawnBall(f));
+      pfStartBallLoop();
+    });
+  });
+}
+
+function pfSpawnBall(food) {
+  const zone = document.getElementById("pfBallZone");
+  const size = Math.round(Math.max(44, Math.min(58, PF.zoneH * 0.34)));
+
+  const wrap = document.createElement("div");
+  wrap.className = "pf-ball-wrap";
+  wrap.style.width = size + "px";
+  wrap.style.height = size + "px";
+
+  const ball = document.createElement("div");
+  ball.className = "pf-ball";
+  ball.textContent = food;
+  wrap.appendChild(ball);
+  zone.appendChild(wrap);
+
+  const b = {
+    food, el: wrap, ball,
+    w: size, h: size,
+    x: Math.random() * Math.max(1, PF.zoneW - size),
+    y: Math.random() * Math.max(1, PF.zoneH - size),
+    vx: (Math.random() < 0.5 ? -1 : 1) * (0.55 + Math.random() * 0.75),
+    vy: (Math.random() < 0.5 ? -1 : 1) * (0.40 + Math.random() * 0.60),
+    alive: true
+  };
+
+  wrap.style.transform = `translate(${b.x.toFixed(1)}px, ${b.y.toFixed(1)}px)`;
+
+  wrap.addEventListener("pointerdown", (e) => {
+    e.preventDefault();
+    pfChooseFood(food, b);
+  });
+
+  PF.balls.push(b);
+  return b;
+}
+
+function pfStartBallLoop() {
+  if (PF.raf) { cancelAnimationFrame(PF.raf); PF.raf = null; }
+
+  let last = performance.now();
+
+  function step(now) {
+    if (!PF.balls.some(b => b.alive)) { PF.raf = null; return; }
+
+    const dt = Math.min(2.5, Math.max(0.25, (now - last) / 16.667));
+    last = now;
+
+    pfUpdateBalls(dt);
+    PF.raf = requestAnimationFrame(step);
+  }
+
+  PF.raf = requestAnimationFrame(step);
+}
+
+function pfUpdateBalls(dt) {
+  const W = PF.zoneW, H = PF.zoneH;
+  const arr = PF.balls.filter(b => b.alive);
+
+  for (const b of arr) {
+    b.x += b.vx * dt;
+    b.y += b.vy * dt;
+
+    if (b.x < 0)         { b.x = 0;       b.vx = Math.abs(b.vx); }
+    if (b.x + b.w > W)   { b.x = W - b.w; b.vx = -Math.abs(b.vx); }
+    if (b.y < 0)         { b.y = 0;       b.vy = Math.abs(b.vy); }
+    if (b.y + b.h > H)   { b.y = H - b.h; b.vy = -Math.abs(b.vy); }
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      const a = arr[i], b = arr[j];
+      const ax = a.x + a.w / 2, ay = a.y + a.h / 2;
+      const bx = b.x + b.w / 2, by = b.y + b.h / 2;
+      const dx = bx - ax, dy = by - ay;
+      const d = Math.hypot(dx, dy) || 0.001;
+      const minD = (a.w + b.w) / 2;
+
+      if (d < minD) {
+        const nx = dx / d, ny = dy / d;
+        const overlap = (minD - d) / 2;
+
+        a.x -= nx * overlap; a.y -= ny * overlap;
+        b.x += nx * overlap; b.y += ny * overlap;
+
+        const av = a.vx * nx + a.vy * ny;
+        const bv = b.vx * nx + b.vy * ny;
+        if (av - bv > 0) {
+          a.vx += (bv - av) * nx; a.vy += (bv - av) * ny;
+          b.vx += (av - bv) * nx; b.vy += (av - bv) * ny;
+        }
+      }
+    }
+  }
+
+  for (const b of arr) {
+    b.el.style.transform = `translate(${b.x.toFixed(1)}px, ${b.y.toFixed(1)}px)`;
+  }
+}
+
+function pfReviveBall(b) {
+  b.el.style.display = "";
+  b.ball.classList.remove("pop");
+  void b.ball.offsetWidth;
+
+  b.x = Math.random() * Math.max(1, PF.zoneW - b.w);
+  b.y = Math.random() * Math.max(1, PF.zoneH - b.h);
+  b.vx = (Math.random() < 0.5 ? -1 : 1) * (0.55 + Math.random() * 0.75);
+  b.vy = (Math.random() < 0.5 ? -1 : 1) * (0.40 + Math.random() * 0.60);
+
+  b.el.style.transform = `translate(${b.x.toFixed(1)}px, ${b.y.toFixed(1)}px)`;
+  b.alive = true;
+}
+
+function pfPopAllBalls() {
+  const all = PF.balls.slice();
+  PF.balls = [];
+
+  all.forEach((b, i) => {
+    b.alive = false;
+    setTimeout(() => {
+      b.ball.classList.add("pop");
+      setTimeout(() => { if (b.el.parentNode) b.el.parentNode.removeChild(b.el); }, 420);
+    }, i * 70);
+  });
+}
+
+function pfChooseFood(food, ball) {
+  if (PF.busy || PF.done) return;
+  PF.busy = true;
+
+  if (ball && ball.alive) {
+    ball.alive = false;
+    ball.ball.classList.add("pop");
+    setTimeout(() => { if (ball.el) ball.el.style.display = "none"; }, 380);
+  }
+
+  pfAppendMessage("boy", food + "？");
+
+  if (food === "东北菜") {
+    PF.done = true;
+
+    PF.timer = setTimeout(() => {
+      pfAppendMessage("girl", "东北菜！");
+      pfPopAllBalls();
+
+      PF.timer = setTimeout(() => {
+        pfAppendMessage("boy", "行！我知道一家，六泰居。");
+        PF.timer = setTimeout(finishPickFood, 1400);
+      }, 700);
+
+    }, 500);
+
+  } else {
+    PF.timer = setTimeout(() => {
+      pfAppendMessage("girl", "（摇头）", { shake: true });
+
+      PF.timer = setTimeout(() => {
+        if (ball) pfReviveBall(ball);
+        PF.busy = false;
+      }, 750);
+
+    }, 600);
+  }
+}
+
+function startPickFood() {
+  document.getElementById("dialog").style.display = "none";
+  document.getElementById("dialog").style.visibility = "visible";
+  document.getElementById("choices").classList.remove("show");
+  document.getElementById("choices").innerHTML = "";
+  document.getElementById("chapterTitle").classList.remove("show");
+
+  document.getElementById("pickFood").classList.add("show");
+  document.getElementById("pfHeadName").textContent = playerName;
+
+  if (PF.timer) { clearTimeout(PF.timer); PF.timer = null; }
+
+  document.getElementById("pfChat").innerHTML = "";
+
+  pfResetBalls();
+}
+
+function finishPickFood() {
+  document.getElementById("pickFood").classList.remove("show");
+  document.getElementById("dialog").style.display = "block";
+  document.getElementById("dialog").style.visibility = "visible";
+  document.getElementById("chapterTitle").classList.add("show");
+
+  state.lines = PICK_FOOD_AFTER;
+  state.idx = 0;
+  state.phase = "reply";
+  state.sequencePhase = "pickFoodAfter";
+  render();
+}
+
+window.addEventListener("resize", () => {
+  if (!PF.balls.length) return;
+  const zone = document.getElementById("pfBallZone");
+  PF.zoneW = zone.clientWidth;
+  PF.zoneH = zone.clientHeight;
+  PF.balls.forEach(b => {
+    b.x = Math.min(b.x, Math.max(0, PF.zoneW - b.w));
+    b.y = Math.min(b.y, Math.max(0, PF.zoneH - b.h));
+  });
+});
+
+/* ===================================================
+   小游戏 1：救公主
+=================================================== */
+const VIEW_W = 800;
+const VIEW_H = 450;
+const WORLD_W = 2400;
+const WORLD_H = 450;
+const GRAVITY = 0.7;
+const JUMP_V = -13.5;
+const MOVE_SPEED = 4.5;
+const GROUND_Y = 380;
+
+const MG = {
+  canvas: null, ctx: null, running: false,
+  keys: { left: false, right: false, jump: false },
+  player: null, platforms: [], coins: [], enemies: [], goal: null,
+  bubbles: [], hearts: [],
+  cameraX: 0, score: 0, totalCoins: 0, raf: null, bound: false
+};
+
+function startRescueGame() {
+  document.getElementById("dialog").style.display = "none";
+  document.getElementById("dialog").style.visibility = "visible";
+  document.getElementById("chapterTitle").classList.remove("show");
+  document.getElementById("choices").classList.remove("show");
+  document.getElementById("choices").innerHTML = "";
+  initMiniGame();
+}
+
+function initMiniGame() {
+  MG.canvas = document.getElementById("gameCanvas");
+  MG.ctx = MG.canvas.getContext("2d");
+  MG.running = true;
+  MG.keys = { left: false, right: false, jump: false };
+  MG.score = 0;
+  MG.cameraX = 0;
+
+  MG.player = {
+    x: 50, y: GROUND_Y - 52, w: 36, h: 52,
+    vx: 0, vy: 0, onGround: false, facing: 1
+  };
+
+  MG.platforms = [
+    { x: 0, y: GROUND_Y, w: WORLD_W, h: 70 },
+    { x: 280, y: 280, w: 120, h: 20 },
+    { x: 520, y: 240, w: 100, h: 20 },
+    { x: 760, y: 300, w: 140, h: 20 },
+    { x: 1060, y: 260, w: 120, h: 20 },
+    { x: 1360, y: 280, w: 160, h: 20 },
+    { x: 1680, y: 240, w: 120, h: 20 },
+    { x: 1960, y: 300, w: 140, h: 20 }
+  ];
+
+  MG.coins = [
+    { x: 160, y: 320, r: 12, alive: true },
+    { x: 320, y: 240, r: 12, alive: true },
+    { x: 560, y: 200, r: 12, alive: true },
+    { x: 820, y: 260, r: 12, alive: true },
+    { x: 1100, y: 220, r: 12, alive: true },
+    { x: 1420, y: 240, r: 12, alive: true },
+    { x: 1720, y: 200, r: 12, alive: true },
+    { x: 2020, y: 260, r: 12, alive: true }
+  ];
+  MG.totalCoins = MG.coins.length;
+
+  MG.enemies = [
+    { x: 480, y: GROUND_Y - 36, w: 36, h: 36, vx: 1.2, minX: 400, maxX: 700 },
+    { x: 900, y: GROUND_Y - 36, w: 36, h: 36, vx: -1.4, minX: 850, maxX: 1100 },
+    { x: 1300, y: GROUND_Y - 36, w: 36, h: 36, vx: 1.6, minX: 1200, maxX: 1500 },
+    { x: 1800, y: GROUND_Y - 36, w: 36, h: 36, vx: -1.3, minX: 1700, maxX: 1950 }
+  ];
+
+  MG.goal = { x: 2300, y: GROUND_Y - 120, w: 20, h: 120 };
+
+  MG.bubbles = [];
+  MG.hearts = [];
+  for (let i = 0; i < 20; i++) {
+    MG.bubbles.push({
+      x: Math.random() * WORLD_W,
+      y: 40 + Math.random() * 340,
+      r: 8 + Math.random() * 22,
+      speed: 0.15 + Math.random() * 0.35,
+      sway: Math.random() * Math.PI * 2,
+      swaySpeed: 0.008 + Math.random() * 0.018,
+      parallax: 0.3 + Math.random() * 0.3
+    });
+  }
+  for (let i = 0; i < 24; i++) {
+    MG.hearts.push({
+      x: Math.random() * WORLD_W,
+      y: 40 + Math.random() * 340,
+      size: 9 + Math.random() * 14,
+      speed: 0.12 + Math.random() * 0.28,
+      sway: Math.random() * Math.PI * 2,
+      swaySpeed: 0.012 + Math.random() * 0.022,
+      opacity: 0.15 + Math.random() * 0.35,
+      parallax: 0.25 + Math.random() * 0.35
+    });
+  }
+
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  MG.canvas.width = VIEW_W * dpr;
+  MG.canvas.height = VIEW_H * dpr;
+  MG.canvas.style.width = VIEW_W + "px";
+  MG.canvas.style.height = VIEW_H + "px";
+  MG.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  document.getElementById("miniGame").classList.add("show");
+  document.getElementById("gameVictory").classList.remove("show");
+
+  updateCoinHud();
+  bindGameControls();
+
+  MG.raf = requestAnimationFrame(gameLoop);
+}
+
+function updateCoinHud() {
+  document.getElementById("coinCount").textContent = MG.score;
+  document.getElementById("coinTotal").textContent = MG.totalCoins;
+}
+
+function bindGameControls() {
+  if (MG.bound) return;
+  MG.bound = true;
+
+  const btnLeft = document.getElementById("btnLeft");
+  const btnRight = document.getElementById("btnRight");
+  const btnJump = document.getElementById("btnJump");
+
+  const bind = (el, key) => {
+    el.addEventListener("pointerdown", (e) => { e.preventDefault(); MG.keys[key] = true; });
+    el.addEventListener("pointerup", (e) => { e.preventDefault(); MG.keys[key] = false; });
+    el.addEventListener("pointerleave", () => { MG.keys[key] = false; });
+    el.addEventListener("pointercancel", () => { MG.keys[key] = false; });
+  };
+
+  bind(btnLeft, "left");
+  bind(btnRight, "right");
+  bind(btnJump, "jump");
+
+  window.addEventListener("keydown", (e) => {
+    if (!MG.running) return;
+    if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") { MG.keys.left = true; e.preventDefault(); }
+    if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") { MG.keys.right = true; e.preventDefault(); }
+    if (e.key === "ArrowUp" || e.key === " " || e.key === "w" || e.key === "W") { MG.keys.jump = true; e.preventDefault(); }
+  });
+
+  window.addEventListener("keyup", (e) => {
+    if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") MG.keys.left = false;
+    if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") MG.keys.right = false;
+    if (e.key === "ArrowUp" || e.key === " " || e.key === "w" || e.key === "W") MG.keys.jump = false;
+  });
+}
+
+function gameLoop() {
+  if (!MG.running) return;
+  updateGame();
+  drawGame();
+  MG.raf = requestAnimationFrame(gameLoop);
+}
+
+function rectsOverlap(a, b) {
+  return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
+}
+
+function updateDecor() {
+  for (const b of MG.bubbles) {
+    b.y -= b.speed;
+    b.sway += b.swaySpeed;
+    b.x += Math.sin(b.sway) * 0.3;
+    if (b.y < -b.r * 2) { b.y = VIEW_H + b.r * 2; b.x = Math.random() * WORLD_W; }
+  }
+  for (const h of MG.hearts) {
+    h.y -= h.speed;
+    h.sway += h.swaySpeed;
+    h.x += Math.sin(h.sway) * 0.25;
+    if (h.y < -h.size * 2) { h.y = VIEW_H + h.size * 2; h.x = Math.random() * WORLD_W; }
+  }
+}
+
+function updateGame() {
+  const p = MG.player;
+
+  p.vx = 0;
+  if (MG.keys.left) { p.vx = -MOVE_SPEED; p.facing = -1; }
+  if (MG.keys.right) { p.vx = MOVE_SPEED; p.facing = 1; }
+  p.x += p.vx;
+
+  if (p.x < 0) p.x = 0;
+  if (p.x + p.w > WORLD_W) p.x = WORLD_W - p.w;
+
+  if (MG.keys.jump && p.onGround) { p.vy = JUMP_V; p.onGround = false; }
+
+  p.vy += GRAVITY;
+  if (p.vy > 18) p.vy = 18;
+
+  const oldY = p.y;
+  p.y += p.vy;
+  p.onGround = false;
+
+  for (const plat of MG.platforms) {
+    if (p.x + p.w > plat.x && p.x < plat.x + plat.w) {
+      if (p.vy >= 0 && oldY + p.h <= plat.y + 8 && p.y + p.h >= plat.y) {
+        p.y = plat.y - p.h;
+        p.vy = 0;
+        p.onGround = true;
+      }
+    }
+  }
+
+  for (const c of MG.coins) {
+    if (!c.alive) continue;
+    const dx = p.x + p.w / 2 - c.x;
+    const dy = p.y + p.h / 2 - c.y;
+    if (Math.abs(dx) < p.w / 2 + c.r && Math.abs(dy) < p.h / 2 + c.r) {
+      c.alive = false;
+      MG.score++;
+      updateCoinHud();
+    }
+  }
+
+  for (const e of MG.enemies) {
+    e.x += e.vx;
+    if (e.x <= e.minX) { e.x = e.minX; e.vx = Math.abs(e.vx); }
+    if (e.x + e.w >= e.maxX) { e.x = e.maxX - e.w; e.vx = -Math.abs(e.vx); }
+
+    if (rectsOverlap(p, e)) {
+      p.x = 50;
+      p.y = GROUND_Y - p.h;
+      p.vx = 0; p.vy = 0;
+    }
+  }
+
+  if (p.y > WORLD_H + 100) {
+    p.x = 50;
+    p.y = GROUND_Y - p.h;
+    p.vy = 0;
+  }
+
+  MG.cameraX = p.x + p.w / 2 - VIEW_W / 2;
+  if (MG.cameraX < 0) MG.cameraX = 0;
+  if (MG.cameraX > WORLD_W - VIEW_W) MG.cameraX = WORLD_W - VIEW_W;
+
+  updateDecor();
+
+  if (p.x + p.w >= MG.goal.x && p.y + p.h >= MG.goal.y) {
+    winMiniGame();
+  }
+}
+
+function drawHeartShape(ctx, x, y, size) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.scale(size / 16, size / 16);
+  ctx.beginPath();
+  ctx.moveTo(0, 4);
+  ctx.bezierCurveTo(0, 0, -8, 0, -8, 6);
+  ctx.bezierCurveTo(-8, 12, 0, 16, 0, 22);
+  ctx.bezierCurveTo(0, 16, 8, 12, 8, 6);
+  ctx.bezierCurveTo(8, 0, 0, 0, 0, 4);
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawDecor(ctx, cam) {
+  for (const b of MG.bubbles) {
+    const sx = ((b.x - cam * b.parallax) % VIEW_W + VIEW_W) % VIEW_W;
+    if (sx < -b.r * 2 || sx > VIEW_W + b.r * 2) continue;
+    const grad = ctx.createRadialGradient(
+      sx - b.r * 0.32, b.y - b.r * 0.32, b.r * 0.12,
+      sx, b.y, b.r
+    );
+    grad.addColorStop(0, "rgba(255, 245, 252, 0.75)");
+    grad.addColorStop(0.55, "rgba(255, 200, 230, 0.35)");
+    grad.addColorStop(1, "rgba(255, 180, 220, 0.08)");
+    ctx.beginPath();
+    ctx.arc(sx, b.y, b.r, 0, Math.PI * 2);
+    ctx.fillStyle = grad;
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(sx - b.r * 0.32, b.y - b.r * 0.32, b.r * 0.2, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
+    ctx.fill();
+  }
+
+  for (const h of MG.hearts) {
+    const sx = ((h.x - cam * h.parallax) % VIEW_W + VIEW_W) % VIEW_W;
+    if (sx < -h.size * 2 || sx > VIEW_W + h.size * 2) continue;
+    ctx.globalAlpha = h.opacity;
+    ctx.fillStyle = "#ff8fb8";
+    drawHeartShape(ctx, sx, h.y, h.size);
+    ctx.globalAlpha = 1;
+  }
+}
+
+function drawGame() {
+  const ctx = MG.ctx;
+  const cam = MG.cameraX;
+
+  const sky = ctx.createLinearGradient(0, 0, 0, VIEW_H);
+  sky.addColorStop(0, "#ffe6f2");
+  sky.addColorStop(0.55, "#ffd0e4");
+  sky.addColorStop(1, "#f7c9f0");
+  ctx.fillStyle = sky;
+  ctx.fillRect(0, 0, VIEW_W, VIEW_H);
+
+  const glow = ctx.createRadialGradient(
+    VIEW_W * 0.5, VIEW_H * 0.75, 40,
+    VIEW_W * 0.5, VIEW_H * 0.75, VIEW_W * 0.7
+  );
+  glow.addColorStop(0, "rgba(255, 240, 250, 0.55)");
+  glow.addColorStop(1, "rgba(255, 240, 250, 0)");
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, VIEW_W, VIEW_H);
+
+  drawDecor(ctx, cam);
+
+  for (const plat of MG.platforms) {
+    const sx = plat.x - cam;
+    if (sx > VIEW_W || sx + plat.w < 0) continue;
+    const isGround = plat.h > 50;
+
+    ctx.save();
+    ctx.shadowColor = "rgba(255, 160, 210, 0.7)";
+    ctx.shadowBlur = 12;
+
+    const g = ctx.createLinearGradient(0, plat.y, 0, plat.y + plat.h);
+    if (isGround) {
+      g.addColorStop(0, "#f2a8cc");
+      g.addColorStop(1, "#b87aa0");
+    } else {
+      g.addColorStop(0, "#fbc8de");
+      g.addColorStop(1, "#e8a0c0");
+    }
+    ctx.fillStyle = g;
+    ctx.fillRect(sx, plat.y, plat.w, plat.h);
+
+    ctx.fillStyle = "rgba(255, 245, 252, 0.85)";
+    ctx.fillRect(sx, plat.y, plat.w, isGround ? 6 : 4);
+
+    ctx.restore();
+  }
+
+  for (const c of MG.coins) {
+    if (!c.alive) continue;
+    const sx = c.x - cam;
+    if (sx > VIEW_W + 30 || sx < -30) continue;
+
+    if (coinImg && coinImg.complete && coinImg.naturalWidth > 0) {
+      drawImageContain(ctx, coinImg, sx - c.r, c.y - c.r, c.r * 2, c.r * 2, false);
+    } else {
+      ctx.save();
+      ctx.shadowColor = "rgba(255, 200, 120, 0.9)";
+      ctx.shadowBlur = 12;
+      ctx.fillStyle = "#ffd93b";
+      drawHeartShape(ctx, sx, c.y - c.r * 0.6, c.r * 1.7);
+      ctx.restore();
+      ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+      drawHeartShape(ctx, sx - 2, c.y - c.r * 0.85, c.r * 0.55);
+    }
+  }
+
+  for (const e of MG.enemies) {
+    const sx = e.x - cam;
+    if (sx > VIEW_W || sx + e.w < 0) continue;
+
+    if (enemyImg && enemyImg.complete && enemyImg.naturalWidth > 0) {
+      drawImageContain(ctx, enemyImg, sx, e.y, e.w, e.h, e.vx > 0);
+    } else {
+      ctx.fillStyle = "#d64545";
+      ctx.fillRect(sx, e.y, e.w, e.h);
+      ctx.fillStyle = "#fff";
+      ctx.fillRect(sx + 8, e.y + 10, 8, 8);
+      ctx.fillRect(sx + 20, e.y + 10, 8, 8);
+      ctx.fillStyle = "#000";
+      ctx.fillRect(sx + 10, e.y + 12, 4, 4);
+      ctx.fillRect(sx + 22, e.y + 12, 4, 4);
+    }
+  }
+
+  const goalSx = MG.goal.x - cam;
+  if (goalImg && goalImg.complete && goalImg.naturalWidth > 0) {
+    drawImageContain(ctx, goalImg, goalSx, MG.goal.y, MG.goal.w + 40, MG.goal.h, false);
+  } else {
+    ctx.fillStyle = "#5a9e3a";
+    ctx.fillRect(goalSx, MG.goal.y, 6, MG.goal.h);
+    ctx.beginPath();
+    ctx.moveTo(goalSx + 6, MG.goal.y + 10);
+    ctx.lineTo(goalSx + 50, MG.goal.y + 30);
+    ctx.lineTo(goalSx + 6, MG.goal.y + 50);
+    ctx.fillStyle = "#ffd93b";
+    ctx.fill();
+  }
+
+  const p = MG.player;
+  const px = p.x - cam;
+
+  if (playerImg && playerImg.complete && playerImg.naturalWidth > 0) {
+    drawImageContain(ctx, playerImg, px, p.y, p.w, p.h, p.facing === -1);
+  } else {
+    ctx.fillStyle = "#ff6b9d";
+    ctx.fillRect(px, p.y, p.w, p.h);
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(px + 8, p.y + 12, 6, 6);
+    ctx.fillRect(px + 22, p.y + 12, 6, 6);
+  }
+}
+
+function winMiniGame() {
+  MG.running = false;
+  if (MG.raf) { cancelAnimationFrame(MG.raf); MG.raf = null; }
+  document.getElementById("gameVictory").classList.add("show");
+}
+
+function continueAfterRescue() {
+  document.getElementById("miniGame").classList.remove("show");
+  document.getElementById("gameVictory").classList.remove("show");
+
+  document.getElementById("dialog").style.display = "block";
+  document.getElementById("dialog").style.visibility = "visible";
+
+  state.sequencePhase = "afterRescue";
+  state.lines = AFTER_RESCUE;
+  state.idx = 0;
+  state.phase = "reply";
+  render();
+}
+
+/* ===================================================
+   小游戏 2：像素黎明杀机
+=================================================== */
+const DBD_W = 400;
+const DBD_H = 225;
+
+const DBD = {
+  canvas: null, ctx: null, running: false, raf: null, bound: false,
+  keys: {
+    w:false, a:false, s:false, d:false,
+    up:false, down:false, left:false, right:false,
+    interact:false
+  },
+  prevInteract: false,
+  player: null, mate: null, killer: null,
+  walls: [], obstacles: [], gen: null, gate: null,
+  qte: null, qteCooldown: 0,
+  shake: 0, time: 0, phase: 'repair',
+  message: "", msgTimer: 0,
+  particles: [],
+  groundCanvas: null
+};
+
+function buildDBDGround() {
+  const oc = document.createElement("canvas");
+  oc.width = DBD_W;
+  oc.height = DBD_H;
+  const c = oc.getContext("2d");
+
+  c.fillStyle = "#241a12";
+  c.fillRect(0, 0, DBD_W, DBD_H);
+
+  for (let i = 0; i < 2800; i++) {
+    const x = Math.random() * DBD_W;
+    const y = Math.random() * DBD_H;
+    const r = 0.8 + Math.random() * 2.6;
+    const t = Math.random();
+    if (t < 0.45) {
+      c.fillStyle = `rgba(58, 42, 28, ${0.15 + Math.random() * 0.35})`;
+    } else if (t < 0.82) {
+      c.fillStyle = `rgba(16, 10, 6, ${0.22 + Math.random() * 0.42})`;
+    } else {
+      c.fillStyle = `rgba(88, 64, 40, ${0.10 + Math.random() * 0.22})`;
+    }
+    c.beginPath();
+    c.arc(x, y, r, 0, Math.PI * 2);
+    c.fill();
+  }
+
+  for (let i = 0; i < 70; i++) {
+    const x = Math.floor(Math.random() * DBD_W);
+    const y = Math.floor(Math.random() * DBD_H);
+    const s = 1 + Math.floor(Math.random() * 2);
+    c.fillStyle = Math.random() < 0.5 ? "#3d3226" : "#4a3c2c";
+    c.fillRect(x, y, s, s);
+    c.fillStyle = "rgba(0,0,0,0.45)";
+    c.fillRect(x, y + s, s, 1);
+  }
+
+  for (let i = 0; i < 140; i++) {
+    const x = Math.random() * DBD_W;
+    const y = Math.random() * DBD_H;
+    const len = 2 + Math.random() * 4;
+    c.strokeStyle = `rgba(96, 78, 40, ${0.22 + Math.random() * 0.35})`;
+    c.lineWidth = 1;
+    c.beginPath();
+    c.moveTo(x, y);
+    c.lineTo(x + (Math.random() - 0.5) * 4, y - len);
+    c.stroke();
+  }
+
+  for (let i = 0; i < 14; i++) {
+    const cx = Math.random() * DBD_W;
+    const cy = Math.random() * DBD_H;
+    const baseR = 3 + Math.random() * 9;
+    c.fillStyle = `rgba(96, 10, 16, ${0.12 + Math.random() * 0.20})`;
+    c.beginPath();
+    c.arc(cx, cy, baseR, 0, Math.PI * 2);
+    c.fill();
+    for (let j = 0; j < 8; j++) {
+      const a = Math.random() * Math.PI * 2;
+      const d = baseR + Math.random() * 12;
+      c.fillStyle = `rgba(112, 12, 18, ${0.10 + Math.random() * 0.22})`;
+      c.beginPath();
+      c.arc(cx + Math.cos(a) * d, cy + Math.sin(a) * d, 0.8 + Math.random() * 1.8, 0, Math.PI * 2);
+      c.fill();
+    }
+  }
+
+  for (let i = 0; i < 3; i++) {
+    const x = Math.random() * DBD_W * 0.7;
+    const y = Math.random() * DBD_H;
+    c.strokeStyle = "rgba(88, 10, 14, 0.22)";
+    c.lineWidth = 2 + Math.random() * 2;
+    c.beginPath();
+    c.moveTo(x, y);
+    c.lineTo(x + 30 + Math.random() * 50, y + (Math.random() - 0.5) * 20);
+    c.stroke();
+  }
+
+  return oc;
+}
+
+function initDBD() {
+  const T = 6;
+  DBD.walls = [
+    {x:0, y:0, w:DBD_W, h:T},
+    {x:0, y:DBD_H-T, w:DBD_W, h:T},
+    {x:0, y:0, w:T, h:DBD_H},
+    {x:DBD_W-T, y:0, w:T, h:DBD_H}
+  ];
+
+  DBD.obstacles = [
+    {x:70,  y:45,  w:40, h:30},
+    {x:160, y:130, w:45, h:30},
+    {x:230, y:35,  w:45, h:38},
+    {x:280, y:150, w:50, h:35},
+    {x:110, y:165, w:40, h:30},
+    {x:320, y:75,  w:35, h:40},
+    {x:60,  y:110, w:35, h:30}
+  ];
+
+  DBD.gen = {x:175, y:85, w:40, h:26, progress:0, repairing:false};
+  DBD.gate = {x:DBD_W-T-2, y:80, w:T+4, h:50, progress:0, open:false};
+
+  DBD.player = {x:30, y:180, w:10, h:10, speed:1.5, facing:1};
+  DBD.mate = {x:45, y:185, w:10, h:10, speed:1.5};
+  DBD.killer = {
+    x:330, y:35, w:13, h:13, speed:1.15,
+    state:'patrol', patrolPoints:[[330,35],[330,190],[200,195],[60,120]],
+    patrolIdx:0, target:null, chaseTimer:0, glow:0
+  };
+
+  DBD.qte = null;
+  DBD.qteCooldown = 120;
+  DBD.shake = 0;
+  DBD.time = 0;
+  DBD.phase = 'repair';
+  DBD.message = "找到发电机，按住互动键修";
+  DBD.msgTimer = 200;
+  DBD.particles = [];
+  DBD.prevInteract = false;
+  DBD.keys = {
+    w:false, a:false, s:false, d:false,
+    up:false, down:false, left:false, right:false,
+    interact:false
+  };
+
+  DBD.groundCanvas = buildDBDGround();
+}
+
+function startRepairGame() {
+  document.getElementById("dialog").style.display = "none";
+  document.getElementById("dialog").style.visibility = "visible";
+  document.getElementById("chapterTitle").classList.remove("show");
+  document.getElementById("choices").classList.remove("show");
+
+  DBD.canvas = document.getElementById("repairCanvas");
+  DBD.ctx = DBD.canvas.getContext("2d");
+  DBD.canvas.width = DBD_W;
+  DBD.canvas.height = DBD_H;
+
+  initDBD();
+  DBD.running = true;
+
+  document.getElementById("repairGame").classList.add("show");
+  document.getElementById("repairVictory").classList.remove("show");
+
+  updateRepairHud();
+  bindDBDControls();
+
+  DBD.raf = requestAnimationFrame(dbdLoop);
+}
+
+function updateRepairHud() {
+  let prog = 0, label = "";
+  if (DBD.phase === 'repair') { prog = DBD.gen.progress; label = "修理发电机"; }
+  else if (DBD.phase === 'gate') { prog = DBD.gate.progress; label = "拉大门"; }
+  else if (DBD.phase === 'escape') { prog = 100; label = "快跑出去！"; }
+  document.getElementById("repairProgress").style.width = prog + "%";
+  document.getElementById("repairPercent").textContent = Math.round(prog) + "%";
+  const el = document.getElementById("dbdPhase");
+  if (el) el.textContent = label;
+}
+
+function bindDBDControls() {
+  if (DBD.bound) return;
+  DBD.bound = true;
+
+  const bind = (id, key) => {
+    const el = document.getElementById(id);
+    el.addEventListener("pointerdown", (e) => { e.preventDefault(); DBD.keys[key] = true; });
+    el.addEventListener("pointerup", (e) => { e.preventDefault(); DBD.keys[key] = false; });
+    el.addEventListener("pointerleave", () => { DBD.keys[key] = false; });
+    el.addEventListener("pointercancel", () => { DBD.keys[key] = false; });
+  };
+
+  bind("dbdW", "w");
+  bind("dbdA", "a");
+  bind("dbdS", "s");
+  bind("dbdD", "d");
+  bind("dbdUp", "up");
+  bind("dbdDown", "down");
+  bind("dbdLeft", "left");
+  bind("dbdRight", "right");
+  bind("dbdInteract", "interact");
+
+  window.addEventListener("keydown", (e) => {
+    if (!DBD.running) return;
+    if (e.key === "w" || e.key === "W") { DBD.keys.w = true; e.preventDefault(); }
+    if (e.key === "a" || e.key === "A") { DBD.keys.a = true; e.preventDefault(); }
+    if (e.key === "s" || e.key === "S") { DBD.keys.s = true; e.preventDefault(); }
+    if (e.key === "d" || e.key === "D") { DBD.keys.d = true; e.preventDefault(); }
+    if (e.key === "ArrowUp") { DBD.keys.up = true; e.preventDefault(); }
+    if (e.key === "ArrowDown") { DBD.keys.down = true; e.preventDefault(); }
+    if (e.key === "ArrowLeft") { DBD.keys.left = true; e.preventDefault(); }
+    if (e.key === "ArrowRight") { DBD.keys.right = true; e.preventDefault(); }
+    if (e.key === " " || e.key === "Enter") { DBD.keys.interact = true; e.preventDefault(); }
+  });
+
+  window.addEventListener("keyup", (e) => {
+    if (e.key === "w" || e.key === "W") DBD.keys.w = false;
+    if (e.key === "a" || e.key === "A") DBD.keys.a = false;
+    if (e.key === "s" || e.key === "S") DBD.keys.s = false;
+    if (e.key === "d" || e.key === "D") DBD.keys.d = false;
+    if (e.key === "ArrowUp") DBD.keys.up = false;
+    if (e.key === "ArrowDown") DBD.keys.down = false;
+    if (e.key === "ArrowLeft") DBD.keys.left = false;
+    if (e.key === "ArrowRight") DBD.keys.right = false;
+    if (e.key === " " || e.key === "Enter") DBD.keys.interact = false;
+  });
+}
+
+function dbdLoop() {
+  if (!DBD.running) return;
+  updateDBD();
+  drawDBD();
+  DBD.raf = requestAnimationFrame(dbdLoop);
+}
+
+function collides(x, y, w, h, rects) {
+  for (const r of rects) {
+    if (x < r.x + r.w && x + w > r.x && y < r.y + r.h && y + h > r.y) return true;
+  }
+  return false;
+}
+
+function moveEntity(e, dx, dy) {
+  const all = DBD.walls.concat(DBD.obstacles);
+  if (dx !== 0) {
+    const nx = e.x + dx;
+    if (!collides(nx, e.y, e.w, e.h, all)) e.x = nx;
+  }
+  if (dy !== 0) {
+    const ny = e.y + dy;
+    if (!collides(e.x, ny, e.w, e.h, all)) e.y = ny;
+  }
+}
+
+function lineBlocked(x1, y1, x2, y2, rects) {
+  const len = Math.hypot(x2-x1, y2-y1);
+  const steps = Math.max(2, Math.floor(len / 2));
+  for (let i = 1; i < steps; i++) {
+    const t = i / steps;
+    const px = x1 + (x2-x1)*t;
+    const py = y1 + (y2-y1)*t;
+    for (const r of rects) {
+      if (px > r.x && px < r.x + r.w && py > r.y && py < r.y + r.h) return true;
+    }
+  }
+  return false;
+}
+
+function isNearGen(e) {
+  const cx = e.x + e.w/2, cy = e.y + e.h/2;
+  const gx = DBD.gen.x + DBD.gen.w/2, gy = DBD.gen.y + DBD.gen.h/2;
+  return Math.hypot(cx-gx, cy-gy) < 40;
+}
+
+function isNearGate(e) {
+  const cx = e.x + e.w/2, cy = e.y + e.h/2;
+  const gx = DBD.gate.x + DBD.gate.w/2, gy = DBD.gate.y + DBD.gate.h/2;
+  return Math.hypot(cx-gx, cy-gy) < 50;
+}
+
+function updateKiller() {
+  const k = DBD.killer;
+  const p = DBD.player;
+  const m = DBD.mate;
+
+  const px = p.x + p.w/2, py = p.y + p.h/2;
+  const mx = m.x + m.w/2, my = m.y + m.h/2;
+  const kx = k.x + k.w/2, ky = k.y + k.h/2;
+
+  const dp = Math.hypot(px-kx, py-ky);
+  const dm = Math.hypot(mx-kx, my-ky);
+
+  let tx, ty, dist;
+  if (dp < dm) { tx = px; ty = py; dist = dp; }
+  else { tx = mx; ty = my; dist = dm; }
+
+  const canSee = dist < 115 && !lineBlocked(kx, ky, tx, ty, DBD.obstacles);
+
+  if (canSee) {
+    k.chaseTimer = 100;
+    k.target = { x: tx, y: ty };
+    k.glow = Math.min(1, k.glow + 0.05);
+  } else {
+    k.glow = Math.max(0, k.glow - 0.02);
+  }
+
+  if (k.chaseTimer > 0) {
+    k.chaseTimer--;
+    k.state = 'chase';
+    if (k.target) {
+      const ddx = k.target.x - kx, ddy = k.target.y - ky;
+      const d = Math.hypot(ddx, ddy);
+      if (d > 3) {
+        moveEntity(k, (ddx/d) * k.speed, (ddy/d) * k.speed);
+      }
+    }
+  } else {
+    k.state = 'patrol';
+    k.target = null;
+    const pt = k.patrolPoints[k.patrolIdx];
+    const ddx = pt[0] - kx, ddy = pt[1] - ky;
+    const d = Math.hypot(ddx, ddy);
+    if (d < 5) {
+      k.patrolIdx = (k.patrolIdx + 1) % k.patrolPoints.length;
+    } else {
+      moveEntity(k, (ddx/d) * k.speed * 0.65, (ddy/d) * k.speed * 0.65);
+    }
+  }
+
+  if (dp < 11) {
+    p.x = 30; p.y = 180;
+    DBD.shake = 25;
+    DBD.message = "Bonan 被抓住了！回到起点";
+    DBD.msgTimer = 130;
+    k.chaseTimer = 0;
+    k.state = 'patrol';
+    k.target = null;
+    k.patrolIdx = 0;
+  }
+  if (dm < 11) {
+    m.x = 45; m.y = 185;
+    DBD.shake = 25;
+    DBD.message = "Easlyn 被抓住了！回到起点";
+    DBD.msgTimer = 130;
+    k.chaseTimer = 0;
+    k.state = 'patrol';
+    k.target = null;
+    k.patrolIdx = 0;
+  }
+}
+
+function spawnSparks(x, y, color, count) {
+  for (let i = 0; i < count; i++) {
+    DBD.particles.push({
+      x, y,
+      vx: (Math.random()-0.5)*2,
+      vy: -Math.random()*2 - 0.5,
+      life: 30 + Math.random()*20,
+      maxLife: 50,
+      color,
+      size: 1 + Math.random()*2
+    });
+  }
+}
+
+function updateParticles() {
+  for (let i = DBD.particles.length - 1; i >= 0; i--) {
+    const p = DBD.particles[i];
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.08;
+    p.life--;
+    if (p.life <= 0) DBD.particles.splice(i, 1);
+  }
+}
+
+function spawnQTE() {
+  DBD.qte = {
+    angle: 0,
+    speed: 1.7,
+    zoneStart: 30,
+    zoneEnd: 90,
+    perfectStart: 55,
+    perfectEnd: 65,
+    active: true,
+    result: null,
+    resultTimer: 0
+  };
+}
+
+function judgeQTE() {
+  const q = DBD.qte;
+  if (!q || !q.active) return;
+  const a = q.angle % 360;
+
+  if (a >= q.zoneStart && a <= q.zoneEnd) {
+    if (a >= q.perfectStart && a <= q.perfectEnd) {
+      q.result = 'perfect';
+      DBD.gen.progress = Math.min(100, DBD.gen.progress + 7);
+      spawnSparks(DBD.gen.x + DBD.gen.w/2, DBD.gen.y, '#ffffff', 8);
+    } else {
+      q.result = 'good';
+      DBD.gen.progress = Math.min(100, DBD.gen.progress + 3);
+      spawnSparks(DBD.gen.x + DBD.gen.w/2, DBD.gen.y, '#ffd93b', 4);
+    }
+  } else {
+    q.result = 'miss';
+    DBD.gen.progress = Math.max(0, DBD.gen.progress - 8);
+    DBD.shake = 18;
+    DBD.message = "炸机！";
+    DBD.msgTimer = 60;
+    DBD.killer.chaseTimer = 80;
+    DBD.killer.target = { x: DBD.gen.x + DBD.gen.w/2, y: DBD.gen.y };
+  }
+
+  q.active = false;
+  q.resultTimer = 40;
+
+  if (DBD.gen.progress >= 100) {
+    DBD.phase = 'gate';
+    DBD.message = "发电机修好了！去右边拉大门";
+    DBD.msgTimer = 200;
+    DBD.qte = null;
+  }
+}
+
+function updateDBD() {
+  DBD.time++;
+  if (DBD.shake > 0.5) DBD.shake *= 0.88; else DBD.shake = 0;
+  if (DBD.msgTimer > 0) DBD.msgTimer--;
+
+  const p = DBD.player;
+  const m = DBD.mate;
+
+  let pdx = 0, pdy = 0;
+  if (DBD.keys.a) pdx -= 1;
+  if (DBD.keys.d) pdx += 1;
+  if (DBD.keys.w) pdy -= 1;
+  if (DBD.keys.s) pdy += 1;
+  if (pdx && pdy) { pdx *= 0.707; pdy *= 0.707; }
+  if (pdx) p.facing = pdx > 0 ? 1 : -1;
+  moveEntity(p, pdx * p.speed, pdy * p.speed);
+
+  let mdx = 0, mdy = 0;
+  if (DBD.keys.left) mdx -= 1;
+  if (DBD.keys.right) mdx += 1;
+  if (DBD.keys.up) mdy -= 1;
+  if (DBD.keys.down) mdy += 1;
+  if (mdx && mdy) { mdx *= 0.707; mdy *= 0.707; }
+  moveEntity(m, mdx * m.speed, mdy * m.speed);
+
+  const justPressed = DBD.keys.interact && !DBD.prevInteract;
+  if (DBD.qte && DBD.qte.active && justPressed) {
+    judgeQTE();
+  }
+  DBD.prevInteract = DBD.keys.interact;
+
+  if (DBD.phase === 'repair') {
+    if (DBD.gen.progress < 100 && !DBD.qte && isNearGen(p) && DBD.keys.interact) {
+      let speed = 0.32;
+      if (isNearGen(m)) speed *= 1.8;
+      DBD.gen.progress = Math.min(100, DBD.gen.progress + speed);
+      DBD.gen.repairing = true;
+      if (DBD.qteCooldown > 0) DBD.qteCooldown--;
+      else spawnQTE();
+    } else {
+      DBD.gen.repairing = false;
+    }
+    if (DBD.gen.progress >= 100) {
+      DBD.phase = 'gate';
+      DBD.message = "发电机修好了！去右边拉大门";
+      DBD.msgTimer = 200;
+      DBD.qte = null;
+    }
+  }
+
+  if (DBD.phase === 'gate') {
+    if (isNearGate(p) && DBD.keys.interact) {
+      let speed = 0.35;
+      if (isNearGate(m)) speed *= 1.6;
+      DBD.gate.progress = Math.min(100, DBD.gate.progress + speed);
+      if (DBD.gate.progress >= 100) {
+        DBD.gate.open = true;
+        DBD.phase = 'escape';
+        DBD.message = "门开了！两人一起走到门口";
+        DBD.msgTimer = 200;
+      }
+    }
+  }
+
+  if (DBD.phase === 'escape') {
+    if (isNearGate(p) && isNearGate(m)) {
+      winDBD();
+      return;
+    }
+  }
+
+  if (DBD.qte) {
+    if (DBD.qte.active) {
+      DBD.qte.angle += DBD.qte.speed;
+      if (DBD.qte.angle >= 360) {
+        DBD.qte.result = 'miss';
+        DBD.qte.active = false;
+        DBD.qte.resultTimer = 40;
+        DBD.gen.progress = Math.max(0, DBD.gen.progress - 8);
+        DBD.shake = 15;
+        DBD.message = "炸机！";
+        DBD.msgTimer = 60;
+      }
+    } else {
+      DBD.qte.resultTimer--;
+      if (DBD.qte.resultTimer <= 0) {
+        DBD.qte = null;
+        DBD.qteCooldown = 120 + Math.random() * 100;
+      }
+    }
+  }
+
+  updateKiller();
+  updateParticles();
+  updateRepairHud();
+}
+
+function drawPerson(ctx, e, color, glow, flip) {
+  const x = Math.round(e.x), y = Math.round(e.y);
+  const w = e.w, h = e.h;
+
+  const grad = ctx.createRadialGradient(x + w/2, y + h/2, 2, x + w/2, y + h/2, 16);
+  grad.addColorStop(0, glow);
+  grad.addColorStop(1, "rgba(0,0,0,0)");
+  ctx.globalAlpha = 0.4;
+  ctx.fillStyle = grad;
+  ctx.fillRect(x - 10, y - 10, w + 20, h + 20);
+  ctx.globalAlpha = 1;
+
+  ctx.fillStyle = color;
+  ctx.fillRect(x, y + 2, w, h - 2);
+  ctx.fillRect(x + 2, y, w - 4, 4);
+  ctx.fillStyle = "#fff";
+  const ex = flip ? x + 2 : x + w - 4;
+  ctx.fillRect(ex, y + 2, 2, 2);
+}
+
+function drawKillerSprite(ctx, k) {
+  const x = Math.round(k.x), y = Math.round(k.y);
+  const w = k.w, h = k.h;
+
+  const grad = ctx.createRadialGradient(x + w/2, y + h/2, 2, x + w/2, y + h/2, 24);
+  grad.addColorStop(0, k.state === 'chase' ? "rgba(255,40,40,0.6)" : "rgba(180,40,40,0.35)");
+  grad.addColorStop(1, "rgba(0,0,0,0)");
+  ctx.fillStyle = grad;
+  ctx.fillRect(x - 20, y - 20, w + 40, h + 40);
+
+  ctx.fillStyle = "#1a0a0a";
+  ctx.fillRect(x, y, w, h);
+  ctx.strokeStyle = k.state === 'chase' ? "#ff4040" : "#6a1a1a";
+  ctx.lineWidth = 1;
+  ctx.strokeRect(x + 0.5, y + 0.5, w - 1, h - 1);
+
+  ctx.fillStyle = "#ff2020";
+  ctx.fillRect(x + 3, y + 3, 2, 2);
+  ctx.fillRect(x + w - 5, y + 3, 2, 2);
+
+  ctx.fillStyle = "#3a1a1a";
+  ctx.fillRect(x + 2, y + h - 4, w - 4, 3);
+}
+
+function drawCornField(ctx, o) {
+  const seed = (o.x * 13 + o.y * 7) | 0;
+  const rnd = (n) => {
+    const v = Math.sin(seed + n * 12.9898) * 43758.5453;
+    return v - Math.floor(v);
+  };
+
+  ctx.fillStyle = "rgba(8, 5, 3, 0.55)";
+  ctx.fillRect(o.x - 2, o.y + o.h - 6, o.w + 4, 8);
+
+  ctx.fillStyle = "#1b120c";
+  ctx.fillRect(o.x - 1, o.y + o.h - 4, o.w + 2, 4);
+  ctx.fillStyle = "#2c1f14";
+  ctx.fillRect(o.x - 1, o.y + o.h - 4, o.w + 2, 1);
+
+  const n = Math.max(3, Math.round(o.w / 9));
+  const step = o.w / n;
+
+  for (let i = 0; i < n; i++) {
+    const bx = o.x + i * step + step * 0.5;
+    const jitter = rnd(i) * 4 - 2;
+    const stalkH = o.h + 10 + rnd(i + 10) * 10;
+    const top = o.y + o.h - stalkH;
+    const x = Math.round(bx + jitter);
+    const topR = Math.round(top);
+    const hR = Math.round(stalkH);
+
+    ctx.fillStyle = i % 2 === 0 ? "#4d5c22" : "#3f4d1b";
+    ctx.fillRect(x, topR, 2, hR);
+
+    ctx.fillStyle = "rgba(0,0,0,0.40)";
+    ctx.fillRect(x + 2, topR, 1, hR);
+
+    const leafColor = i % 2 === 0 ? "#5e7030" : "#4a5a22";
+    const leafDark = i % 2 === 0 ? "#3c4a18" : "#334015";
+    ctx.fillStyle = leafColor;
+    ctx.fillRect(x - 6, Math.round(top + stalkH * 0.32), 6, 2);
+    ctx.fillRect(x - 9, Math.round(top + stalkH * 0.32 - 2), 3, 2);
+    ctx.fillRect(x + 2, Math.round(top + stalkH * 0.50), 7, 2);
+    ctx.fillRect(x + 9, Math.round(top + stalkH * 0.50 - 2), 3, 2);
+    ctx.fillRect(x - 4, Math.round(top + stalkH * 0.18), 4, 2);
+    ctx.fillRect(x + 2, Math.round(top + stalkH * 0.24), 5, 2);
+    ctx.fillStyle = leafDark;
+    ctx.fillRect(x - 6, Math.round(top + stalkH * 0.32) + 2, 6, 1);
+    ctx.fillRect(x + 2, Math.round(top + stalkH * 0.50) + 2, 7, 1);
+
+    if (i % 2 === 0) {
+      const cy = Math.round(top + stalkH * 0.42);
+      ctx.fillStyle = "#a8913f";
+      ctx.fillRect(x + 3, cy, 3, 7);
+      ctx.fillStyle = "#c9b45a";
+      ctx.fillRect(x + 3, cy, 2, 7);
+      ctx.fillStyle = "#6f5f24";
+      ctx.fillRect(x + 3, cy + 7, 3, 2);
+    }
+
+    ctx.fillStyle = "#6b5a2a";
+    ctx.fillRect(x, topR - 3, 2, 4);
+    ctx.fillStyle = "#8a7434";
+    ctx.fillRect(x, topR - 5, 1, 3);
+  }
+
+  ctx.fillStyle = "rgba(60, 70, 26, 0.45)";
+  for (let i = 0; i < 5; i++) {
+    const fx = o.x + rnd(i + 30) * o.w;
+    const fy = o.y + o.h - 2 + rnd(i + 40) * 4;
+    ctx.fillRect(Math.round(fx), Math.round(fy), 3, 1);
+  }
+}
+
+function drawGeneratorSprite(ctx, g) {
+  const x = g.x, y = g.y, w = g.w, h = g.h;
+  const lit = g.progress / 100;
+
+  if (lit > 0) {
+    const grad = ctx.createRadialGradient(x + w/2, y + h/2, 5, x + w/2, y + h/2, 32);
+    grad.addColorStop(0, `rgba(255, 190, 80, ${0.18 + lit * 0.42})`);
+    grad.addColorStop(1, "rgba(255, 190, 80, 0)");
+    ctx.fillStyle = grad;
+    ctx.fillRect(x - 20, y - 20, w + 40, h + 40);
+  }
+
+  ctx.fillStyle = "#1d150e";
+  ctx.fillRect(x - 1, y + h - 4, w + 2, 5);
+  ctx.fillStyle = "#3a3020";
+  ctx.fillRect(x, y + h - 4, w, 4);
+  ctx.fillStyle = "#57472a";
+  ctx.fillRect(x + 4, y + 4, w - 8, h - 8);
+  ctx.fillStyle = "#7a6a3a";
+  ctx.fillRect(x, y, w, 6);
+  ctx.fillStyle = "#9a8850";
+  ctx.fillRect(x, y, w, 2);
+  ctx.fillStyle = "rgba(0,0,0,0.35)";
+  ctx.fillRect(x + 4, y + h - 9, w - 8, 1);
+  ctx.fillStyle = g.repairing ? "#ffd93b" : (lit >= 1 ? "#6bff9d" : "#8a7a4a");
+  ctx.fillRect(x + w/2 - 2, y + h - 8, 4, 4);
+
+  ctx.fillStyle = "rgba(90, 10, 14, 0.35)";
+  ctx.fillRect(x + 6, y + 10, 4, 3);
+  ctx.fillRect(x + w - 11, y + 15, 5, 2);
+
+  if (g.progress > 0) {
+    ctx.fillStyle = "rgba(0,0,0,0.7)";
+    ctx.fillRect(x - 4, y - 8, w + 8, 4);
+    ctx.fillStyle = lit >= 1 ? "#6bff9d" : "#ffd93b";
+    ctx.fillRect(x - 4, y - 8, (w + 8) * (g.progress / 100), 4);
+  }
+}
+
+function drawGateSprite(ctx, g) {
+  const x = g.x, y = g.y, w = g.w, h = g.h;
+
+  ctx.fillStyle = "#2a1c12";
+  ctx.fillRect(x - 2, y, w + 4, h);
+
+  if (g.open) {
+    ctx.fillStyle = "#6bff9d";
+    ctx.fillRect(x, y + 4, w, h - 8);
+    const grad = ctx.createRadialGradient(x, y + h/2, 2, x, y + h/2, 30);
+    grad.addColorStop(0, "rgba(107,255,157,0.5)");
+    grad.addColorStop(1, "rgba(107,255,157,0)");
+    ctx.fillStyle = grad;
+    ctx.fillRect(x - 30, y - 10, 60, h + 20);
+  } else {
+    ctx.fillStyle = "#5a2a2a";
+    ctx.fillRect(x, y + 4, w, h - 8);
+    if (g.progress > 0) {
+      ctx.fillStyle = "#ffd93b";
+      ctx.fillRect(x + 1, y + h - 6 - (h - 10) * (g.progress/100), w - 2, (h - 10) * (g.progress/100));
+    }
+    ctx.fillStyle = "#ff4040";
+    ctx.fillRect(x + 2, y + 2, 3, 3);
+    ctx.fillStyle = "rgba(90, 8, 12, 0.45)";
+    ctx.fillRect(x + 1, y + h - 14, 4, 10);
+  }
+}
+
+function drawQTE(ctx) {
+  const q = DBD.qte;
+  const cx = DBD.gen.x + DBD.gen.w/2;
+  const cy = DBD.gen.y - 28;
+  const r = 20;
+
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, Math.PI*2);
+  ctx.strokeStyle = "rgba(255,210,230,0.2)";
+  ctx.lineWidth = 4;
+  ctx.stroke();
+
+  const zStart = (q.zoneStart - 90) * Math.PI / 180;
+  const zEnd = (q.zoneEnd - 90) * Math.PI / 180;
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, zStart, zEnd);
+  ctx.strokeStyle = "rgba(255,220,100,0.95)";
+  ctx.lineWidth = 4;
+  ctx.stroke();
+
+  const pStart = (q.perfectStart - 90) * Math.PI / 180;
+  const pEnd = (q.perfectEnd - 90) * Math.PI / 180;
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, pStart, pEnd);
+  ctx.strokeStyle = "#fff";
+  ctx.lineWidth = 4;
+  ctx.stroke();
+
+  if (q.active) {
+    const ang = (q.angle - 90) * Math.PI / 180;
+    const px = cx + Math.cos(ang) * r;
+    const py = cy + Math.sin(ang) * r;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(px, py);
+    ctx.strokeStyle = "rgba(255,255,255,0.9)";
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(px, py, 3, 0, Math.PI*2);
+    ctx.fillStyle = "#fff";
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(cx, cy, 2, 0, Math.PI*2);
+    ctx.fillStyle = "#ffd6e3";
+    ctx.fill();
+  }
+
+  if (q.active) {
+    ctx.font = "bold 7px 'Consolas', monospace";
+    ctx.fillStyle = "rgba(255,255,255,0.85)";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText("按 空格", cx, cy + r + 10);
+  }
+
+  if (q.result && q.resultTimer > 0) {
+    ctx.globalAlpha = Math.min(1, q.resultTimer / 15);
+    let text, color;
+    if (q.result === 'perfect') { text = "PERFECT"; color = "#fff"; }
+    else if (q.result === 'good') { text = "GOOD"; color = "#ffd93b"; }
+    else { text = "MISS"; color = "#ff5a7a"; }
+    ctx.font = "bold 9px 'Consolas', monospace";
+    ctx.fillStyle = color;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(text, cx, cy + r + 22);
+    ctx.globalAlpha = 1;
+  }
+}
+
+function drawDBD() {
+  const ctx = DBD.ctx;
+  ctx.save();
+  if (DBD.shake > 0.5) {
+    ctx.translate((Math.random()-0.5)*DBD.shake, (Math.random()-0.5)*DBD.shake);
+  }
+
+  if (DBD.groundCanvas) {
+    ctx.drawImage(DBD.groundCanvas, 0, 0);
+  } else {
+    ctx.fillStyle = "#241a12";
+    ctx.fillRect(0, 0, DBD_W, DBD_H);
+  }
+
+  const k = DBD.killer;
+  const kx = k.x + k.w/2, ky = k.y + k.h/2;
+  const R = 115;
+  const kg = ctx.createRadialGradient(kx, ky, 20, kx, ky, R);
+  kg.addColorStop(0, "rgba(255,50,50,0.10)");
+  kg.addColorStop(1, "rgba(255,50,50,0)");
+  ctx.fillStyle = kg;
+  ctx.beginPath();
+  ctx.arc(kx, ky, R, 0, Math.PI*2);
+  ctx.fill();
+
+  for (const w of DBD.walls) {
+    ctx.fillStyle = "#150e09";
+    ctx.fillRect(w.x, w.y, w.w, w.h);
+    ctx.fillStyle = "#2b1d12";
+    ctx.fillRect(w.x, w.y, w.w, 2);
+    ctx.fillStyle = "rgba(120, 20, 24, 0.20)";
+    ctx.fillRect(w.x, w.y + w.h - 2, w.w, 2);
+  }
+
+  for (const o of DBD.obstacles) drawCornField(ctx, o);
+
+  if (dbdGeneratorImg && dbdGeneratorImg.complete && dbdGeneratorImg.naturalWidth > 0) {
+    drawImageContain(ctx, dbdGeneratorImg, DBD.gen.x, DBD.gen.y, DBD.gen.w, DBD.gen.h, false);
+    if (DBD.gen.progress > 0) {
+      ctx.fillStyle = "rgba(0,0,0,0.7)";
+      ctx.fillRect(DBD.gen.x - 4, DBD.gen.y - 8, DBD.gen.w + 8, 4);
+      ctx.fillStyle = DBD.gen.progress >= 100 ? "#6bff9d" : "#ffd93b";
+      ctx.fillRect(DBD.gen.x - 4, DBD.gen.y - 8, (DBD.gen.w + 8) * (DBD.gen.progress / 100), 4);
+    }
+  } else {
+    drawGeneratorSprite(ctx, DBD.gen);
+  }
+
+  if (dbdGateImg && dbdGateImg.complete && dbdGateImg.naturalWidth > 0) {
+    drawImageContain(ctx, dbdGateImg, DBD.gate.x - 4, DBD.gate.y, DBD.gate.w + 8, DBD.gate.h, false);
+  } else {
+    drawGateSprite(ctx, DBD.gate);
+  }
+
+  if (dbdEaslynImg && dbdEaslynImg.complete && dbdEaslynImg.naturalWidth > 0) {
+    drawImageContain(ctx, dbdEaslynImg, DBD.mate.x - 2, DBD.mate.y - 2, DBD.mate.w + 4, DBD.mate.h + 4, false);
+  } else {
+    drawPerson(ctx, DBD.mate, "#ff8fb8", "#ffb8d0", false);
+  }
+
+  if (dbdKillerImg && dbdKillerImg.complete && dbdKillerImg.naturalWidth > 0) {
+    drawImageContain(ctx, dbdKillerImg, DBD.killer.x - 3, DBD.killer.y - 3, DBD.killer.w + 6, DBD.killer.h + 6, false);
+  } else {
+    drawKillerSprite(ctx, DBD.killer);
+  }
+
+  if (dbdPlayerImg && dbdPlayerImg.complete && dbdPlayerImg.naturalWidth > 0) {
+    drawImageContain(ctx, dbdPlayerImg, DBD.player.x - 2, DBD.player.y - 2, DBD.player.w + 4, DBD.player.h + 4, DBD.player.facing < 0);
+  } else {
+    drawPerson(ctx, DBD.player, "#6bb0ff", "#a0d0ff", DBD.player.facing < 0);
+  }
+
+  for (const p of DBD.particles) {
+    ctx.globalAlpha = p.life / p.maxLife;
+    ctx.fillStyle = p.color;
+    ctx.fillRect(p.x, p.y, p.size, p.size);
+  }
+  ctx.globalAlpha = 1;
+
+  if (DBD.qte) drawQTE(ctx);
+
+  if (DBD.killer.glow > 0.3) {
+    const g = DBD.killer.glow;
+    const grad = ctx.createRadialGradient(DBD_W/2, DBD_H/2, DBD_W*0.3, DBD_W/2, DBD_H/2, DBD_W*0.7);
+    grad.addColorStop(0, "rgba(255,30,30,0)");
+    grad.addColorStop(1, `rgba(255,20,26,${g * 0.28})`);
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, DBD_W, DBD_H);
+  }
+
+  const vg = ctx.createRadialGradient(DBD_W/2, DBD_H/2, DBD_W*0.26, DBD_W/2, DBD_H/2, DBD_W*0.75);
+  vg.addColorStop(0, "rgba(0,0,0,0)");
+  vg.addColorStop(1, "rgba(26, 2, 6, 0.62)");
+  ctx.fillStyle = vg;
+  ctx.fillRect(0, 0, DBD_W, DBD_H);
+
+  if (DBD.msgTimer > 0) {
+    ctx.fillStyle = "rgba(8, 4, 6, 0.82)";
+    ctx.fillRect(DBD_W/2 - 110, 12, 220, 18);
+    ctx.strokeStyle = "rgba(255, 90, 110, 0.35)";
+    ctx.lineWidth = 1;
+    ctx.strokeRect(DBD_W/2 - 110 + 0.5, 12 + 0.5, 219, 17);
+    ctx.fillStyle = "#ffd6e3";
+    ctx.font = "bold 8.5px 'Consolas', monospace";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(DBD.message, DBD_W/2, 21);
+  }
+
+  ctx.restore();
+}
+
+function winDBD() {
+  if (!DBD.running) return;
+  DBD.running = false;
+  if (DBD.raf) { cancelAnimationFrame(DBD.raf); DBD.raf = null; }
+  document.getElementById("repairVictory").classList.add("show");
+}
+
+function continueAfterRepair() {
+  document.getElementById("repairGame").classList.remove("show");
+  document.getElementById("repairVictory").classList.remove("show");
+
+  document.getElementById("dialog").style.display = "block";
+  document.getElementById("dialog").style.visibility = "visible";
+
+  state.sequencePhase = "afterRepair";
+  state.lines = AFTER_REPAIR;
+  state.idx = 0;
+  state.phase = "reply";
+  render();
+}
+
+/* ===== 结局特效 ===== */
+let effectStarted = false;
+let effectRaf = null;
+let snowflakes = [];
+let bubbles = [];
+let effectCanvas, effectCtx;
+
+function startEndingEffect() {
+  if (effectStarted) return;
+  effectStarted = true;
+
+  effectCanvas = document.getElementById("effectCanvas");
+  effectCtx = effectCanvas.getContext("2d");
 
   function resize() {
-    canvas.width = canvas.clientWidth * window.devicePixelRatio;
-    canvas.height = canvas.clientHeight * window.devicePixelRatio;
-    ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
+    effectCanvas.width = effectCanvas.clientWidth * window.devicePixelRatio;
+    effectCanvas.height = effectCanvas.clientHeight * window.devicePixelRatio;
+    effectCtx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
   }
   resize();
   window.addEventListener("resize", resize);
 
-  function spawn() {
-    const w = canvas.clientWidth;
-    meteors.push({
-      x: Math.random() * w * 0.9 + w * 0.1,
-      y: -40,
-      vx: -(2.5 + Math.random() * 2),
-      vy: 4 + Math.random() * 3,
-      len: 80 + Math.random() * 80,
-      life: 1,
-      fade: 0.004 + Math.random() * 0.004
-    });
+  function W() { return effectCanvas.clientWidth; }
+  function H() { return effectCanvas.clientHeight; }
+
+  function makeSnow() {
+    return {
+      x: Math.random() * W(),
+      y: Math.random() * H() - H(),
+      r: 1 + Math.random() * 2.6,
+      vy: 0.35 + Math.random() * 0.9,
+      vx: (Math.random() - 0.5) * 0.35,
+      sway: Math.random() * Math.PI * 2,
+      swaySpeed: 0.006 + Math.random() * 0.012,
+      opacity: 0.45 + Math.random() * 0.5
+    };
   }
 
-  spawn();
-  meteorTimer = setInterval(spawn, 850);
+  function makeBubble() {
+    return {
+      x: Math.random() * W(),
+      y: H() + Math.random() * H(),
+      r: 6 + Math.random() * 16,
+      vy: -(0.25 + Math.random() * 0.65),
+      vx: (Math.random() - 0.5) * 0.28,
+      sway: Math.random() * Math.PI * 2,
+      swaySpeed: 0.008 + Math.random() * 0.016,
+      opacity: 0.22 + Math.random() * 0.35
+    };
+  }
+
+  for (let i = 0; i < 90; i++) snowflakes.push(makeSnow());
+  for (let i = 0; i < 45; i++) bubbles.push(makeBubble());
 
   function draw() {
-    const w = canvas.clientWidth;
-    const h = canvas.clientHeight;
-    ctx.clearRect(0, 0, w, h);
+    const w = W();
+    const h = H();
+    effectCtx.clearRect(0, 0, w, h);
 
-    for (let i = meteors.length - 1; i >= 0; i--) {
-      const m = meteors[i];
-      m.x += m.vx;
-      m.y += m.vy;
-      m.life -= m.fade;
-
-      if (m.life <= 0 || m.y > h + 100 || m.x < -100) {
-        meteors.splice(i, 1);
-        continue;
-      }
-
-      const tailX = m.x - m.vx * (m.len / Math.max(m.vy, 1)) * 0.15;
-      const tailY = m.y - m.vy * (m.len / Math.max(m.vy, 1)) * 0.15;
-
-      const grad = ctx.createLinearGradient(m.x, m.y, tailX, tailY);
-      grad.addColorStop(0, `rgba(255,255,255,${0.9 * m.life})`);
-      grad.addColorStop(0.4, `rgba(200,220,255,${0.5 * m.life})`);
-      grad.addColorStop(1, "rgba(200,220,255,0)");
-
-      ctx.strokeStyle = grad;
-      ctx.lineWidth = 2;
-      ctx.lineCap = "round";
-      ctx.beginPath();
-      ctx.moveTo(m.x, m.y);
-      ctx.lineTo(tailX, tailY);
-      ctx.stroke();
-
-      ctx.beginPath();
-      ctx.arc(m.x, m.y, 1.6, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,255,255,${0.95 * m.life})`;
-      ctx.fill();
+    for (const s of snowflakes) {
+      s.sway += s.swaySpeed;
+      s.x += s.vx + Math.sin(s.sway) * 0.28;
+      s.y += s.vy;
+      if (s.y > h + 10) { Object.assign(s, makeSnow()); s.y = -10; }
+      if (s.x < -10) s.x = w + 10;
+      if (s.x > w + 10) s.x = -10;
+      effectCtx.beginPath();
+      effectCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      effectCtx.fillStyle = `rgba(255,255,255,${s.opacity})`;
+      effectCtx.fill();
     }
 
-    meteorRaf = requestAnimationFrame(draw);
+    for (const b of bubbles) {
+      b.sway += b.swaySpeed;
+      b.x += b.vx + Math.sin(b.sway) * 0.4;
+      b.y += b.vy;
+      if (b.y < -b.r * 2) { Object.assign(b, makeBubble()); b.y = h + b.r * 2; }
+      if (b.x < -b.r * 2) b.x = w + b.r * 2;
+      if (b.x > w + b.r * 2) b.x = -b.r * 2;
+
+      const grad = effectCtx.createRadialGradient(
+        b.x - b.r * 0.35, b.y - b.r * 0.35, b.r * 0.15,
+        b.x, b.y, b.r
+      );
+      grad.addColorStop(0, `rgba(255,220,236,${b.opacity + 0.28})`);
+      grad.addColorStop(0.55, `rgba(255,178,208,${b.opacity})`);
+      grad.addColorStop(1, `rgba(255,158,196,${b.opacity * 0.25})`);
+
+      effectCtx.beginPath();
+      effectCtx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+      effectCtx.fillStyle = grad;
+      effectCtx.fill();
+
+      effectCtx.beginPath();
+      effectCtx.arc(b.x - b.r * 0.32, b.y - b.r * 0.32, b.r * 0.16, 0, Math.PI * 2);
+      effectCtx.fillStyle = `rgba(255,255,255,${Math.min(b.opacity + 0.45, 0.85)})`;
+      effectCtx.fill();
+    }
+
+    effectRaf = requestAnimationFrame(draw);
   }
+
   draw();
 }
 </script>
